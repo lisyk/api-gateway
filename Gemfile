@@ -46,4 +46,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #####  API JWT Authentication ##########
 gem 'jwt'
 
-gem 'wellness_plans', path: 'components/wellness_plans'
+gem 'wellness', path: 'components/wellness'
