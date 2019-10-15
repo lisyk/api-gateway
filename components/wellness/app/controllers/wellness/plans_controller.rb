@@ -14,7 +14,7 @@ module Wellness
     private
 
     def get_plans
-      #Clients::VcpClient::V1::WellnessPlans.new.api_request(action_name)
+      WellnessPlans.new.api_request(action_name)
     end
 
     # test hardcoded data. TODO clean up
