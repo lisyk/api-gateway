@@ -2,6 +2,7 @@ PATH
   remote: components/wellness
   specs:
     wellness (0.1.0)
+      config
       faraday (~> 0.15.4)
       rails (~> 6.0.0)
 
