@@ -1,4 +1,6 @@
-require "wellness/engine"
+# frozen_string_literal: true
+
+require 'wellness/engine'
 require 'faraday'
 
 module Wellness
