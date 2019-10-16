@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails",   '~> 6.0.0'
   spec.add_dependency 'faraday', '~> 0.15.4'
+  spec.add_dependency 'config'
 
   spec.add_development_dependency 'rspec-rails', '~> 3.8'
   spec.add_development_dependency 'factory_bot_rails'
