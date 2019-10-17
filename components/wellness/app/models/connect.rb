@@ -11,7 +11,7 @@ class Connect
 
   private
 
-  def client
+  def api_client
     Faraday.new(url: url) do |faraday|
       faraday.request :url_encoded
       faraday.adapter Faraday.default_adapter
@@ -19,13 +19,13 @@ class Connect
     end
   end
 
-  def get_token
-    token_resp = client.post('login', username: vcp_username, password: vcp_password)
+  def fetch_token
+    token_resp = api_client.post('login', username: vcp_username, password: vcp_password)
     JSON.parse(token_resp.body)['access_token']
   end
 
   def auth_token
-    get_token unless cached_token
+    fetch_token unless cached_token
   end
 
   def cached_token
