@@ -33,6 +33,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.8'
   gem 'rubocop', '~> 0.74.0', require: false
+  gem 'rubocop-rails'
 end
 
 group :development do
