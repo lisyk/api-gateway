@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class WellnessPlans < Connect
-  REQUEST_MAPPER = {'index' => {:method => 'get',
-                                :resource => 'plans'}}.freeze
+  REQUEST_MAPPER = { 'index' => { method: 'get',
+                                  resource: 'plans' } }.freeze
 
   def api_request(action)
     response = client.send(REQUEST_MAPPER[action][:method], REQUEST_MAPPER[action][:resource])

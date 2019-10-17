@@ -4,8 +4,8 @@ require 'rails_helper'
 require 'faraday'
 
 RSpec.describe 'VCP API', type: :request do
-  let(:vcp_url) do 
-    settings_convert = YAML.load(File.read(File.expand_path('../../../../config/settings/test.yml', Rails.root))).to_json
+  let(:vcp_url) do
+    settings_convert = YAML.safe_load(File.read(File.expand_path('../../../../config/settings/test.yml', Rails.root))).to_json
     settings = JSON.parse(settings_convert, object_class: OpenStruct)
     vcp = settings.api.vcp_wellness
     vcp.protocol + vcp.subdomain + vcp.domain + vcp.api_route
