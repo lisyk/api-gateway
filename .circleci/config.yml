@@ -31,5 +31,11 @@ jobs:
           RAILS_ENV: test
     steps:
       - run:
-          name: Run rspec in parallel
+          name: Run rspec
           command: bundle exec rspec
+  workflows:
+    version: 2
+    workflow:
+      jobs:
+        - build
+        - test-main-app
