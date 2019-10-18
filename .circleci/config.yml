@@ -25,6 +25,10 @@ jobs:
 
   test-main-app:
     working_directory: ~/api-gateway
+    docker:
+      - image: circleci/ruby:2.6.4  # language image
+        environment:
+          RAILS_ENV: test
     steps:
       - run:
           name: Run rspec in parallel
