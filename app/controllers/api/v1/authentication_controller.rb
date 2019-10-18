@@ -17,8 +17,8 @@ module Api
       private
 
       def retrieve_credentials
-        @username = ENV["TEST_USER_NAME"] || Rails.application.credentials.auth[Rails.env.to_sym][:user_name]
-        @password = ENV["TEST_PASSWORD"] || Rails.application.credentials.auth[Rails.env.to_sym][:password]
+        @username = Rails.application.credentials.auth[Rails.env.to_sym][:user_name]
+        @password = Rails.application.credentials.auth[Rails.env.to_sym][:password]
       end
 
       def find_user
