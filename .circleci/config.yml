@@ -22,7 +22,9 @@ jobs:
       - run: # Install Ruby dependencies
           name: Bundle Install
           command: bundle install
-
+          
+  test-main-app:
+    working_directory: ~/api-gateway
       - run:
           name: Run rspec in parallel
           command: bundle exec rspec
