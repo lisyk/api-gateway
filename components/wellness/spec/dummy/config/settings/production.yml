@@ -1,0 +1,7 @@
+# TODO Update for prod
+api:
+  vcp_wellness:
+    protocol: "https://"
+    subdomain: "demo."
+    domain: "vcp.vet"
+    api_route: "/cwa/api"

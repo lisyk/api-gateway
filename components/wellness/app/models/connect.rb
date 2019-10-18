@@ -1,3 +1,5 @@
+require_dependency 'redis'
+
 class Connect
   attr_reader :url, :client, :token
 
@@ -26,13 +28,49 @@ class Connect
     get_token unless cached_token
   end
 
-  def cached_token
-    #TODO: cache token on our side
+  def fetch_token
+    token_resp = client.post('login', username: vcp_username, password: vcp_password)
+    response_body = JSON.parse(token_resp.body)
+    response_body['request_date'] = DateTime.now.to_i
+    token = response_body['access_token']
+    cache_token(response_body)
+    token
+  end
+
+  def auth_token
+    token = fetch_cached_token
+    return token if token
+
+    fetch_token
+  end
+
+  def cache_token(authorization)
+    redis.set(:authorization, authorization.to_json)
+  rescue Redis::CannotConnectError
     false
   end
 
-  def token_expired
-    #TODO: expired token
+  def fetch_cached_token
+    cached_auth = redis.get(:authorization)
+    if cached_auth
+      auth = JSON.parse(cached_auth)
+      token_expired?(auth) ? fetch_token : auth['access_token']
+    else
+      false
+    end
+  rescue Redis::CannotConnectError
+    false
+  end
+
+  def token_expired?(authorization)
+    request_date = authorization['request_date']
+    expiration = authorization['expires_in']
+    (request_date + expiration).to_i < DateTime.now.to_i
+  end
+
+  def redis
+    db_params = { db: Rails.application.credentials[:redis][:environment][Rails.env.to_sym] }
+    Redis.new(db_params)
   end
 
   def vcp_username
