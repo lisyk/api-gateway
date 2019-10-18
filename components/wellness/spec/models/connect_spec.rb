@@ -5,7 +5,6 @@ require 'redis'
 
 RSpec.describe Connect do
   before :each do
-    binding.pry
     @redis = Redis.new(db: Rails.application.credentials[:redis][:environment][Rails.env.to_sym])
     @redis.flushdb
     expect(@redis.get(:authorization)).to be_nil
@@ -15,6 +14,7 @@ RSpec.describe Connect do
   end
 
   describe 'redis' do
+    binding.pry
     context 'no auth cached' do
       it 'requests new auth from client' do
         expect(@redis.get(:authorization)).not_to be_nil
