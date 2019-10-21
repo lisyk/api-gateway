@@ -5,6 +5,8 @@ PATH
       config
       faraday (~> 0.15.4)
       rails (~> 6.0.0)
+      rspec-core
+      rspec-rails
 
 GEM
   remote: https://rubygems.org/
@@ -133,6 +135,11 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
+    open_api-rswag-api (0.1.0)
+      railties (>= 3.1, < 7.0)
+    open_api-rswag-ui (0.1.0)
+      actionpack (>= 3.1, < 7.0)
+      railties (>= 3.1, < 7.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -211,9 +218,10 @@ PLATFORMS
 
 DEPENDENCIES
   factory_bot_rails
+  open_api-rswag-api
+  open_api-rswag-ui
   pry-byebug
   rails-controller-testing
-  rspec-rails (~> 3.8)
   wellness!
 
 BUNDLED WITH

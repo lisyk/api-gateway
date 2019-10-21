@@ -10,7 +10,7 @@ module Api
         if @user == 'api_client'
           render json: { token: JwtAuthToken.encode(user_role: 'vip_admin') }
         else
-          render json: { errors: ['Invalid credentials.'] }, status: 403
+          render json: { errors: ['Invalid credentials.'] }, status: :forbidden
         end
       end
 
