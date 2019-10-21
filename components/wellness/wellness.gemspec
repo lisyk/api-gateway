@@ -30,10 +30,13 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails",   '~> 6.0.0'
   spec.add_dependency 'faraday', '~> 0.15.4'
   spec.add_dependency 'config'
+  spec.add_dependency 'rspec-rails'
+  spec.add_dependency 'rspec-core'
   spec.add_dependency 'open_api-rswag-api'
   spec.add_dependency 'open_api-rswag-ui'
+  spec.add_dependency 'open_api-rswag-specs'
 
   spec.add_development_dependency 'factory_bot_rails'
   spec.add_development_dependency 'rails-controller-testing'
-  spec.add_development_dependency 'open_api-rswag-specs'
+  
 end

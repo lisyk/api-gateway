@@ -5,8 +5,11 @@ PATH
       config
       faraday (~> 0.15.4)
       open_api-rswag-api
+      open_api-rswag-specs
       open_api-rswag-ui
       rails (~> 6.0.0)
+      rspec-core
+      rspec-rails
 
 GEM
   remote: https://rubygems.org/
@@ -66,6 +69,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.1, >= 2.1.8)
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.0)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
@@ -121,9 +126,12 @@ GEM
     ffi (1.11.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    hashie (3.6.0)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.3)
+    json-schema (2.8.1)
+      addressable (>= 2.4)
     jwt (2.2.1)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -148,6 +156,11 @@ GEM
       mini_portile2 (~> 2.4.0)
     open_api-rswag-api (0.1.0)
       railties (>= 3.1, < 7.0)
+    open_api-rswag-specs (0.1.0)
+      activesupport (>= 3.1, < 7.0)
+      hashie
+      json-schema (~> 2.2)
+      railties (>= 3.1, < 7.0)
     open_api-rswag-ui (0.1.0)
       actionpack (>= 3.1, < 7.0)
       railties (>= 3.1, < 7.0)
@@ -160,6 +173,7 @@ GEM
     pry-byebug (3.7.0)
       byebug (~> 11.0)
       pry (~> 0.10)
+    public_suffix (4.0.1)
     puma (3.12.1)
     rack (2.0.7)
     rack-test (1.1.0)
