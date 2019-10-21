@@ -64,7 +64,7 @@ jobs:
 
       - run:
           name: Run specs for wellness
-          command: bundle exec rspec
+          command: cd components/wellness && bundle exec rspec
 
 
 
