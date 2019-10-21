@@ -55,15 +55,15 @@ jobs:
           command: gem install bundler:2.0.2
 
       - run: # Install Ruby dependencies
-          name: Bundle Install
+          name: Bundle Install main app
           command: bundle install
 
       - run: # Install Ruby dependencies
-          name: Bundle Install
+          name: Bundle Install wellness component
           command: cd components/wellness && bundle install
 
       - run:
-          name: Run specs for wellness
+          name: Run specs for wellness component 
           command: cd components/wellness && bundle exec rspec
 
 
