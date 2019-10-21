@@ -33,20 +33,9 @@ jobs:
           name: Run specs for main app
           command: bundle exec rspec
 
-
-#  test-main-app:
-#    working_directory: ~/api-gateway
-#    docker:
-#      - image: circleci/ruby:2.6.4  # language image
-#        environment:
-#          RAILS_ENV: test
-#    steps:
-#      - run:
-#          name: Run rspec
-#          command: bundle exec rspec
-#  workflows:
-#    version: 2
-#    build-and-test:
-#      jobs:
-#        - build
-#        - test-main-app
+  workflows:
+    version: 2
+    build-and-test:
+      jobs:
+        - build
+        - test-main-app
