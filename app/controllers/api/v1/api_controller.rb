@@ -13,21 +13,21 @@ module Api
 
       def authenticate!
         payload = JwtAuthToken.decode(token)
-        if payload.present?
-          @current_user = 'authorized'
-        end
+        @current_user = 'authorized' if payload.present?
       rescue JWT::DecodeError
-        render json: { errors: ['Authentication token is not provided!'],
-                       auth_status: :unauthorized },
-               status: 403 if token.nil?
+        if token.nil?
+          render json: { errors: ['Authentication token is not provided!'],
+                         auth_status: :unauthorized },
+                 status: :forbidden
+        end
       rescue JWT::VerificationError
         render json: { errors: ['Authentication token is not valid!'],
                        auth_status: :unauthorized },
-               status: 403
+               status: :forbidden
       rescue JWT::ExpiredSignature
         render json: { errors: ['Authentication token has expired.'],
                        auth_status: :expired },
-               status: 403
+               status: :forbidden
       end
 
       def token

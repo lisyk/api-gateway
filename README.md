@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails API Gateway 
 
-Things you may want to cover:
+* Ruby version ruby-2.6.4
 
-* Ruby version
+* rails api mode
 
-* System dependencies
-
-* Configuration
-
-* Database creation
+* No database
 
 * Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Before making changes, copy `pre-commit.sh` to the repo `.git/hooks` folder using:
+```
+ln -s ../../pre-commit.sh .git/hooks/pre-commit
+```
