@@ -56,10 +56,10 @@ jobs:
 
       - run: # Install Ruby dependencies
           name: Bundle Install
-          command: bundle install
+          command: cd cd components/wellness && bundle install
 
       - run:
-          name: Run specs for main app
+          name: Run specs for wellness
           command: bundle exec rspec
 
 
