@@ -12,7 +12,7 @@ class JwtAuthToken
 
   def self.expired?(token)
     decoded_token = JWT.decode(token, Rails.application.credentials.secret_key_base).first
-    Time.at(decoded_token['exp']) < DateTime.now
+    Time.zone.at(decoded_token['exp']) < DateTime.now
   end
 
   def self.set_token_expiration
