@@ -1,17 +1,21 @@
 # frozen_string_literal: true
 
-require_dependency 'request_mapper'
+REQUEST_MAPPER = YAML.safe_load(
+  File.read(
+    File.expand_path('components/wellness/config/client_endpoints/endpoints.yml', Rails.root)
+  )
+)
 
 class WellnessPlans < Connect
   def api_request(controller, action, params = {})
-    endpoint = REQUEST_MAPPER[controller][action][:resource]
-    method = REQUEST_MAPPER[controller][action][:method]
+    endpoint = REQUEST_MAPPER[controller][action]['resource']
+    method = REQUEST_MAPPER[controller][action]['method']
     resource = if params[:id].present?
                  endpoint + "/#{params[:id]}"
                else
                  endpoint
                end
-    response = client.send(method, resource)
+    response = api_client.send(method, resource)
     parse_response(response)
   end
 

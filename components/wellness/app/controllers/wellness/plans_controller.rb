@@ -19,7 +19,7 @@ module Wellness
     private
 
     def fetch_plans
-      WellnessPlans.new.api_request(action_name)
+      WellnessPlans.new.api_request(controller_name, action_name)
     end
 
     # test hardcoded data. TODO clean up
