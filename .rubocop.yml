@@ -1,4 +1,6 @@
-require: rubocop
+require:
+    - rubocop
+    - rubocop-rails
 
 AllCops:
   Exclude:
@@ -7,6 +9,7 @@ AllCops:
     - 'config/spring.rb'
     - 'node_modules/**/*'
     - 'vendor/**/*'
+    - 'components/wellness/spec/dummy/config/**/*'
 
 Metrics/AbcSize:
   Exclude:
@@ -32,6 +35,7 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/**/**/*'
     - '**/**/spec/**/**/**/*'
+    - 'components/**/spec/**/**/**/*'
 
 Rails/Output:
   Exclude:

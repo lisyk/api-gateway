@@ -8,10 +8,11 @@ module Wellness
 
     def index
       if @current_user == 'authorized'
-        @wellness_plans ||= Settings.api.vcp_wellness.demo_client_ready ? fetch_plans : test_plans
+        demo_client_ready = Settings.api.vcp_wellness.demo_client_ready
+        @wellness_plans ||= demo_client_ready ? fetch_plans : test_plans
         render json: { plans: @wellness_plans }
       else
-        render json: { errors: ['You are not authorized'] }, status: 403
+        render json: { errors: ['You are not authorized'] }, status: :forbidden
       end
     end
 

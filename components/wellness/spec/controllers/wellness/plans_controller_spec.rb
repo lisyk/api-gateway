@@ -6,7 +6,13 @@ require(File.expand_path('../../app/controllers/api/v1/api_controller'))
 module Wellness
   RSpec.describe PlansController, type: :controller do
     routes { Wellness::Engine.routes }
-    let(:settings_yaml) { YAML.safe_load(File.read(File.expand_path('../../../../config/settings/test.yml', Rails.root))) }
+    let(:settings_yaml) do
+      YAML.safe_load(
+        File.read(
+          File.expand_path('../../../../config/settings/test.yml', Rails.root)
+        )
+      )
+    end
     let(:settings_convert) { settings_yaml.to_json }
     let(:settings) { JSON.parse(settings_convert, object_class: OpenStruct) }
 
