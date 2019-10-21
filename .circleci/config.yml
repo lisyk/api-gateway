@@ -30,14 +30,45 @@ jobs:
       - checkout
 
       - run:
+          name: Installing bundler...
+          command: gem install bundler:2.0.2
+
+      - run: # Install Ruby dependencies
+          name: Bundle Install
+          command: bundle install
+
+      - run:
           name: Run specs for main app
           command: bundle exec rspec
 
-workflows:
-  version: 2
-  build-and-test:
-    jobs:
-      - build
-      - test-main-app:
-          requires:
-            - build
+  test-wellness-component:
+    working_directory: ~/api-gateway/components/wellness
+    docker:
+      - image: circleci/ruby:2.6.4  # language image
+        environment:
+          RAILS_ENV: test
+    steps:
+      - checkout
+
+      - run:
+          name: Installing bundler...
+          command: gem install bundler:2.0.2
+
+      - run: # Install Ruby dependencies
+          name: Bundle Install
+          command: bundle install
+
+      - run:
+          name: Run specs for main app
+          command: bundle exec rspec
+
+
+
+#workflows:
+#  version: 2
+#  build-and-test:
+#    jobs:
+#      - build
+#      - test-main-app:
+#          requires:
+#            - build
