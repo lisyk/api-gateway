@@ -1,12 +1,9 @@
 version: 2
 jobs:
   build:
-    parallelism: 1
     working_directory: ~/api-gateway
     docker:
       - image: circleci/ruby:2.6.4  # language image
-        environment:
-          RAILS_ENV: test
     steps:
       - checkout
 
@@ -22,6 +19,20 @@ jobs:
       - run: # Install Ruby dependencies
           name: Bundle Install
           command: bundle install
+
+  test-main-app:
+    working_directory: ~/api-gateway
+    docker:
+      - image: circleci/ruby:2.6.4  # language image
+        environment:
+          RAILS_ENV: test
+    steps:
+      - checkout
+
+      - run:
+          name: Run specs for main app
+          command: bundle exec rspec
+
 
 #  test-main-app:
 #    working_directory: ~/api-gateway
