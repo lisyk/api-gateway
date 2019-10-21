@@ -1,0 +1,77 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/api-gateway
+    docker:
+      - image: circleci/ruby:2.6.4  # language image
+    steps:
+      - checkout
+
+      - run:
+          name: Installing bundler...
+          command: gem install bundler:2.0.2
+
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      - run: # Install Ruby dependencies
+          name: Bundle Install
+          command: bundle install
+
+  test-main-app:
+    working_directory: ~/api-gateway
+    docker:
+      - image: circleci/ruby:2.6.4  # language image
+        environment:
+          RAILS_ENV: test
+    steps:
+      - checkout
+
+      - run:
+          name: Installing bundler...
+          command: gem install bundler:2.0.2
+
+      - run: # Install Ruby dependencies
+          name: Bundle Install
+          command: bundle install
+
+      - run:
+          name: Run specs for main app
+          command: bundle exec rspec
+
+  test-wellness-component:
+    working_directory: ~/api-gateway/components/wellness
+    docker:
+      - image: circleci/ruby:2.6.4  # language image
+        environment:
+          RAILS_ENV: test
+    steps:
+      - checkout
+
+      - run:
+          name: Installing bundler...
+          command: gem install bundler:2.0.2
+
+      - run: # Install Ruby dependencies
+          name: Bundle Install main app
+          command: bundle install
+
+      - run: # Install Ruby dependencies
+          name: Bundle Install wellness component
+          command: cd components/wellness && bundle install
+
+      - run:
+          name: Run specs for wellness component
+          command: cd components/wellness && bundle exec rspec
+
+
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build
+      - test-main-app
+      - test-wellness-component
