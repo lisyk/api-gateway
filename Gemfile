@@ -34,6 +34,13 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'rubocop', '~> 0.74.0', require: false
   gem 'rubocop-rails'
+<<<<<<< HEAD
+=======
+end
+
+group :test do
+  # gem 'rswag-specs'
+>>>>>>> 3782e85d1cff2f88f9141f283c17872ee86b4cec
 end
 
 group :development do
@@ -50,3 +57,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jwt'
 
 gem 'wellness', path: 'components/wellness'
+<<<<<<< HEAD
+=======
+# gem 'open_api-rswag-api'
+# gem 'open_api-rswag-ui'
+
+>>>>>>> 3782e85d1cff2f88f9141f283c17872ee86b4cec
