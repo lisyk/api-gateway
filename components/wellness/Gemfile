@@ -16,5 +16,3 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 gem 'pry-byebug', group: %i[development test]
-gem 'open_api-rswag-ui' , group: %i[development test]
-gem 'open_api-rswag-api' , group: %i[development test]

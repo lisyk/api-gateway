@@ -1,4 +1,4 @@
-equire 'rails_helper'
+require 'rails_helper'
 
 RSpec.configure do |config|
   # Specify a root folder where Swagger JSON files are generated
@@ -13,28 +13,19 @@ RSpec.configure do |config|
   # document below. You can override this behavior by adding a swagger_doc tag to the
   # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
   config.swagger_docs = {
-    '/v1/vcp/api-docs/swagger.json' => {
+    'v1/swagger.json' => {
       openapi: '3.0.0',
       info: {
-        title: 'Wellness API V1',
+        title: 'API V1',
         version: 'v1'
-      },
-      components: {
-        securitySchemes:{
-          bearer_auth:{
-            type: :http,
-            scheme: :bearer,
-            bearerFormat: 'JWT'
-          }
-        }
       },
       paths: {},
       servers: [
         {
-          url: 'http://{defaultHost}',
+          url: 'https://{defaultHost}',
           variables: {
             defaultHost: {
-                default: 'localhost:3000'
+                default: 'www.example.com'
             }
           }
         }
