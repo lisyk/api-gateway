@@ -56,7 +56,7 @@ jobs:
 
       - run: # Install Ruby dependencies
           name: Bundle Install
-          command: cd cd components/wellness && bundle install
+          command: cd components/wellness && bundle install
 
       - run:
           name: Run specs for wellness
