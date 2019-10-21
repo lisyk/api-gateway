@@ -22,7 +22,7 @@ class Connect
   end
 
   def fetch_token
-    token_resp = client.post('login', username: vcp_username, password: vcp_password)
+    token_resp = api_client.post('login', username: vcp_username, password: vcp_password)
     response_body = JSON.parse(token_resp.body)
     response_body['request_date'] = DateTime.now.to_i
     token = response_body['access_token']
