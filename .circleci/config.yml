@@ -39,5 +39,5 @@ workflows:
     jobs:
       - build
       - test-main-app
-          requires:
-            - build
+        requires:
+          - build
