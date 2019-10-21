@@ -14,7 +14,6 @@ RSpec.describe Connect do
   end
 
   describe 'redis' do
-    binding.pry
     context 'no auth cached' do
       it 'requests new auth from client' do
         expect(@redis.get(:authorization)).not_to be_nil
@@ -24,7 +23,7 @@ RSpec.describe Connect do
     context 'auth cached' do
       it 'requests new auth if expired' do
         expired_auth = JSON.parse(@redis.get(:authorization))
-        expired_auth['request_date'] = (DateTime.now - 10.year).to_i
+        expired_auth['request_date'] = (DateTime.now - 10.years).to_i
         @redis.set(:authorization, expired_auth.to_json)
         VCR.use_cassette('vcp_login') do
           @client = Connect.new

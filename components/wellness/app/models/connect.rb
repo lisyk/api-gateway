@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_dependency 'redis'
 
 class Connect
@@ -11,21 +13,12 @@ class Connect
 
   private
 
-  def client
-    Faraday.new(:url => url) do |faraday|
+  def api_client
+    Faraday.new(url: url) do |faraday|
       faraday.request :url_encoded
-      faraday.adapter  Faraday.default_adapter
+      faraday.adapter Faraday.default_adapter
       faraday.headers['Authorization'] = "Bearer #{token}" if token.present?
     end
-  end
-
-  def get_token
-    token_resp = client.post('login', {username: vcp_username, password: vcp_password})
-    JSON.parse(token_resp.body)["access_token"]
-  end
-
-  def auth_token
-    get_token unless cached_token
   end
 
   def fetch_token
