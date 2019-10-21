@@ -273,6 +273,9 @@ DEPENDENCIES
   factory_bot_rails
   jwt
   listen (>= 3.0.5, < 3.2)
+  open_api-rswag-api
+  open_api-rswag-specs
+  open_api-rswag-ui
   pry-byebug
   puma (~> 3.11)
   rails (~> 6.0.0)
