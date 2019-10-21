@@ -38,6 +38,6 @@ workflows:
   build-and-test:
     jobs:
       - build
-      - test-main-app
-        requires:
-          - build
+      - test-main-app:
+          requires:
+            - build
