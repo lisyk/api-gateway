@@ -233,17 +233,11 @@ PLATFORMS
 DEPENDENCIES
   factory_bot_rails
   open_api-rswag-api
-<<<<<<< HEAD
   open_api-rswag-specs
   open_api-rswag-ui
   pry-byebug
   rails-controller-testing
   rspec-rails
-=======
-  open_api-rswag-ui
-  pry-byebug
-  rails-controller-testing
->>>>>>> 3782e85d1cff2f88f9141f283c17872ee86b4cec
   wellness!
 
 BUNDLED WITH

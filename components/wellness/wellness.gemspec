@@ -28,7 +28,8 @@ Gem::Specification.new do |spec|
   spec.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 
   spec.add_dependency 'config'
-  spec.add_dependency 'faraday', '~> 0.15.4'
+  spec.add_dependency 'rspec-rails'
+  spec.add_dependency 'rspec-core'
   spec.add_dependency 'open_api-rswag-api'
   spec.add_dependency 'open_api-rswag-specs'
   spec.add_dependency 'open_api-rswag-ui'
