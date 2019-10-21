@@ -25,7 +25,7 @@ module Wellness
     def authenticate_user
       return unless @current_user != 'authorized'
 
-      render json: { errors: ['You are not authorized'] }, status: 403
+      render json: { errors: ['You are not authorized'] }, status: :forbidden
     end
 
     def demo_client_ready
