@@ -4,6 +4,7 @@ PATH
     wellness (0.1.0)
       config
       faraday (~> 0.15.4)
+      jwt
       open_api-rswag-api
       open_api-rswag-specs
       open_api-rswag-ui
@@ -127,6 +128,7 @@ GEM
       concurrent-ruby (~> 1.0)
     json-schema (2.8.1)
       addressable (>= 2.4)
+    jwt (2.2.1)
     loofah (2.3.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)

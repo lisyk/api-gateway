@@ -4,6 +4,7 @@ PATH
     wellness (0.1.0)
       config
       faraday (~> 0.15.4)
+      jwt
       open_api-rswag-api
       open_api-rswag-specs
       open_api-rswag-ui
