@@ -62,16 +62,17 @@ class Connect
   end
 
   def redis
-    db_params = { db: Rails.application.credentials[:redis][:environment][Rails.env.to_sym] }
+    db = Rails.application.encrypted(credentials_path)[:redis][:environment][Rails.env.to_sym]
+    db_params = { db: db }
     Redis.new(db_params)
   end
 
   def vcp_username
-    Rails.application.credentials.auth[Rails.env.to_sym][:vcp_username]
+    Rails.application.encrypted(credentials_path).auth[Rails.env.to_sym][:vcp_username]
   end
 
   def vcp_password
-    Rails.application.credentials.auth[Rails.env.to_sym][:vcp_password]
+    Rails.application.encrypted(credentials_path).auth[Rails.env.to_sym][:vcp_password]
   end
 
   def base_uri
@@ -80,5 +81,9 @@ class Connect
 
   def vcp_wellness
     Settings.api.vcp_wellness
+  end
+
+  def credentials_path
+    Wellness::Engine.root.join('config', 'credentials.yml.enc')
   end
 end
