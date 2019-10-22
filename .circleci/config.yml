@@ -63,10 +63,6 @@ jobs:
           name: Bundle Install wellness component
           command: cd components/wellness && bundle install
 
-      # - run: 
-      #     name: Start redis server
-      #     command: sudo redis-server start
-
       - run:
           name: Run specs for wellness component
           command: cd components/wellness && bundle exec rspec
