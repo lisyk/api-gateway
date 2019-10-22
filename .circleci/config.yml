@@ -67,8 +67,6 @@ jobs:
           name: Run specs for wellness component
           command: cd components/wellness && bundle exec rspec
 
-
-
 workflows:
   version: 2
   build-and-test:
