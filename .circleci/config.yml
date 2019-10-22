@@ -24,7 +24,6 @@ jobs:
     working_directory: ~/api-gateway
     docker:
       - image: circleci/ruby:2.6.4  # language image
-      - image: redis # Redis image
         environment:
           RAILS_ENV: test
     steps:
@@ -46,6 +45,7 @@ jobs:
     working_directory: ~/api-gateway/components/wellness
     docker:
       - image: circleci/ruby:2.6.4  # language image
+      - image: circleci/redis # Redis image
         environment:
           RAILS_ENV: test
     steps:
@@ -62,6 +62,10 @@ jobs:
       - run: # Install Ruby dependencies
           name: Bundle Install wellness component
           command: cd components/wellness && bundle install
+
+      # - run: 
+      #     name: Start redis server
+      #     command: sudo redis-server start
 
       - run:
           name: Run specs for wellness component
