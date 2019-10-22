@@ -37,7 +37,6 @@ group :development, :test do
 end
 
 group :test do
-  # gem 'rswag-specs'
 end
 
 group :development do
