@@ -1,0 +1,9 @@
+plans:
+  index:
+    method: get
+    resource: plans
+
+plan_services:
+  index:
+    method: get
+    resource: planService

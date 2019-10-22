@@ -1,11 +1,28 @@
 # frozen_string_literal: true
 
-class WellnessPlans < Connect
-  REQUEST_MAPPER = { 'index' => { method: 'get',
-                                  resource: 'plans' } }.freeze
+REQUEST_MAPPER = YAML.safe_load(
+  File.read(
+    File.expand_path('components/wellness/config/client_endpoints/endpoints.yml', Rails.root)
+  )
+)
 
-  def api_request(action)
-    response = api_client.send(REQUEST_MAPPER[action][:method], REQUEST_MAPPER[action][:resource])
-    JSON.parse(response.body)
+class WellnessPlans < Connect
+  def api_request(controller, action, params = {})
+    endpoint = REQUEST_MAPPER[controller][action]['resource']
+    method = REQUEST_MAPPER[controller][action]['method']
+    resource = if params[:id].present?
+                 endpoint + "/#{params[:id]}"
+               else
+                 endpoint
+               end
+    response = api_client.send(method, resource)
+    parse_response(response)
+  end
+
+  def parse_response(response)
+    if response.headers['content-type'].include?('application/json')
+      response = JSON.parse(response.body)
+    end
+    response
   end
 end
