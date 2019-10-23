@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'swagger_helper'
 require './app/controllers/api/v1/authentication_controller.rb'
 
-describe 'Wellness Plans' do
+describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
   path '/wellness/plans/index' do
     get 'Index' do
       tags 'Wellness Plans'
@@ -10,23 +12,16 @@ describe 'Wellness Plans' do
       security [bearer_auth: []]
 
       context 'Using valid credentials' do
-        # before(:each) do
-        #   #jlb - this works don't change try to use let! syntax instead
-        #   @reponse = post :'/api/v1/authentication', params: { user_name: 'test', password: 'test' }
-        #   binding.pry
-        #   @token = JSON.parse(@response.body)['token']
-        # end
-          let(:authresponse) { post '/api/v1/authentication', params: { user_name: 'test', password: 'test' } }
-          let(:token) {JSON.parse(authresponse.body)['token'] }
+        before(:all) do
+          @authreponse = post '/api/v1/authentication', params: { user_name: 'test', password: 'test' }
+          @authtoken = JSON.parse(@response.body)['token']
+        end
 
         response '200', 'Retrieve List of valid plans' do
-          let(:Authorization) { " Authorization: Bearer #{token} " }
+          #schema '$plan' => '#/definitions/plan'
+          let(:Authorization) { " Authorization: Bearer #{@authtoken} " }
           let(:plans) {}
-          binding.pry
-          run_test! do |planresponse|
-            data = JSON.parse(planresponse.body)
-            puts data
-          end
+          run_test!
         end
       end
     end
