@@ -4,7 +4,7 @@ require_dependency 'wellness/application_controller'
 
 module Wellness
   class AgreementsController < ::Api::V1::ApiController
-    before_action :authenticate_user
+    before_action :user_authorized?
 
     def show
       @agreement ||= demo_client_ready ? client_request(agreement_params) : test_agreement
@@ -22,7 +22,7 @@ module Wellness
       send_file test_file, filename: "#{agreement_params[:id]}.pdf"
     end
 
-    def authenticate_user
+    def user_authorized?
       return unless @current_user != 'authorized'
 
       render json: { errors: ['You are not authorized'] }, status: :forbidden

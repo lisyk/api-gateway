@@ -4,7 +4,7 @@ require_dependency 'wellness/application_controller'
 
 module Wellness
   class ContractApplicationsController < ::Api::V1::ApiController
-    before_action :authenticate_user
+    before_action :user_authorized?
 
     def index
       @applications ||= demo_client_ready ? client_request : test_applications
@@ -47,7 +47,7 @@ module Wellness
       WellnessPlans.new.api_request(controller_name, action_name, params)
     end
 
-    def authenticate_user
+    def user_authorized?
       return unless @current_user != 'authorized'
 
       render json: { errors: ['You are not authorized'] }, status: :forbidden
