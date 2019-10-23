@@ -13,12 +13,11 @@ module Wellness
     end
 
     def update
-      @response ||= demo_client_ready ? client_request(agreement_params) : test_agreement_upload
-      status = @response.status
-      if status == 200
-        render json: { success: ['Signed agreement posted successfully'] }, status: status
+      response = client_request(agreement_params)
+      if response.status == 200
+        render json: { success: ['Signed agreement posted successfully'] }, status: :success
       else
-        render json: { errors: [@response.reason_phrase] }, status: status
+        render json: { errors: [response.reason_phrase] }, status: response.status
       end
     end
 
