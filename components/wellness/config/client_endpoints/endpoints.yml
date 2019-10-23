@@ -2,6 +2,9 @@ agreements:
   show:
     method: get
     resource: contractApplicationAgreement
+  update:
+    method: post
+    resource: contractApplicationAgreement
 
 contract_applications:
   index:
