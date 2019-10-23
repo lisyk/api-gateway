@@ -31,10 +31,7 @@ class Connect
   end
 
   def auth_token
-    token = fetch_cached_token
-    return token if token
-
-    fetch_token
+    cached_token? ? fetch_cached_token : fetch_token
   end
 
   def cache_token(authorization)
@@ -43,16 +40,16 @@ class Connect
     false
   end
 
-  def fetch_cached_token
-    cached_auth = redis.get(:authorization)
-    if cached_auth
-      auth = JSON.parse(cached_auth)
-      token_expired?(auth) ? fetch_token : auth['access_token']
-    else
-      false
-    end
+  def cached_token?
+    redis.get(:authorization).present?
   rescue Redis::CannotConnectError
     false
+  end
+
+  def fetch_cached_token
+    cached_auth = redis.get(:authorization)
+    auth = JSON.parse(cached_auth)
+    token_expired?(auth) ? fetch_token : auth['access_token']
   end
 
   def token_expired?(authorization)
