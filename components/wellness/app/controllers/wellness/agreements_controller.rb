@@ -12,6 +12,15 @@ module Wellness
       end
     end
 
+    def update
+      response = client_request(agreement_params)
+      if response.status == 200
+        render json: { success: ['Signed agreement posted successfully'] }, status: :success
+      else
+        render json: { errors: [response.reason_phrase] }, status: response.status
+      end
+    end
+
     private
 
     def fetch_agreement(params = {})
@@ -20,7 +29,7 @@ module Wellness
     end
 
     def agreement_params
-      params.except(:format).permit(:id)
+      params.except(:format).permit(:id, :contract)
     end
   end
 end
