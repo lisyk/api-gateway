@@ -130,4 +130,24 @@ RSpec.describe 'VCP API', type: :request do
       end
     end
   end
+  context 'GET /planService' do
+    context 'index' do
+      describe 'correct credentials' do
+        it 'returns a list of services' do
+          VCR.use_cassette('vcp_plan_service_index_auth') do
+            response = authorized_client.get('planService')
+            expect(response.status).to eql(200)
+          end
+        end
+      end
+      describe 'incorrect credentials' do
+        it 'returns 401' do
+          VCR.use_cassette('vcp_plan_service_index_no_auth') do
+            response = unauthorized_client.get('planService')
+            expect(response.status).to eql(401)
+          end
+        end
+      end
+    end
+  end
 end
