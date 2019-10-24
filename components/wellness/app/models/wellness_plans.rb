@@ -2,7 +2,7 @@
 
 REQUEST_MAPPER = YAML.safe_load(
   File.read(
-    File.expand_path('components/wellness/config/client_endpoints/endpoints.yml', Rails.root)
+    File.expand_path('config/client_endpoints/endpoints.yml', Wellness::Engine.root)
   )
 )
 
