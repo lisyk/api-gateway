@@ -37,12 +37,13 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.8'
+  gem 'rwag-specs'
   gem 'rubocop', '~> 0.74.0', require: false
   gem 'rubocop-rails'
+ 
 end
 
-group :test do
-end
+
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
