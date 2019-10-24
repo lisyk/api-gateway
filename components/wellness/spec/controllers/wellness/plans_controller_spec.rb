@@ -24,7 +24,9 @@ module Wellness
           stub_const('Settings', settings)
         end
         it 'returns wellness plans' do
-          get :index
+          VCR.use_cassette('wellness_plan_auth') do
+            get :index
+          end
           expect(response).to have_http_status(200)
           expect(assigns(:wellness_plans)).not_to be_nil
         end
@@ -32,7 +34,9 @@ module Wellness
       context 'not authenticated' do
         before { allow(controller).to receive(:authenticate!).and_return false }
         it 'sends error message to the client' do
-          get :index
+          VCR.use_cassette('wellness_plan_no_auth') do
+            get :index
+          end
           expect(response).to have_http_status(403)
           expect(JSON.parse(response.body)['errors']).to include 'You are not authorized'
         end

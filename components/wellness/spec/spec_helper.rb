@@ -16,9 +16,18 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+require 'redis'
+
 # vcr settings
 Dir['./spec/support/**/*.rb'].each { |f| require f }
 RSpec.configure do |config|
+  # Dump redis test cache prior to each test file.
+  config.before(:all) do
+    db_params = { db: 0 }
+    redis = Redis.new(db_params)
+    redis.flushdb
+  end
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
