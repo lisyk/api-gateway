@@ -7,8 +7,8 @@ module Wellness
     before_action :user_authorized?
 
     def index
-        @plan_services ||= demo_client_ready ? fetch_services : test_services
-        render json: { services: @plan_services }
+      @plan_services ||= demo_client_ready ? fetch_services : test_services
+      render json: { services: @plan_services }
     end
 
     private
