@@ -12,14 +12,14 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       security [bearer_auth: []]
 
       context 'Using valid credentials' do
-        before(:all) do
-          @authreponse = post '/api/v1/authentication', params: { user_name: 'test', password: 'test' }
-          @authtoken = JSON.parse(@response.body)['token']
+        let(:token) do
+          post '/api/v1/authentication', params: { user_name: 'test', password: 'test' }
+          JSON.parse(response.body)['token']
         end
 
         response '200', 'Retrieve List of valid plans' do
-          #schema '$plan' => '#/definitions/plan'
-          let(:Authorization) { " Authorization: Bearer #{@authtoken} " }
+          schema '$plan' => '#/definitions/plan'
+          let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:plans) {}
           run_test!
         end
