@@ -30,7 +30,8 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'config'
   spec.add_dependency 'faraday', '~> 0.15.4'
-  spec.add_dependency 'rails',   '~> 6.0.0'
+  spec.add_dependency 'rails', '~> 6.0.0'
+  spec.add_dependency 'redis', '~> 4.0'
 
   spec.add_development_dependency 'factory_bot_rails'
   spec.add_development_dependency 'rails-controller-testing'
