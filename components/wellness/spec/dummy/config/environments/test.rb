@@ -44,4 +44,7 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
+
+  config.credentials.content_path = '../../../../config/credentials.yml.enc'
+  config.credentials.key_path = '../../../../config/master.key'
 end
