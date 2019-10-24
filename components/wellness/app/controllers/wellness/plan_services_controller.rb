@@ -4,14 +4,11 @@ require_dependency 'wellness/application_controller'
 
 module Wellness
   class PlanServicesController < ::Api::V1::ApiController
+    before_action :user_authorized?
+
     def index
-      if @current_user == 'authorized'
-        demo_client_ready = Settings.api.vcp_wellness.demo_client_ready
         @plan_services ||= demo_client_ready ? fetch_services : test_services
         render json: { services: @plan_services }
-      else
-        render json: { errors: ['You are not authorized'] }, status: :forbidden
-      end
     end
 
     private
@@ -32,6 +29,16 @@ module Wellness
           "name": 'service2'
         }
       ] }
+    end
+
+    def user_authorized?
+      return unless @current_user != 'authorized'
+
+      render json: { errors: ['You are not authorized'] }, status: :forbidden
+    end
+
+    def demo_client_ready
+      Settings.api.vcp_wellness.demo_client_ready
     end
   end
 end
