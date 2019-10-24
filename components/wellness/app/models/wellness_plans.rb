@@ -11,16 +11,16 @@ class WellnessPlans < Connect
   private
 
   def parse_response(response)
-      if response.headers['content-type'].include?('application/json')
-        response = JSON.parse(response.body)
-      end
+    if response.headers['content-type'].include?('application/json')
+      response = JSON.parse(response.body)
+    end
     response
   end
 
   def request_mapper(controller, action)
     mapper = YAML.safe_load(
       File.read(
-        File.expand_path('components/wellness/config/client_endpoints/endpoints.yml', Rails.root)
+        File.expand_path('config/client_endpoints/endpoints.yml', Wellness::Engine.root)
       )
     )
     mapper[controller][action]
