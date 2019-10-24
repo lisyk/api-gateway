@@ -11,9 +11,9 @@ class WellnessPlans < Connect
   private
 
   def parse_response(response)
-    if response.headers['content-type'].include?('application/json')
-      response = JSON.parse(response.body)
-    end
+      if response.headers['content-type'].include?('application/json')
+        response = JSON.parse(response.body)
+      end
     response
   end
 
