@@ -3,7 +3,11 @@
 Wellness::Engine.routes.draw do
   resources :wellness_plans, only: [:index], controller: :plans do
     collection do
-      resources :plan_services, only: %i[index] do
+      resources :plan_services, only: %i[index]
+      resources :contract_applications, only: %i[index show] do
+        collection do
+          resources :agreements, only: [:show]
+        end
       end
     end
   end

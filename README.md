@@ -10,8 +10,15 @@ Rails API Gateway
 
 * Database initialization
 
-
+### Pre-Commit Hook
 Before making changes, copy `pre-commit.sh` to the repo `.git/hooks` folder using:
 ```
 ln -s ../../pre-commit.sh .git/hooks/pre-commit
+```
+
+### Starting Redis Server
+Before using redis to cache tokens:
+```
+brew install redis
+redis-server
 ```

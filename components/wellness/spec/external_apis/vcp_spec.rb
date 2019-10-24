@@ -72,4 +72,62 @@ RSpec.describe 'VCP API', type: :request do
       end
     end
   end
+  context 'GET /contractApplication' do
+    context 'index' do
+      describe 'correct credentials' do
+        it 'returns a list of contract applications' do
+          VCR.use_cassette('vcp_contract_application_index_auth') do
+            response = authorized_client.get('contractApplication')
+            expect(response.status).to eql(200)
+          end
+        end
+      end
+      describe 'incorrect credentials' do
+        it 'returns 401' do
+          VCR.use_cassette('vcp_contract_application_index_no_auth') do
+            response = unauthorized_client.get('contractApplication')
+            expect(response.status).to eql(401)
+          end
+        end
+      end
+    end
+    context 'show' do
+      describe 'correct credentials' do
+        it 'returns a contract application' do
+          VCR.use_cassette('vcp_contract_application_show_auth') do
+            response = authorized_client.get('contractApplication')
+            expect(response.status).to eql(200)
+          end
+        end
+      end
+      describe 'incorrect credentials' do
+        it 'returns 401' do
+          VCR.use_cassette('vcp_contract_application_show_no_auth') do
+            response = unauthorized_client.get('contractApplication')
+            expect(response.status).to eql(401)
+          end
+        end
+      end
+    end
+  end
+  context 'GET /contractApplicationAgreement' do
+    context 'show' do
+      describe 'correct credentials' do
+        it 'returns a contract application' do
+          VCR.use_cassette('vcp_contract_agreement_show_auth') do
+            response = authorized_client.get('contractApplicationAgreement')
+            expect(response.status).to eql(200)
+          end
+        end
+      end
+      describe 'incorrect credentials' do
+        it 'returns 401' do
+          VCR.use_cassette('vcp_contract_agreement_show_no_auth') do
+            response = unauthorized_client.get('contractApplicationAgreement')
+            expect(response.status).to eql(401)
+          end
+        end
+      end
+    end
+  end
 end
