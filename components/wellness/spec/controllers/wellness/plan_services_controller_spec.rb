@@ -4,7 +4,7 @@ require 'rails_helper'
 require(File.expand_path('../../app/controllers/api/v1/api_controller'))
 
 module Wellness
-  RSpec.describe PlansController, type: :controller do
+  RSpec.describe PlanServicesController, type: :controller do
     routes { Wellness::Engine.routes }
     let(:settings_yaml) do
       YAML.safe_load(
@@ -24,15 +24,19 @@ module Wellness
           stub_const('Settings', settings)
         end
         it 'returns wellness plans' do
-          get :index
+          VCR.use_cassette('vcp_plan_service_index_auth') do
+            get :index
+          end
           expect(response).to have_http_status(200)
-          expect(assigns(:wellness_plans)).not_to be_nil
+          expect(assigns(:plan_services)).not_to be_nil
         end
       end
       context 'not authenticated' do
         before { allow(controller).to receive(:authenticate!).and_return false }
         it 'sends error message to the client' do
-          get :index
+          VCR.use_cassette('vcp_plan_service_index_no_auth') do
+            get :index
+          end
           expect(response).to have_http_status(403)
           expect(JSON.parse(response.body)['errors']).to include 'You are not authorized'
         end
