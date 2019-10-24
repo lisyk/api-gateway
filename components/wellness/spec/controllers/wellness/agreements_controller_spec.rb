@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 require(File.expand_path('../../app/controllers/api/v1/api_controller'))
+require 'redis'
 
 module Wellness
   RSpec.describe AgreementsController, type: :controller do
@@ -18,7 +19,9 @@ module Wellness
           stub_const('Settings', settings)
         end
         it 'responds with PDF' do
-          get :show, params: { id: '1000008890' }
+          VCR.use_cassette('vcp_agreement_auth') do
+            get :show, params: { id: '1000008890' }
+          end
           expect(response).to have_http_status(200)
           expect(response.content_type).to eq 'application/pdf'
         end
@@ -28,7 +31,9 @@ module Wellness
         before { allow(controller).to receive(:authenticate!).and_return false }
         it 'sends error message to the client' do
           request.headers.merge!('Authorization' => '')
-          get :show, params: { id: '1000008890' }
+          VCR.use_cassette('vcp_agreement_no_auth') do
+            get :show, params: { id: '1000008890' }
+          end
           expect(response).to have_http_status(403)
         end
       end
