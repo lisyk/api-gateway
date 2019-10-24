@@ -2,8 +2,8 @@
 
 class WellnessPlans < Connect
   def api_request(controller, action, params = {})
-    method_name = method(controller, action)
-    resource_name = resource(controller, action, params)
+    method_name = request_method(controller, action)
+    resource_name = request_resource(controller, action, params)
     response = api_client.send(method_name, resource_name)
     parse_response(response)
   end
@@ -26,13 +26,13 @@ class WellnessPlans < Connect
     mapper[controller][action]
   end
 
-  def resource(controller, action, params)
+  def request_resource(controller, action, params)
     resource = request_mapper(controller, action)['resource']
     resource += "/#{params[:id]}" if params[:id].present?
     resource
   end
 
-  def method(controller, action)
+  def request_method(controller, action)
     request_mapper(controller, action)['method']
   end
 end
