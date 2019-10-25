@@ -17,11 +17,11 @@ module Wellness
     end
 
     def update
-      response = client_request(agreement_params)
-      if response.status == 200
+      @response ||= demo_client_ready ? client_request(agreement_params) : test_agreement_upload
+      if @response.status == 200
         render json: { success: ['Signed agreement posted successfully'] }, status: :success
       else
-        render json: { errors: [response.reason_phrase] }, status: response.status
+        render json: { errors: [@response.reason_phrase] }, status: @response.status
       end
     end
 
@@ -31,6 +31,8 @@ module Wellness
       agreement = Agreement.new(controller_name, action_name, params)
       agreement.api_request
     end
+
+    def test_agreement_upload; end
 
     def user_authorized?
       return unless @current_user != 'authorized'
