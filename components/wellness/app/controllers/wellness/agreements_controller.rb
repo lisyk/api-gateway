@@ -18,10 +18,11 @@ module Wellness
 
     def update
       @response ||= demo_client_ready ? client_request(agreement_params) : test_agreement_upload
-      if @response.status == 200
-        render json: { success: ['Signed agreement posted successfully'] }, status: :success
+      status = @response.status
+      if status == 200
+        render json: { success: ['Signed agreement posted successfully'] }, status: status
       else
-        render json: { errors: [@response.reason_phrase] }, status: @response.status
+        render json: { errors: [@response.reason_phrase] }, status: status
       end
     end
 
@@ -33,9 +34,7 @@ module Wellness
     end
 
     def test_agreement_upload
-      response = ActionDispatch::Response.new
-      response.status = 200
-      response
+      ActionDispatch::Response.new
     end
 
     def user_authorized?
