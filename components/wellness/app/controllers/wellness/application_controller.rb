@@ -3,6 +3,7 @@
 module Wellness
   class ApplicationController < ::Api::V1::ApiController
     # protect_from_forgery with: :exception
+    before_action :user_authorized?
 
     private
 

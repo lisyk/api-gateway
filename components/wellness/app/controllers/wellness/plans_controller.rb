@@ -4,8 +4,6 @@ require_dependency 'wellness/application_controller'
 
 module Wellness
   class PlansController < Wellness::ApplicationController
-    before_action :user_authorized?
-
     def index
       # TODO: needs to be updated from DEMO to PROD
       @wellness_plans ||= fetch_plans if demo_client_ready
