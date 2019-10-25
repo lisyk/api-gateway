@@ -25,7 +25,7 @@ module Wellness
 
         it 'returns a list of applications' do
           get :index
-          expect(JSON.parse(response.body)['applications'].is_a?(Array)).to eql true
+          expect(JSON.parse(response.body).is_a?(Array)).to eql true
         end
       end
 

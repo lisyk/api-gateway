@@ -21,7 +21,7 @@ module Wellness
 
     # test hardcoded data. TODO clean up
     def test_applications
-      { applications: [
+      [
         {
           "id": '123',
           "name": 'application',
@@ -32,7 +32,7 @@ module Wellness
           "name": 'application2',
           "age": '2'
         }
-      ] }
+      ]
     end
 
     def test_application

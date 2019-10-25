@@ -12,11 +12,11 @@ module Wellness
     end
 
     def update
-      response = client_request(agreement_params)
-      if response.status == 200
+      @response ||= demo_client_ready ? client_request(agreement_params) : test_agreement_upload
+      if @response.status == 200
         render json: { success: ['Signed agreement posted successfully'] }, status: :success
       else
-        render json: { errors: [response.reason_phrase] }, status: response.status
+        render json: { errors: [@response.reason_phrase] }, status: @response.status
       end
     end
 
@@ -27,9 +27,11 @@ module Wellness
     end
 
     def test_agreement
-      test_file = Rails.root.join('contracts', 'contract.pdf').to_s
+      test_file = Wellness::Engine.root.join('spec', 'contracts', 'contract.pdf').to_s
       send_file test_file, filename: "#{agreement_params[:id]}.pdf"
     end
+
+    def test_agreement_upload; end
 
     def user_authorized?
       return unless @current_user != 'authorized'
