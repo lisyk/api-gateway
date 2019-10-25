@@ -28,6 +28,25 @@ module Wellness
       agreement.api_request
     end
 
+<<<<<<< HEAD
+=======
+    def test_agreement_upload
+      response = ActionDispatch::Response.new
+      response.status = 200
+      response
+    end
+
+    def user_authorized?
+      return unless @current_user != 'authorized'
+
+      render json: { errors: ['You are not authorized'] }, status: :forbidden
+    end
+
+    def demo_client_ready
+      Settings.api.vcp_wellness.demo_client_ready
+    end
+
+>>>>>>> Stub client response in development
     def agreement_params
       params.except(:format).permit(:id, :contract)
     end
