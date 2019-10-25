@@ -31,7 +31,11 @@ module Wellness
       send_file test_file, filename: "#{agreement_params[:id]}.pdf"
     end
 
-    def test_agreement_upload; end
+    def test_agreement_upload
+      response = ActionDispatch::Response.new
+      response.status = 200
+      response
+    end
 
     def user_authorized?
       return unless @current_user != 'authorized'
