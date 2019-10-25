@@ -4,8 +4,6 @@ require_dependency 'wellness/application_controller'
 
 module Wellness
   class PlansController < Wellness::ApplicationController
-    before_action :user_authorized?
-
     def index
       @wellness_plans ||= demo_client_ready ? client_request : test_plans
       render json: { plans: @wellness_plans }
