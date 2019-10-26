@@ -2,7 +2,7 @@
 
 Rails API Gateway 
 
-* Ruby version ruby-2.6.4
+* Ruby version ruby-2.6.5
 
 * rails api mode
 

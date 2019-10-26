@@ -23,7 +23,7 @@ workflows:
 dockers:
   # https://circleci.com/docs/2.0/circleci-images/
   - &ruby_docker
-    image: circleci/ruby:2.6.4
+    image: circleci/ruby:2.6.5
     environment:
       RAILS_ENV: test
       BUNDLE_JOBS: 3
@@ -55,14 +55,14 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - bundle-v1-{{ checksum "Gemfile.lock" }}
-            - bundle-v1
+            - bundle-v2-{{ checksum "Gemfile.lock" }}
+            - bundle-v2
       - *ensure_bundler_version
       - run:
           name: Bundle Install
           command: bundle check || bundle install
       - save_cache:
-          key: bundle-v1-{{ checksum "Gemfile.lock" }}
+          key: bundle-v2-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - persist_to_workspace:
