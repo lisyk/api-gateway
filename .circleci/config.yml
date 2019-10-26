@@ -10,9 +10,9 @@ workflows:
       - code_security_scan:
           requires:
             - build
-      # - dependency_security_scan:
-      #     requires:
-      #       - build
+      - dependency_security_scan:
+          requires:
+            - build
       - test-main-app:
           requires:
             - build
@@ -119,9 +119,6 @@ jobs:
     steps:
       - *attach
       - *ensure_bundler_version
-      - run:
-          name: Where
-          command: pwd
       - run:
           name: Bundle component
           command: bundle install
