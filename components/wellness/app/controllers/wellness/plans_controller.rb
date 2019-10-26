@@ -19,7 +19,8 @@ module Wellness
     private
 
     def fetch_plans
-      WellnessPlans.new.api_request(controller_name, action_name)
+      plans_service = WellnessPlans.new(controller_name, action_name)
+      plans_service.plans_mapping
     end
 
     def user_authorized?

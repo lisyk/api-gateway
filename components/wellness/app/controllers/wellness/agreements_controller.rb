@@ -20,7 +20,8 @@ module Wellness
     private
 
     def client_request(params = {})
-      WellnessPlans.new.api_request(controller_name, action_name, params)
+      #new service needs to be added
+      #WellnessPlans.new.api_request(controller_name, action_name, params)
     end
 
     def test_agreement

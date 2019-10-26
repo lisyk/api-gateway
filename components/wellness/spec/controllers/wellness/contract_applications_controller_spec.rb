@@ -25,7 +25,7 @@ module Wellness
           expect(response.content_type).to eq 'application/json; charset=utf-8'
         end
 
-        it 'returns a list of applications' do
+        xit 'returns a list of applications' do
           VCR.use_cassette('contract/vcp_contract_applications_auth') do
             get :index
           end

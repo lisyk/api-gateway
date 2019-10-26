@@ -4,39 +4,40 @@
 
 module Wellness
   class WellnessPlans < Connect
-    def api_request(controller, action, params = {})
-      method_name = request_method(controller, action)
-      resource_name = request_resource(controller, action, params)
-      response = api_client.send(method_name, resource_name)
-      parse_response(response) if response
+    include Concerns::RequestConcern
+
+    def plans_mapping
+      constructor = Constructors::PlanConstructor.new(origin_plans, constructor_mapper)
+      constructor.modify
     end
 
-    private
-
-    def parse_response(response)
-      if response.headers['content-type'].include?('application/json')
-        response = JSON.parse(response.body)
-      end
-      response
+    def constructor_mapper
+      {
+          'species' => species_modifier_rule,
+          'age_group' => age_group_modifier_rule,
+          'sex' => sex_modofier_rule 
+      }
     end
 
-    def request_mapper(controller, action)
-      mapper = YAML.safe_load(
-          File.read(
-              File.expand_path('config/client_endpoints/endpoints.yml', Wellness::Engine.root)
-          )
-      )
-      mapper[controller][action]
+    def origin_plans
+      api_request
     end
 
-    def request_resource(controller, action, params)
-      resource = request_mapper(controller, action)['resource']
-      resource += "/#{params[:id]}" if params[:id].present?
-      resource
+    #custom attribute modifier rules
+    # # TODO implememt rule that modify VCP species (1,2...) to VIP
+    def species_modifier_rule
+      'species'
     end
 
-    def request_method(controller, action)
-      request_mapper(controller, action)['method']
+    #custom attribute modifier rules
+    # TODO implememt rule that modify VCP age group to VIP
+    def age_group_modifier_rule
+      nil
+    end
+
+    #custom attribute modifier rules
+    def sex_modofier_rule
+      nil
     end
   end
 end
