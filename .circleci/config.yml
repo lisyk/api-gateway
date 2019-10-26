@@ -4,6 +4,7 @@ workflows:
   application:
     jobs:
       - build
+      - build_wellness
       - code_lint:
           requires:
             - build
@@ -18,7 +19,7 @@ workflows:
             - build
       - test-wellness-component:
           requires:
-            - build
+            - build_wellness
 
 dockers:
   # https://circleci.com/docs/2.0/circleci-images/
@@ -29,6 +30,13 @@ dockers:
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
       BUNDLE_PATH: vendor/bundle
+  - &ruby_wellness_docker
+    image: circleci/ruby:2.6.5
+    environment:
+      RAILS_ENV: test
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: /home/circleci/project/components/wellness/vendor/bundle
   - &redis_docker
     image: circleci/redis
 
@@ -65,6 +73,30 @@ jobs:
           key: bundle-v2-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
+      - persist_to_workspace:
+          root: /home/circleci
+          paths:
+            - project
+
+  build_wellness:
+    docker:
+      - *ruby_wellness_docker
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - bundle-wellness-v5-{{ checksum "Gemfile.lock" }}
+            - bundle-wellness-v5
+      - *ensure_bundler_version
+      - run:
+          name: Bundle Install
+          command: |
+            cd components/wellness
+            bundle check || bundle install
+      - save_cache:
+          key: bundle-wellness-v5-{{ checksum "Gemfile.lock" }}
+          paths:
+            - /home/circleci/project/components/wellness/vendor/bundle
       - persist_to_workspace:
           root: /home/circleci
           paths:
@@ -112,16 +144,14 @@ jobs:
           command: bundle exec rspec spec -f d
 
   test-wellness-component:
-    working_directory: ~/project/components/wellness
     docker:
-      - *ruby_docker
+      - *ruby_wellness_docker
       - *redis_docker
     steps:
       - *attach
       - *ensure_bundler_version
       - run:
-          name: Bundle component
-          command: bundle install
-      - run:
           name: Rspec
-          command: bundle exec rspec spec -f d
+          command: |
+            cd components/wellness
+            bundle exec rspec spec -f d
