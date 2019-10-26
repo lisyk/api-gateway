@@ -109,8 +109,11 @@ jobs:
       - *attach
       - *ensure_bundler_version
       - run:
-          name: Rubocop
+          name: Rubocop List Targets
           command: bundle exec rubocop --list-target-files
+      - run:
+          name: Rubocop Lint
+          command: bundle exec rubocop
 
   code_security_scan:
     docker:
