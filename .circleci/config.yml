@@ -1,78 +1,130 @@
 version: 2
-jobs:
-  build:
-    working_directory: ~/api-gateway
-    docker:
-      - image: circleci/ruby:2.6.4  # language image
-      - image: circleci/redis # Redis image
-    steps:
-      - checkout
-
-      - run:
-          name: Installing bundler...
-          command: gem install bundler:2.0.2
-
-      # Which version of bundler?
-      - run:
-          name: Which bundler?
-          command: bundle -v
-
-      - run: # Install Ruby dependencies
-          name: Bundle Install
-          command: bundle install
-
-  test-main-app:
-    working_directory: ~/api-gateway
-    docker:
-      - image: circleci/ruby:2.6.4  # language image
-      - image: circleci/redis # Redis image
-        environment:
-          RAILS_ENV: test
-    steps:
-      - checkout
-
-      - run:
-          name: Installing bundler...
-          command: gem install bundler:2.0.2
-
-      - run: # Install Ruby dependencies
-          name: Bundle Install
-          command: bundle install
-
-      - run:
-          name: Run specs for main app
-          command: bundle exec rspec
-
-  test-wellness-component:
-    working_directory: ~/api-gateway/components/wellness
-    docker:
-      - image: circleci/ruby:2.6.4  # language image
-      - image: circleci/redis # Redis image
-        environment:
-          RAILS_ENV: test
-    steps:
-      - checkout
-
-      - run:
-          name: Installing bundler...
-          command: gem install bundler:2.0.2
-
-      - run: # Install Ruby dependencies
-          name: Bundle Install main app
-          command: bundle install
-
-      - run: # Install Ruby dependencies
-          name: Bundle Install wellness component
-          command: cd components/wellness && bundle install
-
-      - run:
-          name: Run specs for wellness component
-          command: cd components/wellness && bundle exec rspec
-
 workflows:
   version: 2
-  build-and-test:
+  application:
     jobs:
       - build
-      - test-main-app
-      - test-wellness-component
+      - code_lint:
+          requires:
+            - build
+      - code_security_scan:
+          requires:
+            - build
+      # - dependency_security_scan:
+      #     requires:
+      #       - build
+      - test-main-app:
+          requires:
+            - build
+      - test-wellness-component:
+          requires:
+            - build
+
+dockers:
+  # https://circleci.com/docs/2.0/circleci-images/
+  - &ruby_docker
+    image: circleci/ruby:2.6.4
+    environment:
+      RAILS_ENV: test
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: vendor/bundle
+  - &redis_docker
+    image: circleci/redis
+
+setup_steps:
+  - &attach
+    attach_workspace:
+      at: /home/circleci
+  - &ensure_bundler_version
+    run:
+      name: Upgrade Bundler
+      command: |
+        gem update --system
+        gem --version
+        gem uninstall bundler
+        gem install bundler
+        bundler --version
+      working_directory: ~/
+
+jobs:
+  build:
+    docker:
+      - *ruby_docker
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - bundle-v1-{{ checksum "Gemfile.lock" }}
+            - bundle-v1
+      - *ensure_bundler_version
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+      - save_cache:
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - persist_to_workspace:
+          root: /home/circleci
+          paths:
+            - project
+
+  code_lint:
+    docker:
+      - *ruby_docker
+    steps:
+      - *attach
+      - *ensure_bundler_version
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop --list-target-files
+
+  code_security_scan:
+    docker:
+      - *ruby_docker
+    steps:
+      - *attach
+      - run:
+          name: Brakeman
+          command: sh .circleci/exec_brakeman.sh --exit-on-warn -w3
+      - store_artifacts:
+          path: tmp/brakeman.html
+
+  dependency_security_scan:
+    docker:
+      - *ruby_docker
+    steps:
+      - *attach
+      - run:
+          name: Bundle-Audit
+          command: sh .circleci/exec_bundle_audit.sh
+
+  test-main-app:
+    docker:
+      - *ruby_docker
+      - *redis_docker
+    steps:
+      - *attach
+      - *ensure_bundler_version
+      - run:
+          name: Rspec
+          command: bundle exec rspec spec -f d
+
+  test-wellness-component:
+    working_directory: ~/project/components/wellness
+    docker:
+      - *ruby_docker
+      - *redis_docker
+    steps:
+      - *attach
+      - *ensure_bundler_version
+      - run:
+          name: Where
+          command: pwd
+      - run:
+          name: Bundle component
+          command: bundle install
+      - run:
+          name: Rspec
+          command: bundle exec rspec spec -f d
