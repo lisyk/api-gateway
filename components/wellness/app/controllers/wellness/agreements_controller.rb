@@ -7,8 +7,14 @@ module Wellness
     before_action :user_authorized?
 
     def show
+      #TODO needs to be updated from DEMO to PROD
       @agreement ||= demo_client_ready ? client_request(agreement_params) : test_agreement
-      send_data @agreement.body, filename: "#{agreement_params[:id]}.pdf"
+
+      if @agreement
+        send_data @agreement.body, filename: "#{agreement_params[:id]}.pdf"
+      else
+        render json: { errors: ['Agreement unavailable.'] }, status: :not_found
+      end
     end
 
     private

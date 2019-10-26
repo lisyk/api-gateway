@@ -18,7 +18,7 @@ module Wellness
           stub_const('Settings', settings)
         end
         it 'responds json' do
-          VCR.use_cassette('vcp_contract_applications_auth') do
+          VCR.use_cassette('contract/vcp_contract_applications_auth') do
             get :index
           end
           expect(response).to have_http_status(200)
@@ -26,7 +26,7 @@ module Wellness
         end
 
         it 'returns a list of applications' do
-          VCR.use_cassette('vcp_contract_applications_auth') do
+          VCR.use_cassette('contract/vcp_contract_applications_auth') do
             get :index
           end
           expect(JSON.parse(response.body).is_a?(Array)).to eql true
@@ -37,7 +37,7 @@ module Wellness
         before { allow(controller).to receive(:authenticate!).and_return false }
         it 'sends error message to the client' do
           request.headers.merge!('Authorization' => '')
-          VCR.use_cassette('vcp_contract_applications_no_auth') do
+          VCR.use_cassette('contract/vcp_contract_applications_no_auth') do
             get :index
           end
           expect(response).to have_http_status(403)
@@ -53,7 +53,7 @@ module Wellness
           stub_const('Settings', settings)
         end
         it 'responds json' do
-          VCR.use_cassette('vcp_contract_applications_show_auth') do
+          VCR.use_cassette('contract/vcp_contract_applications_show_auth') do
             get :show, params: { id: '1000008890' }
           end
           expect(response).to have_http_status(200)
@@ -61,7 +61,7 @@ module Wellness
         end
 
         it 'returns a single application' do
-          VCR.use_cassette('vcp_contract_applications_show_auth') do
+          VCR.use_cassette('contract/vcp_contract_applications_show_auth') do
             get :show, params: { id: '1000008890' }
           end
           expect(JSON.parse(response.body).is_a?(Array)).to eql false
@@ -72,7 +72,7 @@ module Wellness
         before { allow(controller).to receive(:authenticate!).and_return false }
         it 'sends error message to the client' do
           request.headers.merge!('Authorization' => '')
-          VCR.use_cassette('vcp_contract_applications_show_no_auth') do
+          VCR.use_cassette('contract/vcp_contract_applications_show_no_auth') do
             get :show, params: { id: '1000008890' }
           end
           expect(response).to have_http_status(403)

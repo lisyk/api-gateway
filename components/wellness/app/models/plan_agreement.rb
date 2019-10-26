@@ -1,8 +1,8 @@
 # frozen_string_literal: true
-# this model is responsible for wellness plans ONLY
+# this model is responsible for Agreements
 # no other services handled by this model
 
-class WellnessPlans < Connect
+class PlanAgreement < Connect
   def api_request(controller, action, params = {})
     method_name = request_method(controller, action)
     resource_name = request_resource(controller, action, params)
@@ -21,9 +21,9 @@ class WellnessPlans < Connect
 
   def request_mapper(controller, action)
     mapper = YAML.safe_load(
-      File.read(
-        File.expand_path('config/client_endpoints/endpoints.yml', Wellness::Engine.root)
-      )
+        File.read(
+            File.expand_path('config/client_endpoints/endpoints.yml', Wellness::Engine.root)
+        )
     )
     mapper[controller][action]
   end

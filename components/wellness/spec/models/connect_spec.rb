@@ -9,7 +9,7 @@ RSpec.describe Connect do
     db = Rails.application.encrypted(credentials_path)[:redis][:environment][Rails.env.to_sym]
     @redis = Redis.new(db: db)
     @redis.flushdb
-    VCR.use_cassette('vcp_login') do
+    VCR.use_cassette('login/vcp_login') do
       Connect.new
     end
   end
@@ -26,7 +26,7 @@ RSpec.describe Connect do
         expired_auth = JSON.parse(@redis.get(:authorization))
         expired_auth['request_date'] = (DateTime.now - 10.years).to_i
         @redis.set(:authorization, expired_auth.to_json)
-        VCR.use_cassette('vcp_login') do
+        VCR.use_cassette('login/vcp_login') do
           Connect.new
         end
         new_auth = JSON.parse(@redis.get(:authorization))
@@ -35,7 +35,7 @@ RSpec.describe Connect do
 
       it 'does not update if valid' do
         auth = @redis.get(:authorization)
-        VCR.use_cassette('vcp_login') do
+        VCR.use_cassette('login/vcp_login') do
           Connect.new
         end
         new_auth = @redis.get(:authorization)
