@@ -24,6 +24,12 @@ module Wellness
       end
     end
 
+    def create
+      response = demo_client_ready ? client_post_request : test_post_application
+      @application ||= response
+      render json: @application
+    end
+
     private
 
     def contract_apps(params = {})

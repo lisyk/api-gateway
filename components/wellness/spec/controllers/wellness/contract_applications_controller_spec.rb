@@ -120,5 +120,40 @@ module Wellness
         end
       end
     end
+
+    describe '#create' do
+      context 'correct credentials' do
+        before :each do
+          controller.instance_variable_set(:@current_user, 'authorized')
+          allow(controller).to receive(:authenticate!).and_return true
+          stub_const('Settings', settings)
+        end
+        it 'responds json' do
+          VCR.use_cassette('vcp_contract_applications_create_auth') do
+            get :create
+          end
+          expect(response).to have_http_status(200)
+          expect(response.content_type).to eq 'application/json; charset=utf-8'
+        end
+
+        it 'returns a single application' do
+          VCR.use_cassette('vcp_contract_applications_create_auth') do
+            get :create
+          end
+          expect(JSON.parse(response.body).is_a?(Array)).to eql false
+        end
+      end
+
+      context 'incorrect credentials' do
+        before { allow(controller).to receive(:authenticate!).and_return false }
+        it 'sends error message to the client' do
+          request.headers.merge!('Authorization' => '')
+          VCR.use_cassette('vcp_contract_applications_create_no_auth') do
+            get :create
+          end
+          expect(response).to have_http_status(403)
+        end
+      end
+    end
   end
 end
