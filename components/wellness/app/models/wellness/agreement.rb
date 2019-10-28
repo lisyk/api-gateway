@@ -3,8 +3,8 @@
 # no other services handled by this model
 
 module Wellness
-  class PlanAgreement < Connect
+  class Agreement < Connect
     include Concerns::RequestConcern
-    
+
   end
 end

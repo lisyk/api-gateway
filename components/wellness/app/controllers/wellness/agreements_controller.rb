@@ -3,13 +3,12 @@
 require_dependency 'wellness/application_controller'
 
 module Wellness
-  class PlanAgreementsController < ::Api::V1::ApiController
+  class AgreementsController < ::Api::V1::ApiController
     before_action :user_authorized?
 
     def show
       #TODO needs to be updated from DEMO to PROD
-      @agreement ||= client_request(agreement_params) if demo_client_ready
-
+      @agreement ||= fetch_agreement(agreement_params) if demo_client_ready
       if @agreement
         send_data @agreement.body, filename: "#{agreement_params[:id]}.pdf"
       else
@@ -19,11 +18,11 @@ module Wellness
 
     private
 
-    def client_request(params = {})
-      agreement = PlanAgreement.new(controller_name, action_name, params)
+    def fetch_agreement(params = {})
+      agreement = Agreement.new(controller_name, action_name, params)
       agreement.api_request
     end
-    
+
     def user_authorized?
       return unless @current_user != 'authorized'
 
