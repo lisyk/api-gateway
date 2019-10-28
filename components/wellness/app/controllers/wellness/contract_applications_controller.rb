@@ -7,44 +7,31 @@ module Wellness
     before_action :user_authorized?
 
     def index
-      @applications ||= demo_client_ready ? client_request : test_applications
-      render json: @applications
+      #TODO needs to be updated from DEMO to PROD
+      @applications ||= client_request if demo_client_ready
+      if @applications.present?
+        render json: @applications
+      else
+        render json: { errors: ['Contract applications agreements are not available.'] }, status: :not_found
+      end
     end
 
     def show
-      request = demo_client_ready ? client_request(application_params) : test_application
-      @application ||= request
-      render json: @application
+      #TODO needs to be updated from DEMO to PROD
+      @application ||= client_request(application_params) if demo_client_ready
+      if @application.present?
+        render json: @application
+      else
+        render json: { errors: ['Contract application agreement is nit found'] }, status: :not_found
+      end
+
     end
 
     private
 
-    # test hardcoded data. TODO clean up
-    def test_applications
-      { applications: [
-        {
-          "id": '123',
-          "name": 'application',
-          "age": '13'
-        },
-        {
-          "id": '1234',
-          "name": 'application2',
-          "age": '2'
-        }
-      ] }
-    end
-
-    def test_application
-      {
-        "id": '123',
-        "name": 'application',
-        "age": '13'
-      }
-    end
-
     def client_request(params = {})
-      WellnessPlans.new.api_request(controller_name, action_name, params)
+      contract_app = ContractApplication.new(controller_name, action_name, params)
+      contract_app.api_request
     end
 
     def user_authorized?
