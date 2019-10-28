@@ -3,12 +3,12 @@
 require_dependency 'wellness/application_controller'
 
 module Wellness
-  class AgreementsController < ::Api::V1::ApiController
+  class PlanAgreementsController < ::Api::V1::ApiController
     before_action :user_authorized?
 
     def show
       #TODO needs to be updated from DEMO to PROD
-      @agreement ||= demo_client_ready ? client_request(agreement_params) : test_agreement
+      @agreement ||= client_request(agreement_params) if demo_client_ready
 
       if @agreement
         send_data @agreement.body, filename: "#{agreement_params[:id]}.pdf"
@@ -20,15 +20,10 @@ module Wellness
     private
 
     def client_request(params = {})
-      #new service needs to be added
-      #WellnessPlans.new.api_request(controller_name, action_name, params)
+      agreement = PlanAgreement.new(controller_name, action_name, params)
+      agreement.api_request
     end
-
-    def test_agreement
-      test_file = Rails.root.join('contracts', 'contract.pdf').to_s
-      send_file test_file, filename: "#{agreement_params[:id]}.pdf"
-    end
-
+    
     def user_authorized?
       return unless @current_user != 'authorized'
 

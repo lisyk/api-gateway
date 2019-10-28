@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module Wellness
-  RSpec.describe WellnessPlans, type: :model do
+  RSpec.describe Plans, type: :model do
 
   end
 end
