@@ -19,11 +19,8 @@ module Wellness
         it "assigns current user" do
           expect(assigns(:current_user)).to be 'authorized'
         end
-        describe 'plans service available' do
-          before do
-            allow(controller).to receive(:fetch_plans).and_return wellness_plans
-          end
-          it 'returns wellness plans' do
+        it 'returns wellness plans' do
+          VCR.use_cassette('vcp_wellness_plan_auth') do
             get :index
             expect(response).to have_http_status(200)
             expect(assigns(:wellness_plans)).not_to be_nil
@@ -46,7 +43,9 @@ module Wellness
           controller.instance_variable_set(:@current_user, nil)
         end
         it 'sends error message to the client' do
-          get :index
+          VCR.use_cassette('vcp_wellness_plan_no_auth') do
+            get :index
+          end
           expect(response).to have_http_status(403)
           expect(JSON.parse(response.body)['errors']).to include 'You are not authorized'
         end

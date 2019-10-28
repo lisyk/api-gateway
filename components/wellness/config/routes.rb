@@ -5,7 +5,8 @@ Wellness::Engine.routes.draw do
   resources :contract_applications, only: %i[index show] do
     collection do
       resources :agreements, only: [:show]
+      resources :services, only: [:show]
     end
   end
-end
+    end
 
