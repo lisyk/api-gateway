@@ -8,6 +8,13 @@ class WellnessPlans < Connect
     parse_response(response)
   end
 
+  def api_post_request(controller, request)
+    resource_name = request_resource(controller, 'create', {})
+    content_type = { 'Content-Type' => 'application/json' }
+    response = api_client.post(resource_name, request.to_json, content_type)
+    parse_response(response)
+  end
+
   private
 
   def parse_response(response)
