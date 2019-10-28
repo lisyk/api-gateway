@@ -3,7 +3,7 @@
 # no other services handled by this model
 
 module Wellness
-  class Plans < Connect
+  class Plan < Connect
     include Concerns::RequestConcern
 
     def plans_mapping

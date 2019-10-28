@@ -5,7 +5,7 @@ require(File.expand_path('../../app/controllers/api/v1/api_controller'))
 require 'redis'
 
 module Wellness
-  RSpec.describe AgreementsController, type: :controller do
+  RSpec.describe PlanAgreementsController, type: :controller do
     routes { Wellness::Engine.routes }
     let(:settings_yaml) { YAML.safe_load(File.read(File.expand_path('../../../../config/settings/test.yml', Rails.root))) }
     let(:settings_convert) { settings_yaml.to_json }

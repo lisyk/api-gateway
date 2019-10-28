@@ -2,7 +2,7 @@ require 'rails_helper'
 
 module Wellness
   RSpec.describe Concerns::RequestConcern, type: :model do
-    subject { WellnessPlans.new('plans', 'index') }
+    subject { Plan.new('plans', 'index') }
     describe '#api_request' do
       # VCR Integration test
       context 'integration' do
