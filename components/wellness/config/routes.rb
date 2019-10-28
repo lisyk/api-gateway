@@ -8,5 +8,4 @@ Wellness::Engine.routes.draw do
       resources :services, only: [:show]
     end
   end
-    end
-
+end

@@ -3,7 +3,7 @@
 require_dependency 'wellness/application_controller'
 
 module Wellness
-  class PlanServicesController < ::Api::V1::ApiController
+  class ServicesController < ::Api::V1::ApiController
     before_action :user_authorized?
 
     def index
