@@ -80,37 +80,38 @@ module Wellness
       end
     end
 
-    describe '#create' do
-      context 'correct credentials' do
-        before :each do
-          controller.instance_variable_set(:@current_user, 'authorized')
-          allow(controller).to receive(:authenticate!).and_return true
-          stub_const('Settings', settings)
-        end
-        it 'responds json' do
-          VCR.use_cassette('vcp_contract_applications_create_auth') do
-            get :create
-          end
-          expect(response).to have_http_status(200)
-          expect(response.content_type).to eq 'application/json; charset=utf-8'
-        end
+    describe 'POST #create' do
+      let(:application_sample_file) { File.read(File.expand_path('../../helpers/dummy_docs/applications/origin_application_sample.json', __dir__)) }
+      let(:application) { JSON.parse application_sample_file }
 
-        it 'returns a single application' do
-          VCR.use_cassette('vcp_contract_applications_create_auth') do
-            get :create
+      context 'authenticated' do
+        before :each do
+          allow(controller).to receive(:authenticate!)
+          controller.instance_variable_set(:@current_user, 'authorized')
+        end
+        describe 'appiclation available' do
+          before do
+            allow(controller).to receive(:client_post_request).and_return application
           end
-          expect(JSON.parse(response.body).is_a?(Array)).to eql false
+          it 'returns application' do
+            post :create
+            expect(response).to have_http_status(200)
+            expect(assigns(:application)).not_to be_nil
+          end
         end
       end
-
-      context 'incorrect credentials' do
-        before { allow(controller).to receive(:authenticate!).and_return false }
+      context 'not authenticated' do
+        before do
+          allow(controller).to receive(:authenticate!)
+          controller.instance_variable_set(:@current_user, nil)
+        end
         it 'sends error message to the client' do
-          request.headers.merge!('Authorization' => '')
-          VCR.use_cassette('vcp_contract_applications_create_no_auth') do
-            get :create
-          end
+          post :create
           expect(response).to have_http_status(403)
+          expect(JSON.parse(response.body)['errors']).to include 'You are not authorized'
+        end
+        it "doesn't assign wellness_plans" do
+          expect(assigns(:application)).to be_nil
         end
       end
     end
