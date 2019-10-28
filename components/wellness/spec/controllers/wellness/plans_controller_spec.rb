@@ -6,7 +6,8 @@ require(File.expand_path('../../app/controllers/api/v1/api_controller'))
 module Wellness
   RSpec.describe PlansController, type: :controller do
     routes { Wellness::Engine.routes }
-    let(:wellness_plans) { test_plans }
+    let(:plans_sample_file) { File.read(File.expand_path('../../helpers/dummy_docs/plans/origin_plans_sample.json', __dir__)) }
+    let(:wellness_plans) { JSON.parse plans_sample_file }
 
     describe 'GET #index' do
       context 'authenticated' do
