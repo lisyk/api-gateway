@@ -19,7 +19,7 @@ module Wellness
     private
 
     def fetch_plans
-      plans_service = Plans.new(controller_name, action_name)
+      plans_service = Plan.new(controller_name, action_name)
       plans_service.plans_mapping
     end
 
