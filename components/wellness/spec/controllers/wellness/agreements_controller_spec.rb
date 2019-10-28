@@ -7,9 +7,6 @@ require 'redis'
 module Wellness
   RSpec.describe AgreementsController, type: :controller do
     routes { Wellness::Engine.routes }
-    let(:settings_yaml) { YAML.safe_load(File.read(File.expand_path('../../../../config/settings/test.yml', Rails.root))) }
-    let(:settings_convert) { settings_yaml.to_json }
-    let(:settings) { JSON.parse(settings_convert, object_class: OpenStruct) }
     let(:agreement) { double ('agreement') }
 
     describe '#show' do
@@ -17,7 +14,7 @@ module Wellness
         before :each do
           controller.instance_variable_set(:@current_user, 'authorized')
           allow(controller).to receive(:authenticate!).and_return true
-          stub_const('Settings', settings)
+          stub_const('Settings', route_settings)
         end
         describe 'agreements service available' do
           before :each do
