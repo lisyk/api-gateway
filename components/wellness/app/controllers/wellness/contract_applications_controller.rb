@@ -8,7 +8,7 @@ module Wellness
 
     def index
       #TODO needs to be updated from DEMO to PROD
-      @applications ||= client_request if demo_client_ready
+      @applications ||= contract_apps if demo_client_ready
       if @applications.present?
         render json: @applications
       else
@@ -18,7 +18,7 @@ module Wellness
 
     def show
       #TODO needs to be updated from DEMO to PROD
-      @application ||= client_request(application_params) if demo_client_ready
+      @application ||= contract_apps(application_params) if demo_client_ready
       if @application.present?
         render json: @application
       else
@@ -29,7 +29,7 @@ module Wellness
 
     private
 
-    def client_request(params = {})
+    def contract_apps(params = {})
       contract_app = ContractApplication.new(controller_name, action_name, params)
       contract_app.api_request
     end
