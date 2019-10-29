@@ -33,7 +33,8 @@ module Wellness
       if @application
         render json: @application
       else
-        render json: { errors: ['Contract application could not be submitted'] }, status: :not_found
+        render json: { errors: ['Contract application could not be submitted'] }, 
+          status: :not_found
       end
     end
 
