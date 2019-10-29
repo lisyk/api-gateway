@@ -7,7 +7,7 @@ require 'redis'
 module Wellness
   RSpec.describe AgreementsController, type: :controller do
     routes { Wellness::Engine.routes }
-    let(:agreement) { double ('agreement') }
+    let(:agreement) { double 'agreement' }
 
     describe '#show' do
       context 'authenticated' do

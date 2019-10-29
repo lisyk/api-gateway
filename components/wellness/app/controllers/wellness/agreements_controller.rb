@@ -7,7 +7,7 @@ module Wellness
     before_action :user_authorized?
 
     def show
-      #TODO needs to be updated from DEMO to PROD
+      # TODO: needs to be updated from DEMO to PROD
       @agreement ||= fetch_agreement(agreement_params) if demo_client_ready
       if @agreement
         send_data @agreement.body, filename: "#{agreement_params[:id]}.pdf"

@@ -25,10 +25,10 @@ http_interactions:
       Content-Length:
       - '0'
       Date:
-      - Mon, 28 Oct 2019 17:24:45 GMT
+      - Tue, 29 Oct 2019 00:00:01 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Mon, 28 Oct 2019 17:24:45 GMT
+  recorded_at: Tue, 29 Oct 2019 00:00:01 GMT
 recorded_with: VCR 3.0.3

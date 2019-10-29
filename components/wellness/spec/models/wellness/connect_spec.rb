@@ -4,42 +4,41 @@ require 'rails_helper'
 require 'redis'
 
 RSpec.describe Wellness::Connect do
+  let(:credentials_path) { Wellness::Engine.root.join('config', 'credentials.yml.enc') }
+  let(:db) { Rails.application.encrypted(credentials_path)[:redis][:environment][Rails.env.to_sym] }
+  let(:redis) { Redis.new(db: db) }
+  subject { Wellness::Connect.new }
   before :each do
-    credentials_path = Wellness::Engine.root.join('config', 'credentials.yml.enc')
-    db = Rails.application.encrypted(credentials_path)[:redis][:environment][Rails.env.to_sym]
-    @redis = Redis.new(db: db)
-    @redis.flushdb
-    VCR.use_cassette('login/vcp_login') do
-      Wellness::Connect.new
-    end
+    redis.flushdb
   end
 
-  describe 'redis' do
-    context 'no auth cached' do
-      it 'requests new auth from client' do
-        expect(@redis.get(:authorization)).not_to be_nil
+  describe 'cached token present' do
+    let(:token) { JSON.parse(redis.get(:authorization)) }
+    let(:client_token) { subject.client.headers['Authorization'].split(' ').last }
+    before :each do
+      VCR.use_cassette('login/vcp_login') do
+        Wellness::Connect.new
       end
     end
-
-    context 'auth cached' do
-      it 'requests new auth if expired' do
-        expired_auth = JSON.parse(@redis.get(:authorization))
+    context 'token is valid' do
+      it 'token cached' do
+        expect(token).not_to be_nil
+      end
+      it 'uses cached token with client' do
+        expect(client_token).to eq token['access_token']
+      end
+    end
+    context 'token is not valid' do
+      before :each do
+        expired_auth = token
         expired_auth['request_date'] = (DateTime.now - 10.years).to_i
-        @redis.set(:authorization, expired_auth.to_json)
-        VCR.use_cassette('login/vcp_login') do
-          Wellness::Connect.new
-        end
-        new_auth = JSON.parse(@redis.get(:authorization))
-        expect(expired_auth).not_to eql(new_auth)
+        redis.set(:authorization, expired_auth.to_json)
       end
 
-      it 'does not update if valid' do
-        auth = @redis.get(:authorization)
-        VCR.use_cassette('login/vcp_login') do
-          Wellness::Connect.new
+      VCR.use_cassette('login/vcp_login') do
+        it 'requests new token' do
+          expect(client_token).not_to eq token['access_token']
         end
-        new_auth = @redis.get(:authorization)
-        expect(auth).to eql(new_auth)
       end
     end
   end

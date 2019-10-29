@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Wellness
   module Concerns
     module RequestConcern
@@ -11,7 +13,7 @@ module Wellness
       end
 
       def api_request
-        response = api_client.send(request_method, request_resource)
+        response = client.send(request_method, request_resource)
         parse_response(response) if response
       end
 
@@ -25,11 +27,9 @@ module Wellness
       end
 
       def request_mapper
-        mapper = YAML.safe_load(
-            File.read(
-                File.expand_path('config/client_endpoints/endpoints.yml', Wellness::Engine.root)
-            )
-        )
+        path = File.expand_path('config/client_endpoints/endpoints.yml', Wellness::Engine.root)
+        file = File.read(path)
+        mapper = YAML.safe_load(file)
         mapper[controller][action]
       end
 

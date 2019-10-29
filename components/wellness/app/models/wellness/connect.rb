@@ -4,17 +4,14 @@ require_dependency 'redis'
 
 module Wellness
   class Connect
-    attr_reader :url, :client, :token
+    attr_reader :url, :token
 
     def initialize
       @url = base_uri
-      @client = client
       @token = auth_token
     end
 
-    private
-
-    def api_client
+    def client
       Faraday.new(url: url) do |faraday|
         faraday.request :url_encoded
         faraday.adapter Faraday.default_adapter
@@ -22,8 +19,10 @@ module Wellness
       end
     end
 
-    def fetch_token
-      token_resp = api_client.post('login', username: vcp_username, password: vcp_password)
+    private
+
+    def request_token
+      token_resp = client.post('login', username: vcp_username, password: vcp_password)
       response_body = JSON.parse(token_resp.body)
       response_body['request_date'] = DateTime.now.to_i
       token = response_body['access_token']
@@ -32,7 +31,7 @@ module Wellness
     end
 
     def auth_token
-      cached_token? ? fetch_cached_token : fetch_token
+      cached_token? ? fetch_cached_token : request_token
     end
 
     def cache_token(authorization)
@@ -50,7 +49,7 @@ module Wellness
     def fetch_cached_token
       cached_auth = redis.get(:authorization)
       auth = JSON.parse(cached_auth)
-      token_expired?(auth) ? fetch_token : auth['access_token']
+      token_expired?(auth) ? request_token : auth['access_token']
     end
 
     def token_expired?(authorization)
