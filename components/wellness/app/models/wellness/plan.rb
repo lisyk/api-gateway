@@ -15,7 +15,7 @@ module Wellness
     def constructor_mapper
       { 'species' => species_modifier_rule,
         'age_group' => age_group_modifier_rule,
-        'sex' => sex_modofier_rule }
+        'sex' => sex_modifier_rule }
     end
 
     def origin_plans
@@ -35,7 +35,7 @@ module Wellness
     end
 
     # custom attribute modifier rules
-    def sex_modofier_rule
+    def sex_modifier_rule
       nil
     end
   end
