@@ -4,7 +4,6 @@ require_dependency 'wellness/application_controller'
 
 module Wellness
   class ContractApplicationsController < ::Api::V1::ApiController
-    include Concerns::RequestConcern
     before_action :user_authorized?
 
     def index
@@ -30,8 +29,7 @@ module Wellness
     end
 
     def create
-      pry.binding
-      @response ||= client_post_request(params) if demo_client_ready
+      @response ||= client_post_request if demo_client_ready
       if @application
         render json: @application
       else
@@ -48,7 +46,7 @@ module Wellness
 
     def client_post_request
       response = JSON.parse(request.body.read)
-      new_contract = Contract.Application.new(controller_name, action_name, response)
+      new_contract = ContractApplication.new(controller_name, action_name, response)
       new_contract.api_request
     end
 
