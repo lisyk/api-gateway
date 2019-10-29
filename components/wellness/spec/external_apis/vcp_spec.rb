@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'faraday'
 
-RSpec.describe 'VCP API', type: :request do
+RSpec.describe 'VCP API', :vcr, type: :request do
   let(:vcp_url) do
     vcp = route_settings.api.vcp_wellness
     vcp.protocol + vcp.subdomain + vcp.domain + vcp.api_route
@@ -36,37 +36,29 @@ RSpec.describe 'VCP API', type: :request do
   context 'POST /login' do
     describe 'incorrect credentials' do
       it 'returns 401' do
-        VCR.use_cassette('login/vcp_login_no_auth') do
-          response = unauthorized_client.post('login', username: 'test', password: 'test')
-          expect(response.status).to eql(401)
-        end
+        response = unauthorized_client.post('login', username: 'test', password: 'test')
+        expect(response.status).to eql(401)
       end
     end
     describe 'correct credentials' do
       it 'returns a bearer token' do
-        VCR.use_cassette('login/vcp_login_auth') do
-          response = unauthorized_client.post('login', username: username, password: password)
-          expect(response.status).to eql(200)
-          assert_match(/access_token/, response.body)
-        end
+        response = unauthorized_client.post('login', username: username, password: password)
+        expect(response.status).to eql(200)
+        assert_match(/access_token/, response.body)
       end
     end
   end
   context 'GET /wellness_plans' do
     describe 'correct credentials' do
       it 'returns a list of plans' do
-        VCR.use_cassette('login/vcp_plan_auth') do
-          response = authorized_client.get('plan')
-          expect(response.status).to eql(200)
-        end
+        response = authorized_client.get('plan')
+        expect(response.status).to eql(200)
       end
     end
     describe 'incorrect credentials' do
       it 'returns 401' do
-        VCR.use_cassette('login/vcp_plan_no_auth') do
-          response = unauthorized_client.get('plan')
-          expect(response.status).to eql(401)
-        end
+        response = unauthorized_client.get('plan')
+        expect(response.status).to eql(401)
       end
     end
   end
@@ -74,36 +66,28 @@ RSpec.describe 'VCP API', type: :request do
     context 'index' do
       describe 'correct credentials' do
         it 'returns a list of contract applications' do
-          VCR.use_cassette('contract/vcp_contract_application_index_auth') do
-            response = authorized_client.get('contractApplication')
-            expect(response.status).to eql(200)
-          end
+          response = authorized_client.get('contractApplication')
+          expect(response.status).to eql(200)
         end
       end
       describe 'incorrect credentials' do
         it 'returns 401' do
-          VCR.use_cassette('contract/vcp_contract_application_index_no_auth') do
-            response = unauthorized_client.get('contractApplication')
-            expect(response.status).to eql(401)
-          end
+          response = unauthorized_client.get('contractApplication')
+          expect(response.status).to eql(401)
         end
       end
     end
     context 'show' do
       describe 'correct credentials' do
         it 'returns a contract application' do
-          VCR.use_cassette('contract/vcp_contract_application_show_auth') do
-            response = authorized_client.get('contractApplication')
-            expect(response.status).to eql(200)
-          end
+          response = authorized_client.get('contractApplication')
+          expect(response.status).to eql(200)
         end
       end
       describe 'incorrect credentials' do
         it 'returns 401' do
-          VCR.use_cassette('contract/vcp_contract_application_show_no_auth') do
-            response = unauthorized_client.get('contractApplication')
-            expect(response.status).to eql(401)
-          end
+          response = unauthorized_client.get('contractApplication')
+          expect(response.status).to eql(401)
         end
       end
     end
@@ -112,18 +96,14 @@ RSpec.describe 'VCP API', type: :request do
     context 'show' do
       describe 'correct credentials' do
         it 'returns a contract application' do
-          VCR.use_cassette('contract/vcp_contract_agreement_show_auth') do
-            response = authorized_client.get('contractApplicationAgreement')
-            expect(response.status).to eql(200)
-          end
+          response = authorized_client.get('contractApplicationAgreement')
+          expect(response.status).to eql(200)
         end
       end
       describe 'incorrect credentials' do
         it 'returns 401' do
-          VCR.use_cassette('contract/vcp_contract_agreement_show_no_auth') do
-            response = unauthorized_client.get('contractApplicationAgreement')
-            expect(response.status).to eql(401)
-          end
+          response = unauthorized_client.get('contractApplicationAgreement')
+          expect(response.status).to eql(401)
         end
       end
     end

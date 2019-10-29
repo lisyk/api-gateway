@@ -122,7 +122,7 @@ module Wellness
     end
 
     describe 'POST #create' do
-      let(:application_sample_file) { File.read(File.expand_path('../../helpers/dummy_docs/contract_applications/contract_applications_sample.json', __dir__)) }
+      let(:application_sample_file) { File.read(File.expand_path('../../helpers/dummy_docs/contract_applications/post_contract_applications_sample.json', __dir__)) }
       let(:application) { JSON.parse application_sample_file }
 
       context 'authenticated' do
@@ -130,7 +130,7 @@ module Wellness
           allow(controller).to receive(:authenticate!)
           controller.instance_variable_set(:@current_user, 'authorized')
         end
-        describe 'appiclation available' do
+        describe 'application available' do
           before do
             allow(controller).to receive(:client_post_request).and_return application
           end

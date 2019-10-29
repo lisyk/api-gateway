@@ -4,6 +4,7 @@ require_dependency 'wellness/application_controller'
 
 module Wellness
   class ContractApplicationsController < ::Api::V1::ApiController
+    include Concerns::RequestConcern
     before_action :user_authorized?
 
     def index
@@ -29,9 +30,13 @@ module Wellness
     end
 
     def create
-      response = demo_client_ready ? client_post_request : test_post_application
-      @application ||= response
-      render json: @application
+      pry.binding
+      @response ||= client_post_request(params) if demo_client_ready
+      if @application
+        render json: @application
+      else
+        render json: { errors: ['Contract application could not be submitted'] }, status: :not_found
+      end
     end
 
     private
@@ -41,14 +46,10 @@ module Wellness
       contract_app.api_request
     end
 
-    def client_request(params = {})
-      Plans.new.api_request(controller_name, action_name, params)
-    end
-
     def client_post_request
       response = JSON.parse(request.body.read)
-      plan = Plans.new(controller_name, response)
-      plan.plans_mapping
+      new_contract = Contract.Application.new(controller_name, action_name, response)
+      new_contract.api_request
     end
 
     def user_authorized?
