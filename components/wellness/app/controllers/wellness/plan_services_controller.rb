@@ -3,7 +3,7 @@
 require_dependency 'wellness/application_controller'
 
 module Wellness
-  class ServicesController < ::Api::V1::ApiController
+  class PlanServicesController < ::Api::V1::ApiController
     before_action :user_authorized?
 
     def index
@@ -14,7 +14,8 @@ module Wellness
     private
 
     def fetch_services
-      WellnessPlans.new.api_request(controller_name, action_name)
+      plans_service = Plan.new(controller_name, action_name)
+      plans_service.plans_mapping
     end
 
     # test hardcoded data. TODO clean up

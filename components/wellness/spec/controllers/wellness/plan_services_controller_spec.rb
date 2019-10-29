@@ -4,7 +4,7 @@ require 'rails_helper'
 require(File.expand_path('../../app/controllers/api/v1/api_controller'))
 
 module Wellness
-  RSpec.describe ServicesController, type: :controller do
+  RSpec.describe PlanServicesController, type: :controller do
     routes { Wellness::Engine.routes }
     let(:settings_yaml) do
       YAML.safe_load(
