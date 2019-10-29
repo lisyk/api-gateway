@@ -16,6 +16,10 @@ contract_applications:
     method: get
     resource: contractApplication
 
+  create:
+    method: post
+    resource: contractApplication
+
 plans:
   index:
     method: get

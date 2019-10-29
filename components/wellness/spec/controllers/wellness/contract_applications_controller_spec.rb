@@ -120,5 +120,41 @@ module Wellness
         end
       end
     end
+
+    describe 'POST #create' do
+      let(:application_sample_file) { File.read(File.expand_path('../../helpers/dummy_docs/applications/origin_application_sample.json', __dir__)) }
+      let(:application) { JSON.parse application_sample_file }
+
+      context 'authenticated' do
+        before :each do
+          allow(controller).to receive(:authenticate!)
+          controller.instance_variable_set(:@current_user, 'authorized')
+        end
+        describe 'appiclation available' do
+          before do
+            allow(controller).to receive(:client_post_request).and_return application
+          end
+          it 'returns application' do
+            post :create
+            expect(response).to have_http_status(200)
+            expect(assigns(:application)).not_to be_nil
+          end
+        end
+      end
+      context 'not authenticated' do
+        before do
+          allow(controller).to receive(:authenticate!)
+          controller.instance_variable_set(:@current_user, nil)
+        end
+        it 'sends error message to the client' do
+          post :create
+          expect(response).to have_http_status(403)
+          expect(JSON.parse(response.body)['errors']).to include 'You are not authorized'
+        end
+        it "doesn't assign wellness_plans" do
+          expect(assigns(:application)).to be_nil
+        end
+      end
+    end
   end
 end
