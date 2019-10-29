@@ -44,7 +44,6 @@ module Wellness
         end
       end
       context 'unauthenticated' do
-        before { allow(controller).to receive(:authenticate!).and_return false }
         before do
           allow(controller).to receive(:authenticate!)
           controller.instance_variable_set(:@current_user, nil)
