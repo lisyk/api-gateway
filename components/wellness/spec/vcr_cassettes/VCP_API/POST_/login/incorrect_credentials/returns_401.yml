@@ -1,14 +1,16 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://demo.vcp.vet/cwa/api/contractApplication
+    method: post
+    uri: https://demo.vcp.vet/cwa/api/login
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: password=test&username=test
     headers:
       User-Agent:
       - Faraday v0.15.4
+      Content-Type:
+      - application/x-www-form-urlencoded
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -25,10 +27,10 @@ http_interactions:
       Content-Length:
       - '0'
       Date:
-      - Tue, 29 Oct 2019 00:00:02 GMT
+      - Tue, 29 Oct 2019 17:49:02 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Tue, 29 Oct 2019 00:00:02 GMT
+  recorded_at: Tue, 29 Oct 2019 17:49:02 GMT
 recorded_with: VCR 3.0.3

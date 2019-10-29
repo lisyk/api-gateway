@@ -1,0 +1,77 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://demo.vcp.vet/cwa/api/login
+    body:
+      encoding: UTF-8
+      string: password=hdtB713%5E%21kim&username=vipapi87897492
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '2490'
+      Date:
+      - Tue, 29 Oct 2019 17:49:10 GMT
+    body:
+      encoding: UTF-8
+      string: '{"username":"vipapi87897492","roles":["ROLE_API","ROLE_MERCHANT_SERVICE_CONSUMPTION"],"token_type":"Bearer","access_token":"eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTVDJzVFFSejliVXhwb1JCYlFjVkRCYkhlWkFOVmFFc3VqY3Vxa2UwbTVJK0hDb2JKN25TZGRuWm1uSmxOazR2a3BJY2VLbXBCOEN2MG02Z0hQNERvd1d2UFhwM1pcL3Rub3BUaW41YzJiOTk3djlcL2JvR0dhVWhIdUpSSVFxVjlBc0ljeFZRaEtXS0J4bGt1aXhteWtzWTZ4enhxT2MyRE1JbkJ5bkJFNEFKUkpydUJMc29DR3FVc1NTYW5Pd2d5TmRHMGxZNFRJNVZkeVdLTVY3WE82NjU5b1JsXC9ndmcwTGEyU2pCN0JZc29pamlHZE1oWlwvNUlFSW5qTFZnb3NJQkh1eGE2R3BrYnpEUkJWRTFUWnpGREE0cmpBT1pScGw5dzQwcXcwbkQ1Skd5bUNhMTJzSzRGTUNlUVVpYmRQNU4wdEkxdTcyMU1aaVo0Q2ErZ1BCS09PV1ozZHl6VnRUcXV4eWsxVXhQTzFIS1BwVHdtMjhTYUdcLzNKMHJ0dkI1OG12UktBMmNuZGk5OFUrSTBITVBuOFwvUGZOZk5GT3BPSGFWUFNDVmhzSmsyYXhVTzVLYkoyXC9mMnk5UHp4KzgreVNjYmFNaFwvXC9meDNMOWRITmpqNmNDU2FUNVZFZEdkcTlzdmt0R2ZPTmk4Yk1XeHZaZllockg1K0tOVk5CQzFneGJscHllYlZ2RFhMc1orUDE2cTZFc1ZORndLd2MyXC9iYjN1QjUyK3gyXC9cL2JUaCtYMnZHWFo2bTYxdW94bmFaNVVoRVVpUXRkVzE5ZFg3NnlzbVpDWGZrUzNYRGJpcGR2XC9YMnk4SHQzOFl5eWN3TTBRMHc2YWloWUlVWnVrQXk5ZEhoMHZ6SDM3dTV3UG5LZHRmclwvOEJaMXc1WUVBREFBQT0iLCJzdWIiOiJ2aXBhcGk4Nzg5NzQ5MiIsImV4cCI6MTU3MjM3NDk1MSwiaWF0IjoxNTcyMzcxMzUxLCJyb2xlcyI6WyJST0xFX0FQSSIsIlJPTEVfTUVSQ0hBTlRfU0VSVklDRV9DT05TVU1QVElPTiJdfQ.FJuY916PutqHPK_IOBJxYE1QFIq0GIxa7X6anxwu-hs","expires_in":3600,"refresh_token":"eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTVDJzVFFSejliVXhwb1JCYlFjVkRCYkhlWkFOVmFFc3VqY3Vxa2UwbTVJK0hDb2JKN25TZGRuWm1uSmxOazR2a3BJY2VLbXBCOEN2MG02Z0hQNERvd1d2UFhwM1pcL3Rub3BUaW41YzJiOTk3djlcL2JvR0dhVWhIdUpSSVFxVjlBc0ljeFZRaEtXS0J4bGt1aXhteWtzWTZ4enhxT2MyRE1JbkJ5bkJFNEFKUkpydUJMc29DR3FVc1NTYW5Pd2d5TmRHMGxZNFRJNVZkeVdLTVY3WE82NjU5b1JsXC9ndmcwTGEyU2pCN0JZc29pamlHZE1oWlwvNUlFSW5qTFZnb3NJQkh1eGE2R3BrYnpEUkJWRTFUWnpGREE0cmpBT1pScGw5dzQwcXcwbkQ1Skd5bUNhMTJzSzRGTUNlUVVpYmRQNU4wdEkxdTcyMU1aaVo0Q2ErZ1BCS09PV1ozZHl6VnRUcXV4eWsxVXhQTzFIS1BwVHdtMjhTYUdcLzNKMHJ0dkI1OG12UktBMmNuZGk5OFUrSTBITVBuOFwvUGZOZk5GT3BPSGFWUFNDVmhzSmsyYXhVTzVLYkoyXC9mMnk5UHp4KzgreVNjYmFNaFwvXC9meDNMOWRITmpqNmNDU2FUNVZFZEdkcTlzdmt0R2ZPTmk4Yk1XeHZaZllockg1K0tOVk5CQzFneGJscHllYlZ2RFhMc1orUDE2cTZFc1ZORndLd2MyXC9iYjN1QjUyK3gyXC9cL2JUaCtYMnZHWFo2bTYxdW94bmFaNVVoRVVpUXRkVzE5ZFg3NnlzbVpDWGZrUzNYRGJpcGR2XC9YMnk4SHQzOFl5eWN3TTBRMHc2YWloWUlVWnVrQXk5ZEhoMHZ6SDM3dTV3UG5LZHRmclwvOEJaMXc1WUVBREFBQT0iLCJzdWIiOiJ2aXBhcGk4Nzg5NzQ5MiIsImlhdCI6MTU3MjM3MTM1MSwicm9sZXMiOlsiUk9MRV9BUEkiLCJST0xFX01FUkNIQU5UX1NFUlZJQ0VfQ09OU1VNUFRJT04iXX0.9mBM2p_uPsh65UwthaM4ez3PDAuV_6uLXvU0YrohD6Y"}'
+    http_version: 
+  recorded_at: Tue, 29 Oct 2019 17:49:11 GMT
+- request:
+    method: post
+    uri: https://demo.vcp.vet/cwa/api/login
+    body:
+      encoding: UTF-8
+      string: password=hdtB713%5E%21kim&username=vipapi87897492
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '2490'
+      Date:
+      - Tue, 29 Oct 2019 17:49:11 GMT
+    body:
+      encoding: UTF-8
+      string: '{"username":"vipapi87897492","roles":["ROLE_API","ROLE_MERCHANT_SERVICE_CONSUMPTION"],"token_type":"Bearer","access_token":"eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTVDJzVFFSejliVXhwb1JCYlFjVkRCYkhlWkFOVmFFc3VqY3Vxa2UwbTVJK0hDb2JKN25TZGRuWm1uSmxOazR2a3BJY2VLbXBCOEN2MG02Z0hQNERvd1d2UFhwM1pcL3Rub3BUaW41YzJiOTk3djlcL2JvR0dhVWhIdUpSSVFxVjlBc0ljeFZRaEtXS0J4bGt1aXhteWtzWTZ4enhxT2MyRE1JbkJ5bkJFNEFKUkpydUJMc29DR3FVc1NTYW5Pd2d5TmRHMGxZNFRJNVZkeVdLTVY3WE82NjU5b1JsXC9ndmcwTGEyU2pCN0JZc29pamlHZE1oWlwvNUlFSW5qTFZnb3NJQkh1eGE2R3BrYnpEUkJWRTFUWnpGREE0cmpBT1pScGw5dzQwcXcwbkQ1Skd5bUNhMTJzSzRGTUNlUVVpYmRQNU4wdEkxdTcyMU1aaVo0Q2ErZ1BCS09PV1ozZHl6VnRUcXV4eWsxVXhQTzFIS1BwVHdtMjhTYUdcLzNKMHJ0dkI1OG12UktBMmNuZGk5OFUrSTBITVBuOFwvUGZOZk5GT3BPSGFWUFNDVmhzSmsyYXhVTzVLYkoyXC9mMnk5UHp4KzgreVNjYmFNaFwvXC9meDNMOWRITmpqNmNDU2FUNVZFZEdkcTlzdmt0R2ZPTmk4Yk1XeHZaZllockg1K0tOVk5CQzFneGJscHllYlZ2RFhMc1orUDE2cTZFc1ZORndLd2MyXC9iYjN1QjUyK3gyXC9cL2JUaCtYMnZHWFo2bTYxdW94bmFaNVVoRVVpUXRkVzE5ZFg3NnlzbVpDWGZrUzNYRGJpcGR2XC9YMnk4SHQzOFl5eWN3TTBRMHc2YWloWUlVWnVrQXk5ZEhoMHZ6SDM3dTV3UG5LZHRmclwvOEJaMXc1WUVBREFBQT0iLCJzdWIiOiJ2aXBhcGk4Nzg5NzQ5MiIsImV4cCI6MTU3MjM3NDk1MSwiaWF0IjoxNTcyMzcxMzUxLCJyb2xlcyI6WyJST0xFX0FQSSIsIlJPTEVfTUVSQ0hBTlRfU0VSVklDRV9DT05TVU1QVElPTiJdfQ.FJuY916PutqHPK_IOBJxYE1QFIq0GIxa7X6anxwu-hs","expires_in":3600,"refresh_token":"eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTVDJzVFFSejliVXhwb1JCYlFjVkRCYkhlWkFOVmFFc3VqY3Vxa2UwbTVJK0hDb2JKN25TZGRuWm1uSmxOazR2a3BJY2VLbXBCOEN2MG02Z0hQNERvd1d2UFhwM1pcL3Rub3BUaW41YzJiOTk3djlcL2JvR0dhVWhIdUpSSVFxVjlBc0ljeFZRaEtXS0J4bGt1aXhteWtzWTZ4enhxT2MyRE1JbkJ5bkJFNEFKUkpydUJMc29DR3FVc1NTYW5Pd2d5TmRHMGxZNFRJNVZkeVdLTVY3WE82NjU5b1JsXC9ndmcwTGEyU2pCN0JZc29pamlHZE1oWlwvNUlFSW5qTFZnb3NJQkh1eGE2R3BrYnpEUkJWRTFUWnpGREE0cmpBT1pScGw5dzQwcXcwbkQ1Skd5bUNhMTJzSzRGTUNlUVVpYmRQNU4wdEkxdTcyMU1aaVo0Q2ErZ1BCS09PV1ozZHl6VnRUcXV4eWsxVXhQTzFIS1BwVHdtMjhTYUdcLzNKMHJ0dkI1OG12UktBMmNuZGk5OFUrSTBITVBuOFwvUGZOZk5GT3BPSGFWUFNDVmhzSmsyYXhVTzVLYkoyXC9mMnk5UHp4KzgreVNjYmFNaFwvXC9meDNMOWRITmpqNmNDU2FUNVZFZEdkcTlzdmt0R2ZPTmk4Yk1XeHZaZllockg1K0tOVk5CQzFneGJscHllYlZ2RFhMc1orUDE2cTZFc1ZORndLd2MyXC9iYjN1QjUyK3gyXC9cL2JUaCtYMnZHWFo2bTYxdW94bmFaNVVoRVVpUXRkVzE5ZFg3NnlzbVpDWGZrUzNYRGJpcGR2XC9YMnk4SHQzOFl5eWN3TTBRMHc2YWloWUlVWnVrQXk5ZEhoMHZ6SDM3dTV3UG5LZHRmclwvOEJaMXc1WUVBREFBQT0iLCJzdWIiOiJ2aXBhcGk4Nzg5NzQ5MiIsImlhdCI6MTU3MjM3MTM1MSwicm9sZXMiOlsiUk9MRV9BUEkiLCJST0xFX01FUkNIQU5UX1NFUlZJQ0VfQ09OU1VNUFRJT04iXX0.9mBM2p_uPsh65UwthaM4ez3PDAuV_6uLXvU0YrohD6Y"}'
+    http_version: 
+  recorded_at: Tue, 29 Oct 2019 17:49:11 GMT
+recorded_with: VCR 3.0.3

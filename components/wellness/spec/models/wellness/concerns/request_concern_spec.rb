@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 module Wellness
-  RSpec.describe Concerns::RequestConcern, type: :model do
+  RSpec.describe Concerns::RequestConcern, :vcr, type: :model do
     subject { Plan.new('plans', 'index') }
     describe '#api_request' do
       # VCR Integration test
@@ -11,14 +11,10 @@ module Wellness
         let(:required_attr) { ['ageGroup', 'autoRenew', 'shortDescription', 'species'] }
         context 'index' do
           it 'connects to api to get token' do
-            VCR.use_cassette('login/vcp_login') do
-              expect(subject.token).not_to be_nil
-            end
+            expect(subject.token).not_to be_nil
           end
           it 'returns body' do
-            VCR.use_cassette('plans/wellness_plans_raw') do
-              expect(subject.api_request.first).to include(*required_attr)
-            end
+            expect(subject.api_request.first).to include(*required_attr)
           end
         end
       end
