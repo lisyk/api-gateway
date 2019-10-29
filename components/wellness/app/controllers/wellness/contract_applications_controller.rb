@@ -119,14 +119,20 @@ module Wellness
         "optionalPlanServices": []
       }
     end
+    
+    def contract_apps(params = {})
+      contract_app = ContractApplication.new(controller_name, action_name, params)
+      contract_app.api_request
+    end
 
     def client_request(params = {})
-      WellnessPlans.new.api_request(controller_name, action_name, params)
+      Plans.new.api_request(controller_name, action_name, params)
     end
 
     def client_post_request
       response = JSON.parse(request.body.read)
-      WellnessPlans.new.api_post_request(controller_name, response)
+      plan = Plans.new(controller_name, response)
+      plan.plans_mapping
     end
 
     def user_authorized?

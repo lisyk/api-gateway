@@ -122,7 +122,7 @@ module Wellness
     end
 
     describe 'POST #create' do
-      let(:application_sample_file) { File.read(File.expand_path('../../helpers/dummy_docs/applications/origin_application_sample.json', __dir__)) }
+      let(:application_sample_file) { File.read(File.expand_path('../../helpers/dummy_docs/contract_applications/contract_applications_sample.json', __dir__)) }
       let(:application) { JSON.parse application_sample_file }
 
       context 'authenticated' do
