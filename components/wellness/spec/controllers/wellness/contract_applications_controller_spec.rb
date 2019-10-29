@@ -65,7 +65,6 @@ module Wellness
         end
       end
     end
-
     describe '#show' do
       context 'authenticated' do
         before :each do

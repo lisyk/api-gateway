@@ -4,11 +4,10 @@ require_dependency 'redis'
 
 module Wellness
   class Connect
-    attr_reader :url, :client, :token
+    attr_reader :url, :token
 
     def initialize
       @url = base_uri
-      @client = client
       @token = auth_token
     end
 
