@@ -22,3 +22,8 @@ Before using redis to cache tokens:
 brew install redis
 redis-server
 ```
+### Swagger
+API Documentation using swagger is mounted at http:localhost/vip-api-docs/index.html
+New specs must be added to the /spec/integration/<engine> folder before they will be 
+available
+After new specs are added run the rake task rake rswag:specs:swaggerize
