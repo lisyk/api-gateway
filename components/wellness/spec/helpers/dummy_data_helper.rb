@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DummyDataHelper
   def test_plans
     { plans: [

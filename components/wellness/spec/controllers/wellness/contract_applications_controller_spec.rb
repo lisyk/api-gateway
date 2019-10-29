@@ -6,9 +6,8 @@ require(File.expand_path('../../app/controllers/api/v1/api_controller'))
 module Wellness
   RSpec.describe ContractApplicationsController, type: :controller do
     routes { Wellness::Engine.routes }
-    let(:contract_apps_sample) { File.read(File.expand_path(
-        '../../helpers/dummy_docs/contract_applications/contract_applications_sample.json',
-        __dir__)) }
+    let(:file_path) { File.expand_path('../../helpers/dummy_docs/contract_applications/contract_applications_sample.json', __dir__) }
+    let(:contract_apps_sample) { File.read(file_path) }
     let(:contract_apps) { JSON.parse contract_apps_sample }
 
     describe '#index' do
@@ -27,7 +26,7 @@ module Wellness
             expect(response).to have_http_status(200)
           end
           it 'returns correct content type' do
-            expect(response.content_type).to include "application/json"
+            expect(response.content_type).to include 'application/json'
           end
           it 'assigns applications' do
             expect(assigns(:applications)).not_to be_nil
@@ -83,7 +82,7 @@ module Wellness
             expect(response).to have_http_status(200)
           end
           it 'returns correct content type' do
-            expect(response.content_type).to include "application/json"
+            expect(response.content_type).to include 'application/json'
           end
           it 'assigns applications' do
             expect(assigns(:application)).not_to be_nil

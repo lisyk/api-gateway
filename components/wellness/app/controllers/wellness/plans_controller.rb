@@ -7,7 +7,7 @@ module Wellness
     before_action :user_authorized?
 
     def index
-      #TODO needs to be updated from DEMO to PROD
+      # TODO: needs to be updated from DEMO to PROD
       @wellness_plans ||= fetch_plans if demo_client_ready
       if @wellness_plans.present?
         render json: { plans: @wellness_plans }

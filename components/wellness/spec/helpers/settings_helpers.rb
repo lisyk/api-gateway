@@ -1,10 +1,9 @@
+# frozen_string_literal: true
+
 module SettingsHelpers
   def settings_yaml
-    YAML.safe_load(
-        File.read(
-            File.expand_path(File.join('..', '..', '..', '..', 'config', 'settings', 'test.yml'), __dir__)
-        )
-    ).to_json
+    file_path = File.expand_path(File.join('..', '..', '..', '..', 'config', 'settings', 'test.yml'), __dir__)
+    YAML.safe_load(File.read(file_path)).to_json
   end
 
   def route_settings

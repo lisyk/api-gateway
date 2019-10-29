@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Wellness
   module Constructors
     class PlanConstructor
@@ -16,7 +18,7 @@ module Wellness
       end
 
       def construct_attributes(plan)
-        vip_attr = {'vip_mapped_attributes' => {}}
+        vip_attr = { 'vip_mapped_attributes' => {} }
         constructor_mapper.each do |key, value|
           vip_attr['vip_mapped_attributes'][key] = plan[value]
         end

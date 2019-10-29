@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 module Wellness
@@ -6,14 +8,14 @@ module Wellness
     describe '#api_request' do
       # VCR Integration test
       context 'integration' do
-        let(:required_attr) { %w(ageGroup autoRenew shortDescription species) }
+        let(:required_attr) { ['ageGroup', 'autoRenew', 'shortDescription', 'species'] }
         context 'index' do
-          it "connects to api to get token" do
+          it 'connects to api to get token' do
             VCR.use_cassette('login/vcp_login') do
               expect(subject.token).not_to be_nil
             end
           end
-          it "returns body" do
+          it 'returns body' do
             VCR.use_cassette('plans/wellness_plans_raw') do
               expect(subject.api_request.first).to include(*required_attr)
             end

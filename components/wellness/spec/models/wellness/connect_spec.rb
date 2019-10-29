@@ -14,7 +14,7 @@ RSpec.describe Wellness::Connect do
 
   describe 'cached token present' do
     let(:token) { JSON.parse(redis.get(:authorization)) }
-    let(:client_token) { subject.client.headers["Authorization"].split(" ").last }
+    let(:client_token) { subject.client.headers['Authorization'].split(' ').last }
     before :each do
       VCR.use_cassette('login/vcp_login') do
         Wellness::Connect.new

@@ -25,7 +25,7 @@ module Wellness
             expect(response).to have_http_status(200)
           end
           it 'returns correct content type' do
-            expect(response.content_type).to include "application/json"
+            expect(response.content_type).to include 'application/json'
           end
           it 'assigns wellness plans' do
             expect(assigns(:wellness_plans)).not_to be_nil
