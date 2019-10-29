@@ -11,7 +11,7 @@ module Wellness
       end
 
       def api_request
-        response = api_client.send(request_method, request_resource)
+        response = client.send(request_method, request_resource)
         parse_response(response) if response
       end
 

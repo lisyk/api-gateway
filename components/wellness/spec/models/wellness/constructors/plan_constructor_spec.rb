@@ -2,7 +2,9 @@ require 'rails_helper'
 
 module Wellness
   RSpec.describe Constructors::PlanConstructor, type: :model do
-    let(:plans_sample_file) { File.read(File.expand_path('../../helpers/dummy_docs/plans/origin_plans_sample.json', __dir__)) }
+    let(:plans_sample_file) { File.read(
+        File.expand_path('../../../helpers/dummy_docs/plans/origin_plans_sample.json', __dir__)
+    ) }
     let(:plans_sample) { JSON.parse plans_sample_file }
     #TODO connect to real methods to make it fails once changes
     let(:species_modifier_rule) { 'species' }

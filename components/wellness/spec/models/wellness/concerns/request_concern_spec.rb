@@ -14,7 +14,7 @@ module Wellness
             end
           end
           it "returns body" do
-            VCR.use_cassette('plans/wellness_plans_raw_body') do
+            VCR.use_cassette('plans/wellness_plans_raw') do
               expect(subject.api_request.first).to include(*required_attr)
             end
           end
