@@ -20,7 +20,11 @@ module Wellness
     def create
       response = demo_client_ready ? client_post_request : test_post_application
       @application ||= response
-      render json: @application
+      if @application
+        render json: @application
+      else
+        render json: { errors: ['Application was not created.'] }, status: :unprocessable_entity
+      end
     end
 
     private
@@ -64,6 +68,8 @@ module Wellness
     end
 
     def client_post_request
+      return nil if request.body.read.empty?
+
       response = JSON.parse(request.body.read)
       WellnessPlans.new.api_post_request(controller_name, response)
     end
