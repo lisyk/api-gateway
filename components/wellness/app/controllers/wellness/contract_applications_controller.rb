@@ -36,48 +36,9 @@ module Wellness
 
     private
 
-<<<<<<< HEAD
     def contract_apps(params = {})
       contract_app = ContractApplication.new(controller_name, action_name, params)
       contract_app.api_request
-=======
-    # test hardcoded data. TODO clean up
-    def test_applications
-      { applications: [
-        {
-          "id": '123',
-          "name": 'application',
-          "age": '13'
-        },
-        {
-          "id": '1234',
-          "name": 'application2',
-          "age": '2'
-        }
-      ] }
-    end
-
-    def test_application
-      {
-        "id": '123',
-        "name": 'application',
-        "age": '13'
-      }
-    end
-
-    def test_post_application
-      sample_application =
-        File.read(
-          File.expand_path(
-            Wellness::Engine.root.join('app', 'models', 'application_schema.json')
-          )
-        )
-      JSON.parse(sample_application)
-    end
-
-    def client_request(params = {})
-      WellnessPlans.new.api_request(controller_name, action_name, params)
->>>>>>> Include dummy data helpers
     end
 
     def application_params
