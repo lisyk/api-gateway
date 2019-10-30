@@ -59,17 +59,15 @@ module Wellness
     end
 
     def redis
-      db = Rails.application.encrypted(credentials_path)[:redis][:environment][Rails.env.to_sym]
-      db_params = { db: db }
-      Redis.new(db_params)
+      Redis.new(url: ENV['REDIS_URL'])
     end
 
     def vcp_username
-      Rails.application.encrypted(credentials_path).auth[Rails.env.to_sym][:vcp_username]
+      ENV['WELLNESS_VCP_USERNAME']
     end
 
     def vcp_password
-      Rails.application.encrypted(credentials_path).auth[Rails.env.to_sym][:vcp_password]
+      ENV['WELLNESS_VCP_PASSWORD']
     end
 
     def base_uri
@@ -78,10 +76,6 @@ module Wellness
 
     def vcp_wellness
       Settings.api.vcp_wellness
-    end
-
-    def credentials_path
-      Wellness::Engine.root.join('config', 'credentials.yml.enc')
     end
   end
 end

@@ -2,6 +2,9 @@
 
 .byebug_history
 
+# use parent .env files
+/components/**/.env.test
+
 /config/master.key
 
 config/settings.local.yml

@@ -29,7 +29,7 @@ Metrics/LineLength:
     - '**/**/config/environments/*'
     - '**/**/config/initializers/*'
     - '**/**/spec/**/**/**/*'
-   
+
 Metrics/MethodLength:
   Max: 20
   Exclude:
@@ -39,6 +39,7 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/**/**/*'
     - '**/**/spec/**/**/**/*'
+    - 'components/**/*.gemspec'
     - 'components/**/spec/**/**/**/*'
 
 Rails/Output:

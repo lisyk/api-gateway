@@ -4,9 +4,7 @@ require 'rails_helper'
 require 'redis'
 
 RSpec.describe Wellness::Connect, :vcr do
-  let(:credentials_path) { Wellness::Engine.root.join('config', 'credentials.yml.enc') }
-  let(:db) { Rails.application.encrypted(credentials_path)[:redis][:environment][Rails.env.to_sym] }
-  let(:redis) { Redis.new(db: db) }
+  let(:redis) { Redis.new(url: ENV['REDIS_URL']) }
   subject { Wellness::Connect.new }
   before :each do
     redis.flushdb
