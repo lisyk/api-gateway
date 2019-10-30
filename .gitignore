@@ -17,6 +17,8 @@ config/environments/*.local.yml
 
 dump.rdb
 
+.editorconfig
+
 .env.development.local
 .env.test.local
 .env.local
@@ -26,6 +28,7 @@ dump.rdb
 .rakeTasks
 .tool-versions
 
+<<<<<<< HEAD
 /node_modules
 
 /log/*

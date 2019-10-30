@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.4'
+ruby '2.6.5'
 
 # https://github.com/bkeepers/dotenv#rails
 gem 'dotenv-rails', groups: [:development, :test]
