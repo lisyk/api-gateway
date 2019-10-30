@@ -29,12 +29,12 @@ module Wellness
     end
 
     def create
-      @response ||= client_post_request if demo_client_ready
-      if @application
-        render json: @application
+      @request ||= post_apps(request) if demo_client_ready
+      if @request
+        render json: @request
       else
-        render json: { errors: ['Contract application could not be submitted'] }, 
-          status: :not_found
+        render json: { errors: ['Contract application could not be submitted'] },
+               status: :not_found
       end
     end
 
@@ -45,10 +45,10 @@ module Wellness
       contract_app.api_request
     end
 
-    def client_post_request
-      response = JSON.parse(request.body.read)
-      new_contract = ContractApplication.new(controller_name, action_name, response)
-      new_contract.api_request
+    def post_apps(request)
+      body = JSON.parse(request.body.read)
+      contract_app = ContractApplication.new(controller_name, action_name, params)
+      contract_app.api_post(body.to_json)
     end
 
     def user_authorized?
@@ -63,6 +63,10 @@ module Wellness
 
     def application_params
       params.except(:format).permit(:id)
+    end
+
+    def post_params
+      params.require(:contract_application)
     end
   end
 end

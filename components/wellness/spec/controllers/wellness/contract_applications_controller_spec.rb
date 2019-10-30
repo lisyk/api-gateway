@@ -132,7 +132,7 @@ module Wellness
         end
         describe 'application available' do
           before do
-            allow(controller).to receive(:client_post_request).and_return application
+            allow(controller).to receive(:contract_apps).and_return application
           end
           it 'returns application' do
             post :create
