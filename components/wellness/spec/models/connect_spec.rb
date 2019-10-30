@@ -5,9 +5,7 @@ require 'redis'
 
 RSpec.describe Connect do
   before :each do
-    credentials_path = Wellness::Engine.root.join('config', 'credentials.yml.enc')
-    db = Rails.application.encrypted(credentials_path)[:redis][:environment][Rails.env.to_sym]
-    @redis = Redis.new(db: db)
+    @redis = Redis.new(url: ENV['REDIS_URL'])
     @redis.flushdb
     VCR.use_cassette('vcp_login') do
       Connect.new

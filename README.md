@@ -62,4 +62,29 @@ While pairing you may want to use `git pair` for your commits, it requires insta
   - All non development environments (for exception notification)
 - AIRBRAKE_PROJECT_KEY
   - All non development environments (for exception notification)
-- TODO: all other ENV
+- GATEWAY_USERNAME
+  - All environments
+  - Username to auth gateway to generate tokens
+- GATEWAY_PASSWORD
+  - All environments
+  - Password to auth gateway to generate tokens
+- JWT_TOKEN_EXPIRATION_IN_HOURS
+  - All environments
+- REDIS_URL
+  - All environments
+  - Automatically added in staging and production with Heroku Redis Addon
+  - optionally set in local env files
+    - `echo "REDIS_URL=redis://127.0.0.1:6379/1" >> .env.development.local`
+    - `echo "REDIS_URL=redis://127.0.0.1:6379/0" >> .env.test.local`
+- WELLNESS_VCP_PASSWORD
+  - All environments
+  - optionally set in local env files
+    - `echo "WELLNESS_VCP_PASSWORD=XXXX" >> .env.development.local`
+    - `echo "WELLNESS_VCP_PASSWORD=XXXX" >> .env.test.local`
+    - where `XXXX` is demo password
+- WELLNESS_VCP_USERNAME
+  - All environments
+  - optionally set in local env files
+    - `echo "WELLNESS_VCP_USERNAME=XXXX" >> .env.development.local`
+    - `echo "WELLNESS_VCP_USERNAME=XXXX" >> .env.test.local`
+    - where `XXXX` is demo username
