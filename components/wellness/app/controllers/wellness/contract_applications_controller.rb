@@ -27,7 +27,11 @@ module Wellness
     def create
       response = demo_client_ready ? client_post_request : test_post_application
       @application ||= response
-      render json: @application
+      if @application
+        render json: @application
+      else
+        render json: { errors: ['Application was not created.'] }, status: :unprocessable_entity
+      end
     end
 
     private
