@@ -32,8 +32,10 @@ RSpec.describe Wellness::Connect, :vcr do
         expired_auth['request_date'] = (DateTime.now - 10.years).to_i
         redis.set(:authorization, expired_auth.to_json)
       end
-      xit 'requests new token' do
+      it 'requests new token' do
+        VCR.configuration.ignore_request { true }
         expect(client_token).not_to eq token['access_token']
+        VCR.configuration.ignore_request { false }
       end
     end
   end

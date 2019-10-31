@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-require_dependency 'wellness/application_controller'
-
 module Wellness
-  class ContractApplicationsController < ::Api::V1::ApiController
+  class ContractApplicationsController < Wellness::ApplicationController
     before_action :user_authorized?
-
+    
     def index
       # TODO: needs to be updated from DEMO to PROD
       @applications ||= contract_apps if demo_client_ready
