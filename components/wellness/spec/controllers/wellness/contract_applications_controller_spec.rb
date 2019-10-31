@@ -132,7 +132,11 @@ module Wellness
         end
         describe 'application available' do
           before do
+<<<<<<< HEAD
             allow(controller).to receive(:client_post_request).and_return application
+=======
+            allow(controller).to receive(:post_contract_app).and_return application
+>>>>>>> Refactor controller and tests
           end
           it 'returns application' do
             post :create
@@ -151,7 +155,11 @@ module Wellness
           expect(response).to have_http_status(403)
           expect(JSON.parse(response.body)['errors']).to include 'You are not authorized'
         end
+<<<<<<< HEAD
         it "doesn't assign application" do
+=======
+        it "doesn't assign wellness_plans" do
+>>>>>>> Refactor controller and tests
           expect(assigns(:application)).to be_nil
         end
       end

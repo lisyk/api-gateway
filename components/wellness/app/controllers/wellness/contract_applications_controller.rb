@@ -25,8 +25,9 @@ module Wellness
     end
 
     def create
-      response = demo_client_ready ? client_post_request : test_post_application
-      @application ||= response
+      # TODO: needs to be updated from DEMO to PROD
+      request_body = JSON.parse(request.body.read) if !request.body.read.empty?
+      @application ||= post_contract_app(request_body) if demo_client_ready
       if @application
         render json: @application
       else
@@ -39,6 +40,11 @@ module Wellness
     def contract_apps(params = {})
       contract_app = ContractApplication.new(controller_name, action_name, params)
       contract_app.api_request
+    end
+
+    def post_contract_app(body)
+      contract_app = ContractApplication.new(controller_name, action_name, params)
+      contract_app.post(body)
     end
 
     def application_params
