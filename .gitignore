@@ -31,7 +31,6 @@ dump.rdb
 .rakeTasks
 .tool-versions
 
-<<<<<<< HEAD
 /node_modules
 
 /log/*
