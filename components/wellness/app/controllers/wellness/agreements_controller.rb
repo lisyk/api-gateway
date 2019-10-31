@@ -14,15 +14,9 @@ module Wellness
 
     private
 
-<<<<<<< HEAD
     def fetch_agreement(params = {})
       agreement = Agreement.new(controller_name, action_name, params)
       agreement.api_request
-=======
-    def test_agreement
-      test_file = Wellness::Engine.root.join('spec', 'contracts', 'contract.pdf').to_s
-      send_file test_file, filename: "#{agreement_params[:id]}.pdf"
->>>>>>> Move before_action hook to application controller
     end
 
     def agreement_params

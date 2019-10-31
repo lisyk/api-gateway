@@ -16,6 +16,5 @@ module Wellness
     def demo_client_ready
       Settings.api.vcp_wellness.demo_client_ready
     end
-
   end
 end
