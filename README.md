@@ -9,8 +9,9 @@ Please review the [documentation repo](https://github.com/vippetcare/docs); spec
 ## Install development environment on Mac OSX
 
 - System dependencies
-  - `rvm` or `rbenv` for Ruby Version management
+  - `rvm`, `rbenv` or `asdf` for Ruby Version management
     - `.ruby-version` file should auto load correct ruby version
+      - `asdf` may need additional [configuration](https://github.com/asdf-vm/asdf-ruby#migrating-from-another-ruby-version-manager)
   - Install Redis:
     - `brew install redis`
     - `brew services start redis` or `redis-server`
