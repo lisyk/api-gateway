@@ -13,7 +13,7 @@ module Wellness
     end
 
     def update
-      @response ||= demo_client_ready ? client_request(agreement_params) : test_agreement_upload
+      @response ||= fetch_agreement(agreement_params) if demo_client_ready
       status = @response.status
       if status == 200
         render json: { success: ['Signed agreement posted successfully'] }, status: status
@@ -30,11 +30,14 @@ module Wellness
     end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     def test_agreement_upload
       ActionDispatch::Response.new
     end
 
+=======
+>>>>>>> Refactor controller to match latest changes in stage
     def user_authorized?
       return unless @current_user != 'authorized'
 
