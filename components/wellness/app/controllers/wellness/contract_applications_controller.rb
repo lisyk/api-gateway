@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
-require_dependency 'wellness/application_controller'
-
 module Wellness
-  class ContractApplicationsController < ::Api::V1::ApiController
-    before_action :user_authorized?
-
+  class ContractApplicationsController < Wellness::ApplicationController
     def index
       # TODO: needs to be updated from DEMO to PROD
       @applications ||= contract_apps if demo_client_ready
@@ -33,16 +29,6 @@ module Wellness
     def contract_apps(params = {})
       contract_app = ContractApplication.new(controller_name, action_name, params)
       contract_app.api_request
-    end
-
-    def user_authorized?
-      return unless @current_user != 'authorized'
-
-      render json: { errors: ['You are not authorized'] }, status: :forbidden
-    end
-
-    def demo_client_ready
-      Settings.api.vcp_wellness.demo_client_ready
     end
 
     def application_params
