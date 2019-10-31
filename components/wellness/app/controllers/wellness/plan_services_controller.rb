@@ -7,28 +7,20 @@ module Wellness
     before_action :user_authorized?
 
     def index
-      @plan_services ||= demo_client_ready ? fetch_services : test_services
-      render json: { services: @plan_services }
+      # TODO: needs to be updated from DEMO to PROD
+      @plan_services ||= fetch_services if demo_client_ready
+      if @plan_services.present?
+        render json: { plans: @plan_services }
+      else
+        render json: { errors: ['Plan services are not available.'] }, status: :not_found
+      end
     end
 
     private
 
     def fetch_services
-      WellnessPlans.new.api_request(controller_name, action_name)
-    end
-
-    # test hardcoded data. TODO clean up
-    def test_services
-      { plans: [
-        {
-          "id": '123',
-          "name": 'service1'
-        },
-        {
-          "id": '1234',
-          "name": 'service2'
-        }
-      ] }
+      services = PlanService.new(controller_name, action_name)
+      services.api_request
     end
 
     def user_authorized?

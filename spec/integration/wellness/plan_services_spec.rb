@@ -4,7 +4,7 @@ require 'swagger_helper'
 require './app/controllers/api/v1/authentication_controller.rb'
 
 describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
-  path '/wellness/plans/plan_services' do
+  path 'api/v1/wellness/plan_services' do
     get 'Index' do
       tags 'Plan Services'
       produces 'application/json'
