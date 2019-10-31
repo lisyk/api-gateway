@@ -2,8 +2,9 @@ agreements:
   show:
     method: get
     resource: contractApplicationAgreement
+
   update:
-    method: post
+    method: put
     resource: contractApplicationAgreement
 
 contract_applications:
