@@ -63,14 +63,14 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - bundle-v2-{{ checksum "Gemfile.lock" }}
-            - bundle-v2
+            - bundle-v3-{{ checksum "Gemfile.lock" }}
+            - bundle-v3
       - *ensure_bundler_version
       - run:
           name: Bundle Install
           command: bundle check || bundle install
       - save_cache:
-          key: bundle-v2-{{ checksum "Gemfile.lock" }}
+          key: bundle-v3-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - persist_to_workspace:
@@ -85,8 +85,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - bundle-wellness-v5-{{ checksum "Gemfile.lock" }}
-            - bundle-wellness-v5
+            - bundle-wellness-v6-{{ checksum "Gemfile.lock" }}
+            - bundle-wellness-v6
       - *ensure_bundler_version
       - run:
           name: Bundle Install
@@ -94,7 +94,7 @@ jobs:
             cd components/wellness
             bundle check || bundle install
       - save_cache:
-          key: bundle-wellness-v5-{{ checksum "Gemfile.lock" }}
+          key: bundle-wellness-v6-{{ checksum "Gemfile.lock" }}
           paths:
             - /home/circleci/project/components/wellness/vendor/bundle
       - persist_to_workspace:

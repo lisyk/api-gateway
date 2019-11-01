@@ -16,9 +16,8 @@ RSpec.describe 'VCP API', :vcr, type: :request do
     end
   end
 
-  credentials_path = Wellness::Engine.root.join('config', 'credentials.yml.enc')
-  let(:username) { Rails.application.encrypted(credentials_path).auth[Rails.env.to_sym][:vcp_username] }
-  let(:password) { Rails.application.encrypted(credentials_path).auth[Rails.env.to_sym][:vcp_password] }
+  let(:username) { ENV['WELLNESS_VCP_USERNAME'] }
+  let(:password) { ENV['WELLNESS_VCP_PASSWORD'] }
 
   let(:token) do
     response = unauthorized_client.post('login', username: username, password: password)
