@@ -26,8 +26,9 @@ module Wellness
 
     def create
       # TODO: needs to be updated from DEMO to PROD
-      request_body = JSON.parse(request.body.read) if !request.body.read.empty?
-      @application ||= post_contract_app(request_body) if demo_client_ready
+      request_body = request.body.read
+      parsed_body = JSON.parse(request_body) if !request_body.empty?
+      @application ||= post_contract_app(parsed_body) if demo_client_ready
       if @application
         render json: @application
       else
