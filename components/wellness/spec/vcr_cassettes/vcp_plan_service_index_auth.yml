@@ -1,0 +1,91 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://demo.vcp.vet/cwa/api/login
+    body:
+      encoding: UTF-8
+      string: password=hdtB713%5E%21kim&username=vipapi87897492
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '2490'
+      Date:
+      - Thu, 31 Oct 2019 13:35:54 GMT
+    body:
+      encoding: UTF-8
+      string: '{"username":"vipapi87897492","roles":["ROLE_API","ROLE_MERCHANT_SERVICE_CONSUMPTION"],"token_type":"Bearer","access_token":"eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTVDJzVFFSejliVXhwb1JCYlFjVkRCYkhlWkFOVmFFc3VqY3Vxa2UwbTVJK0hDb2JKN25TZGRuWm1uSmxOazR2a3BJY2VLbXBCOEN2MG02Z0hQNERvd1d2UFhwM1pcL3Rub3BUaW41YzJiOTk3djlcL2JvR0dhVWhIdUpSSVFxVjlBc0ljeFZRaEtXS0J4bGt1aXhteWtzWTZ4enhxT2MyRE1JbkJ5bkJFNEFKUkpydUJMc29DR3FVc1NTYW5Pd2d5TmRHMGxZNFRJNVZkeVdLTVY3WE82NjU5b1JsXC9ndmcwTGEyU2pCN0JZc29pamlHZE1oWlwvNUlFSW5qTFZnb3NJQkh1eGE2R3BrYnpEUkJWRTFUWnpGREE0cmpBT1pScGw5dzQwcXcwbkQ1Skd5bUNhMTJzSzRGTUNlUVVpYmRQNU4wdEkxdTcyMU1aaVo0Q2ErZ1BCS09PV1ozZHl6VnRUcXV4eWsxVXhQTzFIS1BwVHdtMjhTYUdcLzNKMHJ0dkI1OG12UktBMmNuZGk5OFUrSTBITVBuOFwvUGZOZk5GT3BPSGFWUFNDVmhzSmsyYXhVTzVLYkoyXC9mMnk5UHp4KzgreVNjYmFNaFwvXC9meDNMOWRITmpqNmNDU2FUNVZFZEdkcTlzdmt0R2ZPTmk4Yk1XeHZaZllockg1K0tOVk5CQzFneGJscHllYlZ2RFhMc1orUDE2cTZFc1ZORndLd2MyXC9iYjN1QjUyK3gyXC9cL2JUaCtYMnZHWFo2bTYxdW94bmFaNVVoRVVpUXRkVzE5ZFg3NnlzbVpDWGZrUzNYRGJpcGR2XC9YMnk4SHQzOFl5eWN3TTBRMHc2YWloWUlVWnVrQXk5ZEhoMHZ6SDM3dTV3UG5LZHRmclwvOEJaMXc1WUVBREFBQT0iLCJzdWIiOiJ2aXBhcGk4Nzg5NzQ5MiIsImV4cCI6MTU3MjUzMjU1NCwiaWF0IjoxNTcyNTI4OTU0LCJyb2xlcyI6WyJST0xFX0FQSSIsIlJPTEVfTUVSQ0hBTlRfU0VSVklDRV9DT05TVU1QVElPTiJdfQ.xWuXlhvMPmp4EZ1bmwY5ZklY1MQwpdN1ZSFIhVYb4Y4","expires_in":3600,"refresh_token":"eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTVDJzVFFSejliVXhwb1JCYlFjVkRCYkhlWkFOVmFFc3VqY3Vxa2UwbTVJK0hDb2JKN25TZGRuWm1uSmxOazR2a3BJY2VLbXBCOEN2MG02Z0hQNERvd1d2UFhwM1pcL3Rub3BUaW41YzJiOTk3djlcL2JvR0dhVWhIdUpSSVFxVjlBc0ljeFZRaEtXS0J4bGt1aXhteWtzWTZ4enhxT2MyRE1JbkJ5bkJFNEFKUkpydUJMc29DR3FVc1NTYW5Pd2d5TmRHMGxZNFRJNVZkeVdLTVY3WE82NjU5b1JsXC9ndmcwTGEyU2pCN0JZc29pamlHZE1oWlwvNUlFSW5qTFZnb3NJQkh1eGE2R3BrYnpEUkJWRTFUWnpGREE0cmpBT1pScGw5dzQwcXcwbkQ1Skd5bUNhMTJzSzRGTUNlUVVpYmRQNU4wdEkxdTcyMU1aaVo0Q2ErZ1BCS09PV1ozZHl6VnRUcXV4eWsxVXhQTzFIS1BwVHdtMjhTYUdcLzNKMHJ0dkI1OG12UktBMmNuZGk5OFUrSTBITVBuOFwvUGZOZk5GT3BPSGFWUFNDVmhzSmsyYXhVTzVLYkoyXC9mMnk5UHp4KzgreVNjYmFNaFwvXC9meDNMOWRITmpqNmNDU2FUNVZFZEdkcTlzdmt0R2ZPTmk4Yk1XeHZaZllockg1K0tOVk5CQzFneGJscHllYlZ2RFhMc1orUDE2cTZFc1ZORndLd2MyXC9iYjN1QjUyK3gyXC9cL2JUaCtYMnZHWFo2bTYxdW94bmFaNVVoRVVpUXRkVzE5ZFg3NnlzbVpDWGZrUzNYRGJpcGR2XC9YMnk4SHQzOFl5eWN3TTBRMHc2YWloWUlVWnVrQXk5ZEhoMHZ6SDM3dTV3UG5LZHRmclwvOEJaMXc1WUVBREFBQT0iLCJzdWIiOiJ2aXBhcGk4Nzg5NzQ5MiIsImlhdCI6MTU3MjUyODk1NCwicm9sZXMiOlsiUk9MRV9BUEkiLCJST0xFX01FUkNIQU5UX1NFUlZJQ0VfQ09OU1VNUFRJT04iXX0.MuAlrBwdrJ-aKcI6QZkBm1M6DdhzlwsLtuLk2UaSSbU"}'
+    http_version: 
+  recorded_at: Thu, 31 Oct 2019 13:35:54 GMT
+- request:
+    method: get
+    uri: https://demo.vcp.vet/cwa/api/planService
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTVDJzVFFSejliVXhwb1JCYlFjVkRCYkhlWkFOVmFFc3VqY3Vxa2UwbTVJK0hDb2JKN25TZGRuWm1uSmxOazR2a3BJY2VLbXBCOEN2MG02Z0hQNERvd1d2UFhwM1pcL3Rub3BUaW41YzJiOTk3djlcL2JvR0dhVWhIdUpSSVFxVjlBc0ljeFZRaEtXS0J4bGt1aXhteWtzWTZ4enhxT2MyRE1JbkJ5bkJFNEFKUkpydUJMc29DR3FVc1NTYW5Pd2d5TmRHMGxZNFRJNVZkeVdLTVY3WE82NjU5b1JsXC9ndmcwTGEyU2pCN0JZc29pamlHZE1oWlwvNUlFSW5qTFZnb3NJQkh1eGE2R3BrYnpEUkJWRTFUWnpGREE0cmpBT1pScGw5dzQwcXcwbkQ1Skd5bUNhMTJzSzRGTUNlUVVpYmRQNU4wdEkxdTcyMU1aaVo0Q2ErZ1BCS09PV1ozZHl6VnRUcXV4eWsxVXhQTzFIS1BwVHdtMjhTYUdcLzNKMHJ0dkI1OG12UktBMmNuZGk5OFUrSTBITVBuOFwvUGZOZk5GT3BPSGFWUFNDVmhzSmsyYXhVTzVLYkoyXC9mMnk5UHp4KzgreVNjYmFNaFwvXC9meDNMOWRITmpqNmNDU2FUNVZFZEdkcTlzdmt0R2ZPTmk4Yk1XeHZaZllockg1K0tOVk5CQzFneGJscHllYlZ2RFhMc1orUDE2cTZFc1ZORndLd2MyXC9iYjN1QjUyK3gyXC9cL2JUaCtYMnZHWFo2bTYxdW94bmFaNVVoRVVpUXRkVzE5ZFg3NnlzbVpDWGZrUzNYRGJpcGR2XC9YMnk4SHQzOFl5eWN3TTBRMHc2YWloWUlVWnVrQXk5ZEhoMHZ6SDM3dTV3UG5LZHRmclwvOEJaMXc1WUVBREFBQT0iLCJzdWIiOiJ2aXBhcGk4Nzg5NzQ5MiIsImV4cCI6MTU3MjUzMjU1NCwiaWF0IjoxNTcyNTI4OTU0LCJyb2xlcyI6WyJST0xFX0FQSSIsIlJPTEVfTUVSQ0hBTlRfU0VSVklDRV9DT05TVU1QVElPTiJdfQ.xWuXlhvMPmp4EZ1bmwY5ZklY1MQwpdN1ZSFIhVYb4Y4
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Set-Cookie:
+      - JSESSIONID=879DEAA03469B15C263950F827D8989D; Path=/cwa/; Secure; HttpOnly
+      - cwa.cssName.null=loginmain.390; Expires=Tue, 18-Nov-2087 16:50:02 GMT
+      X-Total-Count:
+      - '61'
+      X-Count:
+      - '10'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Thu, 31 Oct 2019 13:35:54 GMT
+    body:
+      encoding: UTF-8
+      string: '[{"id":5428456,"offeredService":{"id":5426801,"shortDescription":"Adjustment"},"plan":{"id":5428455,"shortDescription":"Puppy
+        Wellness Plan"},"cost":null,"dateCreated":"2019-02-01T13:50:26Z","discountPercent":null,"discountedPrice":44.9,"displayOrder":999,"doNotRenew":false,"externalPlanCd":null,"lastUpdated":"2019-02-18T18:20:12Z","offeredServiceId":5426801,"performancePayPrice":null,"planEffectiveDate":"2019-02-01T13:50:26Z","planExpirationDate":"2024-02-01T13:50:26Z","planId":5428455,"quantity":1,"retailPrice":0,"revenuePerUnit":0,"serviceType":"R","totalDiscountedPrice":44.9,"totalRevenue":null,"totalTrueCost":null},{"id":5428856,"offeredService":{"id":5428799,"shortDescription":"Wellness
+        Examination"},"plan":{"id":5428455,"shortDescription":"Puppy Wellness Plan"},"cost":null,"dateCreated":"2019-02-01T16:56:55Z","discountPercent":50,"discountedPrice":17.5,"displayOrder":10,"doNotRenew":false,"externalPlanCd":null,"lastUpdated":"2019-02-18T18:20:12Z","offeredServiceId":5428799,"performancePayPrice":17.5,"planEffectiveDate":"2019-02-01T00:00:00Z","planExpirationDate":"2024-01-31T00:00:00Z","planId":5428455,"quantity":3,"retailPrice":35,"revenuePerUnit":21.1,"serviceType":"R","totalDiscountedPrice":52.5,"totalRevenue":63.30,"totalTrueCost":null},{"id":5428859,"offeredService":{"id":5428840,"shortDescription":"5-in-1
+        DAP/Parvo Vaccine"},"plan":{"id":5428455,"shortDescription":"Puppy Wellness
+        Plan"},"cost":null,"dateCreated":"2019-02-01T16:57:20Z","discountPercent":50,"discountedPrice":16.5,"displayOrder":20,"doNotRenew":false,"externalPlanCd":null,"lastUpdated":"2019-02-18T18:20:12Z","offeredServiceId":5428840,"performancePayPrice":16.5,"planEffectiveDate":"2019-02-01T00:00:00Z","planExpirationDate":"2024-01-31T00:00:00Z","planId":5428455,"quantity":3,"retailPrice":33,"revenuePerUnit":19.89,"serviceType":"R","totalDiscountedPrice":49.5,"totalRevenue":59.67,"totalTrueCost":null},{"id":5428860,"offeredService":{"id":5428845,"shortDescription":"Lepto
+        4 Vaccine"},"plan":{"id":5428455,"shortDescription":"Puppy Wellness Plan"},"cost":null,"dateCreated":"2019-02-01T16:57:28Z","discountPercent":50,"discountedPrice":16.5,"displayOrder":30,"doNotRenew":false,"externalPlanCd":null,"lastUpdated":"2019-02-18T18:20:12Z","offeredServiceId":5428845,"performancePayPrice":16.5,"planEffectiveDate":"2019-02-01T00:00:00Z","planExpirationDate":"2024-01-31T00:00:00Z","planId":5428455,"quantity":2,"retailPrice":33,"revenuePerUnit":19.89,"serviceType":"R","totalDiscountedPrice":33.0,"totalRevenue":39.78,"totalTrueCost":null},{"id":5428862,"offeredService":{"id":5428846,"shortDescription":"Bordetella  Vaccine"},"plan":{"id":5428455,"shortDescription":"Puppy
+        Wellness Plan"},"cost":null,"dateCreated":"2019-02-01T16:57:37Z","discountPercent":50,"discountedPrice":16.5,"displayOrder":40,"doNotRenew":false,"externalPlanCd":null,"lastUpdated":"2019-02-18T18:20:12Z","offeredServiceId":5428846,"performancePayPrice":16.5,"planEffectiveDate":"2019-02-01T00:00:00Z","planExpirationDate":"2024-01-31T00:00:00Z","planId":5428455,"quantity":1,"retailPrice":33,"revenuePerUnit":19.89,"serviceType":"R","totalDiscountedPrice":16.5,"totalRevenue":19.89,"totalTrueCost":null},{"id":5428863,"offeredService":{"id":5428849,"shortDescription":"Rabies
+        Vaccine"},"plan":{"id":5428455,"shortDescription":"Puppy Wellness Plan"},"cost":null,"dateCreated":"2019-02-01T16:57:44Z","discountPercent":50,"discountedPrice":9.5,"displayOrder":50,"doNotRenew":false,"externalPlanCd":null,"lastUpdated":"2019-02-18T18:20:12Z","offeredServiceId":5428849,"performancePayPrice":9.5,"planEffectiveDate":"2019-02-01T00:00:00Z","planExpirationDate":"2024-01-31T00:00:00Z","planId":5428455,"quantity":1,"retailPrice":19,"revenuePerUnit":11.45,"serviceType":"R","totalDiscountedPrice":9.5,"totalRevenue":11.45,"totalTrueCost":null},{"id":5428864,"offeredService":{"id":5428804,"shortDescription":"Fecal
+        Test"},"plan":{"id":5428455,"shortDescription":"Puppy Wellness Plan"},"cost":null,"dateCreated":"2019-02-01T16:57:50Z","discountPercent":50,"discountedPrice":14.5,"displayOrder":60,"doNotRenew":false,"externalPlanCd":null,"lastUpdated":"2019-02-18T18:20:12Z","offeredServiceId":5428804,"performancePayPrice":14.5,"planEffectiveDate":"2019-02-01T00:00:00Z","planExpirationDate":"2024-01-31T00:00:00Z","planId":5428455,"quantity":2,"retailPrice":29,"revenuePerUnit":17.48,"serviceType":"R","totalDiscountedPrice":29.0,"totalRevenue":34.96,"totalTrueCost":null},{"id":5428866,"offeredService":{"id":5428807,"shortDescription":"Deworming
+        Treatment"},"plan":{"id":5428455,"shortDescription":"Puppy Wellness Plan"},"cost":null,"dateCreated":"2019-02-01T16:57:56Z","discountPercent":50,"discountedPrice":9.5,"displayOrder":70,"doNotRenew":false,"externalPlanCd":null,"lastUpdated":"2019-02-18T18:20:12Z","offeredServiceId":5428807,"performancePayPrice":9.5,"planEffectiveDate":"2019-02-01T00:00:00Z","planExpirationDate":"2024-01-31T00:00:00Z","planId":5428455,"quantity":2,"retailPrice":19,"revenuePerUnit":11.45,"serviceType":"R","totalDiscountedPrice":19.0,"totalRevenue":22.90,"totalTrueCost":null},{"id":5428870,"offeredService":{"id":5428812,"shortDescription":"Microchip
+        & Registration"},"plan":{"id":5428455,"shortDescription":"Puppy Wellness Plan"},"cost":null,"dateCreated":"2019-02-01T16:58:02Z","discountPercent":50,"discountedPrice":9.5,"displayOrder":80,"doNotRenew":false,"externalPlanCd":null,"lastUpdated":"2019-02-18T18:20:12Z","offeredServiceId":5428812,"performancePayPrice":9.5,"planEffectiveDate":"2019-02-01T00:00:00Z","planExpirationDate":"2024-01-31T00:00:00Z","planId":5428455,"quantity":1,"retailPrice":19,"revenuePerUnit":11.45,"serviceType":"R","totalDiscountedPrice":9.5,"totalRevenue":11.45,"totalTrueCost":null},{"id":5441005,"offeredService":{"id":5428831,"shortDescription":"3-in-1
+        FVRCP Vaccine"},"plan":{"id":5428455,"shortDescription":"Puppy Wellness Plan"},"cost":null,"dateCreated":"2019-02-05T22:21:28Z","discountPercent":25,"discountedPrice":16.5,"displayOrder":90,"doNotRenew":false,"externalPlanCd":null,"lastUpdated":"2019-02-18T18:20:12Z","offeredServiceId":5428831,"performancePayPrice":16.5,"planEffectiveDate":"2019-02-05T00:00:00Z","planExpirationDate":"2024-02-04T00:00:00Z","planId":5428455,"quantity":1,"retailPrice":33,"revenuePerUnit":19.89,"serviceType":"O","totalDiscountedPrice":16.5,"totalRevenue":19.89,"totalTrueCost":null}]'
+    http_version: 
+  recorded_at: Thu, 31 Oct 2019 13:35:55 GMT
+recorded_with: VCR 3.0.3
