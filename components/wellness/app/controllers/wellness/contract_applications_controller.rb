@@ -56,10 +56,6 @@ module Wellness
       render json: { errors: ['You are not authorized'] }, status: :forbidden
     end
 
-    def demo_client_ready
-      Settings.api.vcp_wellness.demo_client_ready
-    end
-
     def application_params
       params.except(:format).permit(:id)
     end
