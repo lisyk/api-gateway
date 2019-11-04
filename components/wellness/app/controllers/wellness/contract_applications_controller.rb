@@ -32,7 +32,7 @@ module Wellness
       if @request
         render json: @request
       else
-        render json: { errors: ['Contract pplication was not created.'] }, 
+        render json: { errors: ['Contract application was not created.'] },
                status: :unprocessable_entity
       end
     end
