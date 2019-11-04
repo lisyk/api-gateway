@@ -45,7 +45,7 @@ module Wellness
 
     def post_contract_app(body)
       contract_app = ContractApplication.new(controller_name, action_name, params)
-      contract_app.post(body)
+      contract_app.api_post(body)
     end
 
     def application_params
