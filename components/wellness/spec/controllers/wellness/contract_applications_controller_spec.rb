@@ -122,8 +122,8 @@ module Wellness
     end
 
     describe 'POST #create' do
-      let(:application_sample_file) { File.read(File.expand_path('../../helpers/dummy_docs/applications/origin_application_sample.json', __dir__)) }
-      let(:application) { JSON.parse application_sample_file }
+      let(:application_sample_file) { File.read(File.expand_path('../../helpers/dummy_docs/contract_applications/post_contract_applications_sample.json', __dir__)) }
+      let(:post_apps) { JSON.parse application_sample_file }
 
       context 'authenticated' do
         before :each do
@@ -132,14 +132,14 @@ module Wellness
         end
         describe 'application available' do
           before do
-            allow(controller).to receive(:post_contract_app).and_return(application)
-            stub_const('Settings', route_settings)          
+            allow(controller).to receive(:post_apps).and_return(post_apps)
+            stub_const('Settings', route_settings)
           end
           it 'returns application' do
             post :create
             expect(response).to have_http_status(200)
             expect(JSON.parse(response.body)['errors']).to be_nil
-            expect(assigns(:application)).not_to be_nil
+            expect(JSON.parse(response.body)).not_to be_nil
           end
         end
       end
@@ -154,7 +154,7 @@ module Wellness
           expect(JSON.parse(response.body)['errors']).to include 'You are not authorized'
         end
         it "doesn't assign wellness_plans" do
-          expect(assigns(:application)).to be_nil
+          expect(assigns(:post_apps)).to be_nil
         end
       end
     end
