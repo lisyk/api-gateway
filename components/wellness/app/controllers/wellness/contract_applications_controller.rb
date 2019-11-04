@@ -24,11 +24,28 @@ module Wellness
       end
     end
 
+    def create
+      # TODO: needs to be updated from DEMO to PROD
+      request_body = request.body.read
+      parsed_body = JSON.parse(request_body) if !request_body.empty?
+      @application ||= post_contract_app(parsed_body) if demo_client_ready
+      if @application
+        render json: @application
+      else
+        render json: { errors: ['Application was not created.'] }, status: :unprocessable_entity
+      end
+    end
+
     private
 
     def contract_apps(params = {})
       contract_app = ContractApplication.new(controller_name, action_name, params)
       contract_app.api_request
+    end
+
+    def post_contract_app(body)
+      contract_app = ContractApplication.new(controller_name, action_name, params)
+      contract_app.api_post(body)
     end
 
     def application_params
