@@ -89,3 +89,9 @@ While pairing you may want to use `git pair` for your commits, it requires insta
     - `echo "WELLNESS_VCP_USERNAME=XXXX" >> .env.development.local`
     - `echo "WELLNESS_VCP_USERNAME=XXXX" >> .env.test.local`
     - where `XXXX` is demo username
+    
+### Swagger
+API Documentation using swagger is mounted at http:localhost/vip-api-docs/index.html
+New specs must be added to the /spec/integration/<engine> folder before they will be 
+available
+After new specs are added run the rake task rake rswag:specs:swaggerize

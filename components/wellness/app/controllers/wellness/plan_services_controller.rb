@@ -19,8 +19,22 @@ module Wellness
     private
 
     def fetch_services
-      services = PlanService.new(controller_name, action_name)
-      services.api_request
+      plans_service = Plan.new(controller_name, action_name)
+      plans_service.plans_mapping
+    end
+
+    # test hardcoded data. TODO clean up
+    def test_services
+      { plans: [
+        {
+          "id": '123',
+          "name": 'service1'
+        },
+        {
+          "id": '1234',
+          "name": 'service2'
+        }
+      ] }
     end
 
     def user_authorized?
