@@ -27,12 +27,14 @@ module Wellness
     end
 
     def create
-      @request ||= post_apps(request) if demo_client_ready
-      if @request
-        render json: @request
+      # TODO: needs to be updated from DEMO to PROD
+      request_body = request.body.read
+      parsed_body = JSON.parse(request_body) if !request_body.empty?
+      @application ||= post_contract_app(parsed_body) if demo_client_ready
+      if @application
+        render json: @application
       else
-        render json: { errors: ['Contract application could not be submitted'] },
-               status: :not_found
+        render json: { errors: ['Application was not created.'] }, status: :unprocessable_entity
       end
     end
 
@@ -57,7 +59,6 @@ module Wellness
 
     def demo_client_ready
       Settings.api.vcp_wellness.demo_client_ready
-    end
 
     def application_params
       params.except(:format).permit(:id)
