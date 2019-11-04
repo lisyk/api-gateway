@@ -2,9 +2,6 @@
 
 ENV['RAILS_ENV'] ||= 'test'
 
-system('cp ../../.env.test .')
-system('cp ../../.env.test.local . || :')
-
 require File.expand_path('dummy/config/environment', __dir__)
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
