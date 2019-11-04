@@ -2,6 +2,8 @@
 
 require 'swagger_helper'
 require './app/controllers/api/v1/authentication_controller.rb'
+require 'dotenv'
+Dotenv.load('.env.test.local')
 
 describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
   path '/api/v1/wellness/plans' do

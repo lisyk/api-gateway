@@ -1,4 +1,4 @@
-git {
+{
   "openapi": "3.0.0",
   "info": {
     "title": "VIP API Gateway",

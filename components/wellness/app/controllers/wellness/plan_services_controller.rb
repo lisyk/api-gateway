@@ -19,8 +19,8 @@ module Wellness
     private
 
     def fetch_services
-      plans_service = Plan.new(controller_name, action_name)
-      plans_service.plans_mapping
+      services = PlanService.new(controller_name, action_name)
+      services.api_request
     end
 
     # test hardcoded data. TODO clean up
