@@ -17,11 +17,9 @@ module Wellness
         parse_response(response) if response
       end
 
-      def api_post(request_body)
-        resource_name = request_resource
-        content_type = { 'Content-Type' => 'application/json' }
-        response = client.post(resource_name, request_body.to_json, content_type)
-        parse_response(response)
+      def api_post(body)
+        response = client.post(request_resource, body, 'Content-Type' => 'application/json')
+        parse_response(response) if response
       end
 
       private
