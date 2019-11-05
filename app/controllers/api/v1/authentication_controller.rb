@@ -17,8 +17,8 @@ module Api
       private
 
       def retrieve_credentials
-        @username = Rails.application.credentials.auth[Rails.env.to_sym][:user_name]
-        @password = Rails.application.credentials.auth[Rails.env.to_sym][:password]
+        @username = ENV['GATEWAY_USERNAME']
+        @password = ENV['GATEWAY_PASSWORD']
       end
 
       def find_user

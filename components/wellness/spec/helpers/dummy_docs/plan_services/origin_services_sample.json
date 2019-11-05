@@ -1,0 +1,314 @@
+{
+  "plans": [
+      {
+          "id": 5428456,
+          "offeredService": {
+              "id": 5426801,
+              "shortDescription": "Adjustment"
+          },
+          "plan": {
+              "id": 5428455,
+              "shortDescription": "Puppy Wellness Plan"
+          },
+          "cost": null,
+          "dateCreated": "2019-02-01T13:50:26Z",
+          "discountPercent": null,
+          "discountedPrice": 44.9,
+          "displayOrder": 999,
+          "doNotRenew": false,
+          "externalPlanCd": null,
+          "lastUpdated": "2019-02-18T18:20:12Z",
+          "offeredServiceId": 5426801,
+          "performancePayPrice": null,
+          "planEffectiveDate": "2019-02-01T13:50:26Z",
+          "planExpirationDate": "2024-02-01T13:50:26Z",
+          "planId": 5428455,
+          "quantity": 1,
+          "retailPrice": 0,
+          "revenuePerUnit": 0,
+          "serviceType": "R",
+          "totalDiscountedPrice": 44.9,
+          "totalRevenue": null,
+          "totalTrueCost": null
+      },
+      {
+          "id": 5428856,
+          "offeredService": {
+              "id": 5428799,
+              "shortDescription": "Wellness Examination"
+          },
+          "plan": {
+              "id": 5428455,
+              "shortDescription": "Puppy Wellness Plan"
+          },
+          "cost": null,
+          "dateCreated": "2019-02-01T16:56:55Z",
+          "discountPercent": 50,
+          "discountedPrice": 17.5,
+          "displayOrder": 10,
+          "doNotRenew": false,
+          "externalPlanCd": null,
+          "lastUpdated": "2019-02-18T18:20:12Z",
+          "offeredServiceId": 5428799,
+          "performancePayPrice": 17.5,
+          "planEffectiveDate": "2019-02-01T00:00:00Z",
+          "planExpirationDate": "2024-01-31T00:00:00Z",
+          "planId": 5428455,
+          "quantity": 3,
+          "retailPrice": 35,
+          "revenuePerUnit": 21.1,
+          "serviceType": "R",
+          "totalDiscountedPrice": 52.5,
+          "totalRevenue": 63.3,
+          "totalTrueCost": null
+      },
+      {
+          "id": 5428859,
+          "offeredService": {
+              "id": 5428840,
+              "shortDescription": "5-in-1 DAP/Parvo Vaccine"
+          },
+          "plan": {
+              "id": 5428455,
+              "shortDescription": "Puppy Wellness Plan"
+          },
+          "cost": null,
+          "dateCreated": "2019-02-01T16:57:20Z",
+          "discountPercent": 50,
+          "discountedPrice": 16.5,
+          "displayOrder": 20,
+          "doNotRenew": false,
+          "externalPlanCd": null,
+          "lastUpdated": "2019-02-18T18:20:12Z",
+          "offeredServiceId": 5428840,
+          "performancePayPrice": 16.5,
+          "planEffectiveDate": "2019-02-01T00:00:00Z",
+          "planExpirationDate": "2024-01-31T00:00:00Z",
+          "planId": 5428455,
+          "quantity": 3,
+          "retailPrice": 33,
+          "revenuePerUnit": 19.89,
+          "serviceType": "R",
+          "totalDiscountedPrice": 49.5,
+          "totalRevenue": 59.67,
+          "totalTrueCost": null
+      },
+      {
+          "id": 5428860,
+          "offeredService": {
+              "id": 5428845,
+              "shortDescription": "Lepto 4 Vaccine"
+          },
+          "plan": {
+              "id": 5428455,
+              "shortDescription": "Puppy Wellness Plan"
+          },
+          "cost": null,
+          "dateCreated": "2019-02-01T16:57:28Z",
+          "discountPercent": 50,
+          "discountedPrice": 16.5,
+          "displayOrder": 30,
+          "doNotRenew": false,
+          "externalPlanCd": null,
+          "lastUpdated": "2019-02-18T18:20:12Z",
+          "offeredServiceId": 5428845,
+          "performancePayPrice": 16.5,
+          "planEffectiveDate": "2019-02-01T00:00:00Z",
+          "planExpirationDate": "2024-01-31T00:00:00Z",
+          "planId": 5428455,
+          "quantity": 2,
+          "retailPrice": 33,
+          "revenuePerUnit": 19.89,
+          "serviceType": "R",
+          "totalDiscountedPrice": 33.0,
+          "totalRevenue": 39.78,
+          "totalTrueCost": null
+      },
+      {
+          "id": 5428862,
+          "offeredService": {
+              "id": 5428846,
+              "shortDescription": "Bordetella  Vaccine"
+          },
+          "plan": {
+              "id": 5428455,
+              "shortDescription": "Puppy Wellness Plan"
+          },
+          "cost": null,
+          "dateCreated": "2019-02-01T16:57:37Z",
+          "discountPercent": 50,
+          "discountedPrice": 16.5,
+          "displayOrder": 40,
+          "doNotRenew": false,
+          "externalPlanCd": null,
+          "lastUpdated": "2019-02-18T18:20:12Z",
+          "offeredServiceId": 5428846,
+          "performancePayPrice": 16.5,
+          "planEffectiveDate": "2019-02-01T00:00:00Z",
+          "planExpirationDate": "2024-01-31T00:00:00Z",
+          "planId": 5428455,
+          "quantity": 1,
+          "retailPrice": 33,
+          "revenuePerUnit": 19.89,
+          "serviceType": "R",
+          "totalDiscountedPrice": 16.5,
+          "totalRevenue": 19.89,
+          "totalTrueCost": null
+      },
+      {
+          "id": 5428863,
+          "offeredService": {
+              "id": 5428849,
+              "shortDescription": "Rabies Vaccine"
+          },
+          "plan": {
+              "id": 5428455,
+              "shortDescription": "Puppy Wellness Plan"
+          },
+          "cost": null,
+          "dateCreated": "2019-02-01T16:57:44Z",
+          "discountPercent": 50,
+          "discountedPrice": 9.5,
+          "displayOrder": 50,
+          "doNotRenew": false,
+          "externalPlanCd": null,
+          "lastUpdated": "2019-02-18T18:20:12Z",
+          "offeredServiceId": 5428849,
+          "performancePayPrice": 9.5,
+          "planEffectiveDate": "2019-02-01T00:00:00Z",
+          "planExpirationDate": "2024-01-31T00:00:00Z",
+          "planId": 5428455,
+          "quantity": 1,
+          "retailPrice": 19,
+          "revenuePerUnit": 11.45,
+          "serviceType": "R",
+          "totalDiscountedPrice": 9.5,
+          "totalRevenue": 11.45,
+          "totalTrueCost": null
+      },
+      {
+          "id": 5428864,
+          "offeredService": {
+              "id": 5428804,
+              "shortDescription": "Fecal Test"
+          },
+          "plan": {
+              "id": 5428455,
+              "shortDescription": "Puppy Wellness Plan"
+          },
+          "cost": null,
+          "dateCreated": "2019-02-01T16:57:50Z",
+          "discountPercent": 50,
+          "discountedPrice": 14.5,
+          "displayOrder": 60,
+          "doNotRenew": false,
+          "externalPlanCd": null,
+          "lastUpdated": "2019-02-18T18:20:12Z",
+          "offeredServiceId": 5428804,
+          "performancePayPrice": 14.5,
+          "planEffectiveDate": "2019-02-01T00:00:00Z",
+          "planExpirationDate": "2024-01-31T00:00:00Z",
+          "planId": 5428455,
+          "quantity": 2,
+          "retailPrice": 29,
+          "revenuePerUnit": 17.48,
+          "serviceType": "R",
+          "totalDiscountedPrice": 29.0,
+          "totalRevenue": 34.96,
+          "totalTrueCost": null
+      },
+      {
+          "id": 5428866,
+          "offeredService": {
+              "id": 5428807,
+              "shortDescription": "Deworming Treatment"
+          },
+          "plan": {
+              "id": 5428455,
+              "shortDescription": "Puppy Wellness Plan"
+          },
+          "cost": null,
+          "dateCreated": "2019-02-01T16:57:56Z",
+          "discountPercent": 50,
+          "discountedPrice": 9.5,
+          "displayOrder": 70,
+          "doNotRenew": false,
+          "externalPlanCd": null,
+          "lastUpdated": "2019-02-18T18:20:12Z",
+          "offeredServiceId": 5428807,
+          "performancePayPrice": 9.5,
+          "planEffectiveDate": "2019-02-01T00:00:00Z",
+          "planExpirationDate": "2024-01-31T00:00:00Z",
+          "planId": 5428455,
+          "quantity": 2,
+          "retailPrice": 19,
+          "revenuePerUnit": 11.45,
+          "serviceType": "R",
+          "totalDiscountedPrice": 19.0,
+          "totalRevenue": 22.9,
+          "totalTrueCost": null
+      },
+      {
+          "id": 5428870,
+          "offeredService": {
+              "id": 5428812,
+              "shortDescription": "Microchip & Registration"
+          },
+          "plan": {
+              "id": 5428455,
+              "shortDescription": "Puppy Wellness Plan"
+          },
+          "cost": null,
+          "dateCreated": "2019-02-01T16:58:02Z",
+          "discountPercent": 50,
+          "discountedPrice": 9.5,
+          "displayOrder": 80,
+          "doNotRenew": false,
+          "externalPlanCd": null,
+          "lastUpdated": "2019-02-18T18:20:12Z",
+          "offeredServiceId": 5428812,
+          "performancePayPrice": 9.5,
+          "planEffectiveDate": "2019-02-01T00:00:00Z",
+          "planExpirationDate": "2024-01-31T00:00:00Z",
+          "planId": 5428455,
+          "quantity": 1,
+          "retailPrice": 19,
+          "revenuePerUnit": 11.45,
+          "serviceType": "R",
+          "totalDiscountedPrice": 9.5,
+          "totalRevenue": 11.45,
+          "totalTrueCost": null
+      },
+      {
+          "id": 5441005,
+          "offeredService": {
+              "id": 5428831,
+              "shortDescription": "3-in-1 FVRCP Vaccine"
+          },
+          "plan": {
+              "id": 5428455,
+              "shortDescription": "Puppy Wellness Plan"
+          },
+          "cost": null,
+          "dateCreated": "2019-02-05T22:21:28Z",
+          "discountPercent": 25,
+          "discountedPrice": 16.5,
+          "displayOrder": 90,
+          "doNotRenew": false,
+          "externalPlanCd": null,
+          "lastUpdated": "2019-02-18T18:20:12Z",
+          "offeredServiceId": 5428831,
+          "performancePayPrice": 16.5,
+          "planEffectiveDate": "2019-02-05T00:00:00Z",
+          "planExpirationDate": "2024-02-04T00:00:00Z",
+          "planId": 5428455,
+          "quantity": 1,
+          "retailPrice": 33,
+          "revenuePerUnit": 19.89,
+          "serviceType": "O",
+          "totalDiscountedPrice": 16.5,
+          "totalRevenue": 19.89,
+          "totalTrueCost": null
+      }
+  ]
+}

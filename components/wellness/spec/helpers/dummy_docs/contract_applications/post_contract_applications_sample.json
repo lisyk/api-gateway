@@ -1,0 +1,57 @@
+{
+  "validatedFieldList": [
+    "validateNone"
+  ],
+  "location": {
+    "id": 5426720
+  },
+  "plan": {
+    "id": 5428455
+  },
+  "externalLocationCd": "",
+  "externalPlanCd": "",
+  "salutation": "Ms.",
+  "firstName": "Jennifer",
+  "middleInitial": "",
+  "lastName": "Blau",
+  "address1": "1010 Monarch St",
+  "address2": "",
+  "city": "Lexington",
+  "state": "KY",
+  "postalCode": "40503",
+  "country": "US",
+  "phone1": "8888242485",
+  "phone1Type": "W",
+  "phone2": "",
+  "phone2Type": "",
+  "email": "jblau@bitwerx.com",
+  "portalUsername": "test1234@test.com",
+  "externalClientCd": "10001",
+  "externalMemberCd": "1",
+  "memberName": "Daphne",
+  "memberAge": "7Y 2M",
+  "gender": "F",
+  "initiatedByProfessional": {
+    "id": null
+  },
+  "primaryCareProfessional": {
+    "id": null
+  },
+  "initiatedByProfessionalCd": "",
+  "primaryCareProfessionalCd": "",
+  "payOption": "ACH",
+  "payMethod": "ACH",
+  "paymentName": "Jennifer Blau",
+  "accountNbrForDisplay": "5354",
+  "accountNbr": "1376025354",
+  "institutionName": "UNION BANK",
+  "bankAccountHolderType": "P",
+  "bankAccountType": "C",
+  "bankRoutingNbr": "122000496",
+  "paymentaddressSameAsAccount": true,
+  "expirationMonth": null,
+  "expirationYear": null,
+  "securityCode": "",
+  "externalPaymentProfileId": "",
+  "optionalPlanServices": []
+}

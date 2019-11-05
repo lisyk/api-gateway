@@ -16,9 +16,8 @@ RSpec.describe 'VCP API', :vcr, type: :request do
     end
   end
 
-  credentials_path = Wellness::Engine.root.join('config', 'credentials.yml.enc')
-  let(:username) { Rails.application.encrypted(credentials_path).auth[Rails.env.to_sym][:vcp_username] }
-  let(:password) { Rails.application.encrypted(credentials_path).auth[Rails.env.to_sym][:vcp_password] }
+  let(:username) { ENV['WELLNESS_VCP_USERNAME'] }
+  let(:password) { ENV['WELLNESS_VCP_PASSWORD'] }
 
   let(:token) do
     response = unauthorized_client.post('login', username: username, password: password)
@@ -104,6 +103,46 @@ RSpec.describe 'VCP API', :vcr, type: :request do
         it 'returns 401' do
           response = unauthorized_client.get('contractApplicationAgreement')
           expect(response.status).to eql(401)
+        end
+      end
+    end
+  end
+  context 'GET /planService' do
+    context 'index' do
+      describe 'correct credentials' do
+        it 'returns a list of services' do
+          VCR.use_cassette('vcp_plan_service_index_auth') do
+            response = authorized_client.get('planService')
+            expect(response.status).to eql(200)
+          end
+        end
+      end
+      describe 'incorrect credentials' do
+        it 'returns 401' do
+          VCR.use_cassette('vcp_plan_service_index_no_auth') do
+            response = unauthorized_client.get('planService')
+            expect(response.status).to eql(401)
+          end
+        end
+      end
+    end
+  end
+  context 'GET /planService' do
+    context 'index' do
+      describe 'correct credentials' do
+        it 'returns a list of services' do
+          VCR.use_cassette('vcp_plan_service_index_auth') do
+            response = authorized_client.get('planService')
+            expect(response.status).to eql(200)
+          end
+        end
+      end
+      describe 'incorrect credentials' do
+        it 'returns 401' do
+          VCR.use_cassette('vcp_plan_service_index_no_auth') do
+            response = unauthorized_client.get('planService')
+            expect(response.status).to eql(401)
+          end
         end
       end
     end
