@@ -2,8 +2,6 @@
 
 module Wellness
   class ContractApplicationsController < Wellness::ApplicationController
-    before_action :user_authorized?
-
     def index
       # TODO: needs to be updated from DEMO to PROD
       @applications ||= contract_apps if demo_client_ready
@@ -21,7 +19,7 @@ module Wellness
       if @application.present?
         render json: @application
       else
-        render json: { errors: ['Contract application agreement is not found'] },
+        render json: { errors: ['Contract application agreement is not found.'] },
                status: :not_found
       end
     end
@@ -29,10 +27,21 @@ module Wellness
     def create
       # TODO: needs to be updated from DEMO to PROD
       @request ||= post_apps(request) if demo_client_ready
-      if @request
+      if @request.present?
         render json: @request
       else
         render json: { errors: ['Contract application was not created.'] },
+               status: :unprocessable_entity
+      end
+    end
+
+    def update
+      # TODO: needs to be updated from DEMO to PROD
+      @request ||= put_apps(request) if demo_client_ready
+      if @request.present?
+        render json: @request
+      else
+        render json: { errors: ['Contract application was not updated.'] },
                status: :unprocessable_entity
       end
     end
@@ -50,18 +59,14 @@ module Wellness
       contract_app.api_post(body.to_json)
     end
 
-    def user_authorized?
-      return unless @current_user != 'authorized'
-
-      render json: { errors: ['You are not authorized'] }, status: :forbidden
+    def put_apps(request)
+      body = JSON.parse(request.body.read)
+      contract_app = ContractApplication.new(controller_name, action_name, params)
+      contract_app.api_put(body.to_json)
     end
 
     def application_params
       params.except(:format).permit(:id)
-    end
-
-    def post_params
-      params.require(:contract_application)
     end
   end
 end

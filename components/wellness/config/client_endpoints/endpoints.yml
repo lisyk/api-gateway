@@ -20,6 +20,10 @@ contract_applications:
     method: post
     resource: contractApplication
 
+  update:
+    method: put
+    resource: contractApplication
+
 plans:
   index:
     method: get
