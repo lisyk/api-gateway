@@ -30,8 +30,7 @@ module Wellness
       private
 
       def parse_response(response)
-        headers = response.headers
-        content_type = headers['content-type'].presence || ''
+        content_type = response.headers['content-type'].presence || ''
         if content_type.include?('application/json')
           response = JSON.parse(response.body)
         elsif response.status != 200
