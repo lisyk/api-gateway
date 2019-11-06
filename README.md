@@ -28,7 +28,6 @@ Please review the [documentation repo](https://github.com/vippetcare/docs); spec
 
 - Running the application
   - Start the application: `bundle exec rails s`
-  - TODO: link to swagger docs interface?
 - Running tests and tooling
   - ruby specs: `rspec spec`
   - ruby lint: `rubocop`
@@ -40,6 +39,13 @@ Before making changes, copy `pre-commit.sh` to the repo `.git/hooks` folder usin
 ```
 ln -s ../../pre-commit.sh .git/hooks/pre-commit
 ```
+
+### Swagger
+API Documentation using swagger is mounted at http:localhost/vip-api-docs/index.html
+New specs must be added to the /spec/integration/<engine> folder before they will be
+available.
+
+After new specs are added run the rake task `rake rswag:specs:swaggerize`
 
 ### Pairing
 
@@ -71,12 +77,31 @@ While pairing you may want to use `git pair` for your commits, it requires insta
   - Password to auth gateway to generate tokens
 - JWT_TOKEN_EXPIRATION_IN_HOURS
   - All environments
+- RACK_ENV
+  - All environments, handled automatically
+- RAILS_ENV
+  - All environments, handled automatically
+- RAILS_LOG_TO_STDOUT
+  - All non development environments
+  - Automatically installed by Heroku
+- RAILS_MAX_THREADS
+  - All environments, defaults in development
+  - The min threads setting allows your application to spin down resources when not under load. This feature is not needed on Heroku
+- RAILS_SERVE_STATIC_FILES
+  - All non development environments
+  - Automatically installed by Heroku
 - REDIS_URL
   - All environments
   - Automatically added in staging and production with Heroku Redis Addon
   - optionally set in local env files
     - `echo "REDIS_URL=redis://127.0.0.1:6379/1" >> .env.development.local`
     - `echo "REDIS_URL=redis://127.0.0.1:6379/0" >> .env.test.local`
+- SECRET_KEY_BASE
+  - All non development environments
+  - Automatically installed by Heroku
+- WEB_CONCURRENCY
+  - All environments, defaults in development
+  - With a typical Rails memory footprint, you can expect to run 2-4 Puma worker processes on a free, hobby or standard-1x dyno
 - WELLNESS_VCP_PASSWORD
   - All environments
   - optionally set in local env files
@@ -89,9 +114,3 @@ While pairing you may want to use `git pair` for your commits, it requires insta
     - `echo "WELLNESS_VCP_USERNAME=XXXX" >> .env.development.local`
     - `echo "WELLNESS_VCP_USERNAME=XXXX" >> .env.test.local`
     - where `XXXX` is demo username
-    
-### Swagger
-API Documentation using swagger is mounted at http:localhost/vip-api-docs/index.html
-New specs must be added to the /spec/integration/<engine> folder before they will be 
-available
-After new specs are added run the rake task rake rswag:specs:swaggerize
