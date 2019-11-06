@@ -65,6 +65,7 @@ module Wellness
         end
       end
     end
+
     describe '#show' do
       context 'authenticated' do
         before :each do
@@ -153,8 +154,46 @@ module Wellness
           expect(response).to have_http_status(403)
           expect(JSON.parse(response.body)['errors']).to include 'You are not authorized'
         end
-        it "doesn't assign wellness_plans" do
-          expect(assigns(:post_apps)).to be_nil
+        it "doesn't assign request" do
+          expect(assigns(:request)).to be_nil
+        end
+      end
+    end
+
+    describe 'PUT #update' do
+      let(:put_application_sample_file) { File.read(File.expand_path('../../helpers/dummy_docs/contract_applications/put_contract_application_sample.json', __dir__)) }
+      let(:put_apps) { JSON.parse put_application_sample_file }
+
+      context 'authenticated' do
+        before :each do
+          allow(controller).to receive(:authenticate!)
+          controller.instance_variable_set(:@current_user, 'authorized')
+        end
+        describe 'application available' do
+          before do
+            allow(controller).to receive(:put_apps).and_return(put_apps)
+            stub_const('Settings', route_settings)
+          end
+          it 'returns completed application' do
+            put :update, params: { id: '1000008890' }
+            expect(response).to have_http_status(200)
+            expect(JSON.parse(response.body)['errors']).to be_nil
+            expect(JSON.parse(response.body)).not_to be_nil
+          end
+        end
+      end
+      context 'not authenticated' do
+        before do
+          allow(controller).to receive(:authenticate!)
+          controller.instance_variable_set(:@current_user, nil)
+        end
+        it 'sends error message to the client' do
+          put :update, params: { id: '1000008890' }
+          expect(response).to have_http_status(403)
+          expect(JSON.parse(response.body)['errors']).to include 'You are not authorized'
+        end
+        it "doesn't assign request" do
+          expect(assigns(:request)).to be_nil
         end
       end
     end
