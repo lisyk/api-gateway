@@ -23,6 +23,7 @@ Please review the [documentation repo](https://github.com/vippetcare/docs); spec
 - Setup
   - `bundle`
   - Start the application: `rails s`
+  - Open http://localhost:3111/ in a browser
 
 ## Development
 
@@ -41,7 +42,7 @@ ln -s ../../pre-commit.sh .git/hooks/pre-commit
 ```
 
 ### Swagger
-API Documentation using swagger is mounted at http:localhost/vip-api-docs/index.html
+API Documentation using swagger is mounted at http://localhost:3111/vip-api-docs/index.html
 New specs must be added to the /spec/integration/<engine> folder before they will be
 available.
 
