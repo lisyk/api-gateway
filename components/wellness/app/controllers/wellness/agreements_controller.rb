@@ -13,12 +13,13 @@ module Wellness
     end
 
     def update
-      @response ||= fetch_agreement(agreement_params) if demo_client_ready
-      status = @response.status
-      if status == 200
-        render json: { success: ['Signed agreement posted successfully'] }, status: status
+      @response ||= put_agreement(agreement_params) if demo_client_ready
+      if @response.present?
+        render json: { success: ['Signed agreement posted successfully.'] },
+               status: :success
       else
-        render json: { errors: [@response.reason_phrase] }, status: status
+        render json: { errors: ['Agreement could not be uploaded.'] },
+               status: :unprocessable_entity
       end
     end
 
@@ -29,26 +30,16 @@ module Wellness
       agreement.api_request
     end
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    def test_agreement_upload
-      ActionDispatch::Response.new
+    def put_agreement(params = {})
+      contract = params[:contract]
+      agreement = Agreement.new(controller_name, action_name, params)
+      headers = {
+        'Content-Type' => 'application/pdf',
+        'Transfer-Encoding' => 'chunked'
+      }
+      agreement.api_put(contract, headers)
     end
 
-=======
->>>>>>> Refactor controller to match latest changes in stage
-    def user_authorized?
-      return unless @current_user != 'authorized'
-
-      render json: { errors: ['You are not authorized'] }, status: :forbidden
-    end
-
-    def demo_client_ready
-      Settings.api.vcp_wellness.demo_client_ready
-    end
-
->>>>>>> Stub client response in development
     def agreement_params
       params.except(:format).permit(:id, :contract)
     end

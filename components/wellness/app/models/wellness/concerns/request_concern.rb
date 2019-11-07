@@ -22,8 +22,8 @@ module Wellness
         parse_response(response) if response
       end
 
-      def api_put(body)
-        response = client.put(request_resource, body, 'Content-Type' => 'application/json')
+      def api_put(body, headers = { 'Content-Type' => 'application/json' })
+        response = client.put(request_resource, body, headers)
         parse_response(response) if response
       end
 
