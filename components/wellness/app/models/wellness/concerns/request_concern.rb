@@ -22,11 +22,19 @@ module Wellness
         parse_response(response) if response
       end
 
+      def api_put(body, headers = { 'Content-Type' => 'application/json' })
+        response = client.put(request_resource, body, headers)
+        parse_response(response) if response
+      end
+
       private
 
       def parse_response(response)
-        if response.headers['content-type'].include?('application/json')
+        content_type = response.headers['content-type'].presence || ''
+        if content_type.include?('application/json')
           response = JSON.parse(response.body)
+        elsif response.status != 200
+          response = ''
         end
         response
       end

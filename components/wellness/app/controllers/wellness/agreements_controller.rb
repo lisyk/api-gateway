@@ -13,12 +13,13 @@ module Wellness
     end
 
     def update
-      @response ||= fetch_agreement(agreement_params) if demo_client_ready
-      status = @response.status
-      if status == 200
-        render json: { success: ['Signed agreement posted successfully'] }, status: status
+      @response ||= put_agreement(agreement_params) if demo_client_ready
+      if @response.present?
+        render json: { success: ['Signed agreement posted successfully.'] },
+               status: :success
       else
-        render json: { errors: [@response.reason_phrase] }, status: status
+        render json: { errors: ['Agreement could not be uploaded.'] },
+               status: :unprocessable_entity
       end
     end
 
@@ -27,6 +28,16 @@ module Wellness
     def fetch_agreement(params = {})
       agreement = Agreement.new(controller_name, action_name, params)
       agreement.api_request
+    end
+
+    def put_agreement(params = {})
+      contract = params[:contract]
+      agreement = Agreement.new(controller_name, action_name, params)
+      headers = {
+        'Content-Type' => 'application/pdf',
+        'Transfer-Encoding' => 'chunked'
+      }
+      agreement.api_put(contract, headers)
     end
 
     def agreement_params
