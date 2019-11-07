@@ -63,14 +63,14 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - bundle-v3-{{ checksum "Gemfile.lock" }}
-            - bundle-v3
+            - bundle-v4-{{ checksum "Gemfile.lock" }}
+            - bundle-v4
       - *ensure_bundler_version
       - run:
           name: Bundle Install
           command: bundle check || bundle install
       - save_cache:
-          key: bundle-v3-{{ checksum "Gemfile.lock" }}
+          key: bundle-v4-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - persist_to_workspace:
