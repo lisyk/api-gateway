@@ -5,7 +5,7 @@ module Wellness
     def show
       # TODO: needs to be updated from DEMO to PROD
       @agreement ||= fetch_agreement(agreement_params) if demo_client_ready
-      if @agreement
+      if @agreement.present?
         send_data @agreement.body, filename: "#{agreement_params[:id]}.pdf"
       else
         render json: { errors: ['Agreement unavailable.'] }, status: :not_found
@@ -13,10 +13,10 @@ module Wellness
     end
 
     def update
+      # TODO: needs to be updated from DEMO to PROD
       @response ||= put_agreement(agreement_params) if demo_client_ready
       if @response.present?
-        render json: { success: ['Signed agreement posted successfully.'] },
-               status: :success
+        render json: { success: ['Signed agreement posted successfully.'] }
       else
         render json: { errors: ['Agreement could not be uploaded.'] },
                status: :unprocessable_entity
