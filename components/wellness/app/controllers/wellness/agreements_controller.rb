@@ -5,7 +5,7 @@ module Wellness
     def show
       # TODO: needs to be updated from DEMO to PROD
       @agreement ||= fetch_agreement(agreement_params) if demo_client_ready
-      if @agreement
+      if @agreement.present?
         send_data @agreement.body, filename: "#{agreement_params[:id]}.pdf"
       else
         render json: { errors: ['Agreement unavailable.'] }, status: :not_found
