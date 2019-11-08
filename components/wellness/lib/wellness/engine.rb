@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'dotenv-rails'
+require 'dotenv-rails' unless %w[staging production].include?(ENV['RAILS_ENV'])
 
 module Wellness
   class Engine < ::Rails::Engine
