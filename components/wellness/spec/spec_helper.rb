@@ -18,7 +18,6 @@
 
 require 'redis'
 require 'helpers/settings_helpers'
-require 'helpers/dummy_data_helper'
 
 # vcr settings
 Dir['./spec/support/**/*.rb'].each { |f| require f }
@@ -31,7 +30,6 @@ RSpec.configure do |config|
   end
 
   config.include SettingsHelpers
-  config.include DummyDataHelper
 
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

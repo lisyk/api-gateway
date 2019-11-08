@@ -15,12 +15,49 @@ RSpec.configure do |config|
   # document below. You can override this behavior by adding a swagger_doc tag to the
   # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
   config.swagger_docs = {
-    'wellness/v1/swagger.json' => {
+    'api_gateway/v1/swagger.json' => {
       openapi: '3.0.0',
       info: {
         title: 'VIP API Gateway',
         version: 'v1',
         description: 'VIP API Gateway Documentation'
+      },
+      basePath: '/',
+      components: {
+        securitySchemes: {
+          bearer_auth: {
+            type: :http,
+            scheme: :bearer,
+            bearerFormat: 'JWT'
+          }
+        }
+      },
+      definitions: {
+        authentication: {
+          type: :object,
+          properties: {
+            token: { type: :string }
+          }
+        }
+      },
+      paths: {},
+      servers: [
+        {
+          url: 'http://{defaultHost}',
+          variables: {
+            defaultHost: {
+              default: 'localhost:3111/'
+            }
+          }
+        }
+      ]
+    },
+    'wellness/v1/swagger.json' => {
+      openapi: '3.0.0',
+      info: {
+        title: 'Wellness Integration Engine',
+        version: 'v1',
+        description: 'Wellness Integration Engine Documentation'
       },
       basePath: '/',
       components: {
