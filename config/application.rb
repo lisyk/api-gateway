@@ -21,7 +21,9 @@ require 'action_cable/engine'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-Dotenv::Railtie.load
+if defined? Dotenv
+  Dotenv::Railtie.load
+end
 
 module ApiGatewayEngineBased
   class Application < Rails::Application
