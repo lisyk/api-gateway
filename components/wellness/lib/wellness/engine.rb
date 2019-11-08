@@ -12,8 +12,6 @@ module Wellness
       g.test_framework :rspec
     end
 
-    if defined? Dotenv
-      Dotenv::Railtie.load
-    end
+    Dotenv::Railtie.load if defined? Dotenv
   end
 end
