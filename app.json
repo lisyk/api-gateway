@@ -1,8 +1,8 @@
 {
   "addons": [
     "airbrake",
-    "papertrail",
-    "redis"
+    "heroku-redis",
+    "papertrail"
   ],
   "buildpacks": [
     {
