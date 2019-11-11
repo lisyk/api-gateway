@@ -1,4 +1,10 @@
 PATH
+  remote: components/database_service
+  specs:
+    database_service (0.1.0)
+      rails (~> 6.0.0)
+
+PATH
   remote: components/wellness
   specs:
     wellness (0.1.0)
@@ -278,6 +284,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   config
+  database_service!
   dotenv-rails
   factory_bot_rails
   jwt

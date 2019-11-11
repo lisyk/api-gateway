@@ -63,3 +63,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jwt'
 
 gem 'wellness', path: 'components/wellness'
+
+gem 'database_service', path: 'components/database_service'
