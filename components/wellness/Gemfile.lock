@@ -143,6 +143,7 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
+    pg (1.1.4)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -230,6 +231,7 @@ PLATFORMS
 DEPENDENCIES
   dotenv-rails
   factory_bot_rails
+  pg (>= 0.18, < 2.0)
   pry-byebug
   rails-controller-testing
   rspec-rails (~> 3.8)
