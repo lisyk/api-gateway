@@ -151,83 +151,82 @@ RSpec.configure do |config|
             species: { type: :integer }
           }
         },
-        contract_application: {},
-        # contract_application: {
-        #   type: :object,
-        #   properties: {
-        #     validatedFieldList: {
-        #       type: :array,
-        #       items: { type: :string }
-        #     },
-        #     location: {
-        #       type: :object,
-        #       properties: {
-        #         id: { type: :integer }
-        #       }
-        #     },
-        #     plan: {
-        #       type: :object,
-        #       properties: {
-        #         id: { type: :integer }
-        #       }
-        #     },
-        #     externalLocationCd: { type: :integer },
-        #     externalPlanCd: { type: :integer },
-        #     salutation: { type: :string },
-        #     firstName: { type: :string },
-        #     middleInitial: { type: :string },
-        #     lastName: { type: :string },
-        #     address1: { type: :string },
-        #     address2: { type: :string },
-        #     city: { type: :string },
-        #     state: { type: :string },
-        #     postalCode: { type: :integer },
-        #     country: { type: :string },
-        #     phone1: { type: :integer },
-        #     phone1Type: { type: :string },
-        #     phone2: { type: :integer },
-        #     phone2Type: { type: :string },
-        #     email: { type: :string },
-        #     portalUsername: { type: :string },
-        #     externalClientCd: { type: :integer },
-        #     externalMemberCd: { type: :integer },
-        #     memberName: { type: :string },
-        #     memberAge: { type: :string },
-        #     gender: { type: :string },
-        #     initiatedByProfessional: {
-        #       type: :object,
-        #       properties: {
-        #         id: { type: :integer }
-        #       }
-        #     },
-        #     primaryCareProfessional: {
-        #       type: :object,
-        #       properties: {
-        #         id: { type: :integer }
-        #       }
-        #     },
-        #     initiatedByProfessionalCd: { type: :integer },
-        #     primaryCareProfessionalCd: { type: :integer },
-        #     payOption: { type: :string },
-        #     payMethod: { type: :string },
-        #     paymentName: { type: :string },
-        #     accountNbrForDisplay: { type: :integer },
-        #     accountNbr: { type: :integer },
-        #     institutionName: { type: :string },
-        #     bankAccountHolderType: { type: :string },
-        #     bankAccountType: { type: :string },
-        #     bankRoutingNbr: { type: :integer },
-        #     paymentaddressSameAsAccount: true,
-        #     expirationMonth: { type: :integer },
-        #     expirationYear: { type: :integer },
-        #     securityCode: { type: :integer },
-        #     externalPaymentProfileId: { type: :integer },
-        #     optionalPlanServices: {
-        #       type: :array,
-        #       items: { type: :object }
-        #     }
-        #   }
-        # },
+        contract_application: {
+          type: :object,
+          properties: {
+            validatedFieldList: {
+              type: :array,
+              items: { type: :string }
+            },
+            location: {
+              type: :object,
+              properties: {
+                id: { type: :integer }
+              }
+            },
+            plan: {
+              type: :object,
+              properties: {
+                id: { type: :integer }
+              }
+            },
+            externalLocationCd: { type: :integer },
+            externalPlanCd: { type: :integer },
+            salutation: { type: :string },
+            firstName: { type: :string },
+            middleInitial: { type: :string },
+            lastName: { type: :string },
+            address1: { type: :string },
+            address2: { type: :string },
+            city: { type: :string },
+            state: { type: :string },
+            postalCode: { type: :integer },
+            country: { type: :string },
+            phone1: { type: :integer },
+            phone1Type: { type: :string },
+            phone2: { type: :integer },
+            phone2Type: { type: :string },
+            email: { type: :string },
+            portalUsername: { type: :string },
+            externalClientCd: { type: :integer },
+            externalMemberCd: { type: :integer },
+            memberName: { type: :string },
+            memberAge: { type: :string },
+            gender: { type: :string },
+            initiatedByProfessional: {
+              type: :object,
+              properties: {
+                id: { type: :integer }
+              }
+            },
+            primaryCareProfessional: {
+              type: :object,
+              properties: {
+                id: { type: :integer }
+              }
+            },
+            initiatedByProfessionalCd: { type: :integer },
+            primaryCareProfessionalCd: { type: :integer },
+            payOption: { type: :string },
+            payMethod: { type: :string },
+            paymentName: { type: :string },
+            accountNbrForDisplay: { type: :integer },
+            accountNbr: { type: :integer },
+            institutionName: { type: :string },
+            bankAccountHolderType: { type: :string },
+            bankAccountType: { type: :string },
+            bankRoutingNbr: { type: :integer },
+            paymentaddressSameAsAccount: true,
+            expirationMonth: { type: :integer },
+            expirationYear: { type: :integer },
+            securityCode: { type: :integer },
+            externalPaymentProfileId: { type: :integer },
+            optionalPlanServices: {
+              type: :array,
+              items: { type: :object }
+            }
+          }
+        },
         service: {
           type: :object,
           properties: {

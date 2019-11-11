@@ -104,7 +104,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         end
 
         response '200', 'Retrieve list of contract applications' do
-          schema '$contract_application' => '#/definitions/contract_application'
+          schema '$contract_applicationss s' => '#/definitions/contract_application'
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:contract_application) {}
           run_test!
