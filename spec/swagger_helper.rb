@@ -226,49 +226,51 @@ RSpec.configure do |config|
               items: { type: :object }
             }
           }
-        }
-      },
-      service: {
-        type: :object,
-        properties: {
-          services: {
-            type: :array,
-            properties: {
-              id: { type: :integer },
-              offeredService: {
-                type: :object,
+        },
+        service: {
+          type: :object,
+          properties: {
+            services: {
+              type: :array,
+              items: {
                 properties: {
                   id: { type: :integer },
-                  shortDescription: { type: :string }
+                  offeredService: {
+                    type: :object,
+                    properties: {
+                      id: { type: :integer },
+                      shortDescription: { type: :string }
+                    }
+                  },
+                  plan: {
+                    type: :object,
+                    properties: {
+                      id: { type: :integer },
+                      shortDescription: { type: :string }
+                    }
+                  },
+                  cost: { type: :number },
+                  dateCreated: { type: :string },
+                  discountPercent: { type: :number },
+                  discountedPrice: { type: :number },
+                  displayOrder: { type: :integer },
+                  doNotRenew: { type: :boolean },
+                  externalPlanCd: { type: :integer },
+                  lastUpdated: { type: :string },
+                  offeredServiceId: { type: :integer },
+                  performancePayPrice: { type: :number },
+                  planEffectiveDate: { type: :string },
+                  planExpirationDate: { type: :string },
+                  planId: { type: :integer },
+                  quantity: { type: :integer },
+                  retailPrice: { type: :number },
+                  revenuePerUnit: { type: :number },
+                  serviceType: { type: :string },
+                  totalDiscountedPrice: { type: :number },
+                  totalRevenue: { type: :number },
+                  totalTrueCost: { type: :number }
                 }
-              },
-              plan: {
-                type: :object,
-                properties: {
-                  id: { type: :integer },
-                  shortDescription: { type: :string }
-                }
-              },
-              cost: { type: :number },
-              dateCreated: { type: :string },
-              discountPercent: { type: :number },
-              discountedPrice: { type: :number },
-              displayOrder: { type: :integer },
-              doNotRenew: { type: :boolean },
-              externalPlanCd: { type: :integer },
-              lastUpdated: { type: :string },
-              offeredServiceId: { type: :integer },
-              performancePayPrice: { type: :number },
-              planEffectiveDate: { type: :string },
-              planExpirationDate: { type: :string },
-              planId: { type: :integer },
-              quantity: { type: :integer },
-              retailPrice: { type: :number },
-              revenuePerUnit: { type: :number },
-              serviceType: { type: :string },
-              totalDiscountedPrice: { type: :number },
-              totalRevenue: { type: :number },
-              totalTrueCost: { type: :number }
+              }
             }
           }
         }

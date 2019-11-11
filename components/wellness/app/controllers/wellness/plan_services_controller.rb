@@ -8,7 +8,7 @@ module Wellness
       # TODO: needs to be updated from DEMO to PROD
       @plan_services ||= fetch_services if demo_client_ready
       if @plan_services.present?
-        render json: { plans: @plan_services }
+        render json: { services: @plan_services }
       else
         render json: { errors: ['Plan services are not available.'] }, status: :not_found
       end
