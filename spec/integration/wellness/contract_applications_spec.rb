@@ -23,7 +23,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         end
 
         response '200', 'Create a new contract application' do
-          schema '$ref' => '#/definitions/contract_application'
+          schema '$contract_application' => '#/definitions/contract_application'
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:contract_application) do
             {
@@ -104,7 +104,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         end
 
         response '200', 'Retrieve list of contract applications' do
-          schema '$ref' => '#/definitions/contract_application'
+          schema '$contract_application' => '#/definitions/contract_application'
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:contract_application) {}
           run_test!
@@ -130,7 +130,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         end
 
         response '200', 'Retrieve list of contract applications' do
-          schema '$ref' => '#/definitions/contract_application'
+          schema '$contract_application' => '#/definitions/contract_application'
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:id) { '1000013427' }
           let(:contract_application) {}
@@ -162,7 +162,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         end
 
         response '200', 'Create a new contract application' do
-          schema '$ref' => '#/definitions/contract_application'
+          schema '$contract_application' => '#/definitions/contract_application'
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:id) { '1000013302' }
           let(:contract_application) do
