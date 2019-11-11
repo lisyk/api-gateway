@@ -62,6 +62,12 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #####  API JWT Authentication ##########
 gem 'jwt'
 
+
+#####  API Gateway Engines #############
+# Wellness Plans Engine
 gem 'wellness', path: 'components/wellness'
 
-gem 'database_service', path: 'components/database_service'
+# Database service engine. common Api Gateway ActiveRecord Models
+gem 'db_service', path: 'components/db_service'
+
+#######################################

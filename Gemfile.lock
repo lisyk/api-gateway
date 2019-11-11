@@ -1,7 +1,7 @@
 PATH
-  remote: components/database_service
+  remote: components/db_service
   specs:
-    database_service (0.1.0)
+    db_service (0.1.0)
       rails (~> 6.0.0)
 
 PATH
@@ -284,7 +284,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   config
-  database_service!
+  db_service!
   dotenv-rails
   factory_bot_rails
   jwt
