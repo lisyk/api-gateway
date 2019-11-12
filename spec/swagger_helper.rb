@@ -35,10 +35,10 @@ RSpec.configure do |config|
           plan_list: {
             type: :object,
             properties: {
-              plans: { type: :array, items: { '$ref' => '#/components/schemas/plan' } }
+              plans: { type: :array, items: { '$ref' => '#components/schemas/wellness_plan' } }
             }
           },
-          plan: {
+          wellness_plan: {
             type: :object,
             properties: {
               id: { type: :integer },
@@ -189,6 +189,193 @@ RSpec.configure do |config|
               },
               required: ['id', 'ageGroup', 'autoRenew', 'locationId', 'longDescription', 'planStatus']
             }
+          },
+          contract_application_list: {
+            type: :object,
+            properties: {
+              items: { type: :array, items: { '$ref' => '../jsonschemas/vcp/contract_application.json' } }
+            }
+          },
+          contract_application: {
+            type: :object,
+            properties: {
+              id: { type: :integer, nullable: true },
+              validatedFieldList: {
+                type: :array,
+                items: { 
+                  properties: {
+                    validatedFieldList: { type: :string }
+                  }
+                }
+              },
+              location: {
+                type: :object,
+                items: {
+                  properties: {
+                    id: { type: :integer }
+                  }
+                }
+              },
+              plan: {
+                type: :object,
+                items: {
+                  properties: {
+                    id: { type: :integer }
+                  }
+                }
+              },
+              externalLocationCd: { type: :integer, nullable: true },
+              externalPlanCd: { type: :integer, nullable: true },
+              salutation: { type: :string },
+              firstName: { type: :string },
+              middleInitial: { type: :string, nullable: true },
+              lastName: { type: :string },
+              address1: { type: :string },
+              address2: { type: :string, nullable: true },
+              city: { type: :string },
+              state: { type: :string },
+              postalCode: { type: :string },
+              country: { type: :string },
+              phone1: { type: :string },
+              phone1Type: { type: :string },
+              phone2: { type: :string },
+              phone2Type: { type: :string },
+              email: { type: :string },
+              portalUsername: { type: :string },
+              externalClientCd: { type: :string, nullable: true },
+              externalMemberCd: { type: :string, nullable: true },
+              memberName: { type: :string },
+              memberAge: { type: :string },
+              gender: { type: :string, nullable: true },
+              initiatedByProfessional: {
+                type: :array,
+                nullable: true,
+                properties: {
+                  id: { type: :integer, nullable: true }
+                }
+              },
+              primaryCareProfessional: {
+                type: :array,
+                nullable: true,
+                properties: {
+                  id: { type: :integer, nullable: true }
+                }
+              },
+              initiatedByProfessionalCd: { type: :integer, nullable: true },
+              primaryCareProfessionalCd: { type: :integer, nullable: true },
+              payOption: { type: :string, nullable: true },
+              payMethod: { type: :string, nullable: true },
+              paymentName: { type: :string },
+              accountNbrForDisplay: { type: :string},
+              accountNbr: { type: :integer },
+              institutionName: { type: :string },
+              bankAccountHolderType: { type: :string },
+              bankAccountType: { type: :string },
+              bankRoutingNbr: { type: :string },
+              paymentaddressSameAsAccount: { type: :boolean },
+              expirationMonth: { type: :integer, nullable: true },
+              expirationYear: { type: :integer, nullable: true },
+              securityCode: { type: :integer, nullable: true },
+              externalPaymentProfileId: { type: :string },
+              optionalPlanServices: {
+                type: :array,
+                planService: {
+                  type: :object,
+                  properties: {
+                    id: { type: :integer }
+                  }
+                }
+              }
+            }
+          },
+          service: {
+          type: :object,
+          properties: {
+            services: {
+              type: :array,
+              properties: {
+                id: { type: :integer },
+                offeredService: {
+                  type: :object,
+                  properties: {
+                    id: { type: :integer },
+                    shortDescription: { type: :string }
+                  }
+                },
+                plan: {
+                  type: :object,
+                  properties: {
+                    id: { type: :integer },
+                    shortDescription: { type: :string }
+                  }
+                },
+                cost: { type: :number },
+                dateCreated: { type: :string },
+                discountPercent: { type: :number },
+                discountedPrice: { type: :number },
+                displayOrder: { type: :integer },
+                doNotRenew: { type: :boolean },
+                externalPlanCd: { type: :integer },
+                lastUpdated: { type: :string },
+                offeredServiceId: { type: :integer },
+                performancePayPrice: { type: :number },
+                planEffectiveDate: { type: :string },
+                planExpirationDate: { type: :string },
+                planId: { type: :integer },
+                quantity: { type: :integer },
+                retailPrice: { type: :number },
+                revenuePerUnit: { type: :number },
+                serviceType: { type: :string },
+                totalDiscountedPrice: { type: :number },
+                totalRevenue: { type: :number },
+                totalTrueCost: { type: :number }
+              }
+            }
+          },
+          service: {
+            type: :object,
+            properties: {
+              services: {
+                type: :array,
+                properties: {
+                  id: { type: :integer },
+                  offeredService: {
+                    type: :object,
+                    properties: {
+                      id: { type: :integer },
+                      shortDescription: { type: :string }
+                    }
+                  },
+                  plan: {
+                    type: :object,
+                    properties: {
+                      id: { type: :integer },
+                      shortDescription: { type: :string }
+                    }
+                  },
+                  cost: { type: :number },
+                  dateCreated: { type: :string },
+                  discountPercent: { type: :number },
+                  discountedPrice: { type: :number },
+                  displayOrder: { type: :integer },
+                  doNotRenew: { type: :boolean },
+                  externalPlanCd: { type: :integer },
+                  lastUpdated: { type: :string },
+                  offeredServiceId: { type: :integer },
+                  performancePayPrice: { type: :number },
+                  planEffectiveDate: { type: :string },
+                  planExpirationDate: { type: :string },
+                  planId: { type: :integer },
+                  quantity: { type: :integer },
+                  retailPrice: { type: :number },
+                  revenuePerUnit: { type: :number },
+                  serviceType: { type: :string },
+                  totalDiscountedPrice: { type: :number },
+                  totalRevenue: { type: :number },
+                  totalTrueCost: { type: :number }
+                }
+              }
+            }
           }
         }
       },
@@ -203,4 +390,5 @@ RSpec.configure do |config|
       ]
     }
   }
+}
 end
