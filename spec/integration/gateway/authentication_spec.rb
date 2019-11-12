@@ -13,7 +13,7 @@ describe 'API Gateway', swagger_doc: 'api_gateway/v1/swagger.json' do
 
       context 'Using valid credentials' do
         response '200', 'Authenticate client to API Gateway' do
-          schema '$authentication' => '#/definitions/authentication'
+          schema '$ref' => '#/components/schemas/authentication'
           let(:user_name) { 'test' }
           let(:password) { 'test' }
           run_test! do |response|

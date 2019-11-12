@@ -13,10 +13,10 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       parameter name: :contract_application,
                 in: :body,
                 schema: {
-                  '$ref' => '#/definitions/contract_application'
+                  '$ref' => '#/components/schemas/contract_application'
                 }
       request_body_json schema: {
-        '$ref' => '#/definitions/contract_application'
+        '$ref' => '#/components/schemas/contract_application'
       }
 
       context 'Using valid credentials' do
@@ -26,7 +26,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         end
 
         response '200', 'Create a new contract application' do
-          schema '$contract_application' => '#/definitions/contract_application'
+          schema '$ref' => '#/components/schemas/contract_application'
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:contract_application) do
             {
@@ -107,7 +107,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         end
 
         response '200', 'Retrieve list of contract applications' do
-          schema '$contract_application' => '#/definitions/contract_application'
+          schema '$ref' => '#/components/schemas/contract_application_list'
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:contract_application) {}
           run_test!
@@ -133,7 +133,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         end
 
         response '200', 'Retrieve list of contract applications' do
-          schema '$contract_application' => '#/definitions/contract_application'
+          schema '$ref' => '#/components/schemas/contract_application'
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:id) { '1000013427' }
           let(:contract_application) {}
@@ -152,13 +152,13 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       parameter name: :contract_application,
                 in: :body,
                 schema: {
-                  '$ref' => '#/definitions/contract_application'
+                  '$ref' => '#/components/schemas/contract_application'
                 }
       parameter name: :id,
                 in: :path,
                 type: :string
       request_body_json schema: {
-        '$ref' => '#/definitions/contract_application'
+        '$ref' => '#/components/schemas/contract_application'
       }
 
       context 'Using valid credentials' do
@@ -168,7 +168,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         end
 
         response '200', 'Create a new contract application' do
-          schema '$contract_application' => '#/definitions/contract_application'
+          schema '$ref' => '#/components/schemas/contract_application'
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:id) { '1000013302' }
           let(:contract_application) do
