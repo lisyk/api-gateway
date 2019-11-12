@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_11_201952) do
+ActiveRecord::Schema.define(version: 2019_11_11_235443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "db_service_endpoints", force: :cascade do |t|
+    t.integer "partner_id"
+    t.string "endpoint_name"
+    t.string "protocol"
+    t.string "subdomain"
+    t.string "api_route"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "db_service_partners", force: :cascade do |t|
     t.string "name"
