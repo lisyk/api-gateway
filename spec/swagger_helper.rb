@@ -32,109 +32,163 @@ RSpec.configure do |config|
           }
         },
         schemas: {
-          plan_object: {
-            type: 'object',
+          plan_list: {
+            type: :object,
             properties: {
-              plan_map: { '$ref' => '#/components/schemas/plan_map' }
+              plans: { type: :array, items: { '$ref' => '#/components/schemas/plan' } }
             }
           },
-          plan_list: {
-            type: 'array',
-            items: { '$ref' => '#/components/schemas/plan_map' }
-          },
-          plan_map: {
-            type: 'object',
+          plan: {
+            type: :object,
             properties: {
-              plans: {
-                id: { type: :integer, nullable: false, required: true },
-                version: { type: :integer },
-                ageGroup: { type: :integer },
-                autoRenew: { type: :boolean },
-                dateCreated: { type: :string },
-                displayOrder: { type: :integer },
-                externalPlanCd: { type: :string, nullable: false, required: true },
-                lastUpdated: { type: :string },
-                longDescription: { type: :string },
-                paidInFullDiscountAmt: { type: :number },
-                paymentTerm: { type: :integer },
-                planAmount: { type: :number },
-                planEffectiveDate: { type: :string },
-                planExpirationDate: { type: :string },
-                planServices: {
-                  type: :array,
-                  items: {
+              id: { type: :integer },
+              ageGroup: { type: :integer },
+              autoRenew: { type: :boolean },
+              dateCreated: { type: :string },
+              displayOrder: { type: :integer },
+              externalPlanCd: { type: :string },
+              lastUpdated: { type: :string },
+              location: {
+                type: :object,
+                properties: {
+                  id: { type: :integer },
+                  accountCd: { type: :string },
+                  address1: { type: :string },
+                  address2: { type: :string },
+                  city: { type: :string },
+                  country: { type: :string },
+                  externalLocationCd: { type: :string },
+                  name: { type: :string },
+                  postalCode: { type: :string },
+                  resellerCustomerId: { type: :integer },
+                  state: { type: :string }
+                },
+                required: ['id', 'accountCd', 'address1', 'address2', 'city', 'country', 'externalLocationCd', 'name', 'postalCode', 'resellerCustomerId', 'state']
+              },
+              locationId: { type: :integer },
+              longDescription: { type: :string },
+              paidInFullDiscountAmt: { type: :integer },
+              paymentTerm: { type: :integer },
+              planAmount: { type: :number },
+              planEffectiveDate: { type: :string },
+              planExpirationDate: { type: :string },
+              planServices: {
+                type: :array,
+                items: []
+              },
+              planStatus: { type: :string },
+              planType: { type: :integer },
+              productSubType: { type: :string },
+              recurringPaymentAmt: { type: :number },
+              renewalPlan: {
+                type: :object,
+                properties: {
+                  id: { type: :integer },
+                  ageGroup: { type: :integer },
+                  autoRenew: { type: :boolean },
+                  dateCreated: { type: :string },
+                  displayOrder: { type: :integer },
+                  externalPlanCd: { type: :string },
+                  lastUpdated: { type: :string },
+                  location: {
+                    type: :object,
                     properties: {
                       id: { type: :integer },
-                      offeredService: {
-                        type: :array,
-                        items: {
+                      accountCd: { type: :string },
+                      address1: { type: :string },
+                      address2: { type: :string },
+                      city: { type: :string },
+                      country: { type: :string },
+                      externalLocationCd: { type: :string },
+                      name: { type: :string },
+                      postalCode: { type: :string },
+                      resellerCustomerId: { type: :integer },
+                      state: { type: :string }
+                    },
+                    required: ['id', 'accountCd', 'address1', 'address2', 'city', 'country', 'externalLocationCd', 'name', 'postalCode', 'resellerCustomerId', 'state']
+                  },
+                  locationId: { type: :integer },
+                  longDescription: { type: :string },
+                  paidInFullDiscountAmt: { type: :integer },
+                  paymentTerm: { type: :integer },
+                  planAmount: { type: :number },
+                  planEffectiveDate: { type: :string },
+                  planExpirationDate: { type: :string },
+                  planServices: {
+                    type: :array,
+                    items: [{
+                      type: :object,
+                      properties: {
+                        id: { type: :integer },
+                        offeredService: {
+                          type: :object,
                           properties: {
                             id: { type: :integer },
                             shortDescription: { type: :string }
-                          }
-                        }
-                      },
-                      plan: {
-                        type: :array,
-                        items: {
+                          },
+                          required: ['id', 'shortDescription']
+                        },
+                        plan: {
+                          type: :object,
                           properties: {
                             id: { type: :integer },
                             shortDescription: { type: :string }
-                          }
-                        }
+                          },
+                          required: ['id', 'shortDescription']
+                        },
+                        cost: { type: :number, nullable: true },
+                        dateCreated: { type: :string },
+                        discountPercent: { type: :integer, nullable: true },
+                        discountedPrice: { type: :number },
+                        displayOrder: { type: :integer },
+                        doNotRenew: { type: :boolean },
+                        externalPlanCd: { type: :string, nullable: true },
+                        astUpdated: { type: :string },
+                        offeredServiceId: { type: :integer },
+                        performancePayPrice: { type: :number, nullable: true },
+                        planEffectiveDate: { type: :string },
+                        planExpirationDate: { type: :string },
+                        planId: { type: :integer },
+                        quantity: { type: :integer },
+                        retailPrice: { type: :integer },
+                        revenuePerUnit: { type: :number },
+                        serviceType: { type: :string },
+                        totalDiscountedPrice: { type: :number },
+                        totalRevenue: { type: :number },
+                        totalTrueCost: { type: :null }
                       },
-                      cost: { type: :number },
-                      dateCreated: { type: :string },
-                      discountPercent: { type: :number },
-                      discountedPrice: { type: :number },
-                      displayOrder: { type: :integer },
-                      doNotRenew: { type: :boolean },
-                      externalPlanCd: { type: :string },
-                      lastUpdated: { type: :string },
-                      offeredServiceId: { type: :integer },
-                      performancePayPrice: { type: :number },
-                      planEffectiveDate: { type: :string },
-                      planExpirationDate: { type: :string },
-                      planId: { type: :integer },
-                      quantity: { type: :integer },
-                      retailPrice: { type: :integer },
-                      revenuePerUnit: { type: :number },
-                      serviceType: { type: :number },
-                      totalDisccountedPrice: { type: :number },
-                      totalRevenue: { type: :number },
-                      totalTrueCost: { type: :number }
-                    }
-                  }
-                },
-                planStatus: { type: :string },
-                planType: { type: :integer },
-                productSubType: { type: :string },
-                recurringPaymentAmt: { type: :number },
-                renewalPlan: {
-                  type: :array,
-                  items: {
+                      required: [
+                        'id', 'offeredService', 'plan', 'cost', 'dateCreated', 'offeredServiceId', 'planId', 'quantity',
+                        'retailPrice', 'serviceType'
+                      ]
+                    }]
+                  },
+                  planStatus: { type: :string },
+                  planType: { type: :integer },
+                  productSubType: { type: :string },
+                  recurringPaymentAmt: { type: :number },
+                  renewalPlan: {
+                    type: :object,
                     properties: {
                       _ref: { type: :string },
                       class: { type: :string }
                     }
+                  },
+                  renewalPlanId: { type: :integer },
+                  shortDescription: { type: :string },
+                  species: { type: :integer },
+                  vip_mapped_attributes: {
+                    type: :object,
+                    properties: {
+                      species: { type: :integer },
+                      age_group: { type: :integer, nullable: true },
+                      sex: { type: :string, nullable: true }
+                    }
                   }
+                }
               },
-              renewalPlanId: { type: :integer },
-              shortDescription: { type: :string },
-              species: { type: :integer },
-              vip_mapped_attribues: {
-                  type: :array,
-                    items: {
-                      properties: {
-                        species: { type: :integer },
-                        age_group: { type: :string },
-                        sex: { type: :string }
-                      }
-                  }
-              }
+              required: ['id', 'ageGroup', 'autoRenew', 'locationId', 'longDescription', 'planStatus']
             }
-          },
-            required: %w[id ageGroup externalPlanCd]
           }
         }
       },
@@ -143,9 +197,7 @@ RSpec.configure do |config|
         {
           url: 'http://{defaultHost}',
           variables: {
-            defaultHost: {
-              default: 'localhost:3111/'
-            }
+            defaultHost: { default: 'localhost:3111/' }
           }
         }
       ]
