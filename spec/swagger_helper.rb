@@ -202,7 +202,7 @@ RSpec.configure do |config|
               id: { type: :integer, nullable: true },
               validatedFieldList: {
                 type: :array,
-                items: { 
+                items: {
                   properties: {
                     validatedFieldList: { type: :string }
                   }
@@ -266,7 +266,7 @@ RSpec.configure do |config|
               payOption: { type: :string, nullable: true },
               payMethod: { type: :string, nullable: true },
               paymentName: { type: :string },
-              accountNbrForDisplay: { type: :string},
+              accountNbrForDisplay: { type: :string },
               accountNbr: { type: :integer },
               institutionName: { type: :string },
               bankAccountHolderType: { type: :string },
@@ -288,107 +288,63 @@ RSpec.configure do |config|
               }
             }
           },
-          service: {
-          type: :object,
-          properties: {
-            services: {
-              type: :array,
-              properties: {
-                id: { type: :integer },
-                offeredService: {
-                  type: :object,
-                  properties: {
-                    id: { type: :integer },
-                    shortDescription: { type: :string }
-                  }
-                },
-                plan: {
-                  type: :object,
-                  properties: {
-                    id: { type: :integer },
-                    shortDescription: { type: :string }
-                  }
-                },
-                cost: { type: :number },
-                dateCreated: { type: :string },
-                discountPercent: { type: :number },
-                discountedPrice: { type: :number },
-                displayOrder: { type: :integer },
-                doNotRenew: { type: :boolean },
-                externalPlanCd: { type: :integer },
-                lastUpdated: { type: :string },
-                offeredServiceId: { type: :integer },
-                performancePayPrice: { type: :number },
-                planEffectiveDate: { type: :string },
-                planExpirationDate: { type: :string },
-                planId: { type: :integer },
-                quantity: { type: :integer },
-                retailPrice: { type: :number },
-                revenuePerUnit: { type: :number },
-                serviceType: { type: :string },
-                totalDiscountedPrice: { type: :number },
-                totalRevenue: { type: :number },
-                totalTrueCost: { type: :number }
-              }
-            }
-          },
-          service: {
+          service_list: {
             type: :object,
             properties: {
-              services: {
-                type: :array,
+              plans: { type: :array, items: { '$ref' => '#components/schemas/plan_services' } }
+            }
+          },
+          plan_services: {
+            type: :object,
+            properties: {
+              id: { type: :integer },
+              offeredService: {
+                type: :object,
                 properties: {
                   id: { type: :integer },
-                  offeredService: {
-                    type: :object,
-                    properties: {
-                      id: { type: :integer },
-                      shortDescription: { type: :string }
-                    }
-                  },
-                  plan: {
-                    type: :object,
-                    properties: {
-                      id: { type: :integer },
-                      shortDescription: { type: :string }
-                    }
-                  },
-                  cost: { type: :number },
-                  dateCreated: { type: :string },
-                  discountPercent: { type: :number },
-                  discountedPrice: { type: :number },
-                  displayOrder: { type: :integer },
-                  doNotRenew: { type: :boolean },
-                  externalPlanCd: { type: :integer },
-                  lastUpdated: { type: :string },
-                  offeredServiceId: { type: :integer },
-                  performancePayPrice: { type: :number },
-                  planEffectiveDate: { type: :string },
-                  planExpirationDate: { type: :string },
-                  planId: { type: :integer },
-                  quantity: { type: :integer },
-                  retailPrice: { type: :number },
-                  revenuePerUnit: { type: :number },
-                  serviceType: { type: :string },
-                  totalDiscountedPrice: { type: :number },
-                  totalRevenue: { type: :number },
-                  totalTrueCost: { type: :number }
+                  shortDescription: { type: :string }
                 }
-              }
+              },
+              plan: {
+                type: :object,
+                properties: {
+                  id: { type: :integer, nullable: true }
+                }
+              },
+              cost: { type: :number, nullable: true },
+              dateCreated: { type: :string },
+              discountPercent: { type: :number, nullable: true },
+              discountedPrice: { type: :number },
+              displayOrder: { type: :integer },
+              doNotRenew: { type: :boolean },
+              externalPlanCd: { type: :integer, nullable: true },
+              lastUpdated: { type: :string },
+              offeredServiceId: { type: :integer },
+              performancePayPrice: { type: :number, nullable: true },
+              planEffectiveDate: { type: :string },
+              planExpirationDate: { type: :string },
+              planId: { type: :integer },
+
+              quantity: { type: :integer },
+              retailPrice: { type: :number },
+              revenuePerUnit: { type: :number },
+              serviceType: { type: :string },
+              totalDiscountedPrice: { type: :number },
+              totalRevenue: { type: :number, nullable: true },
+              totalTrueCost: { type: :number, nullable: true }
             }
           }
         }
-      },
-      paths: {},
-      servers: [
-        {
-          url: 'http://{defaultHost}',
-          variables: {
-            defaultHost: { default: 'localhost:3111/' }
-          }
+      }
+    },
+    paths: {},
+    servers: [
+      {
+        url: 'http://{defaultHost}',
+        variables: {
+          defaultHost: { default: 'localhost:3111/' }
         }
-      ]
-    }
+      }
+    ]
   }
-}
 end
