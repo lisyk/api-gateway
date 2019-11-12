@@ -15,6 +15,9 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
                 schema: {
                   '$ref' => '#/definitions/contract_application'
                 }
+      request_body_json schema: {
+        '$ref' => '#/definitions/contract_application'
+      }
 
       context 'Using valid credentials' do
         let(:token) do
@@ -154,6 +157,9 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       parameter name: :id,
                 in: :path,
                 type: :string
+      request_body_json schema: {
+        '$ref' => '#/definitions/contract_application'
+      }
 
       context 'Using valid credentials' do
         let(:token) do

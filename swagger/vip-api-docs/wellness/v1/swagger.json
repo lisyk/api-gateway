@@ -509,6 +509,16 @@
         "parameters": [
 
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/contract_application"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Create a new contract application",
@@ -540,7 +550,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$contract_applicationss s": "#/definitions/contract_application"
+                  "$contract_application": "#/definitions/contract_application"
                 }
               }
             }
@@ -606,6 +616,16 @@
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/contract_application"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Create a new contract application",
