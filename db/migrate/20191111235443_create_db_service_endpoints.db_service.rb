@@ -10,5 +10,6 @@ class CreateDbServiceEndpoints < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+    add_index :db_service_endpoints, :partner_id
   end
 end

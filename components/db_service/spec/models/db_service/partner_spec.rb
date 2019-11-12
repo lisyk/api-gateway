@@ -15,5 +15,6 @@ RSpec.describe DbService::Partner, type: :model do
 
   describe 'associations' do
     it { should have_many(:endpoints) }
+    it { should have_many(:partner_fields) }
   end
 end

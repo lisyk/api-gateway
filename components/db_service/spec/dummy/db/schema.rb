@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_11_225352) do
+ActiveRecord::Schema.define(version: 2019_11_12_145143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 2019_11_11_225352) do
     t.string "api_route"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["partner_id"], name: "index_db_service_endpoints_on_partner_id"
+  end
+
+  create_table "db_service_partner_fields", force: :cascade do |t|
+    t.integer "partner_id"
+    t.string "field_name"
+    t.string "field_data_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["partner_id"], name: "index_db_service_partner_fields_on_partner_id"
   end
 
   create_table "db_service_partners", force: :cascade do |t|
