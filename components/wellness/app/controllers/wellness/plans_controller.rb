@@ -14,11 +14,25 @@ module Wellness
       end
     end
 
+    def show
+      # TODO: needs to be updated from DEMO to PROD
+      @plan ||= fetch_plans(plan_params) if demo_client_ready
+      if @plan.present?
+        render json: { plan: @plan }
+      else
+        render json: { errors: ['Wellness plan unavailable.'] }, status: :not_found
+      end
+    end
+
     private
 
-    def fetch_plans
-      plans = Plan.new(controller_name, action_name)
-      plans.plans_mapping
+    def fetch_plans(params = {})
+      plans = Plan.new(controller_name, action_name, params)
+      params[:id].nil? ? plans.plans_mapping : plans.origin_plans
+    end
+
+    def plan_params
+      params.except(:format).permit(:id)
     end
   end
 end

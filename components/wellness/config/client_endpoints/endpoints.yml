@@ -1,7 +1,3 @@
-plan_services:
-  index:
-    method: get
-    resource: planService
 agreements:
   show:
     method: get
@@ -27,9 +23,17 @@ contract_applications:
 plans:
   index:
     method: get
-    resource: plans
+    resource: plan
+
+  show:
+    method: get
+    resource: plan
 
 plan_services:
   index:
+    method: get
+    resource: planService
+
+  show:
     method: get
     resource: planService
