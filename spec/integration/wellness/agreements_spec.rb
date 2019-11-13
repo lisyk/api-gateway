@@ -19,7 +19,6 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         end
 
         response '200', 'Generate a new agreement PDF' do
-          schema '$contract_application' => '#/definitions/contract_application'
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:id) { '1000008890' }
           let(:agreement) {}

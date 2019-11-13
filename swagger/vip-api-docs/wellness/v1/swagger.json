@@ -505,14 +505,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Generate a new agreement PDF",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$contract_application": "#/definitions/contract_application"
-                }
-              }
-            }
+            "description": "Generate a new agreement PDF"
           }
         }
       }
