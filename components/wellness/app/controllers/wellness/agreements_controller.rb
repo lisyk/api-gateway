@@ -15,10 +15,11 @@ module Wellness
     def update
       # TODO: needs to be updated from DEMO to PROD
       @response ||= put_agreement(agreement_params) if demo_client_ready
-      if @response.present?
-        render json: { success: ['Signed agreement posted successfully.'] }
+      if @response.present? && @response['errors'].nil?
+        render json: { success: ['Signed agreement posted successfully.'] },
+               status: :success
       else
-        render json: { errors: ['Agreement could not be uploaded.'] },
+        render json: { errors: @response['errors'] || ['No response returned'] },
                status: :unprocessable_entity
       end
     end
@@ -31,13 +32,12 @@ module Wellness
     end
 
     def put_agreement(params = {})
-      contract = params[:contract]
-      agreement = Agreement.new(controller_name, action_name, params)
-      headers = {
-        'Content-Type' => 'application/pdf',
-        'Transfer-Encoding' => 'chunked'
+      body = {
+        id: params[:id],
+        documentFileBase64: Base64.strict_encode64(File.read(params[:contract].tempfile))
       }
-      agreement.api_put(contract, headers)
+      agreement = Agreement.new(controller_name, action_name, params)
+      agreement.api_put(body, headers)
     end
 
     def agreement_params
