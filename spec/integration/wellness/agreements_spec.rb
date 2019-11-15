@@ -35,7 +35,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       consumes 'multipart/form-data'
       security [bearer_auth: []]
       parameter name: :id, in: :path, type: :string
-      parameter name: :document, in: :formData, type: :file, required: true
+      parameter name: :document, in: :formdata, type: :file, required: true, description: 'PDF file to upload'
 
       context 'Using valid credentials' do
         let(:token) do

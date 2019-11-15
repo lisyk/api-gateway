@@ -364,7 +364,8 @@
             "nullable": true
           },
           "externalPaymentProfileId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "optionalPlanServices": {
             "type": "array",
@@ -508,6 +509,43 @@
             "description": "Generate a new agreement PDF"
           }
         }
+      },
+      "put": {
+        "summary": "Upload a signed agreement document",
+        "tags": [
+          "Agreements"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "document",
+            "in": "formdata",
+            "required": true,
+            "description": "PDF file to upload",
+            "schema": {
+              "type": "file"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Upload signed PDF document"
+          }
+        }
       }
     },
     "/api/v1/wellness/contract_applications": {
@@ -645,7 +683,7 @@
         },
         "responses": {
           "200": {
-            "description": "Create a new contract application",
+            "description": "Update an existing contract application",
             "content": {
               "application/json": {
                 "schema": {

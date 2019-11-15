@@ -31,6 +31,8 @@ module Wellness
     end
 
     def put_agreement(params = {})
+      return { 'errors' => ['No file attached'] } unless params[:document].respond_to?(:tempfile)
+
       body = {
         id: params[:id],
         documentFileBase64: Base64.strict_encode64(File.read(params[:document].tempfile))
