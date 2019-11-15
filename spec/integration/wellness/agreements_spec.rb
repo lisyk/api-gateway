@@ -27,4 +27,32 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       end
     end
   end
+
+  path '/api/v1/wellness/contract_applications/agreements/{id}' do
+    put 'Upload a signed agreement document' do
+      tags 'Agreements'
+      produces 'application/json'
+      consumes 'multipart/form-data'
+      security [bearer_auth: []]
+      parameter name: :id, in: :path, type: :string
+      parameter name: :document, in: :formData, type: :file, required: true
+
+      context 'Using valid credentials' do
+        let(:token) do
+          post '/api/v1/authentication', params: { user_name: 'test', password: 'test' }
+          JSON.parse(response.body)['token']
+        end
+
+        response '200', 'Upload signed PDF document' do
+          file = Rack::Test::UploadedFile.new(
+            Rails.root.join('spec/fixtures/files/contract.pdf')
+          )
+          let(:Authorization) { " Authorization: Bearer #{token} " }
+          let(:id) { '1000013888' }
+          let(:document) { file }
+          run_test!
+        end
+      end
+    end
+  end
 end

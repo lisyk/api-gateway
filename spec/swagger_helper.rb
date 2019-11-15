@@ -225,7 +225,7 @@ RSpec.configure do |config|
               expirationMonth: { type: :integer, nullable: true },
               expirationYear: { type: :integer, nullable: true },
               securityCode: { type: :integer, nullable: true },
-              externalPaymentProfileId: { type: :string },
+              externalPaymentProfileId: { type: :string, nullable: true },
               optionalPlanServices: {
                 type: :array,
                 items: { type: :object }
