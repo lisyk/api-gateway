@@ -8,12 +8,16 @@ module Wellness
       File.read(File.expand_path('../../../helpers/dummy_docs/plans/origin_plans_sample.json', __dir__))
     end
     let(:plans_sample) { JSON.parse plans_sample_file }
-    let(:constructor_mapper) { OpenStruct.new("my_key": "my_value").new }
+    let(:constructor_mapper) {  double }
+    let(:vip_field) { OpenStruct.new(field_name: 'age_group') }
+    let(:partner_mapping_object) { [OpenStruct.new(vip_field:vip_field)] }
     subject { Constructors::PlanConstructor.new(plans_sample, constructor_mapper) }
     describe '#modify' do
+      before do
+        allow(constructor_mapper).to receive(:plan_mapping) { partner_mapping_object }
+      end
       it 'returns plans with custom attributes' do
-        expect(subject.modify.first).to include 'vip_mapped_attributes'
-        expect(subject.modify.last).to include 'vip_mapped_attributes'
+        expect(subject.modify.first).to include 'age_group'
       end
     end
   end
