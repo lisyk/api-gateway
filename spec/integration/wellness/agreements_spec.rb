@@ -38,8 +38,10 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       parameter name: :document,
                 in: :formData,
                 type: :file,
-                required: true,
-                description: 'PDF file to upload'
+                required: true
+      request_body_multipart schema: {
+        '$ref' => '#/components/schemas/agreement'
+      }
 
       context 'Using valid credentials' do
         let(:token) do

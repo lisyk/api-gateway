@@ -278,6 +278,15 @@ RSpec.configure do |config|
                 }
               }
             }
+          },
+          agreement: {
+            type: :object,
+            properties: {
+              document: {
+                type: :string,
+                format: :binary
+              }
+            }
           }
         }
       },

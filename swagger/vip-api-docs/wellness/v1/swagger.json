@@ -477,6 +477,15 @@
             }
           }
         }
+      },
+      "agreement": {
+        "type": "object",
+        "properties": {
+          "document": {
+            "type": "string",
+            "format": "binary"
+          }
+        }
       }
     }
   },
@@ -532,6 +541,15 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/agreement"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Upload signed PDF document"
