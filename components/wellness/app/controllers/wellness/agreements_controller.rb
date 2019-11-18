@@ -14,11 +14,12 @@ module Wellness
 
     def update
       # TODO: needs to be updated from DEMO to PROD
-      @response ||= put_agreement(agreement_params) if demo_client_ready
+      @response ||= put_agreement(agreement_params) || {} if demo_client_ready
       if @response.present? && @response['errors'].nil?
         render json: { success: ['Signed agreement posted successfully.'] }
       else
-        render json: { errors: @response['errors'] || ['No response returned'] },
+        @response['errors'] ||= ['Agreement failed to update.']
+        render json: { errors: @response['errors'] },
                status: :unprocessable_entity
       end
     end

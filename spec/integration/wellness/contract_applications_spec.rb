@@ -227,7 +227,8 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
               expirationYear: nil,
               securityCode: '',
               externalPaymentProfileId: '',
-              optionalPlanServices: []
+              optionalPlanServices: [],
+              firstBillingDate: "#{Date.current}T23:59:59Z"
             }
           end
           run_test!
