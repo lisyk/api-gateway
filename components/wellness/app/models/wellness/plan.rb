@@ -13,9 +13,7 @@ module Wellness
     end
 
     def constructor_mapper
-      { 'species' => species_modifier_rule,
-        'age_group' => age_group_modifier_rule,
-        'sex' => sex_modifier_rule }
+      DbService::FieldMapping.wellness_plans.need_translation
     end
 
     def origin_plans

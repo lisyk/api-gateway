@@ -12,18 +12,20 @@ module Wellness
 
       def modify
         plans.each do |plan|
-          plan.merge! construct_attributes(plan)
+          update_plan(plan)
         end
-        plans
       end
 
-      def construct_attributes(plan)
-        vip_attr = { 'vip_mapped_attributes' => {} }
-        constructor_mapper.each do |key, value|
-          vip_attr['vip_mapped_attributes'][key] = plan[value]
+      def update_plan(plan)
+        plan.keys.each do |key|
+          field_to_replace = constructor_mapper.joins(:partner_field).where(db_service_partner_fields:{field_name: key}).first
+          next unless field_to_replace
+          new_key = field_to_replace.vip_field.field_name
+          plan[new_key] = plan.delete key
         end
-        vip_attr
+        plan
       end
     end
   end
 end
+
