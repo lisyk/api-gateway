@@ -530,15 +530,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "document",
-            "in": "formdata",
-            "required": true,
-            "description": "PDF file to upload",
-            "schema": {
-              "type": "file"
-            }
           }
         ],
         "responses": {
