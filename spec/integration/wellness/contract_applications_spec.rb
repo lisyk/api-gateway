@@ -63,10 +63,10 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
               memberAge: '1Y 2M',
               gender: '',
               initiatedByProfessional: {
-                id: nil
+                id: ''
               },
               primaryCareProfessional: {
-                id: nil
+                id: ''
               },
               initiatedByProfessionalCd: '',
               primaryCareProfessionalCd: '',
@@ -206,10 +206,10 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
               memberAge: '1Y 2M',
               gender: '',
               initiatedByProfessional: {
-                id: nil
+                id: ''
               },
               primaryCareProfessional: {
-                id: nil
+                id: ''
               },
               initiatedByProfessionalCd: '',
               primaryCareProfessionalCd: '',
