@@ -35,6 +35,19 @@ Please review the [documentation repo](https://github.com/vippetcare/docs); spec
 
 NOTE: depending on your environment you may need to prefix your rails commands with `bundle exec` or use `bin/rails`
 
+### Components
+- `Wellness` component (Engine)
+  - integrates third party APIs that offer wellness plans
+- `DbService` component (Engine)
+  - segregates Postgres related models that serves engines and main app
+  - generate models, migrations on engine level `component/db_service`
+  - run migrations on engine level
+  - all migrations have to be copied to main level app. 
+  - run task from main level app:
+    - copy all migrations from all engines to main level app  
+      ` rails railties:install:migrations `
+    - copy migrations from db_service engine to main level app  
+      ` rails db_service:install:migrations `
 ### Pre-Commit Hook
 Before making changes, copy `pre-commit.sh` to the repo `.git/hooks` folder using:
 ```
