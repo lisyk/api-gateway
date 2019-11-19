@@ -5,8 +5,7 @@ require_dependency 'wellness/application_controller'
 module Wellness
   class PlansController < Wellness::ApplicationController
     def index
-      # TODO: needs to be updated from DEMO to PROD
-      @wellness_plans ||= fetch_plans if demo_client_ready
+      @wellness_plans ||= fetch_plans
       if @wellness_plans.present?
         render json: { plans: @wellness_plans }
       else
@@ -15,8 +14,7 @@ module Wellness
     end
 
     def show
-      # TODO: needs to be updated from DEMO to PROD
-      @plan ||= fetch_plans(plan_params) if demo_client_ready
+      @plan ||= fetch_plans(plan_params)
       if @plan.present?
         render json: { plan: @plan }
       else

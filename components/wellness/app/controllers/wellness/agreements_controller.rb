@@ -3,8 +3,7 @@
 module Wellness
   class AgreementsController < Wellness::ApplicationController
     def show
-      # TODO: needs to be updated from DEMO to PROD
-      @agreement ||= fetch_agreement(agreement_params) if demo_client_ready
+      @agreement ||= fetch_agreement(agreement_params)
       if @agreement.present?
         send_data @agreement.body, filename: "#{agreement_params[:id]}.pdf"
       else

@@ -3,8 +3,7 @@
 module Wellness
   class ContractApplicationsController < Wellness::ApplicationController
     def index
-      # TODO: needs to be updated from DEMO to PROD
-      @applications ||= contract_apps if demo_client_ready
+      @applications ||= contract_apps
       if @applications.present?
         render json: @applications
       else
@@ -14,8 +13,7 @@ module Wellness
     end
 
     def show
-      # TODO: needs to be updated from DEMO to PROD
-      @application ||= contract_apps(application_params) if demo_client_ready
+      @application ||= contract_apps(application_params)
       if @application.present?
         render json: @application
       else
@@ -25,8 +23,7 @@ module Wellness
     end
 
     def create
-      # TODO: needs to be updated from DEMO to PROD
-      @request ||= post_apps(request) if demo_client_ready
+      @request ||= post_apps(request)
       if @request.present?
         render json: @request
       else
@@ -36,8 +33,7 @@ module Wellness
     end
 
     def update
-      # TODO: needs to be updated from DEMO to PROD
-      @request ||= put_apps(request) if demo_client_ready
+      @request ||= put_apps(request)
       if @request.present?
         render json: @request
       else
