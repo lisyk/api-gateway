@@ -1,4 +1,6 @@
-require "db_service/engine"
+# frozen_string_literal: true
+
+require 'db_service/engine'
 
 require 'shoulda-matchers'
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DbService
   class Partner < ApplicationRecord
     has_many :endpoints, dependent: :destroy
@@ -6,6 +8,6 @@ module DbService
     validates :name, :root_domain, presence: true
     validates :name, :root_domain, uniqueness: true
 
-    scope :vcp, -> { where(:name => 'vcp') }
+    scope :vcp, -> { where(name: 'vcp') }
   end
 end

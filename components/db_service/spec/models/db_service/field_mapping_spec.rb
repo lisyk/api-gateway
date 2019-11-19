@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe DbService::FieldMapping, type: :model do
@@ -8,11 +10,9 @@ RSpec.describe DbService::FieldMapping, type: :model do
     it { should have_db_column(:translation_needed).of_type(:boolean) }
     it { should have_db_column(:required).of_type(:boolean) }
     it { should have_db_column(:translation_function).of_type(:string) }
-
   end
 
   describe 'validations' do
-
   end
 
   describe 'associations' do

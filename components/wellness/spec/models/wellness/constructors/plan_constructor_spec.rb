@@ -8,9 +8,9 @@ module Wellness
       File.read(File.expand_path('../../../helpers/dummy_docs/plans/origin_plans_sample.json', __dir__))
     end
     let(:plans_sample) { JSON.parse plans_sample_file }
-    let(:constructor_mapper) {  double }
+    let(:constructor_mapper) { double }
     let(:vip_field) { OpenStruct.new(field_name: 'age_group') }
-    let(:partner_mapping_object) { [OpenStruct.new(vip_field:vip_field)] }
+    let(:partner_mapping_object) { [OpenStruct.new(vip_field: vip_field)] }
     subject { Constructors::PlanConstructor.new(plans_sample, constructor_mapper) }
     describe '#modify' do
       before do

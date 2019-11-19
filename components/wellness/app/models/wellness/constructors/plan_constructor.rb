@@ -20,6 +20,7 @@ module Wellness
         plan.keys.each do |key|
           field_to_replace = constructor_mapper.plan_mapping(key).first
           next unless field_to_replace
+
           new_key = field_to_replace.vip_field.field_name
           plan[new_key] = plan.delete key
         end
@@ -28,4 +29,3 @@ module Wellness
     end
   end
 end
-

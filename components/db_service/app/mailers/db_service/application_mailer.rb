@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DbService
   class ApplicationMailer < ActionMailer::Base
     default from: 'from@example.com'

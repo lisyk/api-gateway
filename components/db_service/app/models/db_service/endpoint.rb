@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DbService
   class Endpoint < ApplicationRecord
     belongs_to :partner
