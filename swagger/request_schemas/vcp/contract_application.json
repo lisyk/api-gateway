@@ -54,13 +54,16 @@
         }
       },
       "accountNbrForDisplay": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 4
       },
       "address1": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 30
       },
       "address2": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 30
       },
       "ageGroupId": {
         "type": "integer"
@@ -84,7 +87,8 @@
         "type": "string"
       },
       "city": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 19
       },
       "contractDocCreated": {
         "type": "boolean"
@@ -93,7 +97,8 @@
         "type": "integer"
       },
       "country": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 20
       },
       "createdByExternalUserCd": {
         "type": "string"
@@ -108,22 +113,30 @@
         "type": "integer"
       },
       "email": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 60
       },
       "expirationMonth": {
-        "type": "integer, null"
+        "type": "integer, null",
+        "minLength": 1,
+        "maxLength": 12
       },
       "expirationYear": {
-        "type": "number, null"
+        "type": "number, null",
+        "minLength": 2000,
+        "maxLength": 3000
       },
       "externalClientCd": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 16
       },
       "externalLocationCd": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 20
       },
       "externalMemberCd": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 20
       },
       "externalPaymentProfileId": {
         "type": "string"
@@ -135,7 +148,8 @@
         "type": "string"
       },
       "firstName": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 20
       },
       "gatewayVaultId": {
         "type": "string"
@@ -156,7 +170,8 @@
         "type": "string"
       },
       "lastName": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 30
       },
       "lastUpdated": {
         "type": "string"
@@ -212,18 +227,21 @@
         "type": "string"
       },
       "middleInitial": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 1
       },
       "optionalPlanServices": {
         "type": "array",
         "items": {}
       },
       "payMethod": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 4
       },
       "payOption": {
         "type": "string",
-        "default": "C"
+        "default": "C",
+        "maxLength": 3
       },
       "paymentAddress1": {
         "type": "string"
@@ -263,10 +281,12 @@
         "default": true
       },
       "phone1": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 20
       },
       "phone1Type": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 1
       },
       "phone2": {
         "type": "string"
@@ -281,10 +301,12 @@
         "type": "integer"
       },
       "portalUsername": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 60
       },
       "postalCode": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 10
       },
       "primaryCareProfessionalCd": {
         "type": "string"
@@ -308,7 +330,8 @@
         "type": "integer"
       },
       "state": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 2
       },
       "status": {
         "type": "string"
