@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
+require 'json-schema'
+
 module Wellness
   class ContractApplicationsController < Wellness::ApplicationController
+    before_action :validate_request, only: %i[create update]
+
     def index
       # TODO: needs to be updated from DEMO to PROD
       @applications ||= contract_apps if demo_client_ready
