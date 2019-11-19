@@ -15,7 +15,9 @@
             "type": "string"
           }
         },
-        "required": ["id"]
+        "required": [
+          "id"
+        ]
       },
       "primaryCareProfessional": {
         "type": "object",
@@ -196,7 +198,9 @@
             "type": "string"
           }
         },
-        "required": ["id"]
+        "required": [
+          "id"
+        ]
       },
       "locationId": {
         "type": "integer"
@@ -315,14 +319,72 @@
       "userId": {
         "type": "integer"
       }
-    } 
+    }
   },
   "contract_applications_create": {
     "$ref": "#contract_application",
     "required": []
   },
   "contract_applications_update": {
-    "$ref": "#contract_application",
-    "required": []
+    "type": "object",
+    "properties": {
+      "allOf": [
+        {
+          "$ref": "#contract_application"
+        },
+        {
+          "required": [
+            "phone1",
+            "firstName",
+            "lastName",
+            "address1",
+            "city",
+            "state",
+            "postalCode",
+            "payMethod",
+            "accountNbrForDisplay",
+            "expirationMonth",
+            "expirationYear",
+            "paymentName"
+          ]
+        }
+      ],
+      "phone1": {
+        "minLength": 1
+      },
+      "firstName": {
+        "minLength": 1
+      },
+      "lastName": {
+        "minLength": 1
+      },
+      "address1": {
+        "minLength": 1
+      },
+      "city": {
+        "minLength": 1
+      },
+      "state": {
+        "minLength": 1
+      },
+      "postalCode": {
+        "minLength": 1
+      },
+      "payMethod": {
+        "minLength": 1
+      },
+      "accountNbrForDisplay": {
+        "minLength": 1
+      },
+      "expirationMonth": {
+        "minLength": 1
+      },
+      "expirationYear": {
+        "minLength": 1
+      },
+      "paymentName": {
+        "minLength": 1
+      }
+    }
   }
 }

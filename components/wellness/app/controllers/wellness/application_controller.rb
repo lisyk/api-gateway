@@ -27,6 +27,7 @@ module Wellness
       validation_errors = JSON::Validator.fully_validate(schema,
                                                          request.body.read,
                                                          errors_as_objects: true)
+
       return if validation_errors.blank?
 
       render json: { malformed_request: validation_errors },
