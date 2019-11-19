@@ -167,7 +167,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           JSON.parse(response.body)['token']
         end
 
-        response '200', 'Create a new contract application' do
+        response '200', 'Update an existing contract application' do
           schema '$ref' => '#/components/schemas/contract_application'
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:id) { '1000013302' }
@@ -227,7 +227,8 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
               expirationYear: nil,
               securityCode: '',
               externalPaymentProfileId: '',
-              optionalPlanServices: []
+              optionalPlanServices: [],
+              firstBillingDate: "#{Date.current}T23:59:59Z"
             }
           end
           run_test!

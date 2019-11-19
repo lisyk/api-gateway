@@ -3,6 +3,10 @@ agreements:
     method: get
     resource: contractApplicationAgreement
 
+  update:
+    method: put
+    resource: contractApplicationAgreement
+
 contract_applications:
   index:
     method: get

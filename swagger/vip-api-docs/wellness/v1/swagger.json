@@ -364,7 +364,8 @@
             "nullable": true
           },
           "externalPaymentProfileId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "optionalPlanServices": {
             "type": "array",
@@ -476,6 +477,15 @@
             }
           }
         }
+      },
+      "agreement": {
+        "type": "object",
+        "properties": {
+          "document": {
+            "type": "string",
+            "format": "binary"
+          }
+        }
       }
     }
   },
@@ -506,6 +516,43 @@
         "responses": {
           "200": {
             "description": "Generate a new agreement PDF"
+          }
+        }
+      },
+      "put": {
+        "summary": "Upload a signed agreement document",
+        "tags": [
+          "Agreements"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/agreement"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Upload signed PDF document"
           }
         }
       }
@@ -645,7 +692,7 @@
         },
         "responses": {
           "200": {
-            "description": "Create a new contract application",
+            "description": "Update an existing contract application",
             "content": {
               "application/json": {
                 "schema": {
