@@ -1,6 +1,7 @@
 {
   "addons": [
     "airbrake",
+    "heroku-postgresql:hobby-dev",
     "heroku-redis",
     "papertrail"
   ],
