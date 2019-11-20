@@ -1,5 +1,5 @@
 {
-  "age_group_birth_date": "datetime",
+  "age_group": "datetime",
   "auto_renew": "boolean",
   "created_at": "datetime",
   "sort_order": "integer",

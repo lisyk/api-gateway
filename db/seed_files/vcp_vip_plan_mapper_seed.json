@@ -1,5 +1,5 @@
 {
-  "ageGroup": "age_group_birth_date",
+  "ageGroup": "age_group",
   "autoRenew": "auto_renew",
   "dateCreated": "created_at",
   "displayOrder": "sort_order",
