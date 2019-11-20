@@ -15,6 +15,9 @@ Please review the [documentation repo](https://github.com/vippetcare/docs); spec
   - Install Redis:
     - `brew install redis`
     - `brew services start redis` or `redis-server`
+  - A Postgres database server
+    - recommended: Postgre.app - https://postgresapp.com/
+    - optionally installed using home brew: `brew install postgresql`
 
 ## Setup
 
@@ -22,6 +25,8 @@ Please review the [documentation repo](https://github.com/vippetcare/docs); spec
 - Create `.env.development.local` in root directory with the following values (see Environment Variables section below)
 - Setup
   - `bundle`
+  - `sh script/rebuild_development_database.sh`
+    - NOTE: this will drop your development and test database
   - Start the application: `rails s`
   - Open http://localhost:3111/ in a browser
 
