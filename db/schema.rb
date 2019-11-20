@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2019_11_14_021235) do
     t.integer "vip_field_id"
     t.boolean "translation_needed"
     t.boolean "required", default: false
-    t.string "translation_function", default: false
+    t.string "translation_function"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "mapping_document"

@@ -15,6 +15,9 @@ Please review the [documentation repo](https://github.com/vippetcare/docs); spec
   - Install Redis:
     - `brew install redis`
     - `brew services start redis` or `redis-server`
+  - A Postgres database server
+    - recommended: Postgre.app - https://postgresapp.com/
+    - optionally installed using home brew: `brew install postgresql`
 
 ## Setup
 
@@ -22,6 +25,8 @@ Please review the [documentation repo](https://github.com/vippetcare/docs); spec
 - Create `.env.development.local` in root directory with the following values (see Environment Variables section below)
 - Setup
   - `bundle`
+  - `sh script/rebuild_development_database.sh`
+    - NOTE: this will drop your development and test database
   - Start the application: `rails s`
   - Open http://localhost:3111/ in a browser
 
@@ -42,7 +47,7 @@ NOTE: depending on your environment you may need to prefix your rails commands w
   - segregates Postgres related models that serves engines and main app
   - generate models, migrations on engine level `component/db_service`
   - run migrations on engine level
-  - all migrations have to be copied to main level app. 
+  - all migrations have to be copied to main level app.
   - run task from main level app:
     - copy all migrations from all engines to main level app  
       ` rails railties:install:migrations `
@@ -83,12 +88,17 @@ While pairing you may want to use `git pair` for your commits, it requires insta
   - All non development environments (for exception notification)
 - AIRBRAKE_PROJECT_KEY
   - All non development environments (for exception notification)
+- DATABASE_URL
+  - CI, staging and production only
+  - Optional in other environments as it overrides database.yml settings
 - GATEWAY_USERNAME
   - All environments
   - Username to auth gateway to generate tokens
 - GATEWAY_PASSWORD
   - All environments
   - Password to auth gateway to generate tokens
+- HEROKU_APP_NAME
+  - Staging and production only
 - JWT_TOKEN_EXPIRATION_IN_HOURS
   - All environments
 - RACK_ENV
