@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
+# TODO: determine how production/staging will get new updates
+#       protect against running in production or
+#       run specific steps in specific environments ????
+
 def clean_up_db
   DbService::Partner.delete_all
   DbService::Endpoint.delete_all
   DbService::FieldMapping.delete_all
   DbService::PartnerField.delete_all
   DbService::VipField.delete_all
-rescue StandardError => e
-  puts "DB cleaning failed: #{e.backtrace}"
 end
 
 def vcp_plan_mapping
