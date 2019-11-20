@@ -36,7 +36,7 @@ if Rails.env.development?
   clean_up_db
   puts '******* seeding data ... *************'
 
-# fake_partner
+  # fake_partner
   DbService::Partner.create!(name: 'labs', root_domain: 'labs.vet')
 
   partner = DbService::Partner.create!(name: 'vcp', root_domain: 'vcp.vet')
