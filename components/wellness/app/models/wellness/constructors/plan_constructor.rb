@@ -8,7 +8,6 @@ module Wellness
       def initialize(plans, constructor_mapper)
         @plans = plans
         @constructor_mapper = constructor_mapper
-        binding.pry
       end
 
       def modify
