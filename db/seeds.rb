@@ -5,7 +5,7 @@
 #       run specific steps in specific environments ????
 
 ### Development and TEST ENV seed *****
-if Rails.env.development?
+if Rails.env.development? || Rails.env.test?
   def clean_up_db
     DbService::Partner.delete_all
     DbService::Endpoint.delete_all
