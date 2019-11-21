@@ -1,6 +1,7 @@
 {
   "addons": [
     "airbrake",
+    "heroku-postgresql:hobby-dev",
     "heroku-redis",
     "papertrail"
   ],
@@ -16,6 +17,7 @@
   },
   "name": "api-gateway",
   "scripts": {
+    "postdeploy": "bash config/heroku/heroku_review_app_postdeploy.sh"
   },
   "stack": "heroku-18"
 }

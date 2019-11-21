@@ -26,10 +26,16 @@ dockers:
   - &ruby_docker
     image: circleci/ruby:2.6.5
     environment:
-      RAILS_ENV: test
       BUNDLE_JOBS: 3
-      BUNDLE_RETRY: 3
       BUNDLE_PATH: vendor/bundle
+      BUNDLE_RETRY: 3
+      DATABASE_URL: "postgres://root@localhost:5432/circle_test"
+      RAILS_ENV: test
+  - &postgres_docker
+    image: circleci/postgres:11.5-alpine
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_DB: circle_test
   - &ruby_wellness_docker
     image: circleci/ruby:2.6.5
     environment:
@@ -44,6 +50,20 @@ setup_steps:
   - &attach
     attach_workspace:
       at: /home/circleci
+  - &db_client
+    run:
+      name: Install Postgres Client
+      command: sh .circleci/install_postgres_client.sh
+  - &db_setup
+    run:
+      name: Setup Test Database
+      command: |
+        bundle exec rails db:create --trace
+        bundle exec rails db:schema:load --trace
+  - &db_migrate
+    run:
+      name: Migrate DB Setup
+      command: bundle exec rails db:migrate --trace
   - &ensure_bundler_version
     run:
       name: Upgrade Bundler
@@ -139,9 +159,13 @@ jobs:
     docker:
       - *ruby_docker
       - *redis_docker
+      - *postgres_docker
     steps:
       - *attach
       - *ensure_bundler_version
+      - *db_client
+      - *db_setup
+      - *db_migrate
       - run:
           name: Rspec
           command: bundle exec rspec spec -f d

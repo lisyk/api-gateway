@@ -13,30 +13,11 @@ module Wellness
     end
 
     def constructor_mapper
-      { 'species' => species_modifier_rule,
-        'age_group' => age_group_modifier_rule,
-        'sex' => sex_modifier_rule }
+      DbService::FieldMapping.wellness_plans.need_translation
     end
 
     def origin_plans
       api_request
-    end
-
-    # custom attribute modifier rules
-    # # TODO: implememt rule that modify VCP species (1,2...) to VIP
-    def species_modifier_rule
-      'species'
-    end
-
-    # custom attribute modifier rules
-    # TODO: implememt rule that modify VCP age group to VIP
-    def age_group_modifier_rule
-      nil
-    end
-
-    # custom attribute modifier rules
-    def sex_modifier_rule
-      nil
     end
   end
 end
