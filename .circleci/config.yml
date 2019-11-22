@@ -64,6 +64,10 @@ setup_steps:
     run:
       name: Migrate DB Setup
       command: bundle exec rails db:migrate --trace
+  - &db_seed
+    run:
+      name: Seed Test Database
+      command: bundle exec rails db:seed --trace
   - &ensure_bundler_version
     run:
       name: Upgrade Bundler
