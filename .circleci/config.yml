@@ -166,6 +166,7 @@ jobs:
       - *db_client
       - *db_setup
       - *db_migrate
+      - *db_seed
       - run:
           name: Rspec
           command: bundle exec rspec spec -f d
