@@ -11,7 +11,7 @@ module Wellness
     let(:constructor_mapper) { double }
     let(:vip_field) { OpenStruct.new(field_name: 'age_group') }
     let(:partner_mapping_object) { [OpenStruct.new(vip_field: vip_field)] }
-    subject { Constructors::PlanConstructor.new(plans_sample, constructor_mapper) }
+    subject { Constructors::PlanConstructor.new(plans_sample, constructor_mapper, {}) }
     describe '#modify' do
       before do
         allow(constructor_mapper).to receive(:plan_mapping) { partner_mapping_object }

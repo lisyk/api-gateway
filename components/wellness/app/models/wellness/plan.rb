@@ -7,8 +7,8 @@ module Wellness
   class Plan < Connect
     include Concerns::RequestConcern
 
-    def plans_mapping
-      constructor = Constructors::PlanConstructor.new(origin_plans, constructor_mapper)
+    def plans_mapping(params)
+      constructor = Constructors::PlanConstructor.new(origin_plans, constructor_mapper, params)
       constructor.modify
     end
 
