@@ -58,6 +58,7 @@ setup_steps:
     run:
       name: Setup Test Database
       command: |
+        cp db/base_schema.rb db/schema.rb
         bundle exec rails db:create --trace
         bundle exec rails db:schema:load --trace
   - &db_migrate
