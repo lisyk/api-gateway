@@ -32,6 +32,8 @@ module Wellness
 
       def update_plan(plan)
         plan.keys.each do |key|
+          next if !constructor_mapper.plan_mapping(key)
+
           field_to_replace = constructor_mapper.plan_mapping(key).first
           next unless field_to_replace
 
@@ -74,10 +76,11 @@ module Wellness
         return false if @age.nil?
 
         age_in_years = convert_age
-        group = 1
-        age_groups.keys.each do |key|
-          group = key.to_i if age_in_years >= age_groups[key]
-        end
+        # group = 1
+        # age_groups.keys.each do |key|
+        #   group = key.to_i if age_in_years >= age_groups[key]
+        # end
+        group = age_groups.select { |_k, v| v <= age_in_years }.max.first.to_i
 
         return true if plan['ageGroup'].present? && plan['ageGroup'] % 10 != group
 
@@ -108,12 +111,12 @@ module Wellness
       end
 
       def convert_age
+        return @age if @age.is_a? Numeric
+
         if @age.include?(':')
           ((DateTime.current - @age.to_datetime) / 364).floor
-        elsif @age.match?(/[YyMm]/)
-          parse_age_string
         else
-          @age.to_i
+          parse_age_string
         end
       end
 
@@ -121,7 +124,7 @@ module Wellness
         age_years = @age.scan(/\d+(?=[Yy])/).first.to_i || 0
         age_months = @age.scan(/\d+(?=[Mm])/).first.to_i || 0
 
-        age_years + (age_months / 12).floor
+        [@age.to_i, age_years + (age_months / 12).floor].max
       end
     end
   end
