@@ -55,21 +55,21 @@ module Wellness
 
         is_sellable = is_sellable.downcase == 'true'
 
-        return true if plan['planStatus'] != 'A' || expired_or_early(plan) && is_sellable
-        return true if plan['planStatus'] == 'A' || !expired_or_early(plan) && !is_sellable
-
-        false
+        if is_sellable
+          !plan_active?(plan) || expired_or_early?(plan)
+        else
+          plan_active?(plan) && !expired_or_early?(plan)
+        end
       end
 
       def filter_species(species, plan)
         return false if species.nil?
 
         species = species.split(',')
-        filter = true
         species.each do |code|
-          filter = false if plan['species'].present? && plan['species'] == code.to_i
+          return false if plan['species'].present? && plan['species'] == code.to_i
         end
-        filter
+        true
       end
 
       def filter_age(age, plan)
@@ -103,11 +103,15 @@ module Wellness
 
       private
 
-      def expired_or_early(plan)
-        expired = DateTime.current > plan['planEffectiveDate'].to_datetime
-        early = DateTime.current < plan['planExpirationDate'].to_datetime
+      def expired_or_early?(plan)
+        expired = DateTime.current > plan['planExpirationDate'].to_datetime
+        early = DateTime.current < plan['planEffectiveDate'].to_datetime
 
         expired || early
+      end
+
+      def plan_active?(plan)
+        plan['planStatus'] == 'A'
       end
 
       def age_groups
