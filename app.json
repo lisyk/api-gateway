@@ -1,55 +1,15 @@
 {
   "addons": [
     "airbrake",
-    "papertrail",
-    "redis"
+    "heroku-postgresql:hobby-dev",
+    "heroku-redis",
+    "papertrail"
   ],
   "buildpacks": [
     {
       "url": "heroku/ruby"
     }
   ],
-  "env": {
-    "GATEWAY_USERNAME": {
-      "required": true
-    },
-    "GATEWAY_PASSWORD": {
-      "required": true
-    },
-    "JWT_TOKEN_EXPIRATION_IN_HOURS": {
-      "required": true
-    },
-    "WELLNESS_VCP_PASSWORD": {
-      "required": true
-    },
-    "WELLNESS_VCP_USERNAME": {
-      "required": true
-    },
-    "LANG": {
-      "required": true
-    },
-    "RACK_ENV": {
-      "required": true
-    },
-    "RAILS_ENV": {
-      "required": true
-    },
-    "RAILS_LOG_TO_STDOUT": {
-      "required": true
-    },
-    "RAILS_MAX_THREADS": {
-      "required": true
-    },
-    "RAILS_SERVE_STATIC_FILES": {
-      "required": true
-    },
-    "SECRET_KEY_BASE": {
-      "required": true
-    },
-    "WEB_CONCURRENCY": {
-      "required": true
-    }
-  },
   "formation": {
     "web": {
       "quantity": 1
@@ -57,6 +17,7 @@
   },
   "name": "api-gateway",
   "scripts": {
+    "postdeploy": "bash config/heroku/heroku_review_app_postdeploy.sh"
   },
   "stack": "heroku-18"
 }

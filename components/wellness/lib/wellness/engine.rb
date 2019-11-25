@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'dotenv-rails'
+require 'dotenv-rails' unless %w[staging production].include?(ENV['RAILS_ENV'])
 
 module Wellness
   class Engine < ::Rails::Engine
@@ -12,6 +12,6 @@ module Wellness
       g.test_framework :rspec
     end
 
-    Dotenv::Railtie.load
+    Dotenv::Railtie.load if defined? Dotenv
   end
 end

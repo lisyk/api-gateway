@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Wellness
+module DbService
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
   end

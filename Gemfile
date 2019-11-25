@@ -19,6 +19,9 @@ gem 'puma', '~> 3.11'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Use postgresql as the database for Active Record
+gem 'pg', '>= 0.18', '< 2.0'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
@@ -44,6 +47,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'rubocop', '~> 0.74.0', require: false
   gem 'rubocop-rails'
+  gem 'shoulda-matchers'
 end
 
 group :development do
@@ -59,4 +63,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #####  API JWT Authentication ##########
 gem 'jwt'
 
+#####  API Gateway Engines #############
+# Wellness Plans Engine
 gem 'wellness', path: 'components/wellness'
+
+# Database service engine. common Api Gateway ActiveRecord Models
+gem 'db_service', path: 'components/db_service'
+
+#######################################
