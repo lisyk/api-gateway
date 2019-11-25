@@ -8,20 +8,18 @@ module Wellness
       def initialize(plans, constructor_mapper, params)
         @plans = plans
         @constructor_mapper = constructor_mapper
-        @params = params
+        @clinic_location_id = params[:clinic_location_id]
+        @is_sellable = params[:is_sellable]
+        @species = params[:species]
+        @age = params[:age]
       end
 
       def filter_plan?(plan)
-        clinic_location_id = @params[:clinic_location_id]
-        is_sellable = @params[:is_sellable]
-        species = @params[:species]
-        age = @params[:age]
-
         [
-          filter_clinic_location(clinic_location_id, plan),
-          filter_sellable(is_sellable, plan),
-          filter_species(species, plan),
-          filter_age(age, plan)
+          filter_clinic_location(plan),
+          filter_sellable(plan),
+          filter_species(plan),
+          filter_age(plan)
         ].any?(true)
       end
 
@@ -43,17 +41,17 @@ module Wellness
         plan
       end
 
-      def filter_clinic_location(clinic_location_id, _plan)
-        return false if clinic_location_id.nil?
+      def filter_clinic_location(_plan)
+        return false if @clinic_location_id.nil?
 
         # TODO: Implement clinic location filtering
         # See VCP documentation for requirements around externalLocationCD
       end
 
-      def filter_sellable(is_sellable, plan)
-        return false if is_sellable.nil?
+      def filter_sellable(plan)
+        return false if @is_sellable.nil?
 
-        is_sellable = is_sellable.downcase == 'true'
+        is_sellable = @is_sellable.downcase == 'true'
 
         if is_sellable
           !plan_active?(plan) || expired_or_early?(plan)
@@ -62,35 +60,20 @@ module Wellness
         end
       end
 
-      def filter_species(species, plan)
-        return false if species.nil?
+      def filter_species(plan)
+        return false if @species.nil?
 
-        species = species.split(',')
-        species.each do |code|
+        species_codes = @species.split(',')
+        species_codes.each do |code|
           return false if plan['species'].present? && plan['species'] == code.to_i
         end
         true
       end
 
-      def filter_age(age, plan)
-        return false if age.nil?
+      def filter_age(plan)
+        return false if @age.nil?
 
-        begin
-          birthdate = age.to_datetime
-          age_in_years = ((DateTime.current - birthdate) / 364).floor
-        rescue StandardError
-          birthdate = nil
-        end
-
-        if birthdate.nil? && age.is_a?(String)
-          age_years = age.scan(/\d+(?=[Yy])/).first.to_i || 0
-          age_months = age.scan(/\d+(?=[Mm])/).first.to_i || 0
-
-          age_in_years = age_years + (age_months / 12).floor
-        end
-
-        return false if age_in_years.negative?
-
+        age_in_years = convert_age
         group = 1
         age_groups.keys.each do |key|
           group = key.to_i if age_in_years >= age_groups[key]
@@ -122,6 +105,23 @@ module Wellness
           '3' => 3,
           '4' => 7
         }
+      end
+
+      def convert_age
+        if @age.include?(':')
+          ((DateTime.current - @age.to_datetime) / 364).floor
+        elsif @age.match?(/[YyMm]/)
+          parse_age_string
+        else
+          @age.to_i
+        end
+      end
+
+      def parse_age_string
+        age_years = @age.scan(/\d+(?=[Yy])/).first.to_i || 0
+        age_months = @age.scan(/\d+(?=[Mm])/).first.to_i || 0
+
+        age_years + (age_months / 12).floor
       end
     end
   end
