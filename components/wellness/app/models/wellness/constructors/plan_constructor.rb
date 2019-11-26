@@ -2,7 +2,7 @@
 
 module Wellness
   module Constructors
-    class PlanConstructor < Wellness::Constructors::Constructor
+    class PlanConstructor < ResponseLogger
       attr_reader :plans, :constructor_mapper
 
       def initialize(plans, constructor_mapper)
