@@ -4,7 +4,7 @@ module Wellness
   module Constructors
     class ResponseLogger
       def log_original_response(response)
-        Rails.logger.info({'Original Response:' => response}.to_json)
+        Rails.logger.info({ 'Original Response:' => response }.to_json)
       end
     end
   end
