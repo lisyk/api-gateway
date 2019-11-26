@@ -24,6 +24,7 @@ module Wellness
         before do
           allow(constructor_mapper).to receive(:plan_mapping) { nil }
         end
+        let(:clinic_params) { { clinic_location_id: '010265' } }
         let(:sellable_params) { { is_sellable: 'true' } }
         let(:not_sellable_params) { { is_sellable: 'false' } }
         let(:single_species_params) { { species: '1' } }
@@ -35,6 +36,14 @@ module Wellness
             '3' => 3,
             '4' => 7
           }
+        end
+        context 'by clinic location id' do
+          it 'returns plans filtered by clinic' do
+            filter = Constructors::PlanConstructor.new(plans_sample, constructor_mapper, clinic_params)
+            filter.modify.each do |item|
+              expect(item['location']['externalLocationCd']).to eq clinic_params[:clinic_location_id]
+            end
+          end
         end
         context 'by sellable' do
           it 'returns plans filtered by sellable' do
@@ -92,6 +101,18 @@ module Wellness
             filter.modify.each do |item|
               expect(item['ageGroup'] % 10).to eq age_group
             end
+          end
+        end
+        context 'by multiple params' do
+          it 'returns plans filtered by options' do
+            all_params = {
+              clinic_location_id: ['010265', '010264'].sample,
+              age: rand(10),
+              is_sellable: ['true', 'false'].sample,
+              species: ['1', '2', '1,2'].sample
+            }
+            filter = Constructors::PlanConstructor.new(plans_sample, constructor_mapper, all_params)
+            expect { filter.modify }.not_to raise_error
           end
         end
       end

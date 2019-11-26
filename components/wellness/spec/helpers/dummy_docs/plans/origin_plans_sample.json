@@ -7,7 +7,9 @@
     "displayOrder": 10,
     "externalPlanCd": "10001",
     "lastUpdated": "2019-02-18T17:59:22Z",
-    "location": {},
+    "location": {
+      "externalLocationCd": "010264"
+    },
     "locationId": 5426720,
     "longDescription": "<b>The Adult Dog Wellness Plan Includes:</b><div><div><ul><li>2 Complete Physical Exams</li><li>Core Vaccination Series as Recommended by Your Veterinarian - May Include 5-in-1 (DAP/Parvo), Lepto 4, Bordetella and Rabies</li><li>Fecal Test</li><li>Deworming Treatment - Roundworms and Hookworms</li><li>Heartworm/Lyme Combo Test</li><li>Vet Screen and CBC</li></ul></div><div><div><b>Optional Services Include:</b></div></div></div><div><ul><li>Microchip I.D. and Registration<br></li></ul></div>",
     "paidInFullDiscountAmt": 0,
@@ -33,7 +35,9 @@
     "displayOrder": 20,
     "externalPlanCd": "10002",
     "lastUpdated": "2019-02-18T18:20:12Z",
-    "location": {},
+    "location": {
+      "externalLocationCd": "010264"
+    },
     "locationId": 5426720,
     "longDescription": "<b>The Adult Dog Wellness Plan Includes:</b><div><div><ul><li>2 Complete Physical Exams</li><li>Core Vaccination Series as Recommended by Your Veterinarian - May Include 5-in-1 (DAP/Parvo), Lepto 4, Bordetella and Rabies</li><li>Fecal Test</li><li>Deworming Treatment - Roundworms and Hookworms</li><li>Heartworm/Lyme Combo Test</li><li>Vet Screen and CBC</li></ul></div><div><div><b>Optional Services Include:</b></div></div></div><div><ul><li>Microchip I.D. and Registration<br></li></ul></div>",
     "paidInFullDiscountAmt": 0,
@@ -59,7 +63,9 @@
     "displayOrder": 30,
     "externalPlanCd": "10003",
     "lastUpdated": "2019-02-01T17:24:50Z",
-    "location": {},
+    "location": {
+      "externalLocationCd": "010264"
+    },
     "locationId": 5426720,
     "longDescription": "<b>The Senior Dog Wellness Plan Includes:</b><div><div><ul><li>2 Complete Physical Exams</li><li>Core Vaccination Series as Recommended by Your Veterinarian - May Include 5-in-1 (DAP/Parvo), Lepto 4, Bordetella and Rabies</li><li>Fecal Test</li><li>Deworming Treatment - Roundworms and Hookworms</li><li>Heartworm/Lyme Combo Test</li><li>Senior Profile Screen</li></ul></div><div><div><b>Optional Services Include:</b></div></div></div><div><ul><li>Microchip I.D. and Registration</li></ul></div>",
     "paidInFullDiscountAmt": 0,
@@ -85,7 +91,9 @@
     "displayOrder": 40,
     "externalPlanCd": "20001",
     "lastUpdated": "2019-02-01T17:25:03Z",
-    "location": {},
+    "location": {
+      "externalLocationCd": "010264"
+    },
     "locationId": 5426720,
     "longDescription": "<b>The Adult Cat Wellness Plan Includes:</b><div><div><ul><li>2 Complete Physical Exams</li><li>Core Vaccination Series as Recommended by Your Veterinarian - May Include 3-in-1 Distemper (FVRCP) and Purevax Rabies</li><li>2 Fecal Tests</li><li>2 Deworming Treatments - Roundworms and Hookworms</li><li>Vet Screen and CBC</li></ul></div><div><div><b>Optional Services Include:</b></div></div></div><div><ul><li>Microchip I.D. and Registration</li><li>Feline Leukemia Vaccination</li></ul></div>",
     "paidInFullDiscountAmt": 0,
@@ -111,7 +119,9 @@
     "displayOrder": 50,
     "externalPlanCd": "20002",
     "lastUpdated": "2019-02-01T17:25:13Z",
-    "location": {},
+    "location": {
+      "externalLocationCd": "010264"
+    },
     "locationId": 5426720,
     "longDescription": "<b>The Adult Cat Wellness Plan Includes:</b><div><div><ul><li>2 Complete Physical Exams</li><li>Core Vaccination Series as Recommended by Your Veterinarian - May Include 3-in-1 Distemper (FVRCP) and Purevax Rabies</li><li>2 Fecal Tests</li><li>2 Deworming Treatments - Roundworms and Hookworms</li><li>Vet Screen and CBC</li></ul></div><div><div><b>Optional Services Include:</b></div></div></div><div><ul><li>Microchip I.D. and Registration</li><li>Feline Leukemia Vaccination</li></ul></div>",
     "paidInFullDiscountAmt": 0,
@@ -137,7 +147,9 @@
     "displayOrder": 60,
     "externalPlanCd": "20003",
     "lastUpdated": "2019-02-11T20:10:44Z",
-    "location": {},
+    "location": {
+      "externalLocationCd": "010264"
+    },
     "locationId": 5426720,
     "longDescription": "<b>The Senior Cat Wellness Plan Includes:</b><div><div><ul><li>2 Complete Physical Exams</li><li>Core Vaccination Series as Recommended by Your Veterinarian - May Include 3-in-1 Distemper (FVRCP) and Purevax Rabies</li><li>2 Fecal Tests</li><li>2 Deworming Treatments - Roundworms and Hookworms</li><li>Senior Profile Screen</li></ul></div><div><b>Optional Services Include:</b></div></div><div><ul><li>Microchip I.D. and Registration</li><li>Feline Leukemia Vaccination</li></ul></div>",
     "paidInFullDiscountAmt": 0,
@@ -163,7 +175,9 @@
     "displayOrder": 10,
     "externalPlanCd": "10001",
     "lastUpdated": "2019-02-18T17:36:39Z",
-    "location": {},
+    "location": {
+      "externalLocationCd": "010265"
+    },
     "locationId": 5426720,
     "longDescription": "<b>The Adult Dog Wellness Plan Includes:</b><div><div><ul><li>2 Complete Physical Exams</li><li>Core Vaccination Series as Recommended by Your Veterinarian - May Include 5-in-1 (DAP/Parvo), Lepto 4, Bordetella and Rabies</li><li>Fecal Test</li><li>Deworming Treatment - Roundworms and Hookworms</li><li>Heartworm/Lyme Combo Test</li><li>Vet Screen and CBC</li></ul></div><div><div><b>Optional Services Include:</b></div></div></div><div><ul><li>Microchip I.D. and Registration<br></li></ul></div>",
     "paidInFullDiscountAmt": 0,
@@ -189,7 +203,9 @@
     "displayOrder": 10,
     "externalPlanCd": "10001",
     "lastUpdated": "2019-02-18T18:03:01Z",
-    "location": {},
+    "location": {
+      "externalLocationCd": "010265"
+    },
     "locationId": 5426720,
     "longDescription": "<b>The Adult Dog Wellness Plan Includes:</b><div><div><ul><li>2 Complete Physical Exams</li><li>Core Vaccination Series as Recommended by Your Veterinarian - May Include 5-in-1 (DAP/Parvo), Lepto 4, Bordetella and Rabies</li><li>Fecal Test</li><li>Deworming Treatment - Roundworms and Hookworms</li><li>Heartworm/Lyme Combo Test</li><li>Vet Screen and CBC</li></ul></div><div><div><b>Optional Services Include:</b></div></div></div><div><ul><li>Microchip I.D. and Registration<br></li></ul></div>",
     "paidInFullDiscountAmt": 0,
@@ -215,7 +231,9 @@
     "displayOrder": 10,
     "externalPlanCd": "10001",
     "lastUpdated": "2019-02-18T18:20:12Z",
-    "location": {},
+    "location": {
+      "externalLocationCd": "010265"
+    },
     "locationId": 5426720,
     "longDescription": "<b>The Adult Dog Wellness Plan Includes:</b><div><div><ul><li>2 Complete Physical Exams</li><li>Core Vaccination Series as Recommended by Your Veterinarian - May Include 5-in-1 (DAP/Parvo), Lepto 4, Bordetella and Rabies</li><li>Fecal Test</li><li>Deworming Treatment - Roundworms and Hookworms</li><li>Heartworm/Lyme Combo Test</li><li>Vet Screen and CBC</li></ul></div><div><div><b>Optional Services Include:</b></div></div></div><div><ul><li>Microchip I.D. and Registration<br></li></ul></div>",
     "paidInFullDiscountAmt": 0,
@@ -241,7 +259,9 @@
     "displayOrder": 10,
     "externalPlanCd": "10001",
     "lastUpdated": "2019-02-18T18:20:12Z",
-    "location": {},
+    "location": {
+      "externalLocationCd": "010265"
+    },
     "locationId": 5426720,
     "longDescription": "<b>The Adult Dog Wellness Plan Includes:</b><div><div><ul><li>2 Complete Physical Exams</li><li>Core Vaccination Series as Recommended by Your Veterinarian - May Include 5-in-1 (DAP/Parvo), Lepto 4, Bordetella and Rabies</li><li>Fecal Test</li><li>Deworming Treatment - Roundworms and Hookworms</li><li>Heartworm/Lyme Combo Test</li><li>Vet Screen and CBC</li></ul></div><div><div><b>Optional Services Include:</b></div></div></div><div><ul><li>Microchip I.D. and Registration<br></li></ul></div>",
     "paidInFullDiscountAmt": 0,
@@ -267,7 +287,9 @@
     "displayOrder": 10,
     "externalPlanCd": "10001",
     "lastUpdated": "2019-02-18T18:20:12Z",
-    "location": {},
+    "location": {
+      "externalLocationCd": "010265"
+    },
     "locationId": 5426720,
     "longDescription": "<b>The Adult Dog Wellness Plan Includes:</b><div><div><ul><li>2 Complete Physical Exams</li><li>Core Vaccination Series as Recommended by Your Veterinarian - May Include 5-in-1 (DAP/Parvo), Lepto 4, Bordetella and Rabies</li><li>Fecal Test</li><li>Deworming Treatment - Roundworms and Hookworms</li><li>Heartworm/Lyme Combo Test</li><li>Vet Screen and CBC</li></ul></div><div><div><b>Optional Services Include:</b></div></div></div><div><ul><li>Microchip I.D. and Registration<br></li></ul></div>",
     "paidInFullDiscountAmt": 0,

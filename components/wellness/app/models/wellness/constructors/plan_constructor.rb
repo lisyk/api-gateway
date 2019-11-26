@@ -43,11 +43,12 @@ module Wellness
         plan
       end
 
-      def filter_clinic_location(_plan)
+      def filter_clinic_location(plan)
         return false if @clinic_location_id.nil?
 
-        # TODO: Implement clinic location filtering
-        # See VCP documentation for requirements around externalLocationCD
+        return true if plan['location']['externalLocationCd'] != @clinic_location_id
+
+        false
       end
 
       def filter_sellable(plan)
@@ -76,10 +77,6 @@ module Wellness
         return false if @age.nil?
 
         age_in_years = convert_age
-        # group = 1
-        # age_groups.keys.each do |key|
-        #   group = key.to_i if age_in_years >= age_groups[key]
-        # end
         group = age_groups.select { |_k, v| v <= age_in_years }.max.first.to_i
 
         return true if plan['ageGroup'].present? && plan['ageGroup'] % 10 != group
