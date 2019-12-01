@@ -2,6 +2,9 @@
 
 module Wellness
   class ContractApplicationsController < Wellness::ApplicationController
+    after_action :retain_id_link, only: :create
+    before_action :get_pet_id, only: :create
+
     def index
       @applications ||= contract_apps
       if @applications.present?
@@ -47,6 +50,18 @@ module Wellness
     def contract_apps(params = {})
       contract_app = ContractApplication.new(controller_name, action_name, params)
       contract_app.api_request
+    end
+
+    def retain_id_link
+      DbEngineInteractor.call(pet_id: @pet_id, contract_app_id: contract_app_id)
+    end
+
+    def contract_app_id
+      JSON.parse(response.body)["id"]
+    end
+
+    def get_pet_id
+      @pet_id = params["pet"]["id"]
     end
 
     def post_apps(request)

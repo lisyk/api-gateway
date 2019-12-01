@@ -223,6 +223,14 @@
               }
             }
           },
+          "pet": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              }
+            }
+          },
           "externalLocationCd": {
             "type": "integer",
             "nullable": true
