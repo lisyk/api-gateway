@@ -4,7 +4,6 @@ module Wellness
   class ContractApplicationsController < Wellness::ApplicationController
     after_action :retain_id_link, only: :create
     before_action :pet_id, only: :create
-
     before_action :validate_request, only: %i[create update]
 
     def index
