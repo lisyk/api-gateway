@@ -33,6 +33,10 @@ module Api
       def token
         @token ||= request.headers.fetch('Authorization', '').split(' ').last
       end
+
+      def json_schema_path
+        Rails.root.join('swagger/request_schemas/vcp/').to_s
+      end
     end
   end
 end

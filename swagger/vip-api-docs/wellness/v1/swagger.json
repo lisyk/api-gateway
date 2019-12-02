@@ -15,6 +15,17 @@
       }
     },
     "schemas": {
+      "plan_list": {
+        "type": "object",
+        "properties": {
+          "plans": {
+            "type": "array",
+            "items": {
+              "$ref": "#components/schemas/plan"
+            }
+          }
+        }
+      },
       "plan": {
         "type": "object",
         "properties": {
@@ -68,39 +79,37 @@
                   "type": "integer"
                 },
                 "offeredService": {
-                  "type": "array",
-                  "items": {
-                    "properties": {
-                      "id": {
-                        "type": "integer"
-                      },
-                      "shortDescription": {
-                        "type": "string"
-                      }
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "shortDescription": {
+                      "type": "string"
                     }
                   }
                 },
                 "plan": {
-                  "type": "array",
-                  "items": {
-                    "properties": {
-                      "id": {
-                        "type": "integer"
-                      },
-                      "shortDescription": {
-                        "type": "string"
-                      }
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "shortDescription": {
+                      "type": "string"
                     }
                   }
                 },
                 "cost": {
-                  "type": "number"
+                  "type": "number",
+                  "nullable": true
                 },
                 "dateCreated": {
                   "type": "string"
                 },
                 "discountPercent": {
-                  "type": "number"
+                  "type": "number",
+                  "nullable": true
                 },
                 "discountedPrice": {
                   "type": "number"
@@ -112,16 +121,19 @@
                   "type": "boolean"
                 },
                 "externalPlanCd": {
-                  "type": "string"
+                  "type": "string",
+                  "nullable": true
                 },
                 "lastUpdated": {
                   "type": "string"
                 },
                 "offeredServiceId": {
-                  "type": "integer"
+                  "type": "integer",
+                  "nullable": true
                 },
                 "performancePayPrice": {
-                  "type": "number"
+                  "type": "number",
+                  "nullable": true
                 },
                 "planEffectiveDate": {
                   "type": "string"
@@ -142,16 +154,18 @@
                   "type": "number"
                 },
                 "serviceType": {
-                  "type": "number"
+                  "type": "string"
                 },
                 "totalDisccountedPrice": {
                   "type": "number"
                 },
                 "totalRevenue": {
-                  "type": "number"
+                  "type": "number",
+                  "nullable": true
                 },
                 "totalTrueCost": {
-                  "type": "number"
+                  "type": "number",
+                  "nullable": true
                 }
               }
             }
@@ -169,7 +183,7 @@
             "type": "number"
           },
           "renewalPlan": {
-            "type": "array",
+            "type": "object",
             "items": {
               "properties": {
                 "_ref": {
@@ -371,6 +385,17 @@
             "type": "array",
             "items": {
               "type": "object"
+            }
+          }
+        }
+      },
+      "service_list": {
+        "type": "object",
+        "properties": {
+          "services": {
+            "type": "array",
+            "items": {
+              "$ref": "#components/schemas/service"
             }
           }
         }
@@ -692,7 +717,7 @@
         },
         "responses": {
           "200": {
-            "description": "Update an existing contract application",
+            "description": "Create a new contract application",
             "content": {
               "application/json": {
                 "schema": {
@@ -723,7 +748,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/service"
+                  "$ref": "#/components/schemas/service_list"
                 }
               }
             }
@@ -783,11 +808,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Retrieve list of valid plans",
+            "description": "Retrieve List of valid plans",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/plan"
+                  "$ref": "#/components/schemas/plan_list"
                 }
               }
             }

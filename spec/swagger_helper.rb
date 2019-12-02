@@ -69,6 +69,12 @@ RSpec.configure do |config|
           }
         },
         schemas: {
+          plan_list: {
+            type: :object,
+            properties: {
+              plans: { type: :array, items: { '$ref' => '#components/schemas/plan' } }
+            }
+          },
           plan: {
             type: :object,
             properties: {
@@ -92,43 +98,39 @@ RSpec.configure do |config|
                   properties: {
                     id: { type: :integer },
                     offeredService: {
-                      type: :array,
-                      items: {
-                        properties: {
-                          id: { type: :integer },
-                          shortDescription: { type: :string }
-                        }
+                      type: :object,
+                      properties: {
+                        id: { type: :integer },
+                        shortDescription: { type: :string }
                       }
                     },
                     plan: {
-                      type: :array,
-                      items: {
-                        properties: {
-                          id: { type: :integer },
-                          shortDescription: { type: :string }
-                        }
+                      type: :object,
+                      properties: {
+                        id: { type: :integer },
+                        shortDescription: { type: :string }
                       }
                     },
-                    cost: { type: :number },
+                    cost: { type: :number, nullable: true },
                     dateCreated: { type: :string },
-                    discountPercent: { type: :number },
+                    discountPercent: { type: :number, nullable: true },
                     discountedPrice: { type: :number },
                     displayOrder: { type: :integer },
                     doNotRenew: { type: :boolean },
-                    externalPlanCd: { type: :string },
+                    externalPlanCd: { type: :string, nullable: true },
                     lastUpdated: { type: :string },
-                    offeredServiceId: { type: :integer },
-                    performancePayPrice: { type: :number },
+                    offeredServiceId: { type: :integer, nullable: true },
+                    performancePayPrice: { type: :number, nullable: true },
                     planEffectiveDate: { type: :string },
                     planExpirationDate: { type: :string },
                     planId: { type: :integer },
                     quantity: { type: :integer },
                     retailPrice: { type: :integer },
                     revenuePerUnit: { type: :number },
-                    serviceType: { type: :number },
+                    serviceType: { type: :string },
                     totalDisccountedPrice: { type: :number },
-                    totalRevenue: { type: :number },
-                    totalTrueCost: { type: :number }
+                    totalRevenue: { type: :number, nullable: true },
+                    totalTrueCost: { type: :number, nullable: true }
                   }
                 }
               },
@@ -137,7 +139,7 @@ RSpec.configure do |config|
               productSubType: { type: :string },
               recurringPaymentAmt: { type: :number },
               renewalPlan: {
-                type: :array,
+                type: :object,
                 items: {
                   properties: {
                     _ref: { type: :string },
@@ -230,6 +232,12 @@ RSpec.configure do |config|
                 type: :array,
                 items: { type: :object }
               }
+            }
+          },
+          service_list: {
+            type: :object,
+            properties: {
+              services: { type: :array, items: { '$ref' => '#components/schemas/service' } }
             }
           },
           service: {

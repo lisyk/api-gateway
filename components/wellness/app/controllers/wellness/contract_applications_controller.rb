@@ -2,6 +2,8 @@
 
 module Wellness
   class ContractApplicationsController < Wellness::ApplicationController
+    before_action :validate_request, only: %i[create update]
+
     def index
       @applications ||= contract_apps
       if @applications.present?

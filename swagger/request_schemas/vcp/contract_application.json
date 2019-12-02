@@ -1,0 +1,413 @@
+{
+  "contract_application": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "plan": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "shortDescription": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "primaryCareProfessional": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        }
+      },
+      "initiatedByProfessional": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        }
+      },
+      "accountNbrForDisplay": {
+        "type": "string",
+        "maxLength": 4
+      },
+      "address1": {
+        "type": "string",
+        "maxLength": 30
+      },
+      "address2": {
+        "type": "string",
+        "maxLength": 30
+      },
+      "ageGroupId": {
+        "type": "integer"
+      },
+      "bankAccountHolderType": {
+        "type": "string"
+      },
+      "bankAccountType": {
+        "type": "string"
+      },
+      "bankRoutingNbr": {
+        "type": "string"
+      },
+      "chargeCreditCheckFeeToConsumer": {
+        "type": "boolean"
+      },
+      "chargePaymentFeeToConsumer": {
+        "type": "boolean"
+      },
+      "checkNbr": {
+        "type": "string"
+      },
+      "city": {
+        "type": "string",
+        "maxLength": 19
+      },
+      "contractDocCreated": {
+        "type": "boolean"
+      },
+      "contractType": {
+        "type": "integer"
+      },
+      "country": {
+        "type": "string",
+        "maxLength": 20
+      },
+      "createdByExternalUserCd": {
+        "type": "string"
+      },
+      "creditCheckFeeAmt": {
+        "type": "integer"
+      },
+      "dateCreated": {
+        "type": "string"
+      },
+      "downPaymentAmount": {
+        "type": "integer"
+      },
+      "email": {
+        "type": "string",
+        "maxLength": 60
+      },
+      "expirationMonth": {
+        "type": "integer, null",
+        "minLength": 1,
+        "maxLength": 12
+      },
+      "expirationYear": {
+        "type": "number, null",
+        "minLength": 2000,
+        "maxLength": 3000
+      },
+      "externalClientCd": {
+        "type": "string",
+        "maxLength": 16
+      },
+      "externalLocationCd": {
+        "type": "string",
+        "maxLength": 20
+      },
+      "externalMemberCd": {
+        "type": "string",
+        "maxLength": 20
+      },
+      "externalPaymentProfileId": {
+        "type": "string"
+      },
+      "externalPlanCd": {
+        "type": "string"
+      },
+      "firstBillingDate": {
+        "type": "string"
+      },
+      "firstName": {
+        "type": "string",
+        "maxLength": 20
+      },
+      "gatewayVaultId": {
+        "type": "string"
+      },
+      "gender": {
+        "type": "string"
+      },
+      "initialPaymentOption": {
+        "type": "integer"
+      },
+      "initiatedByProfessionalCd": {
+        "type": "string"
+      },
+      "initiatedByProfessionalId": {
+        "type": "integer"
+      },
+      "institutionName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string",
+        "maxLength": 30
+      },
+      "lastUpdated": {
+        "type": "string"
+      },
+      "location": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "accountCd": {
+            "type": "string"
+          },
+          "address1": {
+            "type": "string"
+          },
+          "address2": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "externalLocationCd": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "resellerCustomerId": {
+            "type": "integer"
+          },
+          "state": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "locationId": {
+        "type": "integer"
+      },
+      "memberAge": {
+        "type": "string"
+      },
+      "memberName": {
+        "type": "string"
+      },
+      "middleInitial": {
+        "type": "string",
+        "maxLength": 1
+      },
+      "optionalPlanServices": {
+        "type": "array",
+        "items": {}
+      },
+      "payMethod": {
+        "type": "string",
+        "maxLength": 4
+      },
+      "payOption": {
+        "type": "string",
+        "default": "C",
+        "maxLength": 3
+      },
+      "paymentAddress1": {
+        "type": "string"
+      },
+      "paymentAddress2": {
+        "type": "string"
+      },
+      "paymentAmount": {
+        "type": "number"
+      },
+      "paymentCity": {
+        "type": "string"
+      },
+      "paymentCountry": {
+        "type": "string"
+      },
+      "paymentName": {
+        "type": "string"
+      },
+      "paymentPostalCode": {
+        "type": "string"
+      },
+      "paymentServiceFeeAmt": {
+        "type": "integer"
+      },
+      "paymentState": {
+        "type": "string"
+      },
+      "paymentTermCycle": {
+        "type": "string"
+      },
+      "paymentTermDuration": {
+        "type": "integer"
+      },
+      "paymentaddressSameAsAccount": {
+        "type": "boolean",
+        "default": true
+      },
+      "phone1": {
+        "type": "string",
+        "maxLength": 20
+      },
+      "phone1Type": {
+        "type": "string",
+        "maxLength": 1
+      },
+      "phone2": {
+        "type": "string"
+      },
+      "phone2Type": {
+        "type": "string"
+      },
+      "planAmount": {
+        "type": "number"
+      },
+      "planId": {
+        "type": "integer"
+      },
+      "portalUsername": {
+        "type": "string",
+        "maxLength": 60
+      },
+      "postalCode": {
+        "type": "string",
+        "maxLength": 10
+      },
+      "primaryCareProfessionalCd": {
+        "type": "string"
+      },
+      "primaryCareProfessionalId": {
+        "type": "integer"
+      },
+      "salutation": {
+        "type": "string"
+      },
+      "securityCode": {
+        "type": "string"
+      },
+      "sendNotifications": {
+        "type": "boolean"
+      },
+      "setupFeeAmt": {
+        "type": "integer"
+      },
+      "speciesId": {
+        "type": "integer"
+      },
+      "state": {
+        "type": "string",
+        "maxLength": 2
+      },
+      "status": {
+        "type": "string"
+      },
+      "totalCostAmount": {
+        "type": "number"
+      },
+      "userId": {
+        "type": "integer"
+      }
+    }
+  },
+  "contract_applications_create": {
+    "$ref": "#contract_application",
+    "required": []
+  },
+  "contract_applications_update": {
+    "type": "object",
+    "properties": {
+      "allOf": [
+        {
+          "$ref": "#contract_application"
+        },
+        {
+          "required": [
+            "phone1",
+            "firstName",
+            "lastName",
+            "address1",
+            "city",
+            "state",
+            "postalCode",
+            "payMethod",
+            "accountNbrForDisplay",
+            "expirationMonth",
+            "expirationYear",
+            "paymentName"
+          ]
+        }
+      ],
+      "phone1": {
+        "minLength": 1
+      },
+      "firstName": {
+        "minLength": 1
+      },
+      "lastName": {
+        "minLength": 1
+      },
+      "address1": {
+        "minLength": 1
+      },
+      "city": {
+        "minLength": 1
+      },
+      "state": {
+        "minLength": 1
+      },
+      "postalCode": {
+        "minLength": 1
+      },
+      "payMethod": {
+        "minLength": 1
+      },
+      "accountNbrForDisplay": {
+        "minLength": 1
+      },
+      "expirationMonth": {
+        "minLength": 1
+      },
+      "expirationYear": {
+        "minLength": 1
+      },
+      "paymentName": {
+        "minLength": 1
+      }
+    }
+  }
+}
