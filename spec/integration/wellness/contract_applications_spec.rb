@@ -40,7 +40,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
                 id: 5_428_455
               },
               pet: {
-                  id: 223322
+                id: 223_322
               },
               externalLocationCd: '',
               externalPlanCd: '',

@@ -3,7 +3,7 @@
 module Wellness
   class ContractApplicationsController < Wellness::ApplicationController
     after_action :retain_id_link, only: :create
-    before_action :get_pet_id, only: :create
+    before_action :pet_id, only: :create
 
     def index
       @applications ||= contract_apps
@@ -57,11 +57,11 @@ module Wellness
     end
 
     def contract_app_id
-      JSON.parse(response.body)["id"]
+      JSON.parse(response.body)['id']
     end
 
-    def get_pet_id
-      @pet_id = params["pet"]["id"]
+    def pet_id
+      @pet_id = params['pet']['id']
     end
 
     def post_apps(request)

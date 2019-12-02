@@ -7,22 +7,22 @@ module Wellness
     describe 'singleton methods' do
       context 'call' do
         describe 'record exists' do
-          let(:fake_record) { OpenStruct.new() }
+          let(:fake_record) { OpenStruct.new }
           before do
             allow(DbEngineInteractor).to receive(:find_contract).and_return(fake_record)
-            allow(DbEngineInteractor).to receive(:update_record).and_return "record updated"
+            allow(DbEngineInteractor).to receive(:update_record).and_return 'record updated'
           end
-          it "updates existing record" do
-            expect(DbEngineInteractor.call(pet_id: "12355", contract_app_id: "2346")).to eq "record updated"
+          it 'updates existing record' do
+            expect(DbEngineInteractor.call(pet_id: '12355', contract_app_id: '2346')).to eq 'record updated'
           end
         end
         describe 'record does not exist' do
           before do
             allow(DbEngineInteractor).to receive(:find_contract).and_return false
-            allow(DbEngineInteractor).to receive(:create_record).and_return "record created"
+            allow(DbEngineInteractor).to receive(:create_record).and_return 'record created'
           end
-          it "updates existing record" do
-            expect(DbEngineInteractor.call(pet_id: "12355", contract_app_id: "2346")).to eq "record created"
+          it 'updates existing record' do
+            expect(DbEngineInteractor.call(pet_id: '12355', contract_app_id: '2346')).to eq 'record created'
           end
         end
       end
