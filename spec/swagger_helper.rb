@@ -78,29 +78,29 @@ RSpec.configure do |config|
           plan: {
             type: :object,
             properties: {
-              id: { type: :integer },
-              age_group: { type: :integer },
-              auto_renew: { type: :boolean },
-              planType: { type: :integer },
-              productSubType: { type: :string },
-              renewalPlanId: { type: :integer },
-              created_at: { type: :string },
-              sort_order: { type: :integer },
-              code: { type: :string },
-              updated_at: { type: :string },
-              long_description: { type: :string },
-              paid_in_full_discount: { type: :number },
-              payment_term: { type: :integer },
-              full_plan_price: { type: :number },
+              id: { type: :integer, example: 5_477_684 },
+              age_group: { type: :integer, example: 11 },
+              auto_renew: { type: :boolean, example: true },
+              created_at: { type: :string, example: '2019-02-18T18:20:12Z' },
+              sort_order: { type: :integer, example: 10 },
+              code: { type: :string, example: '10001' },
+              updated_at: { type: :string, example: '2019-02-18T18:20:12Z' },
+              long_description: {
+                type: :string,
+                example: '<b>The Puppy Wellness Plan Includes:</b><div><ul><li>3 Complete Physical Exams</li><li>Core Vaccination Series as Recommended by Your Veterinarian - Includes 5-in-1 (DAP/Parvo), Lepto 4, Bordetella and Rabies</li><li>2 Fecal Tests</li><li>2 Deworming Treatments - Roundworms and Hookworms</li><li>Microchip I.D. and Registration</li></ul><div><br></div></div><div><br></div>'
+              },
+              paid_in_full_discount: { type: :number, example: 0 },
+              payment_term: { type: :integer, example: 12 },
+              full_plan_price: { type: :number, example: 263.4 },
               plan_services: {
                 type: :array,
                 items: {
                   '$ref' => '#/components/schemas/service'
                 }
               },
-              recurring_plan_payment_total: { type: :number },
-              short_description: { type: :string },
-              species_id: { type: :integer }
+              recurring_plan_payment_total: { type: :number, example: 21.95 },
+              short_description: { type: :string, example: 'Puppy Wellness Plan' },
+              species_id: { type: :integer, example: 1 }
             }
           },
           contract_application_list: {
