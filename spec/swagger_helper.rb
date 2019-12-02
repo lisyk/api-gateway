@@ -78,38 +78,28 @@ RSpec.configure do |config|
           plan: {
             type: :object,
             properties: {
+              age_group: { type: :integer },
+              auto_renew: { type: :boolean },
               id: { type: :integer },
-              location: { type: :integer },
               planType: { type: :integer },
               productSubType: { type: :string },
               renewalPlanId: { type: :integer },
-              age_group: { type: :integer },
-              auto_renew: { type: :boolean },
               created_at: { type: :string },
               sort_order: { type: :integer },
               code: { type: :string },
               updated_at: { type: :string },
+              location: { type: :integer },
               long_description: { type: :string },
               paid_in_full_discount: { type: :number },
               payment_term: { type: :integer },
               full_plan_price: { type: :number },
-              plan_effective_date: { type: :string },
-              plan_expiration_date: { type: :string },
               plan_services: {
                 type: :array,
                 items: {
                   '$ref' => '#/components/schemas/service'
                 }
               },
-              is_active: { type: :string },
               recurring_plan_payment_total: { type: :number },
-              renewal_plan: {
-                type: :object,
-                  properties: {
-                    _ref: { type: :string },
-                    class: { type: :string }
-                  }
-              },
               short_description: { type: :string },
               species_id: { type: :integer }
             }
