@@ -79,77 +79,39 @@ RSpec.configure do |config|
             type: :object,
             properties: {
               id: { type: :integer },
-              version: { type: :integer },
-              ageGroup: { type: :integer },
-              autoRenew: { type: :boolean },
-              dateCreated: { type: :string },
-              displayOrder: { type: :integer },
-              externalPlanCd: { type: :string },
-              lastUpdated: { type: :string },
-              longDescription: { type: :string },
-              paidInFullDiscountAmt: { type: :number },
-              paymentTerm: { type: :integer },
-              planAmount: { type: :number },
-              planEffectiveDate: { type: :string },
-              planExpirationDate: { type: :string },
-              planServices: {
-                type: :array,
-                items: {
-                  properties: {
-                    id: { type: :integer },
-                    offeredService: {
-                      type: :object,
-                      properties: {
-                        id: { type: :integer },
-                        shortDescription: { type: :string }
-                      }
-                    },
-                    plan: {
-                      type: :object,
-                      properties: {
-                        id: { type: :integer },
-                        shortDescription: { type: :string }
-                      }
-                    },
-                    cost: { type: :number, nullable: true },
-                    dateCreated: { type: :string },
-                    discountPercent: { type: :number, nullable: true },
-                    discountedPrice: { type: :number },
-                    displayOrder: { type: :integer },
-                    doNotRenew: { type: :boolean },
-                    externalPlanCd: { type: :string, nullable: true },
-                    lastUpdated: { type: :string },
-                    offeredServiceId: { type: :integer, nullable: true },
-                    performancePayPrice: { type: :number, nullable: true },
-                    planEffectiveDate: { type: :string },
-                    planExpirationDate: { type: :string },
-                    planId: { type: :integer },
-                    quantity: { type: :integer },
-                    retailPrice: { type: :integer },
-                    revenuePerUnit: { type: :number },
-                    serviceType: { type: :string },
-                    totalDisccountedPrice: { type: :number },
-                    totalRevenue: { type: :number, nullable: true },
-                    totalTrueCost: { type: :number, nullable: true }
-                  }
-                }
-              },
-              planStatus: { type: :string },
+              location: { type: :integer },
               planType: { type: :integer },
               productSubType: { type: :string },
-              recurringPaymentAmt: { type: :number },
-              renewalPlan: {
-                type: :object,
+              renewalPlanId: { type: :integer },
+              age_group: { type: :integer },
+              auto_renew: { type: :boolean },
+              created_at: { type: :string },
+              sort_order: { type: :integer },
+              code: { type: :string },
+              updated_at: { type: :string },
+              long_description: { type: :string },
+              paid_in_full_discount: { type: :number },
+              payment_term: { type: :integer },
+              full_plan_price: { type: :number },
+              plan_effective_date: { type: :string },
+              plan_expiration_date: { type: :string },
+              plan_services: {
+                type: :array,
                 items: {
+                  '$ref' => '#/components/schemas/service'
+                }
+              },
+              is_active: { type: :string },
+              recurring_plan_payment_total: { type: :number },
+              renewal_plan: {
+                type: :object,
                   properties: {
                     _ref: { type: :string },
                     class: { type: :string }
                   }
-                }
               },
-              renewalPlanId: { type: :integer },
-              shortDescription: { type: :string },
-              species: { type: :integer }
+              short_description: { type: :string },
+              species_id: { type: :integer }
             }
           },
           contract_application_list: {
