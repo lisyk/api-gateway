@@ -19,6 +19,11 @@
 require 'redis'
 
 RSpec.configure do |config|
+  # Seed test DB with field mappings
+  config.before(:suite) do
+    Rails.application.load_seed
+  end
+
   # Dump redis test cache prior to running the test suite.
   config.before(:all) do
     db_params = { db: 0 }

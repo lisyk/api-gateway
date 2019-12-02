@@ -47,7 +47,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           schema '$ref' => '#/components/schemas/plan'
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:id) { '5428455' }
-          let(:agreement) {}
+          let(:plan) {}
           run_test!
         end
       end
