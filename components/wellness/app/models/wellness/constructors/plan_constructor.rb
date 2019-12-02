@@ -38,7 +38,7 @@ module Wellness
           renewalPlan
           planType
           productSubType
-          location
+          locationId
           planEffectiveDate
           planExpirationDate
           planStatus

@@ -4,6 +4,7 @@
   "dateCreated": "created_at",
   "displayOrder": "sort_order",
   "externalPlanCd": "code",
+  "id": "id",
   "lastUpdated": "updated_at",
   "locationId": "location",
   "longDescription": "long_description",
