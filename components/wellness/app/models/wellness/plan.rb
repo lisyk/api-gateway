@@ -8,6 +8,8 @@ module Wellness
     include Concerns::RequestConcern
 
     def plans_mapping(params)
+      return origin_plans if origin_plans.blank?
+
       constructor = Constructors::PlanConstructor.new(origin_plans, constructor_mapper, params)
       constructor.modify
     end

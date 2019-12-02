@@ -17,5 +17,6 @@
   "recurring_plan_payment_total": "decimal",
   "renewal_plan":  "integer",
   "short_description": "string",
-  "species_id": "integer"
+  "species_id": "integer",
+  "id": "integer"
 }

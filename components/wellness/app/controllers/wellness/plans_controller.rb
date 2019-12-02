@@ -26,7 +26,7 @@ module Wellness
 
     def fetch_plans(params)
       plans = Plan.new(controller_name, action_name, params)
-      params[:id].nil? ? plans.plans_mapping(params) : plans.origin_plans
+      plans.plans_mapping(params)
     end
 
     def plan_params

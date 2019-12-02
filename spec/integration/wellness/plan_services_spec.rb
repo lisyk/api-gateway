@@ -18,9 +18,9 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         end
 
         response '200', 'Retrieve list of plan services' do
-          schema '$ref' => '#/components/schemas/service'
           let(:Authorization) { " Authorization: Bearer #{token} " }
-          let(:plans) {}
+          let(:plan_services) {}
+          schema '$ref' => '#/components/schemas/service_list'
           run_test!
         end
       end

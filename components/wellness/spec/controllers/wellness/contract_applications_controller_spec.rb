@@ -125,6 +125,8 @@ module Wellness
     describe 'POST #create' do
       let(:application_sample_file) { File.read(File.expand_path('../../helpers/dummy_docs/contract_applications/post_contract_applications_sample.json', __dir__)) }
       let(:post_apps) { JSON.parse application_sample_file }
+      let(:existing_record) { OpenStruct.new(contract_app_id: '2222', pet_id: '3333', update: true) }
+      let(:updated_record) { OpenStruct.new(contract_app_id: '5555', pet_id: '3333') }
 
       context 'authenticated' do
         before :each do
@@ -134,10 +136,12 @@ module Wellness
         describe 'application available' do
           before do
             allow(controller).to receive(:post_apps).and_return(post_apps)
+            allow(controller).to receive(:retain_id_link)
+            allow(controller).to receive(:validate_request).and_return({})
             stub_const('Settings', route_settings)
           end
           it 'returns application' do
-            post :create
+            post :create, params: { pet: { 'id': '344555' } }
             expect(response).to have_http_status(200)
             expect(JSON.parse(response.body)['errors']).to be_nil
             expect(JSON.parse(response.body)).not_to be_nil
@@ -167,6 +171,7 @@ module Wellness
       context 'authenticated' do
         before :each do
           allow(controller).to receive(:authenticate!)
+          allow(controller).to receive(:validate_request).and_return({})
           controller.instance_variable_set(:@current_user, 'authorized')
         end
         describe 'application available' do
