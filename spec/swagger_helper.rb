@@ -78,9 +78,9 @@ RSpec.configure do |config|
           plan: {
             type: :object,
             properties: {
+              id: { type: :integer },
               age_group: { type: :integer },
               auto_renew: { type: :boolean },
-              id: { type: :integer },
               planType: { type: :integer },
               productSubType: { type: :string },
               renewalPlanId: { type: :integer },
@@ -88,7 +88,6 @@ RSpec.configure do |config|
               sort_order: { type: :integer },
               code: { type: :string },
               updated_at: { type: :string },
-              location: { type: :integer },
               long_description: { type: :string },
               paid_in_full_discount: { type: :number },
               payment_term: { type: :integer },

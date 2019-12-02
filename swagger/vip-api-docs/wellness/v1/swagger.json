@@ -32,8 +32,11 @@
           "id": {
             "type": "integer"
           },
-          "location": {
+          "age_group": {
             "type": "integer"
+          },
+          "auto_renew": {
+            "type": "boolean"
           },
           "planType": {
             "type": "integer"
@@ -43,12 +46,6 @@
           },
           "renewalPlanId": {
             "type": "integer"
-          },
-          "age_group": {
-            "type": "integer"
-          },
-          "auto_renew": {
-            "type": "boolean"
           },
           "created_at": {
             "type": "string"
@@ -74,34 +71,14 @@
           "full_plan_price": {
             "type": "number"
           },
-          "plan_effective_date": {
-            "type": "string"
-          },
-          "plan_expiration_date": {
-            "type": "string"
-          },
           "plan_services": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/service"
             }
           },
-          "is_active": {
-            "type": "string"
-          },
           "recurring_plan_payment_total": {
             "type": "number"
-          },
-          "renewal_plan": {
-            "type": "object",
-            "properties": {
-              "_ref": {
-                "type": "string"
-              },
-              "class": {
-                "type": "string"
-              }
-            }
           },
           "short_description": {
             "type": "string"
