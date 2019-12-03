@@ -25,6 +25,7 @@ module Wellness
         plan.keys.each do |key|
           field_to_replace = constructor_mapper[key]
           next unless field_to_replace
+
           value = plan.delete key
           new_key = field_to_replace
           plan[new_key] = value unless ignore_field?(key)
