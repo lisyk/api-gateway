@@ -7,4 +7,5 @@ bundle exec rails railties:install:migrations
 bundle exec rails db_service:install:migrations
 bundle exec rails db:migrate
 bundle exec rails db:seed
+bundle exec rails db:test:prepare
 echo 'DONE'

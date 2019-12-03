@@ -14,6 +14,7 @@ module Wellness
     subject { Constructors::PlanConstructor.new(plans_sample, constructor_mapper) }
     describe '#modify' do
       before do
+        allow(subject).to receive(:translate) { nil }
         allow(constructor_mapper).to receive(:plan_mapping) { partner_mapping_object }
       end
       it 'logs the unaltered response' do
@@ -26,6 +27,10 @@ module Wellness
       it 'returns blank object if plan is missing' do
         blank_plan_constructor = Constructors::PlanConstructor.new({}, constructor_mapper)
         expect(blank_plan_constructor.modify).to eq({})
+      end
+      it 'translates needed fields' do
+        allow(subject).to receive(:translate) { 1 }
+        expect(subject.modify.first['age_group']).to eq(1)
       end
     end
   end
