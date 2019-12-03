@@ -1,0 +1,17 @@
+[
+  {
+    "concept_name": "species_id",
+    "partner_value": 1,
+    "gateway_value": 2
+  },
+  {
+    "concept_name": "species_id",
+    "partner_value": 2,
+    "gateway_value": 1
+  },
+  {
+    "concept_name": "species_id",
+    "partner_value": 4,
+    "gateway_value": 0
+  }
+]

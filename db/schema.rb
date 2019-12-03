@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_26_024847) do
+ActiveRecord::Schema.define(version: 2019_12_03_170834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "db_service_age_group_translations", force: :cascade do |t|
+    t.integer "species", null: false
+    t.integer "age_group", null: false
+    t.integer "minimum_age"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "db_service_endpoints", force: :cascade do |t|
     t.integer "partner_id"
@@ -60,6 +68,14 @@ ActiveRecord::Schema.define(version: 2019_11_26_024847) do
   create_table "db_service_pet_contracts", force: :cascade do |t|
     t.integer "pet_id"
     t.integer "contract_app_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "db_service_translations", force: :cascade do |t|
+    t.string "concept_name", null: false
+    t.string "partner_value"
+    t.string "gateway_value", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

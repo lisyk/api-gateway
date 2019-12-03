@@ -1,0 +1,42 @@
+[
+  {
+    "species": 1,
+    "age_group": 1,
+    "minimum_age": 0
+  },
+  {
+    "species": 1,
+    "age_group": 2,
+    "minimum_age": 1
+  },
+  {
+    "species": 1,
+    "age_group": 3,
+    "minimum_age": 3
+  },
+  {
+    "species": 1,
+    "age_group": 4,
+    "minimum_age": 7
+  },
+  {
+    "species": 2,
+    "age_group": 1,
+    "minimum_age": 0
+  },
+  {
+    "species": 2,
+    "age_group": 2,
+    "minimum_age": 1
+  },
+  {
+    "species": 2,
+    "age_group": 3,
+    "minimum_age": 3
+  },
+  {
+    "species": 2,
+    "age_group": 4,
+    "minimum_age": 7
+  }
+]
