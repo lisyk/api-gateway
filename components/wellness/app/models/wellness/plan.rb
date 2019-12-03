@@ -15,7 +15,8 @@ module Wellness
     end
 
     def constructor_mapper
-      DbService::FieldMapping.wellness_plans.need_translation
+      mapper_file = File.expand_path('../../../lib/mappers/vcp_vip_fields.json', __dir__)
+      JSON.parse(File.read(mapper_file))
     end
 
     def origin_plans
