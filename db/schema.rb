@@ -26,21 +26,6 @@ ActiveRecord::Schema.define(version: 2019_11_26_024847) do
     t.index ["partner_id"], name: "index_db_service_endpoints_on_partner_id"
   end
 
-  create_table "db_service_field_mappings", force: :cascade do |t|
-    t.integer "endpoint_id"
-    t.integer "partner_field_id"
-    t.integer "vip_field_id"
-    t.boolean "translation_needed"
-    t.boolean "required", default: false
-    t.string "translation_function"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "mapping_document"
-    t.index ["endpoint_id"], name: "index_db_service_field_mappings_on_endpoint_id"
-    t.index ["partner_field_id"], name: "index_db_service_field_mappings_on_partner_field_id"
-    t.index ["vip_field_id"], name: "index_db_service_field_mappings_on_vip_field_id"
-  end
-
   create_table "db_service_partner_fields", force: :cascade do |t|
     t.integer "partner_id"
     t.string "field_name"
