@@ -57,11 +57,4 @@ ActiveRecord::Schema.define(version: 2019_11_26_024847) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "db_service_vip_fields", force: :cascade do |t|
-    t.string "field_name"
-    t.string "field_data_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
 end
