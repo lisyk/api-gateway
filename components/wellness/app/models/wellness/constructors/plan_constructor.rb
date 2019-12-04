@@ -28,10 +28,9 @@ module Wellness
           field_to_replace = constructor_mapper[key]
           next unless field_to_replace
 
-          new_key = field_to_replace.vip_field.field_name
+          new_key = field_to_replace
           value = plan.delete key
           value = translate(new_key, value) || value
-          new_key = field_to_replace
           plan[new_key] = value unless ignore_field?(key)
         end
         plan
