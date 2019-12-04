@@ -62,6 +62,7 @@ module Wellness
         end
         before do
           allow_any_instance_of(Constructors::PlanConstructor).to receive(:translate) { nil }
+          allow_any_instance_of(Services::PlanFilterService).to receive(:age_groups) { age_groups }
         end
         context 'by clinic location id' do
           it 'returns plans filtered by clinic' do
