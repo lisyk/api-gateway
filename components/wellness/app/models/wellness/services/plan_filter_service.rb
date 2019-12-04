@@ -6,9 +6,7 @@ module Wellness
       def filter_clinic_location(plan)
         return false if @clinic_location_id.nil?
 
-        return true if plan['location']['externalLocationCd'] != @clinic_location_id
-
-        false
+        plan['location']['externalLocationCd'] != @clinic_location_id
       end
 
       def filter_sellable(plan)

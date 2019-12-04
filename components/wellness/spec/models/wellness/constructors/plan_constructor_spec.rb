@@ -26,6 +26,12 @@ module Wellness
         blank_plan_constructor = Constructors::PlanConstructor.new({}, field_mapper, params)
         expect(blank_plan_constructor.modify).to eq(message: ['No plans matched query'])
       end
+      it 'refines exposed values' do
+        modified_plan_list = subject.modify
+        ignored_fields.each do |ignored_field|
+          expect(modified_plan_list).not_to include ignored_field
+        end
+      end
       context 'filter results' do
         let(:clinic_params) { { clinic_location_id: '010265' } }
         let(:sellable_params) { { is_sellable: 'true' } }
@@ -42,6 +48,7 @@ module Wellness
         end
         context 'by clinic location id' do
           it 'returns plans filtered by clinic' do
+            field_mapper['location'] = 'location'
             filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, clinic_params)
             filter.modify.each do |item|
               expect(item['location']['externalLocationCd']).to eq clinic_params[:clinic_location_id]
@@ -52,13 +59,13 @@ module Wellness
           it 'returns plans filtered by sellable' do
             filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, sellable_params)
             filter.modify.each do |item|
-              expect(item['planStatus']).not_to be 'I'
+              expect(item['is_active']).not_to be 'I'
             end
           end
           it 'returns plans filtered by not sellable' do
             filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, not_sellable_params)
             filter.modify.each do |item|
-              expect(item['planStatus']).not_to be 'A'
+              expect(item['is_active']).not_to be 'A'
             end
           end
         end
@@ -66,13 +73,13 @@ module Wellness
           it 'returns plans filtered by single species' do
             filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, single_species_params)
             filter.modify.each do |item|
-              expect(item['species']).to_not be 2
+              expect(item['species_id']).to_not be 2
             end
           end
           it 'returns plans filtered by multiple species' do
             filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, multiple_species_params)
             filter.modify.each do |item|
-              expect(item['species']).to eq(1) | eq(2)
+              expect(item['species_id']).to eq(1) | eq(2)
             end
           end
         end
@@ -85,7 +92,7 @@ module Wellness
             age_group = age_groups.select { |_k, v| v <= @age }.max.first.to_i
             filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, age_params)
             filter.modify.each do |item|
-              expect(item['ageGroup'] % 10).to eq age_group
+              expect(item['age_group'] % 10).to eq age_group
             end
           end
           it 'returns plans filtered by age as YY/MM formatted string' do
@@ -94,7 +101,7 @@ module Wellness
             age_group = age_groups.select { |_k, v| v <= @age }.max.first.to_i
             filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, age_params)
             filter.modify.each do |item|
-              expect(item['ageGroup'] % 10).to eq age_group
+              expect(item['age_group'] % 10).to eq age_group
             end
           end
           it 'returns plans filtered by age as int' do
@@ -102,7 +109,7 @@ module Wellness
             age_group = age_groups.select { |_k, v| v <= @age }.max.first.to_i
             filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, age_params)
             filter.modify.each do |item|
-              expect(item['ageGroup'] % 10).to eq age_group
+              expect(item['age_group'] % 10).to eq age_group
             end
           end
         end
