@@ -1,0 +1,22 @@
+{
+  "ageGroup": "age_group",
+  "autoRenew": "auto_renew",
+  "dateCreated": "created_at",
+  "displayOrder": "sort_order",
+  "externalPlanCd": "code",
+  "id": "id",
+  "lastUpdated": "updated_at",
+  "locationId": "location",
+  "longDescription": "long_description",
+  "paidInFullDiscountAmt": "paid_in_full_discount",
+  "paymentTerm": "payment_term",
+  "planAmount": "full_plan_price",
+  "planEffectiveDate": "plan_effective_date",
+  "planExpirationDate": "plan_expiration_date",
+  "planServices": "plan_services",
+  "planStatus": "is_active",
+  "recurringPaymentAmt": "recurring_plan_payment_total",
+  "renewalPlan": "renewal_plan",
+  "shortDescription": "short_description",
+  "species": "species_id"
+}
