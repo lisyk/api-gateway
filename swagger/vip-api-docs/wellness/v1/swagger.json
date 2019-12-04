@@ -237,14 +237,6 @@
               }
             }
           },
-          "pet": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "integer"
-              }
-            }
-          },
           "externalLocationCd": {
             "type": "integer",
             "nullable": true
@@ -814,6 +806,42 @@
             ]
           }
         ],
+        "parameters": [
+          {
+            "name": "clinic_location_id",
+            "in": "query",
+            "required": false,
+            "description": "VIP clinic ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "is_sellable",
+            "in": "query",
+            "required": false,
+            "description": "Plan is active and within date range",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "species",
+            "in": "query",
+            "description": "VIP species code",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "age",
+            "in": "query",
+            "description": "Age in years. Accepts integer years, YYMM formatted strings (i.e. \"3Y1M\"), and datetime strings (i.e. \"2016-11-22T21:45:58+00:00\")",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Retrieve List of valid plans",
@@ -846,6 +874,40 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clinic_location_id",
+            "in": "query",
+            "required": false,
+            "description": "VIP clinic ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "is_sellable",
+            "in": "query",
+            "required": false,
+            "description": "Plan is active and within date range",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "species",
+            "in": "query",
+            "description": "VIP species code",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "age",
+            "in": "query",
+            "description": "Age in years. Accepts integer years, YYMM formatted strings (i.e. \"3Y1M\"), and datetime strings (i.e. \"2016-11-22T21:45:58+00:00\")",
             "schema": {
               "type": "string"
             }

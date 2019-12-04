@@ -12,6 +12,14 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       produces 'application/json'
       consumes 'application/json'
       security [bearer_auth: []]
+      parameter name: :clinic_location_id, in: :query, type: :string, required: false, description: 'VIP clinic ID'
+      parameter name: :is_sellable, in: :query, type: :boolean, required: false, description: 'Plan is active and within date range'
+      parameter name: :species, in: :query, type: :string, required: false, description: 'VIP species code'
+      parameter name: :age,
+                in: :query,
+                type: :string,
+                required: false,
+                description: 'Age in years. Accepts integer years, YYMM formatted strings (i.e. "3Y1M"), and datetime strings (i.e. "2016-11-22T21:45:58+00:00")'
 
       context 'Using valid credentials' do
         let(:token) do
@@ -36,6 +44,15 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       consumes 'application/json'
       security [bearer_auth: []]
       parameter name: :id, in: :path, type: :string
+
+      parameter name: :clinic_location_id, in: :query, type: :string, required: false, description: 'VIP clinic ID'
+      parameter name: :is_sellable, in: :query, type: :boolean, required: false, description: 'Plan is active and within date range'
+      parameter name: :species, in: :query, type: :string, required: false, description: 'VIP species code'
+      parameter name: :age,
+                in: :query,
+                type: :string,
+                required: false,
+                description: 'Age in years. Accepts integer years, YYMM formatted strings (i.e. "3Y1M"), and datetime strings (i.e. "2016-11-22T21:45:58+00:00")'
 
       context 'Using valid credentials' do
         let(:token) do
