@@ -60,6 +60,9 @@ module Wellness
             '4' => 7
           }
         end
+        before do
+          allow_any_instance_of(Constructors::PlanConstructor).to receive(:translate) { nil }
+        end
         context 'by clinic location id' do
           it 'returns plans filtered by clinic' do
             field_mapper['location'] = 'location'
