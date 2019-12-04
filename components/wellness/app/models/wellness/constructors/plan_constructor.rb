@@ -23,11 +23,11 @@ module Wellness
 
       def update_plan(plan)
         plan.keys.each do |key|
-          field_to_replace = constructor_mapper.plan_mapping(key).first
-          value = plan.delete key
+          field_to_replace = constructor_mapper[key]
           next unless field_to_replace
 
-          new_key = field_to_replace.vip_field.field_name
+          value = plan.delete key
+          new_key = field_to_replace
           plan[new_key] = value unless ignore_field?(key)
         end
         plan
