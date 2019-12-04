@@ -13,6 +13,17 @@ module Wellness
     let(:plans_sample) { JSON.parse plans_sample_file }
     let(:field_mapper) { JSON.parse field_mapper_file }
     let(:params) { {} }
+    let(:ignored_fields) do
+      %w[
+        renewalPlan
+        planType
+        productSubType
+        locationId
+        planEffectiveDate
+        planExpirationDate
+        planStatus
+      ]
+    end
     subject { Constructors::PlanConstructor.new(plans_sample, field_mapper, params) }
     describe '#modify' do
       it 'logs the unaltered response' do
