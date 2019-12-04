@@ -26,12 +26,12 @@ module Wellness
       def update_plan(plan)
         plan.keys.each do |key|
           field_to_replace = constructor_mapper[key]
-          next unless field_to_replace
+          value = plan.delete key
+          next if field_to_replace.nil? || ignore_field?(key)
 
           new_key = field_to_replace
-          value = plan.delete key
-          value = translate(new_key, value) || value
-          plan[new_key] = value unless ignore_field?(key)
+          translated_value = translate(new_key, value) || value
+          plan[new_key] = translated_value
         end
         plan
       end
