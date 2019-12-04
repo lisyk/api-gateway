@@ -8,7 +8,7 @@ module Wellness
 
         if key == 'age_group'
           translate_age_group(value)
-        else
+        elsif translatable_concepts.include? key
           translate_general(key, value)
         end
       end
@@ -34,6 +34,12 @@ module Wellness
         return nil unless translation.any?
 
         translation.first.gateway_value.to_i
+      end
+
+      private
+
+      def translatable_concepts
+        @translatable_concepts ||= DbService::Translation.all.pluck('concept_name').uniq
       end
     end
   end

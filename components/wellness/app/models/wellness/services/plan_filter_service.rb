@@ -3,6 +3,8 @@
 module Wellness
   module Services
     module PlanFilterService
+      include PlanTranslatorService
+
       def filter_clinic_location(plan)
         return false if @clinic_location_id.nil?
 
@@ -26,7 +28,8 @@ module Wellness
 
         species_codes = @species.split(',')
         species_codes.each do |code|
-          return false if plan['species'].present? && plan['species'] == code.to_i
+          translated_code = translate('species_id', code) || code
+          return false if plan['species'].present? && plan['species'] == translated_code.to_i
         end
         true
       end
