@@ -3,7 +3,6 @@
 module Wellness
   class ContractApplicationsController < Wellness::ApplicationController
     after_action :retain_id_link, only: :create
-    before_action :pet_id, only: :create
     before_action :validate_request, only: %i[create update]
 
     def index
@@ -54,7 +53,7 @@ module Wellness
     end
 
     def retain_id_link
-      DbEngineInteractor.call(pet_id: @pet_id, contract_app_id: contract_app_id)
+      DbEngineInteractor.call(pet_id: pet_id, contract_app_id: contract_app_id)
     end
 
     def contract_app_id
@@ -62,7 +61,7 @@ module Wellness
     end
 
     def pet_id
-      @pet_id = params['pet']['id']
+      JSON.parse(response.body)[ "externalMemberCd"]
     end
 
     def post_apps(request)
