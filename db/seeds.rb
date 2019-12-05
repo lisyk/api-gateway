@@ -6,6 +6,11 @@
 
 ### Development and TEST ENV seed *****
 if Rails.env.development? || Rails.env.test?
+  def clean_up_db
+    DbService::Translation.delete_all
+    DbService::AgeGroupTranslation.delete_all
+  end
+
   def age_group_translations
     JSON.parse(File.read(File.expand_path('seed_files/age_group_translations.json', __dir__)))
   rescue StandardError => e

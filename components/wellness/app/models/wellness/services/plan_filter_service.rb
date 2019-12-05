@@ -28,7 +28,7 @@ module Wellness
 
         species_codes = @species.split(',')
         species_codes.each do |code|
-          translated_code = translate('species_id', code) || code
+          translated_code = translate('species_id', code, translate_to: :partner) || code
           return false if plan['species'].present? && plan['species'] == translated_code.to_i
         end
         true

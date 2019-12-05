@@ -38,7 +38,7 @@ module Wellness
           next if field_to_replace.nil? || ignore_field?(key)
 
           new_key = field_to_replace
-          translated_value = translate(new_key, value) || value
+          translated_value = translate(new_key, value, translate_to: :gateway) || value
           plan[new_key] = translated_value
         end
         plan

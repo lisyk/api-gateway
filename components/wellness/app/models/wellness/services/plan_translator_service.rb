@@ -3,13 +3,13 @@
 module Wellness
   module Services
     module PlanTranslatorService
-      def translate(key, value)
+      def translate(key, value, translate_to: :gateway)
         return nil if key == 'id'
 
         if key == 'age_group'
           translate_age_group(value)
         elsif translatable_concepts.include? key
-          translate_general(key, value)
+          translate_general(key, value, translate_to)
         end
       end
 
@@ -26,14 +26,19 @@ module Wellness
         translation.first.age_group
       end
 
-      def translate_general(key, value)
-        translation = DbService::Translation.where('concept_name = ? AND partner_value = ?',
+      def translate_general(key, value, translate_to)
+        value_type = translate_to == :gateway ? 'partner_value' : 'gateway_value'
+        translation = DbService::Translation.where("concept_name = ? AND #{value_type} = ?",
                                                    key,
                                                    value.to_s)
 
         return nil unless translation.any?
 
-        translation.first.gateway_value.to_i
+        if translate_to == :partner
+          translation.first.partner_value
+        elsif translate_to == :gateway
+          translation.first.gateway_value
+        end
       end
 
       private
