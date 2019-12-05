@@ -116,7 +116,7 @@ module Wellness
           it 'returns plans filtered by age as YY/MM formatted string' do
             age_months = rand(13)
             age_params = { age: "#{@age}Y #{age_months}M" }
-            age_group = age_groups.select { |_k, v| v <= @age }.max.first.to_i
+            age_group = age_groups.select { |_k, v| v <= ((age_months / 12).floor + @age) }.max.first.to_i
             filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, age_params)
             filter.modify.each do |item|
               expect(item['age_group'] % 10).to eq age_group
