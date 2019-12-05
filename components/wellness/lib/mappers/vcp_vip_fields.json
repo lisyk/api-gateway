@@ -18,5 +18,15 @@
   "recurringPaymentAmt": "recurring_plan_payment_total",
   "renewalPlan": "renewal_plan",
   "shortDescription": "short_description",
-  "species": "species_id"
+  "species": "species_id",
+  "cost": "cost",
+  "discountPercent": "discount_percent",
+  "discountedPrice": "discounted_price",
+  "offeredService": "offered_service",
+  "plan": "plan",
+  "planId": "plan_id",
+  "quantity": "plan_quantity",
+  "retailPrice": "price",
+  "revenuePerUnit": "revenue_per_unit",
+  "serviceType": "is_optional"
 }

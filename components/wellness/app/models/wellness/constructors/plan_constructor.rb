@@ -31,14 +31,7 @@ module Wellness
       end
 
       def update_plan(plan)
-        plan.keys.each do |key|
-          field_to_replace = constructor_mapper[key]
-          value = plan.delete key
-          next unless field_to_replace
-
-          new_key = field_to_replace
-          plan[new_key] = value unless ignore_field?(key)
-        end
+        update_nested_field_names(plan)
         plan
       end
 
@@ -67,6 +60,24 @@ module Wellness
           filter_species(plan),
           filter_age(plan)
         ].any?(true)
+      end
+
+      def update_nested_field_names(object)
+        if object.is_a? Hash
+          object.keys.each do |key|
+            field_to_replace = constructor_mapper[key]
+            value = object.delete key
+            next if field_to_replace.nil? || ignore_field?(key)
+
+            object[field_to_replace] = value
+            update_nested_field_names(object[field_to_replace])
+          end
+        elsif object.is_a? Array
+          object.each do |item|
+            # binding.pry
+            update_nested_field_names(item)
+          end
+        end
       end
     end
   end
