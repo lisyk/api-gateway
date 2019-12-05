@@ -61,7 +61,7 @@ module Wellness
     end
 
     def pet_id
-      JSON.parse(response.body)[ "externalMemberCd"]
+      JSON.parse(response.body)['externalMemberCd']
     end
 
     def post_apps(request)
