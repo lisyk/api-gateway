@@ -3,6 +3,7 @@
 module Wellness
   module Constructors
     class PlanConstructor < ResponseLogger
+      include Wellness::Services::PlanTranslatorService
       include Wellness::Services::PlanFilterService
 
       attr_reader :plans, :constructor_mapper

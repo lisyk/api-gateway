@@ -3,6 +3,8 @@
 module Wellness
   module Services
     module PlanFilterService
+      include PlanTranslatorService
+
       def filter_clinic_location(plan)
         return false if @clinic_location_id.nil?
 
@@ -26,7 +28,8 @@ module Wellness
 
         species_codes = @species.split(',')
         species_codes.each do |code|
-          return false if plan['species'].present? && plan['species'] == code.to_i
+          translated_code = translate('species_id', code, translate_to: :partner) || code
+          return false if plan['species'].present? && plan['species'] == translated_code.to_i
         end
         true
       end
@@ -36,10 +39,19 @@ module Wellness
 
         age_in_years = convert_age
         group = age_groups.select { |_k, v| v <= age_in_years }.max.first.to_i
-
-        return true if plan['ageGroup'].present? && plan['ageGroup'] % 10 != group
+        group_mismatched = plan['ageGroup'].present? && plan['ageGroup'] % 10 != group
+        return true if group.positive? && group_mismatched
 
         false
+      end
+
+      def age_groups
+        age_groups = {}
+        @age_group_translations ||= DbService::AgeGroupTranslation.all
+        @age_group_translations.each do |translation|
+          age_groups[translation.age_group] = translation.minimum_age.to_i
+        end
+        age_groups.empty? ? { '-1': -1 } : age_groups
       end
 
       private
@@ -53,16 +65,6 @@ module Wellness
 
       def plan_active?(plan)
         plan['planStatus'] == 'A'
-      end
-
-      def age_groups
-        # TODO: Determine actual age groups
-        {
-          '1' => 0,
-          '2' => 1,
-          '3' => 3,
-          '4' => 7
-        }
       end
 
       def convert_age

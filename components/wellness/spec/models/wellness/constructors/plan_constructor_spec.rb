@@ -26,6 +26,9 @@ module Wellness
     end
     subject { Constructors::PlanConstructor.new(plans_sample, field_mapper, params) }
     describe '#modify' do
+      before do
+        allow(subject).to receive(:translate) { nil }
+      end
       it 'logs the unaltered response' do
         expect(Rails.logger).to receive(:info).with(/Original Response\:/)
         subject.modify
@@ -56,6 +59,10 @@ module Wellness
             '3' => 3,
             '4' => 7
           }
+        end
+        before do
+          allow_any_instance_of(Constructors::PlanConstructor).to receive(:translate) { nil }
+          allow_any_instance_of(Services::PlanFilterService).to receive(:age_groups) { age_groups }
         end
         context 'by clinic location id' do
           it 'returns plans filtered by clinic' do
@@ -109,7 +116,7 @@ module Wellness
           it 'returns plans filtered by age as YY/MM formatted string' do
             age_months = rand(13)
             age_params = { age: "#{@age}Y #{age_months}M" }
-            age_group = age_groups.select { |_k, v| v <= @age }.max.first.to_i
+            age_group = age_groups.select { |_k, v| v <= ((age_months / 12).floor + @age) }.max.first.to_i
             filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, age_params)
             filter.modify.each do |item|
               expect(item['age_group'] % 10).to eq age_group
@@ -136,6 +143,10 @@ module Wellness
             expect { filter.modify }.not_to raise_error
           end
         end
+      end
+      it 'translates needed fields' do
+        allow(subject).to receive(:translate) { 1 }
+        expect(subject.modify.first['age_group']).to eq(1)
       end
     end
   end
