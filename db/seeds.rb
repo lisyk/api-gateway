@@ -36,10 +36,7 @@ if Rails.env.development? || Rails.env.test?
 
   translations.each do |translation|
     DbService::Translation.create!(concept_name: translation['concept_name'],
-                                   partner_value: translation['partner_value'],
-                                   gateway_value: translation['gateway_value'],
-                                   partner_value_type: translation['partner_value_type'],
-                                   gateway_value_type: translation['gateway_value_type'])
+                                   translation_value: translation['translation_value'])
   end
 
   puts '****** data seeding done! ************'
