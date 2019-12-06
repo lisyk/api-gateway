@@ -74,7 +74,6 @@ module Wellness
           end
         elsif object.is_a? Array
           object.each do |item|
-            # binding.pry
             update_nested_field_names(item)
           end
         end
