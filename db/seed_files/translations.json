@@ -13,5 +13,15 @@
     "concept_name": "species_id",
     "partner_value": 4,
     "gateway_value": "0"
+  },
+  {
+    "concept_name": "is_optional",
+    "partner_value": "O",
+    "gateway_value": true
+  },
+  {
+    "concept_name": "is_optional",
+    "partner_value": "R",
+    "gateway_value": false
   }
 ]

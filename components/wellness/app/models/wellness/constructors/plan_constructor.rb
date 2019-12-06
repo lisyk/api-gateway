@@ -70,7 +70,9 @@ module Wellness
             value = object.delete key
             next if field_to_replace.nil? || ignore_field?(key)
 
-            object[field_to_replace] = value
+            new_key = field_to_replace
+            translated_value = translate(new_key, value, translate_to: :gateway) || value
+            object[field_to_replace] = translated_value
             update_nested_field_names(object[field_to_replace])
           end
         elsif object.is_a? Array
