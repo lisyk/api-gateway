@@ -3,6 +3,7 @@
 module Wellness
   module Constructors
     class PlanConstructor < ResponseLogger
+      include Wellness::Services::PlanTranslatorService
       include Wellness::Services::PlanFilterService
 
       attr_reader :plans, :constructor_mapper
@@ -34,10 +35,11 @@ module Wellness
         plan.keys.each do |key|
           field_to_replace = constructor_mapper[key]
           value = plan.delete key
-          next unless field_to_replace
+          next if field_to_replace.nil? || ignore_field?(key)
 
           new_key = field_to_replace
-          plan[new_key] = value unless ignore_field?(key)
+          translated_value = translate(new_key, value, translate_to: :gateway) || value
+          plan[new_key] = translated_value
         end
         plan
       end
