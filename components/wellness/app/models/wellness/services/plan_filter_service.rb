@@ -28,7 +28,7 @@ module Wellness
 
         species_codes = @species.split(',')
         species_codes.each do |code|
-          translated_code = translate('species_id', code, translate_to: :partner) || code
+          translated_code = translated_value('species_id', code, translate_to: :partner)
           return false if plan['species'].present? && plan['species'] == translated_code.to_i
         end
         true
@@ -82,6 +82,11 @@ module Wellness
         age_months = @age.scan(/\d+(?=[Mm])/).first.to_i || 0
 
         [@age.to_i, age_years + (age_months / 12).floor].max
+      end
+
+      def translated_value(new_key, value, translate_to)
+        translated_value = translate(new_key, value, translate_to)
+        translated_value.nil? ? value : translated_value
       end
     end
   end
