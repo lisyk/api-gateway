@@ -1,27 +1,37 @@
 [
   {
     "concept_name": "species_id",
-    "partner_value": 1,
-    "gateway_value": "aa49c6a9-a4e8-4a19-bea0-059739291646"
+    "partner_value": "1",
+    "gateway_value": "aa49c6a9-a4e8-4a19-bea0-059739291646",
+    "partner_value_type": "integer",
+    "gateway_value_type": "string"
   },
   {
     "concept_name": "species_id",
-    "partner_value": 2,
-    "gateway_value": "c784e91c-56b6-4391-aa63-831b1c656d9e"
+    "partner_value": "2",
+    "gateway_value": "c784e91c-56b6-4391-aa63-831b1c656d9e",
+    "partner_value_type": "integer",
+    "gateway_value_type": "string"
   },
   {
     "concept_name": "species_id",
-    "partner_value": 4,
-    "gateway_value": "0"
+    "partner_value": "4",
+    "gateway_value": "0",
+    "partner_value_type": "integer",
+    "gateway_value_type": "string"
   },
   {
     "concept_name": "is_optional",
     "partner_value": "O",
-    "gateway_value": true
+    "gateway_value": "true",
+    "partner_value_type": "string",
+    "gateway_value_type": "boolean"
   },
   {
     "concept_name": "is_optional",
     "partner_value": "R",
-    "gateway_value": false
+    "gateway_value": "false",
+    "partner_value_type": "string",
+    "gateway_value_type": "boolean"
   }
 ]

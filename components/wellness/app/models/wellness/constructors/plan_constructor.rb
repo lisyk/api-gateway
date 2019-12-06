@@ -65,21 +65,33 @@ module Wellness
 
       def update_nested_field_names(object)
         if object.is_a? Hash
-          object.keys.each do |key|
-            field_to_replace = constructor_mapper[key]
-            value = object.delete key
-            next if field_to_replace.nil? || ignore_field?(key)
-
-            new_key = field_to_replace
-            translated_value = translate(new_key, value, translate_to: :gateway) || value
-            object[field_to_replace] = translated_value
-            update_nested_field_names(object[field_to_replace])
-          end
+          update_hash(object)
         elsif object.is_a? Array
-          object.each do |item|
-            update_nested_field_names(item)
-          end
+          update_array(object)
         end
+      end
+
+      def update_hash(hash)
+        hash.keys.each do |key|
+          field_to_replace = constructor_mapper[key]
+          value = hash.delete key
+          next if field_to_replace.nil? || ignore_field?(key)
+
+          new_key = field_to_replace
+          hash[field_to_replace] = translated_value(new_key, value, translate_to: :gateway)
+          update_nested_field_names(hash[field_to_replace])
+        end
+      end
+
+      def update_array(array)
+        array.each do |item|
+          update_nested_field_names(item)
+        end
+      end
+
+      def translated_value(new_key, value, translate_to)
+        translated_value = translate(new_key, value, translate_to)
+        translated_value.nil? ? value : translated_value
       end
     end
   end
