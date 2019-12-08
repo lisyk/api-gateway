@@ -23,17 +23,6 @@ ActiveRecord::Schema.define(version: 2019_12_03_170834) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "db_service_endpoints", force: :cascade do |t|
-    t.integer "partner_id"
-    t.string "endpoint_name"
-    t.string "protocol"
-    t.string "subdomain"
-    t.string "api_route"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["partner_id"], name: "index_db_service_endpoints_on_partner_id"
-  end
-
   create_table "db_service_pet_contracts", force: :cascade do |t|
     t.integer "pet_id"
     t.integer "contract_app_id"
