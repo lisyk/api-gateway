@@ -481,6 +481,34 @@
             "example": false
           }
         }
+      },
+      "auth_error": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "Authentication token is not provided!"
+            }
+          },
+          "auth_status": {
+            "type": "string",
+            "example": "unauthorized"
+          }
+        }
+      },
+      "not_found_error": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "Agreement not found."
+            }
+          }
+        }
       }
     }
   },
@@ -798,6 +826,7 @@
           {
             "name": "species",
             "in": "query",
+            "required": false,
             "description": "VIP species code",
             "schema": {
               "type": "string"
@@ -806,6 +835,7 @@
           {
             "name": "age",
             "in": "query",
+            "required": false,
             "description": "Age in years. Accepts integer years, YYMM formatted strings (i.e. \"3Y1M\"), and datetime strings (i.e. \"2016-11-22T21:45:58+00:00\")",
             "schema": {
               "type": "string"
@@ -819,6 +849,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/plan_list"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/auth_error"
                 }
               }
             }
@@ -847,40 +887,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "clinic_location_id",
-            "in": "query",
-            "required": false,
-            "description": "VIP clinic ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "is_sellable",
-            "in": "query",
-            "required": false,
-            "description": "Plan is active and within date range",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "species",
-            "in": "query",
-            "description": "VIP species code",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "age",
-            "in": "query",
-            "description": "Age in years. Accepts integer years, YYMM formatted strings (i.e. \"3Y1M\"), and datetime strings (i.e. \"2016-11-22T21:45:58+00:00\")",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -890,6 +896,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/plan"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Plan not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/not_found_error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/auth_error"
                 }
               }
             }

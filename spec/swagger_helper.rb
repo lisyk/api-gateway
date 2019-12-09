@@ -95,7 +95,7 @@ RSpec.configure do |config|
               plan_services: {
                 type: :array,
                 items: {
-                  '$ref' => '#/components/schemas/offered_service'
+                  '$ref' => '#/components/schemas/service'
                 }
               },
               recurring_plan_payment_total: { type: :number, example: 21.95 },
@@ -277,6 +277,31 @@ RSpec.configure do |config|
               price: { type: :number, example: 35 },
               revenue_per_unit: { type: :number, example: 21.1 },
               is_optional: { type: :boolean, example: false }
+            }
+          },
+          auth_error: {
+            type: :object,
+            properties: {
+              errors: {
+                type: :array,
+                items: {
+                  type: :string,
+                  example: 'Authentication token is not provided!'
+                }
+              },
+              auth_status: { type: :string, example: 'unauthorized' }
+            }
+          },
+          not_found_error: {
+            type: :object,
+            properties: {
+              errors: {
+                type: :array,
+                items: {
+                  type: :string,
+                  example: 'Agreement not found.'
+                }
+              }
             }
           }
         }
