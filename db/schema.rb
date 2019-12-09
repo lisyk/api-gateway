@@ -10,56 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_14_021235) do
+ActiveRecord::Schema.define(version: 2019_12_03_170834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "db_service_endpoints", force: :cascade do |t|
-    t.integer "partner_id"
-    t.string "endpoint_name"
-    t.string "protocol"
-    t.string "subdomain"
-    t.string "api_route"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["partner_id"], name: "index_db_service_endpoints_on_partner_id"
-  end
-
-  create_table "db_service_field_mappings", force: :cascade do |t|
-    t.integer "endpoint_id"
-    t.integer "partner_field_id"
-    t.integer "vip_field_id"
-    t.boolean "translation_needed"
-    t.boolean "required", default: false
-    t.string "translation_function"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "mapping_document"
-    t.index ["endpoint_id"], name: "index_db_service_field_mappings_on_endpoint_id"
-    t.index ["partner_field_id"], name: "index_db_service_field_mappings_on_partner_field_id"
-    t.index ["vip_field_id"], name: "index_db_service_field_mappings_on_vip_field_id"
-  end
-
-  create_table "db_service_partner_fields", force: :cascade do |t|
-    t.integer "partner_id"
-    t.string "field_name"
-    t.string "field_data_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["partner_id"], name: "index_db_service_partner_fields_on_partner_id"
-  end
-
-  create_table "db_service_partners", force: :cascade do |t|
-    t.string "name"
-    t.string "root_domain"
+  create_table "db_service_age_group_translations", force: :cascade do |t|
+    t.integer "species", null: false
+    t.integer "age_group", null: false
+    t.integer "minimum_age"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "db_service_vip_fields", force: :cascade do |t|
-    t.string "field_name"
-    t.string "field_data_type"
+  create_table "db_service_pet_contracts", force: :cascade do |t|
+    t.integer "pet_id"
+    t.integer "contract_app_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "db_service_translations", force: :cascade do |t|
+    t.string "concept_name", null: false
+    t.string "partner_value"
+    t.string "gateway_value", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -7,13 +7,16 @@ module Wellness
   class Plan < Connect
     include Concerns::RequestConcern
 
-    def plans_mapping
-      constructor = Constructors::PlanConstructor.new(origin_plans, constructor_mapper)
+    def plans_mapping(params)
+      return origin_plans if origin_plans.blank?
+
+      constructor = Constructors::PlanConstructor.new(origin_plans, constructor_mapper, params)
       constructor.modify
     end
 
     def constructor_mapper
-      DbService::FieldMapping.wellness_plans.need_translation
+      mapper_file = File.expand_path('../../../lib/mappers/vcp_vip_fields.json', __dir__)
+      JSON.parse(File.read(mapper_file))
     end
 
     def origin_plans

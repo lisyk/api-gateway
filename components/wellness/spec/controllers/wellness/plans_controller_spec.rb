@@ -64,5 +64,64 @@ module Wellness
         end
       end
     end
+
+    let(:plan_sample_file) { File.read(File.expand_path('../../helpers/dummy_docs/plans/origin_plan_sample.json', __dir__)) }
+    let(:plan) { JSON.parse plan_sample_file }
+
+    describe 'GET #show' do
+      context 'authenticated' do
+        before :each do
+          allow(controller).to receive(:authenticate!)
+          controller.instance_variable_set(:@current_user, 'authorized')
+          stub_const('Settings', route_settings)
+        end
+        describe 'plans service available' do
+          before :each do
+            allow(controller).to receive(:fetch_plans).and_return plan
+            get :show, params: { id: '5477684' }
+          end
+          it 'returns 200 response' do
+            expect(response).to have_http_status(200)
+          end
+          it 'returns correct content type' do
+            expect(response.content_type).to include 'application/json'
+          end
+          it 'assigns wellness plans' do
+            expect(assigns(:plan)).not_to be_nil
+          end
+        end
+        describe 'plans service is not available' do
+          before do
+            allow(controller).to receive(:fetch_plans).and_return nil
+            get :show, params: { id: '5477684' }
+          end
+          it 'returns 404 error message' do
+            expect(response).to have_http_status(404)
+          end
+          it 'returns correct error message' do
+            expect(JSON.parse(response.body)['errors']).to include 'Wellness plan unavailable.'
+          end
+          it 'does not assign plan' do
+            expect(assigns(:plan)).to be_nil
+          end
+        end
+      end
+      context 'not authenticated' do
+        before :each do
+          allow(controller).to receive(:authenticate!)
+          controller.instance_variable_set(:@current_user, nil)
+          get :show, params: { id: '5477684' }
+        end
+        it 'returns error message to the client' do
+          expect(JSON.parse(response.body)['errors']).to include 'You are not authorized'
+        end
+        it 'returns 403 error message' do
+          expect(response).to have_http_status(403)
+        end
+        it "doesn't assign plan" do
+          expect(assigns(:plan)).to be_nil
+        end
+      end
+    end
   end
 end
