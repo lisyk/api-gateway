@@ -299,7 +299,7 @@ RSpec.configure do |config|
                 type: :array,
                 items: {
                   type: :string,
-                  example: 'Agreement not found.'
+                  example: 'Not found.'
                 }
               }
             }
