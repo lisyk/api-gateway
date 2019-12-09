@@ -279,6 +279,30 @@ RSpec.configure do |config|
               is_optional: { type: :boolean, example: false }
             }
           },
+          application: {
+            type: :object,
+            properties: {
+              owner_first_name: { type: :string, example: 'Harry' },
+              owner_last_name: { type: :string, example: 'Potter' },
+              address: { type: :string, example: '4 Privet Drive' },
+              city: { type: :string, example: 'Morino Valley' },
+              state: { type: :string, example: 'CA' },
+              zip: { type: :string, example: '92551' },
+              country: { type: :string, example: 'US' },
+              mobile: { type: :string, example: '9494814601' },
+              phone: { type: :string, example: nil },
+              email: { type: :string, example: 'HarryPotter@Hogwarts.edu' },
+              owner_id: { type: :string, example: '1000' },
+              pet_id: { type: :string, example: '1' },
+              pet_name: { type: :string, example: 'Hedwig' },
+              gender: { type: :string, example: 'F' },
+              payment_method: { type: :string, example: 'credit' },
+              card_name: { type: :string, example: 'MasterCard' },
+              card_number: { type: :string, example: '5354' },
+              expiration_month: { type: :integer, example: 1 },
+              expiration_year: { type: :integer, example: 2025 }
+            }
+          },
           auth_error: {
             type: :object,
             properties: {
