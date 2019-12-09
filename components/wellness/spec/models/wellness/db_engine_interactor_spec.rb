@@ -8,7 +8,7 @@ module Wellness
       context 'call' do
         describe 'record exists' do
           before do
-            allow(DbEngineInteractor).to receive(:find_contract).and_return("fake_record")
+            allow(DbEngineInteractor).to receive(:find_contract).and_return('fake_record')
             allow(DbEngineInteractor).to receive(:update_record).and_return 'record updated'
           end
           it 'updates existing record' do
