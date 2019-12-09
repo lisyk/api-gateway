@@ -508,7 +508,36 @@
         "properties": {
           "document": {
             "type": "string",
-            "format": "binary"
+            "format": "binary",
+            "description": "Binary-encoded PDF agreement document"
+          }
+        }
+      },
+      "auth_error": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "Authentication token is not provided!"
+            }
+          },
+          "auth_status": {
+            "type": "string",
+            "example": "unauthorized"
+          }
+        }
+      },
+      "error": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "Agreement not found."
+            }
           }
         }
       }
@@ -541,6 +570,26 @@
         "responses": {
           "200": {
             "description": "Generate a new agreement PDF"
+          },
+          "404": {
+            "description": "Document not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/auth_error"
+                }
+              }
+            }
           }
         }
       },
@@ -578,6 +627,26 @@
         "responses": {
           "200": {
             "description": "Upload signed PDF document"
+          },
+          "404": {
+            "description": "Document not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/auth_error"
+                }
+              }
+            }
           }
         }
       }
@@ -828,6 +897,7 @@
           {
             "name": "species",
             "in": "query",
+            "required": false,
             "description": "VIP species code",
             "schema": {
               "type": "string"
@@ -836,6 +906,7 @@
           {
             "name": "age",
             "in": "query",
+            "required": false,
             "description": "Age in years. Accepts integer years, YYMM formatted strings (i.e. \"3Y1M\"), and datetime strings (i.e. \"2016-11-22T21:45:58+00:00\")",
             "schema": {
               "type": "string"
@@ -899,6 +970,7 @@
           {
             "name": "species",
             "in": "query",
+            "required": false,
             "description": "VIP species code",
             "schema": {
               "type": "string"
@@ -907,6 +979,7 @@
           {
             "name": "age",
             "in": "query",
+            "required": false,
             "description": "Age in years. Accepts integer years, YYMM formatted strings (i.e. \"3Y1M\"), and datetime strings (i.e. \"2016-11-22T21:45:58+00:00\")",
             "schema": {
               "type": "string"
