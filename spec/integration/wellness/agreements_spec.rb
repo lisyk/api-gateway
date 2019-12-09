@@ -24,7 +24,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           run_test!
         end
 
-        response '404', 'Document not found' do 
+        response '404', 'Document not found' do
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:id) { '123456789' }
           schema '$ref' => '#/components/schemas/error'
@@ -33,9 +33,9 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       end
 
       context 'Using invalid credentials/credentials missing' do
-        let(:Authorization) { "" }
+        let(:Authorization) { '' }
         let(:id) { '1000008890' }
-        response '403', 'Invalid credentials' do 
+        response '403', 'Invalid credentials' do
           schema '$ref' => '#/components/schemas/auth_error'
           run_test!
         end
@@ -74,7 +74,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           run_test!
         end
 
-        response '404', 'Document not found' do 
+        response '404', 'Document not found' do
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:id) { '123456789' }
           schema '$ref' => '#/components/schemas/error'
@@ -86,10 +86,10 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         file = Rack::Test::UploadedFile.new(
           Rails.root.join('spec/fixtures/files/contract.pdf')
         )
-        let(:Authorization) { "" }
+        let(:Authorization) { '' }
         let(:id) { '1000008890' }
         let(:document) { file }
-        response '403', 'Invalid credentials' do 
+        response '403', 'Invalid credentials' do
           schema '$ref' => '#/components/schemas/auth_error'
           run_test!
         end

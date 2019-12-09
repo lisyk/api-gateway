@@ -19,7 +19,7 @@ module Wellness
         render json: { errors: ['Agreement not found.'] },
                status: :not_found
       else
-          @response['errors'] ||= ['Agreement failed to update.']
+        @response['errors'] ||= ['Agreement failed to update.']
         render json: { errors: @response['errors'] },
                status: :unprocessable_entity
       end

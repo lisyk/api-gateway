@@ -293,21 +293,21 @@ RSpec.configure do |config|
               document: {
                 type: :string,
                 format: :binary,
-                description: "Binary-encoded PDF agreement document"
+                description: 'Binary-encoded PDF agreement document'
               }
             }
           },
           auth_error: {
             type: :object,
             properties: {
-              errors: { 
-                type: :array, 
+              errors: {
+                type: :array,
                 items: {
                   type: :string,
-                  example: "Authentication token is not provided!"
+                  example: 'Authentication token is not provided!'
                 }
               },
-              auth_status: { type: :string, example: "unauthorized" }
+              auth_status: { type: :string, example: 'unauthorized' }
             }
           },
           error: {
@@ -316,8 +316,8 @@ RSpec.configure do |config|
               errors: {
                 type: :array,
                 items: {
-                  type: :string, 
-                  example: "Agreement not found."
+                  type: :string,
+                  example: 'Agreement not found.'
                 }
               }
             }
