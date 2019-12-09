@@ -79,7 +79,7 @@ RSpec.configure do |config|
             type: :object,
             properties: {
               id: { type: :integer, example: 5_477_684 },
-              age_group: { type: :integer, example: 11 },
+              age_group: { type: :integer, example: 1 },
               auto_renew: { type: :boolean, example: true },
               created_at: { type: :string, example: '2019-02-18T18:20:12Z' },
               sort_order: { type: :integer, example: 10 },
@@ -95,12 +95,12 @@ RSpec.configure do |config|
               plan_services: {
                 type: :array,
                 items: {
-                  '$ref' => '#/components/schemas/service'
+                  '$ref' => '#/components/schemas/offered_service'
                 }
               },
               recurring_plan_payment_total: { type: :number, example: 21.95 },
               short_description: { type: :string, example: 'Puppy Wellness Plan' },
-              species_id: { type: :integer, example: 1 }
+              species_id: { type: :string, example: 'aa49c6a9-a4e8-4a19-bea0-059739291646' }
             }
           },
           contract_application_list: {
@@ -245,6 +245,38 @@ RSpec.configure do |config|
                 type: :string,
                 format: :binary
               }
+            }
+          },
+          offered_service: {
+            type: :object,
+            properties: {
+              id: { type: :integer, example: 5_428_856 },
+              offered_service: {
+                type: :object,
+                properties: {
+                  id: { type: :integer, example: 5_428_799 },
+                  short_description: { type: :string, example: 'Wellness Examination' }
+                }
+              },
+              plan: {
+                type: :object,
+                properties: {
+                  id: { type: :integer, example: 5_428_455 },
+                  short_description: { type: :string, example: 'Puppy Wellness Plan' }
+                }
+              },
+              cost: { type: :number, example: 15.99 },
+              created_at: { type: :string, example: '2019-02-01T16:56:55Z' },
+              discount_percent: { type: :number, example: 50 },
+              discounted_price: { type: :number, example: 17.5 },
+              sort_order: { type: :integer, example: 10 },
+              code: { type: :number, example: nil },
+              updated_at: { type: :string, example: '2019-02-18T18:20:12Z' },
+              plan_id: { type: :integer, example: 5_428_455 },
+              plan_quantity: { type: :integer, example: 3 },
+              price: { type: :number, example: 35 },
+              revenue_per_unit: { type: :number, example: 21.1 },
+              is_optional: { type: :boolean, example: false }
             }
           }
         }
