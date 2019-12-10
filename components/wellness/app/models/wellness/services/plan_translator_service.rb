@@ -28,17 +28,16 @@ module Wellness
 
       def translate_general(key, value, translate_to)
         value_type = translate_to == :gateway ? 'partner_value' : 'gateway_value'
-        translation = DbService::Translation.where("concept_name = ? AND #{value_type} = ?",
-                                                   key,
-                                                   value.to_s)
+        translations = DbService::Translation.where('concept_name = ?', key)
 
-        return nil unless translation.any?
+        return nil unless translations.any?
 
-        if translate_to == :partner
-          translation.first.partner_value
-        elsif translate_to == :gateway
-          translation.first.gateway_value
+        translations.each do |translation|
+          if translation.translation_value[value_type] == value
+            return translation.translation_value[translate_to.to_s + '_value']
+          end
         end
+        nil
       end
 
       private

@@ -1,17 +1,37 @@
 [
   {
     "concept_name": "species_id",
-    "partner_value": 1,
-    "gateway_value": "aa49c6a9-a4e8-4a19-bea0-059739291646"
+    "translation_value": {
+      "partner_value": 1,
+      "gateway_value": "aa49c6a9-a4e8-4a19-bea0-059739291646"
+    }
   },
   {
     "concept_name": "species_id",
-    "partner_value": 2,
-    "gateway_value": "c784e91c-56b6-4391-aa63-831b1c656d9e"
+    "translation_value": {
+      "partner_value": 1,
+      "gateway_value": "c784e91c-56b6-4391-aa63-831b1c656d9e"
+    }
   },
   {
     "concept_name": "species_id",
-    "partner_value": 4,
-    "gateway_value": "0"
+    "translation_value": {
+      "partner_value": 4,
+      "gateway_value": 0
+    }
+  },
+  {
+    "concept_name": "is_optional",
+    "translation_value": {
+      "partner_value": "O",
+      "gateway_value": true
+    }
+  },
+  {
+    "concept_name": "is_optional",
+    "translation_value": {
+      "partner_value": "R",
+      "gateway_value": false
+    }
   }
 ]
