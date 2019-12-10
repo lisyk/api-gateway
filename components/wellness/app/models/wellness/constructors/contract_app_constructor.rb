@@ -59,8 +59,8 @@ module Wellness
         hash.keys.each do |key|
           next if skip_translation?(key)
 
-          if %w[phone1 phone1Type phone2 phone2Type].include? key
-            hash = update_phone_fields(hash)
+          if %w[phone1 phone1Type phone2 phone2Type address1 address2].include? key
+            hash = complex_field_mapping(hash, key)
             next
           end
 
@@ -86,11 +86,11 @@ module Wellness
       end
 
       def skip_translation?(key)
-        %(phone mobile alternate_phone).include? key
+        %w[phone mobile alternate_phone address].include? key
       end
 
       def phone_field_already_translated?(contract)
-        ['phone', 'mobile', 'alternate_phone'].each do |field|
+        %w[phone mobile alternate_phone].each do |field|
           return true if contract[field].present?
         end
         false
@@ -103,10 +103,25 @@ module Wellness
         new_phone_fields.keys.each do |phone_key|
           hash[phone_key] = new_phone_fields[phone_key]
         end
-        %w[phone1 phone1Type phone2 phone2Type].each do |old_field|
-          hash.delete old_field
-        end
+        %w[phone1 phone1Type phone2 phone2Type].each { |old_field| hash.delete old_field }
+
         hash
+      end
+
+      def update_address_fields(hash)
+        return hash if hash['address'].present?
+
+        hash['address'] = map_address_fields(hash)
+        %w[address1 address2].each { |old_field| hash.delete old_field }
+        hash
+      end
+
+      def complex_field_mapping(hash, key)
+        if %w[phone1 phone1Type phone2 phone2Type].include? key
+          update_phone_fields(hash)
+        elsif %w[address1 address2].include? key
+          update_address_fields(hash)
+        end
       end
     end
   end

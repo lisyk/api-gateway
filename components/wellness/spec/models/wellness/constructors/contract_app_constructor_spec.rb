@@ -93,6 +93,23 @@ module Wellness
           expect(modified_contract['alternate_phone']).to eq('0987654321')
         end
       end
+      context 'map address fields' do
+        before do
+          @sample_contract = contracts_sample.dup
+          %w[address1 address2].each do |key|
+            @sample_contract.first[key] = ' address field '
+          end
+        end
+        it 'returns single address field formatted' do
+          address_sample = @sample_contract.dup
+          subject = Constructors::ContractAppConstructor.new(address_sample, field_mapper, params)
+          allow(subject).to receive(:translate) { nil }
+          modified_contract = subject.modify.first
+          expect(modified_contract['address']).to be_present
+          expect(modified_contract['address'].match?(/(^\s)|(\s{2})|(\s$)/)).to eq false
+          expect(modified_contract['address']).to eq 'address field address field'
+        end
+      end
     end
   end
 end

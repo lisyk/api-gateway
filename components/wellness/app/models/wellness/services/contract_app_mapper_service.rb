@@ -14,7 +14,13 @@ module Wellness
         map_phone_2(phone_fields, new_phone_fields)
       end
 
-      def map_address_fields(contract); end
+      def map_address_fields(contract)
+        address_fields = []
+        %w[address1 address2].each do |field|
+          address_fields << contract[field].strip if contract[field].present?
+        end
+        address_fields.join(' ').strip
+      end
 
       private
 
