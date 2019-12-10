@@ -6,7 +6,10 @@ module Wellness
 
     def contract_app_mapping(params)
       return origin_contracts if origin_contracts.blank?
-      constructor = Constructors::ContractAppConstructor.new(origin_contracts, constructor_mapper, params)
+
+      constructor = Constructors::ContractAppConstructor.new(origin_contracts,
+                                                             constructor_mapper,
+                                                             params)
       constructor.modify
     end
 

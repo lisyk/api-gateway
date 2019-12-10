@@ -36,8 +36,8 @@ module Wellness
           field_to_replace = constructor_mapper[key]
           plan.delete key if ignore_field?(key)
           next if field_to_replace.nil? || ignore_field?(key)
-          value = plan.delete key
 
+          value = plan.delete key
           new_key = field_to_replace
           translated_value = translate(new_key, value, translate_to: :gateway) || value
           plan[new_key] = translated_value

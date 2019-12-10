@@ -5,7 +5,7 @@ module Wellness
     class ContractAppConstructor < ResponseLogger
       attr_reader :contracts, :constructor_mapper
 
-      def initialize(origin_contracts, constructor_mapper, params)
+      def initialize(origin_contracts, constructor_mapper, _params)
         @contracts = origin_contracts
         @constructor_mapper = constructor_mapper
       end
@@ -27,8 +27,8 @@ module Wellness
           field_to_replace = constructor_mapper[key]
           contract.delete key if ignore_field?(key)
           next unless field_to_replace.present? || ignore_field?(key)
-          value = contract.delete key
 
+          value = contract.delete key
           new_key = field_to_replace
           contract[new_key] = value
         end
@@ -39,12 +39,12 @@ module Wellness
 
       def ignore_field?(key)
         %w[
-            salutation
-            middleInitial
-            initiatedByProfessionalId
-            primaryCareProfessionalId
-            initiatedByProfessionalCd
-            primaryCareProfessionalCd
+          salutation
+          middleInitial
+          initiatedByProfessionalId
+          primaryCareProfessionalId
+          initiatedByProfessionalCd
+          primaryCareProfessionalCd
         ].include?(key)
       end
     end

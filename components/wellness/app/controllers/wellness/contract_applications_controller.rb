@@ -49,7 +49,7 @@ module Wellness
 
     def contract_apps(params = {})
       contract_app = ContractApplication.new(controller_name, action_name, params)
-      contract_app.contract_app_mapping(params)
+      contract_app.api_request
     end
 
     def retain_id_link
