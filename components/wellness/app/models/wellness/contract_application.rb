@@ -14,7 +14,7 @@ module Wellness
     end
 
     def constructor_mapper
-      mapper_file = File.expand_path('../../../lib/mappers/contract_app_mapper.json', __dir__)
+      mapper_file = File.expand_path('../../../lib/mappers/contract_applications/contract_app_mapper.json', __dir__)
       JSON.parse(File.read(mapper_file))
     end
 
