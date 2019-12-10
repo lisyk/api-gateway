@@ -60,17 +60,10 @@ module Wellness
           next if skip_translation?(key)
 
           if %w[phone1 phone1Type phone2 phone2Type].include? key
-            next if phone_field_already_translated?(hash)
-
-            new_phone_fields = map_phone_fields(hash)
-            new_phone_fields.keys.each do |phone_key|
-              hash[phone_key] = new_phone_fields[phone_key]
-            end
-            %w[phone1 phone1Type phone2 phone2Type].each do |old_field|
-              hash.delete old_field
-            end
+            hash = update_phone_fields(hash)
             next
           end
+
           field_to_replace = constructor_mapper[key]
           value = hash.delete key
           next if field_to_replace.nil? || ignore_field?(key)
@@ -101,6 +94,19 @@ module Wellness
           return true if contract[field].present?
         end
         false
+      end
+
+      def update_phone_fields(hash)
+        return hash if phone_field_already_translated?(hash)
+
+        new_phone_fields = map_phone_fields(hash)
+        new_phone_fields.keys.each do |phone_key|
+          hash[phone_key] = new_phone_fields[phone_key]
+        end
+        %w[phone1 phone1Type phone2 phone2Type].each do |old_field|
+          hash.delete old_field
+        end
+        hash
       end
     end
   end
