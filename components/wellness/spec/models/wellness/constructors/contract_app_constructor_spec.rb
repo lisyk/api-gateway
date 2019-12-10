@@ -48,6 +48,10 @@ module Wellness
           expect(modified_plan_list).not_to include ignored_field
         end
       end
+      it 'translates needed fields' do
+        allow(subject).to receive(:translate) { 1 }
+        expect(subject.modify.first['card_name']).to eq(1)
+      end
       context 'map phone fields' do
         before do
           @sample_contract = contracts_sample.dup

@@ -17,7 +17,7 @@ module Wellness
         log_original_response(contracts)
         if contracts.is_a? Array
           contracts.map! do |contract|
-            update_contract(contract) if !filter_contract?(contract)
+            update_contract(contract)
           end
         else
           update_contract(contracts)
@@ -41,10 +41,6 @@ module Wellness
           initiatedByProfessionalCd
           primaryCareProfessionalCd
         ].include?(key)
-      end
-
-      def filter_contract?(contract)
-        # TODO: Implement contract filtering
       end
 
       def update_nested_field_names(object)
