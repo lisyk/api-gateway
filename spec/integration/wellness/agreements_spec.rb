@@ -27,7 +27,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         response '404', 'Document not found' do
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:id) { '123456789' }
-          schema '$ref' => '#/components/schemas/error'
+          schema '$ref' => '#/components/schemas/not_found_error'
           run_test!
         end
       end
@@ -77,7 +77,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         response '404', 'Document not found' do
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:id) { '123456789' }
-          schema '$ref' => '#/components/schemas/error'
+          schema '$ref' => '#/components/schemas/not_found_error'
           run_test!
         end
       end

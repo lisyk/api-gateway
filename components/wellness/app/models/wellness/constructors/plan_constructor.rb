@@ -33,16 +33,6 @@ module Wellness
 
       def update_plan(plan)
         update_nested_field_names(plan)
-        # plan.keys.each do |key|
-        #   field_to_replace = constructor_mapper[key]
-        #   plan.delete key if ignore_field?(key)
-        #   next if field_to_replace.nil? || ignore_field?(key)
-
-        #   value = plan.delete key
-        #   new_key = field_to_replace
-        #   translated_value = translate(new_key, value, translate_to: :gateway) || value
-        #   plan[new_key] = translated_value
-        # end
         plan
       end
 

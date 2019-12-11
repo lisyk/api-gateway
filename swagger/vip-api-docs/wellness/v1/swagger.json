@@ -435,7 +435,8 @@
           },
           "cost": {
             "type": "number",
-            "example": 15.99
+            "example": 15.99,
+            "nullable": true
           },
           "created_at": {
             "type": "string",
@@ -443,7 +444,8 @@
           },
           "discount_percent": {
             "type": "number",
-            "example": 50
+            "example": 50,
+            "nullable": true
           },
           "discounted_price": {
             "type": "number",
@@ -455,7 +457,8 @@
           },
           "code": {
             "type": "number",
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "updated_at": {
             "type": "string",
@@ -627,7 +630,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/not_found_error"
                 }
               }
             }
@@ -684,7 +687,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/not_found_error"
                 }
               }
             }
