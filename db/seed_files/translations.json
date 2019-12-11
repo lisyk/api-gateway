@@ -9,7 +9,7 @@
   {
     "concept_name": "species_id",
     "translation_value": {
-      "partner_value": 1,
+      "partner_value": 2,
       "gateway_value": "c784e91c-56b6-4391-aa63-831b1c656d9e"
     }
   },
@@ -17,7 +17,7 @@
     "concept_name": "species_id",
     "translation_value": {
       "partner_value": 4,
-      "gateway_value": 0
+      "gateway_value": "0"
     }
   },
   {
