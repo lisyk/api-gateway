@@ -19,7 +19,7 @@ module Wellness
         %w[address1 address2].each do |field|
           address_fields << contract[field].strip if contract[field].present?
         end
-        address_fields.join(' ').strip
+        address_fields.join(' ')
       end
 
       private

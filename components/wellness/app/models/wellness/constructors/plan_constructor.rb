@@ -2,7 +2,7 @@
 
 module Wellness
   module Constructors
-    class PlanConstructor < ResponseLogger
+    class PlanConstructor < BaseConstructor
       include Wellness::Services::PlanTranslatorService
       include Wellness::Services::PlanFilterService
 
@@ -19,21 +19,14 @@ module Wellness
 
       def modify
         log_original_response(plans)
-
         if plans.is_a? Array
           plans.map! do |plan|
-            update_plan(plan) if !filter_plan?(plan)
+            update_object(plan) if !filter_plan?(plan)
           end
         else
-          update_plan(plans)
+          update_object(plans)
         end
-
         output_results
-      end
-
-      def update_plan(plan)
-        update_nested_field_names(plan)
-        plan
       end
 
       def output_results
@@ -61,37 +54,6 @@ module Wellness
           filter_species(plan),
           filter_age(plan)
         ].any?(true)
-      end
-
-      def update_nested_field_names(object)
-        if object.is_a? Hash
-          update_hash(object)
-        elsif object.is_a? Array
-          update_array(object)
-        end
-      end
-
-      def update_hash(hash)
-        hash.keys.each do |key|
-          field_to_replace = constructor_mapper[key]
-          value = hash.delete key
-          next if field_to_replace.nil? || ignore_field?(key)
-
-          new_key = field_to_replace
-          hash[field_to_replace] = translated_value(new_key, value, translate_to: :gateway)
-          update_nested_field_names(hash[field_to_replace])
-        end
-      end
-
-      def update_array(array)
-        array.each do |item|
-          update_nested_field_names(item)
-        end
-      end
-
-      def translated_value(new_key, value, translate_to)
-        translated_value = translate(new_key, value, translate_to)
-        translated_value.nil? ? value : translated_value
       end
     end
   end
