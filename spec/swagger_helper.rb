@@ -78,78 +78,29 @@ RSpec.configure do |config|
           plan: {
             type: :object,
             properties: {
-              id: { type: :integer },
-              version: { type: :integer },
-              ageGroup: { type: :integer },
-              autoRenew: { type: :boolean },
-              dateCreated: { type: :string },
-              displayOrder: { type: :integer },
-              externalPlanCd: { type: :string },
-              lastUpdated: { type: :string },
-              longDescription: { type: :string },
-              paidInFullDiscountAmt: { type: :number },
-              paymentTerm: { type: :integer },
-              planAmount: { type: :number },
-              planEffectiveDate: { type: :string },
-              planExpirationDate: { type: :string },
-              planServices: {
+              id: { type: :integer, example: 5_477_684 },
+              age_group: { type: :integer, example: 1 },
+              auto_renew: { type: :boolean, example: true },
+              created_at: { type: :string, example: '2019-02-18T18:20:12Z' },
+              sort_order: { type: :integer, example: 10 },
+              code: { type: :string, example: '10001' },
+              updated_at: { type: :string, example: '2019-02-18T18:20:12Z' },
+              long_description: {
+                type: :string,
+                example: '<b>The Puppy Wellness Plan Includes:</b><div><ul><li>3 Complete Physical Exams</li><li>Core Vaccination Series as Recommended by Your Veterinarian - Includes 5-in-1 (DAP/Parvo), Lepto 4, Bordetella and Rabies</li><li>2 Fecal Tests</li><li>2 Deworming Treatments - Roundworms and Hookworms</li><li>Microchip I.D. and Registration</li></ul><div><br></div></div><div><br></div>'
+              },
+              paid_in_full_discount: { type: :number, example: 0 },
+              payment_term: { type: :integer, example: 12 },
+              full_plan_price: { type: :number, example: 263.4 },
+              plan_services: {
                 type: :array,
                 items: {
-                  properties: {
-                    id: { type: :integer },
-                    offeredService: {
-                      type: :object,
-                      properties: {
-                        id: { type: :integer },
-                        shortDescription: { type: :string }
-                      }
-                    },
-                    plan: {
-                      type: :object,
-                      properties: {
-                        id: { type: :integer },
-                        shortDescription: { type: :string }
-                      }
-                    },
-                    cost: { type: :number, nullable: true },
-                    dateCreated: { type: :string },
-                    discountPercent: { type: :number, nullable: true },
-                    discountedPrice: { type: :number },
-                    displayOrder: { type: :integer },
-                    doNotRenew: { type: :boolean },
-                    externalPlanCd: { type: :string, nullable: true },
-                    lastUpdated: { type: :string },
-                    offeredServiceId: { type: :integer, nullable: true },
-                    performancePayPrice: { type: :number, nullable: true },
-                    planEffectiveDate: { type: :string },
-                    planExpirationDate: { type: :string },
-                    planId: { type: :integer },
-                    quantity: { type: :integer },
-                    retailPrice: { type: :integer },
-                    revenuePerUnit: { type: :number },
-                    serviceType: { type: :string },
-                    totalDisccountedPrice: { type: :number },
-                    totalRevenue: { type: :number, nullable: true },
-                    totalTrueCost: { type: :number, nullable: true }
-                  }
+                  '$ref' => '#/components/schemas/service'
                 }
               },
-              planStatus: { type: :string },
-              planType: { type: :integer },
-              productSubType: { type: :string },
-              recurringPaymentAmt: { type: :number },
-              renewalPlan: {
-                type: :object,
-                items: {
-                  properties: {
-                    _ref: { type: :string },
-                    class: { type: :string }
-                  }
-                }
-              },
-              renewalPlanId: { type: :integer },
-              shortDescription: { type: :string },
-              species: { type: :integer }
+              recurring_plan_payment_total: { type: :number, example: 21.95 },
+              short_description: { type: :string, example: 'Puppy Wellness Plan' },
+              species_id: { type: :string, example: 'aa49c6a9-a4e8-4a19-bea0-059739291646' }
             }
           },
           contract_application_list: {
@@ -293,6 +244,87 @@ RSpec.configure do |config|
               document: {
                 type: :string,
                 format: :binary
+              }
+            }
+          },
+          offered_service: {
+            type: :object,
+            properties: {
+              id: { type: :integer, example: 5_428_856 },
+              offered_service: {
+                type: :object,
+                properties: {
+                  id: { type: :integer, example: 5_428_799 },
+                  short_description: { type: :string, example: 'Wellness Examination' }
+                }
+              },
+              plan: {
+                type: :object,
+                properties: {
+                  id: { type: :integer, example: 5_428_455 },
+                  short_description: { type: :string, example: 'Puppy Wellness Plan' }
+                }
+              },
+              cost: { type: :number, example: 15.99 },
+              created_at: { type: :string, example: '2019-02-01T16:56:55Z' },
+              discount_percent: { type: :number, example: 50 },
+              discounted_price: { type: :number, example: 17.5 },
+              sort_order: { type: :integer, example: 10 },
+              code: { type: :number, example: nil },
+              updated_at: { type: :string, example: '2019-02-18T18:20:12Z' },
+              plan_id: { type: :integer, example: 5_428_455 },
+              plan_quantity: { type: :integer, example: 3 },
+              price: { type: :number, example: 35 },
+              revenue_per_unit: { type: :number, example: 21.1 },
+              is_optional: { type: :boolean, example: false }
+            }
+          },
+          application: {
+            type: :object,
+            properties: {
+              owner_first_name: { type: :string, example: 'Harry' },
+              owner_last_name: { type: :string, example: 'Potter' },
+              address: { type: :string, example: '4 Privet Drive' },
+              city: { type: :string, example: 'Morino Valley' },
+              state: { type: :string, example: 'CA' },
+              zip: { type: :string, example: '92551' },
+              country: { type: :string, example: 'US' },
+              mobile: { type: :string, example: '9494814601' },
+              phone: { type: :string, example: nil },
+              email: { type: :string, example: 'HarryPotter@Hogwarts.edu' },
+              owner_id: { type: :string, example: '1000' },
+              pet_id: { type: :string, example: '1' },
+              pet_name: { type: :string, example: 'Hedwig' },
+              gender: { type: :string, example: 'F' },
+              payment_method: { type: :string, example: 'credit' },
+              card_name: { type: :string, example: 'MasterCard' },
+              card_number: { type: :string, example: '5354' },
+              expiration_month: { type: :integer, example: 1 },
+              expiration_year: { type: :integer, example: 2025 }
+            }
+          },
+          auth_error: {
+            type: :object,
+            properties: {
+              errors: {
+                type: :array,
+                items: {
+                  type: :string,
+                  example: 'Authentication token is not provided!'
+                }
+              },
+              auth_status: { type: :string, example: 'unauthorized' }
+            }
+          },
+          not_found_error: {
+            type: :object,
+            properties: {
+              errors: {
+                type: :array,
+                items: {
+                  type: :string,
+                  example: 'Not found.'
+                }
               }
             }
           }
