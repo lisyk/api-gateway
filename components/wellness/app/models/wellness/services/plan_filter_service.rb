@@ -83,11 +83,6 @@ module Wellness
 
         [@age.to_i, age_years + (age_months / 12).floor].max
       end
-
-      def translated_value(new_key, value, translate_to)
-        translated_value = translate(new_key, value, translate_to)
-        translated_value.nil? ? value : translated_value
-      end
     end
   end
 end

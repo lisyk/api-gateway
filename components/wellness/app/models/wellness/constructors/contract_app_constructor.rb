@@ -42,25 +42,6 @@ module Wellness
         ].include?(key)
       end
 
-      def update_hash(hash)
-        hash.keys.each do |key|
-          next if skip_update?(key)
-
-          if needs_complex_mapping?(key)
-            hash = complex_field_mapping(hash, key)
-            next
-          end
-
-          field_to_replace = constructor_mapper[key]
-          value = hash.delete key
-          next if field_to_replace.nil? || ignore_field?(key)
-
-          new_key = field_to_replace
-          hash[field_to_replace] = translated_value(new_key, value, hash, translate_to: :gateway)
-          update_nested_field_names(hash[field_to_replace])
-        end
-      end
-
       def skip_update?(key)
         %w[phone mobile alternate_phone address].include? key
       end
@@ -72,28 +53,11 @@ module Wellness
         false
       end
 
-      def update_phone_fields(hash)
-        return hash if field_already_translated?(hash, vip_phone_fields)
-
-        new_phone_fields = map_phone_fields(hash)
-        new_phone_fields.keys.each do |phone_key|
-          hash[phone_key] = new_phone_fields[phone_key]
-        end
-        delete_old_fields(partner_phone_fields, hash)
-      end
-
-      def update_address_fields(hash)
-        return hash if field_already_translated?(hash, %w[address])
-
-        hash['address'] = map_address_fields(hash)
-        delete_old_fields(partner_address_fields, hash)
-      end
-
       def complex_field_mapping(hash, key)
         if partner_phone_fields.include? key
-          update_phone_fields(hash)
+          update_complex_fields(hash, vip_phone_fields, partner_phone_fields, :map_phone_fields)
         elsif partner_address_fields.include? key
-          update_address_fields(hash)
+          update_complex_fields(hash, %w[address], partner_address_fields, :map_address_fields)
         end
       end
 
