@@ -95,7 +95,7 @@ RSpec.configure do |config|
               plan_services: {
                 type: :array,
                 items: {
-                  '$ref' => '#/components/schemas/service'
+                  '$ref' => '#/components/schemas/offered_service'
                 }
               },
               recurring_plan_payment_total: { type: :number, example: 21.95 },
@@ -243,7 +243,8 @@ RSpec.configure do |config|
             properties: {
               document: {
                 type: :string,
-                format: :binary
+                format: :binary,
+                description: 'Binary-encoded PDF agreement document'
               }
             }
           },
@@ -265,12 +266,12 @@ RSpec.configure do |config|
                   short_description: { type: :string, example: 'Puppy Wellness Plan' }
                 }
               },
-              cost: { type: :number, example: 15.99 },
+              cost: { type: :number, example: 15.99, nullable: true },
               created_at: { type: :string, example: '2019-02-01T16:56:55Z' },
-              discount_percent: { type: :number, example: 50 },
+              discount_percent: { type: :number, example: 50, nullable: true },
               discounted_price: { type: :number, example: 17.5 },
               sort_order: { type: :integer, example: 10 },
-              code: { type: :number, example: nil },
+              code: { type: :number, example: nil, nullable: true },
               updated_at: { type: :string, example: '2019-02-18T18:20:12Z' },
               plan_id: { type: :integer, example: 5_428_455 },
               plan_quantity: { type: :integer, example: 3 },
