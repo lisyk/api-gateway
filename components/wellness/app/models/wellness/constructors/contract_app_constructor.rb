@@ -22,11 +22,7 @@ module Wellness
         else
           update_object(contracts)
         end
-        output_results
-      end
-
-      def output_results
-        contracts.compact.empty? ? { message: ['No contracts matched query'] } : contracts.compact
+        output_results(contracts, 'contracts')
       end
 
       private

@@ -26,11 +26,7 @@ module Wellness
         else
           update_object(plans)
         end
-        output_results
-      end
-
-      def output_results
-        plans.compact.empty? ? { message: ['No plans matched query'] } : plans.compact
+        output_results(plans, 'plans')
       end
 
       private

@@ -5,6 +5,10 @@ module Wellness
     class BaseConstructor < ResponseLogger
       private
 
+      def output_results(object, message)
+        object.compact.empty? ? { message: ["No #{message} matched query"] } : object.compact
+      end
+
       def update_object(object)
         update_nested_field_names(object)
         object
