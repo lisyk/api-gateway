@@ -30,179 +30,66 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "example": 5477684
           },
-          "version": {
-            "type": "integer"
+          "age_group": {
+            "type": "integer",
+            "example": 1
           },
-          "ageGroup": {
-            "type": "integer"
+          "auto_renew": {
+            "type": "boolean",
+            "example": true
           },
-          "autoRenew": {
-            "type": "boolean"
+          "created_at": {
+            "type": "string",
+            "example": "2019-02-18T18:20:12Z"
           },
-          "dateCreated": {
-            "type": "string"
+          "sort_order": {
+            "type": "integer",
+            "example": 10
           },
-          "displayOrder": {
-            "type": "integer"
+          "code": {
+            "type": "string",
+            "example": "10001"
           },
-          "externalPlanCd": {
-            "type": "string"
+          "updated_at": {
+            "type": "string",
+            "example": "2019-02-18T18:20:12Z"
           },
-          "lastUpdated": {
-            "type": "string"
+          "long_description": {
+            "type": "string",
+            "example": "<b>The Puppy Wellness Plan Includes:</b><div><ul><li>3 Complete Physical Exams</li><li>Core Vaccination Series as Recommended by Your Veterinarian - Includes 5-in-1 (DAP/Parvo), Lepto 4, Bordetella and Rabies</li><li>2 Fecal Tests</li><li>2 Deworming Treatments - Roundworms and Hookworms</li><li>Microchip I.D. and Registration</li></ul><div><br></div></div><div><br></div>"
           },
-          "longDescription": {
-            "type": "string"
+          "paid_in_full_discount": {
+            "type": "number",
+            "example": 0
           },
-          "paidInFullDiscountAmt": {
-            "type": "number"
+          "payment_term": {
+            "type": "integer",
+            "example": 12
           },
-          "paymentTerm": {
-            "type": "integer"
+          "full_plan_price": {
+            "type": "number",
+            "example": 263.4
           },
-          "planAmount": {
-            "type": "number"
-          },
-          "planEffectiveDate": {
-            "type": "string"
-          },
-          "planExpirationDate": {
-            "type": "string"
-          },
-          "planServices": {
+          "plan_services": {
             "type": "array",
             "items": {
-              "properties": {
-                "id": {
-                  "type": "integer"
-                },
-                "offeredService": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer"
-                    },
-                    "shortDescription": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "plan": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer"
-                    },
-                    "shortDescription": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "cost": {
-                  "type": "number",
-                  "nullable": true
-                },
-                "dateCreated": {
-                  "type": "string"
-                },
-                "discountPercent": {
-                  "type": "number",
-                  "nullable": true
-                },
-                "discountedPrice": {
-                  "type": "number"
-                },
-                "displayOrder": {
-                  "type": "integer"
-                },
-                "doNotRenew": {
-                  "type": "boolean"
-                },
-                "externalPlanCd": {
-                  "type": "string",
-                  "nullable": true
-                },
-                "lastUpdated": {
-                  "type": "string"
-                },
-                "offeredServiceId": {
-                  "type": "integer",
-                  "nullable": true
-                },
-                "performancePayPrice": {
-                  "type": "number",
-                  "nullable": true
-                },
-                "planEffectiveDate": {
-                  "type": "string"
-                },
-                "planExpirationDate": {
-                  "type": "string"
-                },
-                "planId": {
-                  "type": "integer"
-                },
-                "quantity": {
-                  "type": "integer"
-                },
-                "retailPrice": {
-                  "type": "integer"
-                },
-                "revenuePerUnit": {
-                  "type": "number"
-                },
-                "serviceType": {
-                  "type": "string"
-                },
-                "totalDisccountedPrice": {
-                  "type": "number"
-                },
-                "totalRevenue": {
-                  "type": "number",
-                  "nullable": true
-                },
-                "totalTrueCost": {
-                  "type": "number",
-                  "nullable": true
-                }
-              }
+              "$ref": "#/components/schemas/offered_service"
             }
           },
-          "planStatus": {
-            "type": "string"
+          "recurring_plan_payment_total": {
+            "type": "number",
+            "example": 21.95
           },
-          "planType": {
-            "type": "integer"
+          "short_description": {
+            "type": "string",
+            "example": "Puppy Wellness Plan"
           },
-          "productSubType": {
-            "type": "string"
-          },
-          "recurringPaymentAmt": {
-            "type": "number"
-          },
-          "renewalPlan": {
-            "type": "object",
-            "items": {
-              "properties": {
-                "_ref": {
-                  "type": "string"
-                },
-                "class": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "renewalPlanId": {
-            "type": "integer"
-          },
-          "shortDescription": {
-            "type": "string"
-          },
-          "species": {
-            "type": "integer"
+          "species_id": {
+            "type": "string",
+            "example": "aa49c6a9-a4e8-4a19-bea0-059739291646"
           }
         }
       },
@@ -513,6 +400,170 @@
           }
         }
       },
+      "offered_service": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 5428856
+          },
+          "offered_service": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 5428799
+              },
+              "short_description": {
+                "type": "string",
+                "example": "Wellness Examination"
+              }
+            }
+          },
+          "plan": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 5428455
+              },
+              "short_description": {
+                "type": "string",
+                "example": "Puppy Wellness Plan"
+              }
+            }
+          },
+          "cost": {
+            "type": "number",
+            "example": 15.99
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2019-02-01T16:56:55Z"
+          },
+          "discount_percent": {
+            "type": "number",
+            "example": 50
+          },
+          "discounted_price": {
+            "type": "number",
+            "example": 17.5
+          },
+          "sort_order": {
+            "type": "integer",
+            "example": 10
+          },
+          "code": {
+            "type": "number",
+            "example": null
+          },
+          "updated_at": {
+            "type": "string",
+            "example": "2019-02-18T18:20:12Z"
+          },
+          "plan_id": {
+            "type": "integer",
+            "example": 5428455
+          },
+          "plan_quantity": {
+            "type": "integer",
+            "example": 3
+          },
+          "price": {
+            "type": "number",
+            "example": 35
+          },
+          "revenue_per_unit": {
+            "type": "number",
+            "example": 21.1
+          },
+          "is_optional": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "application": {
+        "type": "object",
+        "properties": {
+          "owner_first_name": {
+            "type": "string",
+            "example": "Harry"
+          },
+          "owner_last_name": {
+            "type": "string",
+            "example": "Potter"
+          },
+          "address": {
+            "type": "string",
+            "example": "4 Privet Drive"
+          },
+          "city": {
+            "type": "string",
+            "example": "Morino Valley"
+          },
+          "state": {
+            "type": "string",
+            "example": "CA"
+          },
+          "zip": {
+            "type": "string",
+            "example": "92551"
+          },
+          "country": {
+            "type": "string",
+            "example": "US"
+          },
+          "mobile": {
+            "type": "string",
+            "example": "9494814601"
+          },
+          "phone": {
+            "type": "string",
+            "example": null
+          },
+          "email": {
+            "type": "string",
+            "example": "HarryPotter@Hogwarts.edu"
+          },
+          "owner_id": {
+            "type": "string",
+            "example": "1000"
+          },
+          "pet_id": {
+            "type": "string",
+            "example": "1"
+          },
+          "pet_name": {
+            "type": "string",
+            "example": "Hedwig"
+          },
+          "gender": {
+            "type": "string",
+            "example": "F"
+          },
+          "payment_method": {
+            "type": "string",
+            "example": "credit"
+          },
+          "card_name": {
+            "type": "string",
+            "example": "MasterCard"
+          },
+          "card_number": {
+            "type": "string",
+            "example": "5354"
+          },
+          "expiration_month": {
+            "type": "integer",
+            "example": 1
+          },
+          "expiration_year": {
+            "type": "integer",
+            "example": 2025
+          }
+        }
+      },
       "auth_error": {
         "type": "object",
         "properties": {
@@ -529,14 +580,14 @@
           }
         }
       },
-      "error": {
+      "not_found_error": {
         "type": "object",
         "properties": {
           "errors": {
             "type": "array",
             "items": {
               "type": "string",
-              "example": "Agreement not found."
+              "example": "Not found."
             }
           }
         }
@@ -923,6 +974,16 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/auth_error"
+                }
+              }
+            }
           }
         }
       }
@@ -948,42 +1009,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "clinic_location_id",
-            "in": "query",
-            "required": false,
-            "description": "VIP clinic ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "is_sellable",
-            "in": "query",
-            "required": false,
-            "description": "Plan is active and within date range",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "species",
-            "in": "query",
-            "required": false,
-            "description": "VIP species code",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "age",
-            "in": "query",
-            "required": false,
-            "description": "Age in years. Accepts integer years, YYMM formatted strings (i.e. \"3Y1M\"), and datetime strings (i.e. \"2016-11-22T21:45:58+00:00\")",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -993,6 +1018,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/plan"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Plan not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/not_found_error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/auth_error"
                 }
               }
             }

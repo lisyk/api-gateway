@@ -32,15 +32,17 @@ module Wellness
       end
 
       def update_plan(plan)
-        plan.keys.each do |key|
-          field_to_replace = constructor_mapper[key]
-          value = plan.delete key
-          next if field_to_replace.nil? || ignore_field?(key)
+        update_nested_field_names(plan)
+        # plan.keys.each do |key|
+        #   field_to_replace = constructor_mapper[key]
+        #   plan.delete key if ignore_field?(key)
+        #   next if field_to_replace.nil? || ignore_field?(key)
 
-          new_key = field_to_replace
-          translated_value = translate(new_key, value, translate_to: :gateway) || value
-          plan[new_key] = translated_value
-        end
+        #   value = plan.delete key
+        #   new_key = field_to_replace
+        #   translated_value = translate(new_key, value, translate_to: :gateway) || value
+        #   plan[new_key] = translated_value
+        # end
         plan
       end
 
@@ -69,6 +71,37 @@ module Wellness
           filter_species(plan),
           filter_age(plan)
         ].any?(true)
+      end
+
+      def update_nested_field_names(object)
+        if object.is_a? Hash
+          update_hash(object)
+        elsif object.is_a? Array
+          update_array(object)
+        end
+      end
+
+      def update_hash(hash)
+        hash.keys.each do |key|
+          field_to_replace = constructor_mapper[key]
+          value = hash.delete key
+          next if field_to_replace.nil? || ignore_field?(key)
+
+          new_key = field_to_replace
+          hash[field_to_replace] = translated_value(new_key, value, translate_to: :gateway)
+          update_nested_field_names(hash[field_to_replace])
+        end
+      end
+
+      def update_array(array)
+        array.each do |item|
+          update_nested_field_names(item)
+        end
+      end
+
+      def translated_value(new_key, value, translate_to)
+        translated_value = translate(new_key, value, translate_to)
+        translated_value.nil? ? value : translated_value
       end
     end
   end
