@@ -15,6 +15,9 @@ module Wellness
       @response ||= put_agreement(agreement_params) || {}
       if @response.present? && @response['errors'].nil?
         render json: { success: ['Signed agreement posted successfully.'] }
+      elsif @response.empty?
+        render json: { errors: ['Agreement not found.'] },
+               status: :not_found
       else
         @response['errors'] ||= ['Agreement failed to update.']
         render json: { errors: @response['errors'] },

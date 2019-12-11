@@ -76,7 +76,7 @@
           "plan_services": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/service"
+              "$ref": "#/components/schemas/offered_service"
             }
           },
           "recurring_plan_payment_total": {
@@ -395,7 +395,8 @@
         "properties": {
           "document": {
             "type": "string",
-            "format": "binary"
+            "format": "binary",
+            "description": "Binary-encoded PDF agreement document"
           }
         }
       },
@@ -434,7 +435,8 @@
           },
           "cost": {
             "type": "number",
-            "example": 15.99
+            "example": 15.99,
+            "nullable": true
           },
           "created_at": {
             "type": "string",
@@ -442,7 +444,8 @@
           },
           "discount_percent": {
             "type": "number",
-            "example": 50
+            "example": 50,
+            "nullable": true
           },
           "discounted_price": {
             "type": "number",
@@ -454,7 +457,8 @@
           },
           "code": {
             "type": "number",
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "updated_at": {
             "type": "string",
@@ -620,6 +624,26 @@
         "responses": {
           "200": {
             "description": "Generate a new agreement PDF"
+          },
+          "404": {
+            "description": "Document not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/not_found_error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/auth_error"
+                }
+              }
+            }
           }
         }
       },
@@ -657,6 +681,26 @@
         "responses": {
           "200": {
             "description": "Upload signed PDF document"
+          },
+          "404": {
+            "description": "Document not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/not_found_error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/auth_error"
+                }
+              }
+            }
           }
         }
       }
