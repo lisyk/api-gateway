@@ -198,13 +198,95 @@ RSpec.configure do |config|
               is_optional: { type: :boolean, example: false }
             }
           },
-          application_list: {
+          partner_contract_application_list: {
             type: :array,
             items: {
-              '$ref' => '#/components/schemas/application'
+              '$ref' => '#/components/schemas/partner_contract_application'
             }
           },
-          application: {
+          partner_contract_application: {
+            type: :object,
+            properties: {
+              validatedFieldList: {
+                type: :array,
+                items: { type: :string }
+              },
+              location: {
+                type: :object,
+                properties: {
+                  id: { type: :integer }
+                }
+              },
+              plan: {
+                type: :object,
+                properties: {
+                  id: { type: :integer }
+                }
+              },
+              externalLocationCd: { type: :integer, nullable: true },
+              externalPlanCd: { type: :integer, nullable: true },
+              salutation: { type: :string },
+              firstName: { type: :string },
+              middleInitial: { type: :string, nullable: true },
+              lastName: { type: :string },
+              address1: { type: :string },
+              address2: { type: :string, nullable: true },
+              city: { type: :string },
+              state: { type: :string },
+              postalCode: { type: :string },
+              country: { type: :string },
+              phone1: { type: :string },
+              phone1Type: { type: :string },
+              phone2: { type: :string },
+              phone2Type: { type: :string },
+              email: { type: :string },
+              portalUsername: { type: :string },
+              externalClientCd: { type: :string },
+              externalMemberCd: { type: :string },
+              memberName: { type: :string },
+              memberAge: { type: :string },
+              gender: { type: :string, nullable: true },
+              initiatedByProfessional: {
+                type: :object,
+                properties: {
+                  id: { type: :integer }
+                }
+              },
+              primaryCareProfessional: {
+                type: :object,
+                properties: {
+                  id: { type: :integer }
+                }
+              },
+              initiatedByProfessionalCd: { type: :integer, nullable: true },
+              primaryCareProfessionalCd: { type: :integer, nullable: true },
+              payOption: { type: :string },
+              payMethod: { type: :string },
+              paymentName: { type: :string },
+              accountNbrForDisplay: { type: :string },
+              accountNbr: { type: :integer },
+              institutionName: { type: :string },
+              bankAccountHolderType: { type: :string },
+              bankAccountType: { type: :string },
+              bankRoutingNbr: { type: :string },
+              paymentaddressSameAsAccount: { type: :boolean },
+              expirationMonth: { type: :integer, nullable: true },
+              expirationYear: { type: :integer, nullable: true },
+              securityCode: { type: :integer, nullable: true },
+              externalPaymentProfileId: { type: :string, nullable: true },
+              optionalPlanServices: {
+                type: :array,
+                items: { type: :object }
+              }
+            }
+          },
+          vip_contract_application_list: {
+            type: :array,
+            items: {
+              '$ref' => '#/components/schemas/vip_contract_application'
+            }
+          },
+          vip_contract_application: {
             type: :object,
             properties: {
               owner_first_name: { type: :string, example: 'Harry' },
@@ -257,15 +339,15 @@ RSpec.configure do |config|
             }
           },
           malformed_request_error: {
-            type: :object, 
+            type: :object,
             properties: {
               errors: {
                 type: :array,
                 items: {
-                  object: { type: :string, example: "com.bwse.model.api.ContractApplication" },
-                  field: { type: :string, example: "email" },
-                  'rejected-value'.to_sym => { type: :string, example: "Harry.Potter@Hogwarts.edu" },
-                  message: { type: :string, example: "email with value [Harry.Potter@Hogwarts.edu] does not pass custom validation" },
+                  object: { type: :string, example: 'com.bwse.model.api.ContractApplication' },
+                  field: { type: :string, example: 'email' },
+                  'rejected-value'.to_sym => { type: :string, example: 'Harry.Potter@Hogwarts.edu' },
+                  message: { type: :string, example: 'email with value [Harry.Potter@Hogwarts.edu] does not pass custom validation' }
                 }
               }
             }

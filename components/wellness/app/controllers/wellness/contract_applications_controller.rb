@@ -27,7 +27,7 @@ module Wellness
 
     def create
       @request ||= post_apps(request)
-      if @request.keys == ['errors']
+      if @request.is_a?(Hash) && @request.keys == ['errors']
         render json: @request,
                status: :bad_request
       elsif @request.present?
@@ -40,7 +40,7 @@ module Wellness
 
     def update
       @request ||= put_apps(request)
-      if @request.keys == ['errors']
+      if @request.is_a?(Hash) && @request.keys == ['errors']
         render json: @request,
                status: :bad_request
       elsif @request.present?

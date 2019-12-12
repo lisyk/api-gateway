@@ -303,13 +303,196 @@
           }
         }
       },
-      "application_list": {
+      "partner_contract_application_list": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/application"
+          "$ref": "#/components/schemas/partner_contract_application"
         }
       },
-      "application": {
+      "partner_contract_application": {
+        "type": "object",
+        "properties": {
+          "validatedFieldList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              }
+            }
+          },
+          "plan": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              }
+            }
+          },
+          "externalLocationCd": {
+            "type": "integer",
+            "nullable": true
+          },
+          "externalPlanCd": {
+            "type": "integer",
+            "nullable": true
+          },
+          "salutation": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "middleInitial": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "address1": {
+            "type": "string"
+          },
+          "address2": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "phone1": {
+            "type": "string"
+          },
+          "phone1Type": {
+            "type": "string"
+          },
+          "phone2": {
+            "type": "string"
+          },
+          "phone2Type": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "portalUsername": {
+            "type": "string"
+          },
+          "externalClientCd": {
+            "type": "string"
+          },
+          "externalMemberCd": {
+            "type": "string"
+          },
+          "memberName": {
+            "type": "string"
+          },
+          "memberAge": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "initiatedByProfessional": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              }
+            }
+          },
+          "primaryCareProfessional": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              }
+            }
+          },
+          "initiatedByProfessionalCd": {
+            "type": "integer",
+            "nullable": true
+          },
+          "primaryCareProfessionalCd": {
+            "type": "integer",
+            "nullable": true
+          },
+          "payOption": {
+            "type": "string"
+          },
+          "payMethod": {
+            "type": "string"
+          },
+          "paymentName": {
+            "type": "string"
+          },
+          "accountNbrForDisplay": {
+            "type": "string"
+          },
+          "accountNbr": {
+            "type": "integer"
+          },
+          "institutionName": {
+            "type": "string"
+          },
+          "bankAccountHolderType": {
+            "type": "string"
+          },
+          "bankAccountType": {
+            "type": "string"
+          },
+          "bankRoutingNbr": {
+            "type": "string"
+          },
+          "paymentaddressSameAsAccount": {
+            "type": "boolean"
+          },
+          "expirationMonth": {
+            "type": "integer",
+            "nullable": true
+          },
+          "expirationYear": {
+            "type": "integer",
+            "nullable": true
+          },
+          "securityCode": {
+            "type": "integer",
+            "nullable": true
+          },
+          "externalPaymentProfileId": {
+            "type": "string",
+            "nullable": true
+          },
+          "optionalPlanServices": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "vip_contract_application_list": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/vip_contract_application"
+        }
+      },
+      "vip_contract_application": {
         "type": "object",
         "properties": {
           "owner_first_name": {
@@ -440,6 +623,10 @@
               "field": {
                 "type": "string",
                 "example": "email"
+              },
+              "rejected-value": {
+                "type": "string",
+                "example": "Harry.Potter@Hogwarts.edu"
               },
               "message": {
                 "type": "string",
@@ -580,7 +767,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/contract_application"
+                "$ref": "#/components/schemas/partner_contract_application"
               }
             }
           }
@@ -591,13 +778,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/application"
+                  "$ref": "#/components/schemas/vip_contract_application"
                 }
               }
             }
           },
-          "422": {
-            "description": "Malformed request",
+          "400": {
+            "description": "Bad request",
             "content": {
               "application/json": {
                 "schema": {
@@ -626,7 +813,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/application_list"
+                  "$ref": "#/components/schemas/vip_contract_application_list"
                 }
               }
             }
@@ -673,7 +860,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/application"
+                  "$ref": "#/components/schemas/vip_contract_application"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/not_found_error"
                 }
               }
             }
@@ -717,18 +914,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/application"
+                "$ref": "#/components/schemas/partner_contract_application"
               }
             }
           }
         },
         "responses": {
-          "200": {
-            "description": "Create a new contract application",
+          "400": {
+            "description": "Bad request",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/application"
+                  "$ref": "#/components/schemas/malformed_request_error"
                 }
               }
             }
