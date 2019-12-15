@@ -8,7 +8,7 @@ module Wellness
       File.read(File.expand_path('../../../helpers/dummy_docs/contract_applications/contract_applications_sample.json', __dir__))
     end
     let(:field_mapper_file) do
-      File.read(File.expand_path('../../../../lib/mappers/contract_app_mapper.json', __dir__))
+      File.read(File.expand_path('../../../../lib/mappers/contract_applications/contract_applications_response_mapper.json', __dir__))
     end
     let(:contracts_sample) { JSON.parse contract_sample_file }
     let(:field_mapper) { JSON.parse field_mapper_file }

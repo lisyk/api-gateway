@@ -5,8 +5,8 @@ module Wellness
     module ContractAppTranslatorService
       def translate(key, value, translate_to)
         return nil if key == 'id'
+
         translate_to ||= :gateway
-        binding.pry
 
         if key == 'age_group'
           translate_age_group(value)

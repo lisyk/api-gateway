@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 module Wellness
   class RequestTranslation < Constructors::ResponseLogger
     include Wellness::Services::ContractAppTranslatorService
 
+    attr_accessor :request, :translation_type
+
     def initialize(request, translation_type)
-      @request = JSON.parse(request.body.read)
+      @request = parse_request(request)
       @translation_type = translation_type
     end
 
@@ -58,6 +62,10 @@ module Wellness
     def translate_cc_fields
       value = @request['payMethod']
       @request['payMethod'] = translate_general('card_name', value, :partner)
+    end
+
+    def parse_request(request)
+      JSON.parse(request.body.read)
     end
   end
 end

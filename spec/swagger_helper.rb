@@ -280,6 +280,12 @@ RSpec.configure do |config|
               is_optional: { type: :boolean, example: false }
             }
           },
+          application_list: {
+            type: :array,
+            items: {
+              '$ref' => '#/components/schemas/application'
+            }
+          },
           application: {
             type: :object,
             properties: {
@@ -296,12 +302,12 @@ RSpec.configure do |config|
               owner_id: { type: :string, example: '1000' },
               pet_id: { type: :string, example: '1' },
               pet_name: { type: :string, example: 'Hedwig' },
-              gender: { type: :string, example: 'F' },
+              gender: { type: :string, example: 'F', nullable: true },
               payment_method: { type: :string, example: 'credit' },
               card_name: { type: :string, example: 'MasterCard' },
               card_number: { type: :string, example: '5354' },
-              expiration_month: { type: :integer, example: 1 },
-              expiration_year: { type: :integer, example: 2025 }
+              expiration_month: { type: :integer, example: 1, nullable: true },
+              expiration_year: { type: :integer, example: 2025, nullable: true }
             }
           },
           auth_error: {
