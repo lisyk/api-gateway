@@ -238,10 +238,12 @@
             "type": "integer"
           },
           "institutionName": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "bankAccountHolderType": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "bankAccountType": {
             "type": "string"
