@@ -2,7 +2,9 @@
 
 module Wellness
   module Constructors
-    class BaseConstructor < ResponseLogger
+    class BaseConstructor
+      include ResponseLogger
+
       private
 
       def output_results(object, message)
