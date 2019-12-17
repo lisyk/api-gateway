@@ -28,7 +28,10 @@ module Wellness
     def create
       translated_request = translate(request)
       @request ||= post_apps(translated_request)
-      if @request.present?
+      if @request.is_a?(Hash) && @request.keys == ['errors']
+        render json: @request,
+               status: :bad_request
+      elsif @request.present?
         render json: @request
       else
         render json: { errors: ['Contract application was not created.'] },
@@ -39,7 +42,10 @@ module Wellness
     def update
       translated_request = translate(request)
       @request ||= put_apps(translated_request)
-      if @request.present?
+      if @request.is_a?(Hash) && @request.keys == ['errors']
+        render json: @request,
+               status: :bad_request
+      elsif @request.present?
         render json: @request
       else
         render json: { errors: ['Contract application was not updated.'] },
