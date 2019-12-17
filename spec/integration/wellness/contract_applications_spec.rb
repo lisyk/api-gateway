@@ -184,7 +184,6 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         response '200', 'Update or finalize an existing contract application' do
           schema '$ref' => '#/components/schemas/vip_contract_application'
           let(:Authorization) { " Authorization: Bearer #{token} " }
-          let(:id) { '1000013302' }
           let(:contract_application) do
             {
               location: {
@@ -203,16 +202,17 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
               country: 'US',
               mobile: '9494814601',
               phone: '9494814602',
-              email: 'Olivia.Wright@ExtendCredit.com',
-              owner_id: '1000',
-              pet_id: '1',
+              email: 'fakeemail@bitwerx.com',
+              owner_id: '123456',
+              pet_id: '123456',
               pet_name: 'Cece',
               age: '1Y 2M',
               payment_method: 'credit',
               card_name: 'MasterCard',
               card_number: '5354',
               expiration_month: 1,
-              expiration_year: 2025
+              expiration_year: 2099,
+              first_billing_date: DateTime.current
             }
           end
           run_test!
