@@ -274,10 +274,6 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
               firstBillingDate: "#{Date.current}T23:59:59Z"
             }
           end
-        # response '200', 'Update a contract application' do
-        #   schema '$ref' => '#/components/schemas/vip_contract_application'
-        #   run_test!
-        # end
         end
 
         response '400', 'Bad request' do
@@ -286,12 +282,6 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           schema '$ref' => '#/components/schemas/malformed_request_error'
           run_test!
         end
-
-        # response '404', 'Not found' do
-        #   let(:id) {'fake_id'}
-        #   schema '$ref' => '#/components/schemas/not_found_error'
-        #   run_test!
-        # end
       end
 
       context 'Using invalid credentials/credentials missing' do

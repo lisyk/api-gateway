@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 module Wellness
-  class RequestTranslation < Constructors::ResponseLogger
-    include Wellness::Services::ContractAppTranslatorService
+  class RequestTranslation
+    include Services::ContractAppTranslatorService
+    include Services::ResponseLogger
 
     attr_accessor :request, :translation_type
 
