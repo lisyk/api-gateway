@@ -202,7 +202,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
               country: 'US',
               mobile: '9494814601',
               phone: '9494814602',
-              email: 'fakeemail@bitwerx.com',
+              email: 'fake@email.com',
               owner_id: '123456',
               pet_id: '123456',
               pet_name: 'Cece',
