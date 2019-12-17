@@ -93,6 +93,194 @@
           }
         }
       },
+      "contract_application_list": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/contract_application"
+        }
+      },
+      "contract_application": {
+        "type": "object",
+        "properties": {
+          "validatedFieldList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              }
+            }
+          },
+          "plan": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              }
+            }
+          },
+          "externalLocationCd": {
+            "type": "integer",
+            "nullable": true
+          },
+          "externalPlanCd": {
+            "type": "integer",
+            "nullable": true
+          },
+          "salutation": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "middleInitial": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "address1": {
+            "type": "string"
+          },
+          "address2": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "phone1": {
+            "type": "string"
+          },
+          "phone1Type": {
+            "type": "string"
+          },
+          "phone2": {
+            "type": "string"
+          },
+          "phone2Type": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "portalUsername": {
+            "type": "string"
+          },
+          "externalClientCd": {
+            "type": "string"
+          },
+          "externalMemberCd": {
+            "type": "string",
+            "maxLength": 50
+          },
+          "memberName": {
+            "type": "string"
+          },
+          "memberAge": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "initiatedByProfessional": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              }
+            }
+          },
+          "primaryCareProfessional": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              }
+            }
+          },
+          "initiatedByProfessionalCd": {
+            "type": "integer",
+            "nullable": true
+          },
+          "primaryCareProfessionalCd": {
+            "type": "integer",
+            "nullable": true
+          },
+          "payOption": {
+            "type": "string"
+          },
+          "payMethod": {
+            "type": "string"
+          },
+          "paymentName": {
+            "type": "string"
+          },
+          "accountNbrForDisplay": {
+            "type": "string"
+          },
+          "accountNbr": {
+            "type": "integer"
+          },
+          "institutionName": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankAccountHolderType": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankAccountType": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankRoutingNbr": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentaddressSameAsAccount": {
+            "type": "boolean"
+          },
+          "expirationMonth": {
+            "type": "integer",
+            "nullable": true
+          },
+          "expirationYear": {
+            "type": "integer",
+            "nullable": true
+          },
+          "securityCode": {
+            "type": "integer",
+            "nullable": true
+          },
+          "externalPaymentProfileId": {
+            "type": "string",
+            "nullable": true
+          },
+          "optionalPlanServices": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
       "service_list": {
         "type": "object",
         "properties": {

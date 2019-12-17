@@ -13,7 +13,7 @@ module Wellness
       end
 
       def find_contract(pet_id)
-        DbService::PetContract.find_by(pet_id: pet_id)
+        DbService::PetContract.find_by(pet_uuid: pet_id)
       end
 
       def update_record(pet_contract, contract_app_id)
@@ -21,7 +21,7 @@ module Wellness
       end
 
       def create_record(contract_app_id, pet_id)
-        DbService::PetContract.create!(contract_app_id: contract_app_id, pet_id: pet_id)
+        DbService::PetContract.create!(contract_app_id: contract_app_id, pet_uuid: pet_id)
       end
     end
   end
