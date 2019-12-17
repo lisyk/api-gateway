@@ -58,7 +58,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
               email: 'Olivia.Wright@ExtendCredit.com',
               portalUsername: 'test1234@test.com',
               externalClientCd: '1000',
-              externalMemberCd: '1',
+              externalMemberCd: SecureRandom.uuid,
               memberName: 'Cece',
               memberAge: '1Y 2M',
               gender: '',
