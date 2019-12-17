@@ -54,11 +54,11 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
               pet_id: '1',
               pet_name: 'Cece',
               age: '1Y 2M',
-              payment_method: "credit",
-              card_name: "MasterCard",
-              card_number: "5354",
+              payment_method: 'credit',
+              card_name: 'MasterCard',
+              card_number: '5354',
               expiration_month: 1,
-              expiration_year: 2025,
+              expiration_year: 2025
             }
           end
           schema '$ref' => '#/components/schemas/vip_contract_application'
@@ -208,11 +208,11 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
               pet_id: '1',
               pet_name: 'Cece',
               age: '1Y 2M',
-              payment_method: "credit",
-              card_name: "MasterCard",
-              card_number: "5354",
+              payment_method: 'credit',
+              card_name: 'MasterCard',
+              card_number: '5354',
               expiration_month: 1,
-              expiration_year: 2025,
+              expiration_year: 2025
             }
           end
           run_test!
