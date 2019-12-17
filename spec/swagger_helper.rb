@@ -103,88 +103,6 @@ RSpec.configure do |config|
               species_id: { type: :string, example: 'aa49c6a9-a4e8-4a19-bea0-059739291646' }
             }
           },
-          contract_application_list: {
-            type: :array,
-            items: {
-              '$ref' => '#/components/schemas/contract_application'
-            }
-          },
-          contract_application: {
-            type: :object,
-            properties: {
-              validatedFieldList: {
-                type: :array,
-                items: { type: :string }
-              },
-              location: {
-                type: :object,
-                properties: {
-                  id: { type: :integer }
-                }
-              },
-              plan: {
-                type: :object,
-                properties: {
-                  id: { type: :integer }
-                }
-              },
-              externalLocationCd: { type: :integer, nullable: true },
-              externalPlanCd: { type: :integer, nullable: true },
-              salutation: { type: :string },
-              firstName: { type: :string },
-              middleInitial: { type: :string, nullable: true },
-              lastName: { type: :string },
-              address1: { type: :string },
-              address2: { type: :string, nullable: true },
-              city: { type: :string },
-              state: { type: :string },
-              postalCode: { type: :string },
-              country: { type: :string },
-              phone1: { type: :string },
-              phone1Type: { type: :string },
-              phone2: { type: :string },
-              phone2Type: { type: :string },
-              email: { type: :string },
-              portalUsername: { type: :string },
-              externalClientCd: { type: :string },
-              externalMemberCd: { type: :string },
-              memberName: { type: :string },
-              memberAge: { type: :string },
-              gender: { type: :string, nullable: true },
-              initiatedByProfessional: {
-                type: :object,
-                properties: {
-                  id: { type: :integer }
-                }
-              },
-              primaryCareProfessional: {
-                type: :object,
-                properties: {
-                  id: { type: :integer }
-                }
-              },
-              initiatedByProfessionalCd: { type: :integer, nullable: true },
-              primaryCareProfessionalCd: { type: :integer, nullable: true },
-              payOption: { type: :string },
-              payMethod: { type: :string },
-              paymentName: { type: :string },
-              accountNbrForDisplay: { type: :string },
-              accountNbr: { type: :integer },
-              institutionName: { type: :string },
-              bankAccountHolderType: { type: :string },
-              bankAccountType: { type: :string },
-              bankRoutingNbr: { type: :string },
-              paymentaddressSameAsAccount: { type: :boolean },
-              expirationMonth: { type: :integer, nullable: true },
-              expirationYear: { type: :integer, nullable: true },
-              securityCode: { type: :integer, nullable: true },
-              externalPaymentProfileId: { type: :string, nullable: true },
-              optionalPlanServices: {
-                type: :array,
-                items: { type: :object }
-              }
-            }
-          },
           service_list: {
             type: :object,
             properties: {
@@ -280,7 +198,95 @@ RSpec.configure do |config|
               is_optional: { type: :boolean, example: false }
             }
           },
-          application: {
+          partner_contract_application_list: {
+            type: :array,
+            items: {
+              '$ref' => '#/components/schemas/partner_contract_application'
+            }
+          },
+          partner_contract_application: {
+            type: :object,
+            properties: {
+              validatedFieldList: {
+                type: :array,
+                items: { type: :string }
+              },
+              location: {
+                type: :object,
+                properties: {
+                  id: { type: :integer }
+                }
+              },
+              plan: {
+                type: :object,
+                properties: {
+                  id: { type: :integer }
+                }
+              },
+              externalLocationCd: { type: :integer, nullable: true },
+              externalPlanCd: { type: :integer, nullable: true },
+              salutation: { type: :string },
+              firstName: { type: :string },
+              middleInitial: { type: :string, nullable: true },
+              lastName: { type: :string },
+              address1: { type: :string },
+              address2: { type: :string, nullable: true },
+              city: { type: :string },
+              state: { type: :string },
+              postalCode: { type: :string },
+              country: { type: :string },
+              phone1: { type: :string },
+              phone1Type: { type: :string },
+              phone2: { type: :string },
+              phone2Type: { type: :string },
+              email: { type: :string },
+              portalUsername: { type: :string },
+              externalClientCd: { type: :string },
+              externalMemberCd: { type: :string },
+              memberName: { type: :string },
+              memberAge: { type: :string },
+              gender: { type: :string, nullable: true },
+              initiatedByProfessional: {
+                type: :object,
+                properties: {
+                  id: { type: :integer }
+                }
+              },
+              primaryCareProfessional: {
+                type: :object,
+                properties: {
+                  id: { type: :integer }
+                }
+              },
+              initiatedByProfessionalCd: { type: :integer, nullable: true },
+              primaryCareProfessionalCd: { type: :integer, nullable: true },
+              payOption: { type: :string },
+              payMethod: { type: :string },
+              paymentName: { type: :string },
+              accountNbrForDisplay: { type: :string },
+              accountNbr: { type: :integer },
+              institutionName: { type: :string },
+              bankAccountHolderType: { type: :string },
+              bankAccountType: { type: :string },
+              bankRoutingNbr: { type: :string },
+              paymentaddressSameAsAccount: { type: :boolean },
+              expirationMonth: { type: :integer, nullable: true },
+              expirationYear: { type: :integer, nullable: true },
+              securityCode: { type: :integer, nullable: true },
+              externalPaymentProfileId: { type: :string, nullable: true },
+              optionalPlanServices: {
+                type: :array,
+                items: { type: :object }
+              }
+            }
+          },
+          vip_contract_application_list: {
+            type: :array,
+            items: {
+              '$ref' => '#/components/schemas/vip_contract_application'
+            }
+          },
+          vip_contract_application: {
             type: :object,
             properties: {
               owner_first_name: { type: :string, example: 'Harry' },
@@ -290,18 +296,21 @@ RSpec.configure do |config|
               state: { type: :string, example: 'CA' },
               zip: { type: :string, example: '92551' },
               country: { type: :string, example: 'US' },
-              mobile: { type: :string, example: '9494814601' },
-              phone: { type: :string, example: nil },
               email: { type: :string, example: 'HarryPotter@Hogwarts.edu' },
               owner_id: { type: :string, example: '1000' },
               pet_id: { type: :string, example: '1' },
               pet_name: { type: :string, example: 'Hedwig' },
-              gender: { type: :string, example: 'F' },
+              gender: { type: :string, example: 'F', nullable: true },
               payment_method: { type: :string, example: 'credit' },
               card_name: { type: :string, example: 'MasterCard' },
               card_number: { type: :string, example: '5354' },
-              expiration_month: { type: :integer, example: 1 },
-              expiration_year: { type: :integer, example: 2025 }
+              expiration_month: { type: :integer, example: 1, nullable: true },
+              expiration_year: { type: :integer, example: 2025, nullable: true },
+              anyOf: {
+                mobile: { type: :string, example: '9494814601' },
+                phone: { type: :string, example: '9494814602' },
+                alternate_phone: { type: :string, example: '9494814603' }
+              }
             }
           },
           auth_error: {
@@ -325,6 +334,20 @@ RSpec.configure do |config|
                 items: {
                   type: :string,
                   example: 'Not found.'
+                }
+              }
+            }
+          },
+          malformed_request_error: {
+            type: :object,
+            properties: {
+              errors: {
+                type: :array,
+                items: {
+                  object: { type: :string, example: 'com.bwse.model.api.ContractApplication' },
+                  field: { type: :string, example: 'email' },
+                  'rejected-value'.to_sym => { type: :string, example: 'Harry.Potter@Hogwarts.edu' },
+                  message: { type: :string, example: 'email with value [Harry.Potter@Hogwarts.edu] does not pass custom validation' }
                 }
               }
             }

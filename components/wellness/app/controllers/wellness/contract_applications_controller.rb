@@ -27,7 +27,10 @@ module Wellness
 
     def create
       @request ||= post_apps(request)
-      if @request.present?
+      if @request.is_a?(Hash) && @request.keys == ['errors']
+        render json: @request,
+               status: :bad_request
+      elsif @request.present?
         render json: @request
       else
         render json: { errors: ['Contract application was not created.'] },
@@ -37,7 +40,10 @@ module Wellness
 
     def update
       @request ||= put_apps(request)
-      if @request.present?
+      if @request.is_a?(Hash) && @request.keys == ['errors']
+        render json: @request,
+               status: :bad_request
+      elsif @request.present?
         render json: @request
       else
         render json: { errors: ['Contract application was not updated.'] },
