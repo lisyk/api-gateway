@@ -25,7 +25,9 @@ if Rails.env.development? || Rails.env.test?
   end
 
   def create_pet_contract_record
-    DbService::PetContract.create!(pet_id: random_id, pet_uuid: generate_uuid, contract_app_id: random_id)
+    DbService::PetContract.create!(pet_id: random_id,
+                                   pet_uuid: generate_uuid,
+                                   contract_app_id: random_id)
   end
 
   def random_id
@@ -55,8 +57,6 @@ if Rails.env.development? || Rails.env.test?
   20.times do
     create_pet_contract_record
   end
-
-
 
   puts '****** data seeding done! ************'
 end

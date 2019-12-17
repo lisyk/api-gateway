@@ -8,7 +8,6 @@ module Wellness
       context 'call' do
         let(:uuid) { SecureRandom.uuid }
         describe 'record exists' do
-
           before do
             allow(DbEngineInteractor).to receive(:find_contract).and_return('fake_record')
             allow(DbEngineInteractor).to receive(:update_record).and_return 'record updated'
