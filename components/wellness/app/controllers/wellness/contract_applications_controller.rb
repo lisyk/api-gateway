@@ -26,8 +26,7 @@ module Wellness
     end
 
     def create
-      translated_request = translate(request)
-      @request ||= post_apps(translated_request)
+      @request ||= post_apps(request)
       if @request.is_a?(Hash) && @request.keys == ['errors']
         render json: @request,
                status: :bad_request
@@ -40,8 +39,7 @@ module Wellness
     end
 
     def update
-      translated_request = translate(request)
-      @request ||= put_apps(translated_request)
+      @request ||= put_apps(request)
       if @request.is_a?(Hash) && @request.keys == ['errors']
         render json: @request,
                status: :bad_request
@@ -73,21 +71,19 @@ module Wellness
     end
 
     def post_apps(request)
+      body = JSON.parse(request.body.read)
       contract_app = ContractApplication.new(controller_name, action_name, params)
-      contract_app.api_post(request)
+      contract_app.api_post(body.to_json)
     end
 
     def put_apps(request)
+      body = JSON.parse(request.body.read)
       contract_app = ContractApplication.new(controller_name, action_name, params)
-      contract_app.api_put(request)
+      contract_app.api_put(body.to_json)
     end
 
     def application_params
       params.except(:format).permit(:id)
-    end
-
-    def translate(request)
-      RequestTranslation.new(request, controller_name).translate_request.to_json
     end
   end
 end

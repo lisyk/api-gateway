@@ -955,7 +955,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/vip_contract_application"
+                "$ref": "#/components/schemas/partner_contract_application"
               }
             }
           }
@@ -1102,22 +1102,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/vip_contract_application"
+                "$ref": "#/components/schemas/partner_contract_application"
               }
             }
           }
         },
         "responses": {
-          "200": {
-            "description": "Update or finalize an existing contract application",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/vip_contract_application"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad request",
             "content": {

@@ -13,7 +13,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       parameter name: :contract_application,
                 in: :body,
                 schema: {
-                  '$ref' => '#/components/schemas/vip_contract_application'
+                  '$ref' => '#/components/schemas/partner_contract_application'
                 }
       request_body_json schema: {
         '$ref' => '#/components/schemas/vip_contract_application'
@@ -29,38 +29,6 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         let(:contract_application) { JSON.parse(file) }
 
         response '200', 'Create a new contract application' do
-          schema '$ref' => '#/components/schemas/vip_contract_application'
-          let(:Authorization) { " Authorization: Bearer #{token} " }
-          let(:contract_application) do
-            {
-              location: {
-                id: 5_426_720
-              },
-              plan: {
-                id: 5_428_455
-              },
-              first_name: 'Olivia',
-              middleInitial: '',
-              last_name: 'Wright',
-              address: '100 Argonaut',
-              city: 'Morino Valley',
-              state: 'CA',
-              zip: '92551',
-              country: 'US',
-              mobile: '9494814601',
-              phone: '9494814602',
-              email: 'Olivia.Wright@ExtendCredit.com',
-              owner_id: '1000',
-              pet_id: '1',
-              pet_name: 'Cece',
-              age: '1Y 2M',
-              payment_method: 'credit',
-              card_name: 'MasterCard',
-              card_number: '5354',
-              expiration_month: 1,
-              expiration_year: 2025
-            }
-          end
           schema '$ref' => '#/components/schemas/vip_contract_application'
           run_test!
         end
@@ -126,10 +94,6 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         let(:contract_application) {}
 
         response '200', 'Retrieve list of contract applications' do
-          schema '$ref' => '#/components/schemas/application'
-          let(:Authorization) { " Authorization: Bearer #{token} " }
-          let(:id) { '1000013427' }
-          let(:contract_application) {}
           schema '$ref' => '#/components/schemas/vip_contract_application'
           run_test!
         end
@@ -162,7 +126,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       parameter name: :contract_application,
                 in: :body,
                 schema: {
-                  '$ref' => '#/components/schemas/vip_contract_application'
+                  '$ref' => '#/components/schemas/partner_contract_application'
                 }
       parameter name: :id,
                 in: :path,
@@ -181,42 +145,10 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         let(:file) { File.read(Rails.root.join('spec/helpers/dummy_docs/contract_applications/put_contract_applications.json')) }
         let(:contract_application) { JSON.parse(file) }
 
-        response '200', 'Update or finalize an existing contract application' do
-          schema '$ref' => '#/components/schemas/vip_contract_application'
-          let(:Authorization) { " Authorization: Bearer #{token} " }
-          let(:contract_application) do
-            {
-              location: {
-                id: 5_426_720
-              },
-              plan: {
-                id: 5_428_455
-              },
-              first_name: 'Olivia',
-              middleInitial: '',
-              last_name: 'Wright',
-              address: '100 Argonaut',
-              city: 'Morino Valley',
-              state: 'CA',
-              zip: '92551',
-              country: 'US',
-              mobile: '9494814601',
-              phone: '9494814602',
-              email: 'fake@email.com',
-              owner_id: '123456',
-              pet_id: '123456',
-              pet_name: 'Cece',
-              age: '1Y 2M',
-              payment_method: 'credit',
-              card_name: 'MasterCard',
-              card_number: '5354',
-              expiration_month: 1,
-              expiration_year: 2099,
-              first_billing_date: DateTime.current
-            }
-          end
-          run_test!
-        end
+        # response '200', 'Update a contract application' do
+        #   schema '$ref' => '#/components/schemas/vip_contract_application'
+        #   run_test!
+        # end
 
         response '400', 'Bad request' do
           let(:file) { File.read(Rails.root.join('spec/helpers/dummy_docs/contract_applications/put_contract_applications_malformed.json')) }
@@ -224,6 +156,12 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           schema '$ref' => '#/components/schemas/malformed_request_error'
           run_test!
         end
+
+        # response '404', 'Not found' do
+        #   let(:id) {'fake_id'}
+        #   schema '$ref' => '#/components/schemas/not_found_error'
+        #   run_test!
+        # end
       end
 
       context 'Using invalid credentials/credentials missing' do
