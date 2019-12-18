@@ -39,7 +39,7 @@ module Wellness
     end
 
     def pet_id
-      JSON.parse(response.body)['pet_id']
+      JSON.parse(response.body)['externalMemberCd']
     end
 
     def retain_id_link
