@@ -35,31 +35,38 @@
     }
   },
   {
-    "concept_name": "pay_method",
+    "concept_name": "card_name",
     "translation_value": {
       "partner_value": "VI",
       "gateway_value": "Visa"
     }
   },
   {
-    "concept_name": "pay_method",
+    "concept_name": "card_name",
     "translation_value": {
       "partner_value": "MC",
       "gateway_value": "MasterCard"
     }
   },
   {
-    "concept_name": "pay_method",
+    "concept_name": "card_name",
     "translation_value": {
       "partner_value": "AM",
       "gateway_value": "AmericanExpress"
     }
   },
   {
-    "concept_name": "pay_method",
+    "concept_name": "card_name",
     "translation_value": {
       "partner_value": "DC",
       "gateway_value": "Discover"
+    }
+  },
+  {
+    "concept_name": "payment_method",
+    "translation_value": {
+      "partner_value": "CC",
+      "gateway_value": "credit"
     }
   }
 ]
