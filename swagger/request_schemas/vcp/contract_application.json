@@ -136,7 +136,7 @@
       },
       "externalMemberCd": {
         "type": "string",
-        "maxLength": 20
+        "maxLength": 40
       },
       "externalPaymentProfileId": {
         "type": "string"

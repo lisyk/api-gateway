@@ -9,6 +9,7 @@ if Rails.env.development? || Rails.env.test?
   def clean_up_db
     DbService::Translation.delete_all
     DbService::AgeGroupTranslation.delete_all
+    DbService::PetContract.delete_all
   end
 
   def age_group_translations
@@ -21,6 +22,20 @@ if Rails.env.development? || Rails.env.test?
     JSON.parse(File.read(File.expand_path('seed_files/translations.json', __dir__)))
   rescue StandardError => e
     puts "General translation file error: #{e.backtrace}"
+  end
+
+  def create_pet_contract_record
+    DbService::PetContract.create!(pet_id: random_id,
+                                   pet_uuid: generate_uuid,
+                                   contract_app_id: random_id)
+  end
+
+  def random_id
+    Time.current.usec
+  end
+
+  def generate_uuid
+    SecureRandom.uuid
   end
 
   puts '******* removing all data ... ********'
@@ -37,6 +52,10 @@ if Rails.env.development? || Rails.env.test?
   translations.each do |translation|
     DbService::Translation.create!(concept_name: translation['concept_name'],
                                    translation_value: translation['translation_value'])
+  end
+
+  20.times do
+    create_pet_contract_record
   end
 
   puts '****** data seeding done! ************'
