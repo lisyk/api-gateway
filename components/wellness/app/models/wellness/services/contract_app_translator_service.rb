@@ -3,8 +3,10 @@
 module Wellness
   module Services
     module ContractAppTranslatorService
-      def translate(key, value, translate_to: :gateway)
+      def translate(key, value, translate_to)
         return nil if key == 'id'
+
+        translate_to ||= :gateway
 
         if key == 'age_group'
           translate_age_group(value)

@@ -1,0 +1,16 @@
+{
+  "externalLocationCd": "clinic_location_id",
+  "externalPlanCd": "plan_code",
+  "firstName": "owner_first_name",
+  "lastName": "owner_last_name",
+  "address1": "address",
+  "postalCode": "zip",
+  "externalClientCd": "owner_id",
+  "externalMemberCd": "pet_id",
+  "memberName": "pet_name",
+  "payOption": "payment_method",
+  "payMethod": "card_name",
+  "accountNbrForDisplay": "card_number",
+  "expirationMonth": "expiration_month",
+  "expirationYear": "expiration_year"
+}

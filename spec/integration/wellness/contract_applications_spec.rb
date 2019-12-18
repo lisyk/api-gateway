@@ -29,6 +29,67 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         let(:contract_application) { JSON.parse(file) }
 
         response '200', 'Create a new contract application' do
+          schema '$ref' => '#/components/schemas/application'
+          let(:Authorization) { " Authorization: Bearer #{token} " }
+          let(:contract_application) do
+            {
+              validatedFieldList: [
+                'validateAll'
+              ],
+              location: {
+                id: 5_426_720
+              },
+              plan: {
+                id: 5_428_455
+              },
+              externalLocationCd: '',
+              externalPlanCd: '',
+              salutation: 'Mr.',
+              firstName: 'Olivia',
+              middleInitial: '',
+              lastName: 'Wright',
+              address1: '100 Argonaut',
+              address2: '',
+              city: 'Morino Valley',
+              state: 'CA',
+              postalCode: '92551',
+              country: 'US',
+              phone1: '9494814601',
+              phone1Type: 'H',
+              phone2: '9494814602',
+              phone2Type: 'W',
+              email: 'Olivia.Wright@ExtendCredit.com',
+              portalUsername: 'test1234@test.com',
+              externalClientCd: '1000',
+              externalMemberCd: '1',
+              memberName: 'Cece',
+              memberAge: '1Y 2M',
+              gender: '',
+              initiatedByProfessional: {
+                id: ''
+              },
+              primaryCareProfessional: {
+                id: ''
+              },
+              initiatedByProfessionalCd: '',
+              primaryCareProfessionalCd: '',
+              payOption: 'ACH',
+              payMethod: 'ACH',
+              paymentName: 'Olivia Wright',
+              accountNbrForDisplay: '5354',
+              accountNbr: '1376025354',
+              institutionName: 'UNION BANK',
+              bankAccountHolderType: 'P',
+              bankAccountType: 'C',
+              bankRoutingNbr: '122000496',
+              paymentaddressSameAsAccount: true,
+              expirationMonth: nil,
+              expirationYear: nil,
+              securityCode: '',
+              externalPaymentProfileId: '',
+              optionalPlanServices: []
+            }
+          end
           schema '$ref' => '#/components/schemas/vip_contract_application'
           run_test!
         end
@@ -94,6 +155,10 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         let(:contract_application) {}
 
         response '200', 'Retrieve list of contract applications' do
+          schema '$ref' => '#/components/schemas/application'
+          let(:Authorization) { " Authorization: Bearer #{token} " }
+          let(:id) { '1000013427' }
+          let(:contract_application) {}
           schema '$ref' => '#/components/schemas/vip_contract_application'
           run_test!
         end
@@ -145,10 +210,71 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         let(:file) { File.read(Rails.root.join('spec/helpers/dummy_docs/contract_applications/put_contract_applications.json')) }
         let(:contract_application) { JSON.parse(file) }
 
-        # response '200', 'Update a contract application' do
-        #   schema '$ref' => '#/components/schemas/vip_contract_application'
-        #   run_test!
-        # end
+        response '200', 'Create a new contract application' do
+          schema '$ref' => '#/components/schemas/application'
+          let(:Authorization) { " Authorization: Bearer #{token} " }
+          let(:id) { '1000013302' }
+          let(:contract_application) do
+            {
+              validatedFieldList: [
+                'validateAll'
+              ],
+              location: {
+                id: 5_426_720
+              },
+              plan: {
+                id: 5_428_455
+              },
+              externalLocationCd: '',
+              externalPlanCd: '',
+              salutation: 'Mr.',
+              firstName: 'Olivia',
+              middleInitial: '',
+              lastName: 'Wright',
+              address1: '100 Argonaut',
+              address2: '',
+              city: 'Morino Valley',
+              state: 'CA',
+              postalCode: '92551',
+              country: 'US',
+              phone1: '9494814601',
+              phone1Type: 'H',
+              phone2: '9494814602',
+              phone2Type: 'W',
+              email: 'Olivia.Wright@ExtendCredit.com',
+              portalUsername: 'test1234@test.com',
+              externalClientCd: '1000',
+              externalMemberCd: '1',
+              memberName: 'Cece',
+              memberAge: '1Y 2M',
+              gender: '',
+              initiatedByProfessional: {
+                id: ''
+              },
+              primaryCareProfessional: {
+                id: ''
+              },
+              initiatedByProfessionalCd: '',
+              primaryCareProfessionalCd: '',
+              payOption: 'ACH',
+              payMethod: 'ACH',
+              paymentName: 'Olivia Wright',
+              accountNbrForDisplay: '5354',
+              accountNbr: '1376025354',
+              institutionName: 'UNION BANK',
+              bankAccountHolderType: 'P',
+              bankAccountType: 'C',
+              bankRoutingNbr: '122000496',
+              paymentaddressSameAsAccount: true,
+              expirationMonth: nil,
+              expirationYear: nil,
+              securityCode: '',
+              externalPaymentProfileId: '',
+              optionalPlanServices: [],
+              firstBillingDate: "#{Date.current}T23:59:59Z"
+            }
+          end
+        end
 
         response '400', 'Bad request' do
           let(:file) { File.read(Rails.root.join('spec/helpers/dummy_docs/contract_applications/put_contract_applications_malformed.json')) }
@@ -156,12 +282,6 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           schema '$ref' => '#/components/schemas/malformed_request_error'
           run_test!
         end
-
-        # response '404', 'Not found' do
-        #   let(:id) {'fake_id'}
-        #   schema '$ref' => '#/components/schemas/not_found_error'
-        #   run_test!
-        # end
       end
 
       context 'Using invalid credentials/credentials missing' do

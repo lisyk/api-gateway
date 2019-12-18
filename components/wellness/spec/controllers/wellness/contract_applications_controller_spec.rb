@@ -138,6 +138,7 @@ module Wellness
             allow(controller).to receive(:post_apps).and_return(post_apps)
             allow(controller).to receive(:retain_id_link)
             allow(controller).to receive(:validate_request).and_return({})
+            allow(controller).to receive(:translate).and_return(post_apps)
             stub_const('Settings', route_settings)
           end
           it 'returns application' do
@@ -172,6 +173,7 @@ module Wellness
         before :each do
           allow(controller).to receive(:authenticate!)
           allow(controller).to receive(:validate_request).and_return({})
+          allow(controller).to receive(:translate).and_return(put_apps)
           controller.instance_variable_set(:@current_user, 'authorized')
         end
         describe 'application available' do
