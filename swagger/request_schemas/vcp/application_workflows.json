@@ -1,0 +1,140 @@
+{
+  "application_workflows_create": {
+    "$ref": "#contract_application"
+  },
+  "contract_application": {
+    "type": "object",
+    "properties": {
+      "location": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          }
+        }
+      },
+      "plan": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          }
+        }
+      },
+      "clinic_location_id": {
+        "type": "string",
+        "maxLength": 20
+      },
+      "plan_code": {
+        "type": "string"
+      },
+      "owner_first_name": {
+        "type": "string",
+        "maxLength": 20
+      },
+      "owner_last_name": {
+        "type": "string",
+        "maxLength": 30
+      },
+      "address": {
+        "type": "string",
+        "maxLength": 30
+      },
+      "city": {
+        "type": "string",
+        "maxLength": 19
+      },
+      "state": {
+        "type": "string",
+        "maxLength": 2
+      },
+      "zip": {
+        "type": "string",
+        "maxLength": 10
+      },
+      "country": {
+        "type": "string",
+        "maxLength": 20
+      },
+      "mobile": {
+        "type": "string",
+        "maxLength": 20
+      },
+      "phone": {
+        "type": "string",
+        "maxLength": 20
+      },
+      "email": {
+        "type": "string",
+        "maxLength": 60
+      },
+      "owner_id": {
+        "type": "string",
+        "maxLength": 16
+      },
+      "pet_id": {
+        "type": "string",
+        "maxLength": 20
+      },
+      "pet_name": {
+        "type": "string"
+      },
+      "age": {
+        "type": "string"
+      },
+      "gender": {
+        "type": "string"
+      },
+      "card_name": {
+        "type": "string"
+      },
+      "payment_name": {
+        "type": "string"
+      },
+      "expiration_month": {
+        "type": "string",
+        "minimum": 1,
+        "maximum": 12
+      },
+      "expiration_year": {
+        "type": "integer",
+        "minimum": 2000,
+        "maximum": 2999
+      },
+      "account_number": {
+        "type": "integer",
+        "maxLength": 20
+      },
+      "optional_plan_services": {
+        "type": "array"
+      }
+    },
+    "required": [
+      "location",
+      "plan",
+      "clinic_location_id",
+      "plan_code",
+      "owner_first_name",
+      "owner_last_name",
+      "address",
+      "city",
+      "state",
+      "zip",
+      "country",
+      "mobile",
+      "phone",
+      "email",
+      "owner_id",
+      "pet_id",
+      "pet_name",
+      "age",
+      "gender",
+      "card_name",
+      "payment_name",
+      "expiration_month",
+      "expiration_year",
+      "account_number",
+      "optional_plan_services"
+    ]
+  }
+}

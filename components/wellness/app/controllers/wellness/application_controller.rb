@@ -18,7 +18,7 @@ module Wellness
     end
 
     def json_schema_engine_path
-      'contract_application.json'
+      "#{controller_name}.json"
     end
 
     def validate_request
@@ -32,6 +32,18 @@ module Wellness
 
       render json: { malformed_request: validation_errors },
              status: :bad_request
+    end
+
+    def contract_app_id
+      JSON.parse(response.body)['id']
+    end
+
+    def pet_id
+      JSON.parse(response.body)['pet_id']
+    end
+
+    def retain_id_link
+      DbEngineInteractor.call(pet_id: pet_id, contract_app_id: contract_app_id)
     end
   end
 end
