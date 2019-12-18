@@ -13,7 +13,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       parameter name: :contract_application,
                 in: :body,
                 schema: {
-                  '$ref' => '#/components/schemas/partner_contract_application'
+                  '$ref' => '#/components/schemas/vip_contract_application'
                 }
       request_body_json schema: {
         '$ref' => '#/components/schemas/vip_contract_application'
@@ -29,65 +29,36 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         let(:contract_application) { JSON.parse(file) }
 
         response '200', 'Create a new contract application' do
-          schema '$ref' => '#/components/schemas/application'
+          schema '$ref' => '#/components/schemas/vip_contract_application'
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:contract_application) do
             {
-              validatedFieldList: [
-                'validateAll'
-              ],
               location: {
                 id: 5_426_720
               },
               plan: {
                 id: 5_428_455
               },
-              externalLocationCd: '',
-              externalPlanCd: '',
-              salutation: 'Mr.',
-              firstName: 'Olivia',
+              first_name: 'Olivia',
               middleInitial: '',
-              lastName: 'Wright',
-              address1: '100 Argonaut',
-              address2: '',
+              last_name: 'Wright',
+              address: '100 Argonaut',
               city: 'Morino Valley',
               state: 'CA',
-              postalCode: '92551',
+              zip: '92551',
               country: 'US',
-              phone1: '9494814601',
-              phone1Type: 'H',
-              phone2: '9494814602',
-              phone2Type: 'W',
+              mobile: '9494814601',
+              phone: '9494814602',
               email: 'Olivia.Wright@ExtendCredit.com',
-              portalUsername: 'test1234@test.com',
-              externalClientCd: '1000',
-              externalMemberCd: '1',
-              memberName: 'Cece',
-              memberAge: '1Y 2M',
-              gender: '',
-              initiatedByProfessional: {
-                id: ''
-              },
-              primaryCareProfessional: {
-                id: ''
-              },
-              initiatedByProfessionalCd: '',
-              primaryCareProfessionalCd: '',
-              payOption: 'ACH',
-              payMethod: 'ACH',
-              paymentName: 'Olivia Wright',
-              accountNbrForDisplay: '5354',
-              accountNbr: '1376025354',
-              institutionName: 'UNION BANK',
-              bankAccountHolderType: 'P',
-              bankAccountType: 'C',
-              bankRoutingNbr: '122000496',
-              paymentaddressSameAsAccount: true,
-              expirationMonth: nil,
-              expirationYear: nil,
-              securityCode: '',
-              externalPaymentProfileId: '',
-              optionalPlanServices: []
+              owner_id: '1000',
+              pet_id: 'd525ffb4-d6a7-41f9-a327-86a806a8e116',
+              pet_name: 'Cece',
+              age: '1Y 2M',
+              payment_method: 'credit',
+              card_name: 'MasterCard',
+              card_number: '5354',
+              expiration_month: 1,
+              expiration_year: 2025
             }
           end
           schema '$ref' => '#/components/schemas/vip_contract_application'
@@ -191,7 +162,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       parameter name: :contract_application,
                 in: :body,
                 schema: {
-                  '$ref' => '#/components/schemas/partner_contract_application'
+                  '$ref' => '#/components/schemas/vip_contract_application'
                 }
       parameter name: :id,
                 in: :path,
@@ -210,70 +181,41 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         let(:file) { File.read(Rails.root.join('spec/helpers/dummy_docs/contract_applications/put_contract_applications.json')) }
         let(:contract_application) { JSON.parse(file) }
 
-        response '200', 'Create a new contract application' do
-          schema '$ref' => '#/components/schemas/application'
+        response '200', 'Update or finalize an existing contract application' do
+          schema '$ref' => '#/components/schemas/vip_contract_application'
           let(:Authorization) { " Authorization: Bearer #{token} " }
-          let(:id) { '1000013302' }
           let(:contract_application) do
             {
-              validatedFieldList: [
-                'validateAll'
-              ],
               location: {
                 id: 5_426_720
               },
               plan: {
                 id: 5_428_455
               },
-              externalLocationCd: '',
-              externalPlanCd: '',
-              salutation: 'Mr.',
-              firstName: 'Olivia',
+              first_name: 'Olivia',
               middleInitial: '',
-              lastName: 'Wright',
-              address1: '100 Argonaut',
-              address2: '',
+              last_name: 'Wright',
+              address: '100 Argonaut',
               city: 'Morino Valley',
               state: 'CA',
-              postalCode: '92551',
+              zip: '92551',
               country: 'US',
-              phone1: '9494814601',
-              phone1Type: 'H',
-              phone2: '9494814602',
-              phone2Type: 'W',
-              email: 'Olivia.Wright@ExtendCredit.com',
-              portalUsername: 'test1234@test.com',
-              externalClientCd: '1000',
-              externalMemberCd: '1',
-              memberName: 'Cece',
-              memberAge: '1Y 2M',
-              gender: '',
-              initiatedByProfessional: {
-                id: ''
-              },
-              primaryCareProfessional: {
-                id: ''
-              },
-              initiatedByProfessionalCd: '',
-              primaryCareProfessionalCd: '',
-              payOption: 'ACH',
-              payMethod: 'ACH',
-              paymentName: 'Olivia Wright',
-              accountNbrForDisplay: '5354',
-              accountNbr: '1376025354',
-              institutionName: 'UNION BANK',
-              bankAccountHolderType: 'P',
-              bankAccountType: 'C',
-              bankRoutingNbr: '122000496',
-              paymentaddressSameAsAccount: true,
-              expirationMonth: nil,
-              expirationYear: nil,
-              securityCode: '',
-              externalPaymentProfileId: '',
-              optionalPlanServices: [],
-              firstBillingDate: "#{Date.current}T23:59:59Z"
+              mobile: '9494814601',
+              phone: '9494814602',
+              email: 'fake@email.com',
+              owner_id: '123456',
+              pet_id: '123456',
+              pet_name: 'Cece',
+              age: '1Y 2M',
+              payment_method: 'credit',
+              card_name: 'MasterCard',
+              card_number: '5354',
+              expiration_month: 1,
+              expiration_year: 2099,
+              first_billing_date: DateTime.current
             }
           end
+          run_test!
         end
 
         response '400', 'Bad request' do
