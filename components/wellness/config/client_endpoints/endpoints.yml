@@ -41,3 +41,11 @@ plan_services:
   show:
     method: get
     resource: planService
+
+application_workflows:
+  create:
+    method: post
+    resource: contractApplication
+  show:
+    method: get
+    resource: contractApplicationAgreement

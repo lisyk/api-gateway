@@ -105,6 +105,11 @@
         "type": "integer",
         "maxLength": 20
       },
+      "initial_payment_option": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 2
+      },
       "optional_plan_services": {
         "type": "array"
       }

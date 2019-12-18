@@ -73,9 +73,5 @@ module Wellness
     def application_params
       params.except(:format).permit(:id)
     end
-
-    def translate(request)
-      RequestTranslation.new(request, controller_name).translate_request.to_json
-    end
   end
 end
