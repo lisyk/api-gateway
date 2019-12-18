@@ -51,7 +51,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
               phone: '9494814602',
               email: 'Olivia.Wright@ExtendCredit.com',
               owner_id: '1000',
-              pet_id: '1',
+              pet_id: 'd525ffb4-d6a7-41f9-a327-86a806a8e116',
               pet_name: 'Cece',
               age: '1Y 2M',
               payment_method: 'credit',
