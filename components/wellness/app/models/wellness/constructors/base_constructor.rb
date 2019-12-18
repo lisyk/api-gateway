@@ -3,7 +3,7 @@
 module Wellness
   module Constructors
     class BaseConstructor
-      include Services::ResponseLogger
+      include ResponseLogger
 
       private
 
