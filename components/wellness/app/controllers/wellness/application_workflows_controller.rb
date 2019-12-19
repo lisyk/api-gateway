@@ -23,8 +23,8 @@ module Wellness
 
     def build_partner_request(request)
       request = JSON.parse(translate(request))
-
-      request['initialPaymentOption'] = 2 if request['initialPaymentOption'].blank?
+      request['location'] = { id: request['externalLocationCd'] }
+      request['plan'] = { id: request['externalPlanCd'] }
       request['portalUsername'] = request['email'] if request['portalUsername'].blank?
       request['status'] = 20
       request.to_json
@@ -49,7 +49,8 @@ module Wellness
       if document.present?
         send_data document.body, filename: "#{id}-agreement.pdf"
       else
-        render json: { errors: ['Agreement not found.'] }, status: :not_found
+        render json: { errors: ['Agreement not found.'] },
+               status: :not_found
       end
     end
 

@@ -1,58 +1,28 @@
 {
-  "validatedFieldList": [
-    "validateAll"
-  ],
   "location": {
-    "id": 5426720
+    "id": "5_426_720"
   },
   "plan": {
-    "id": 5428455
+    "id": "5_428_455"
   },
-  "externalLocationCd": "",
-  "externalPlanCd": "",
-  "salutation": "Mr.",
-  "firstName": "Olivia",
+  "first_name": "Olivia",
   "middleInitial": "",
-  "lastName": "Wright",
-  "address1": "100 Argonaut",
-  "address2": "",
+  "last_name": "Wright",
+  "address": "100 Argonaut",
   "city": "Morino Valley",
   "state": "CA",
-  "postalCode": "92551",
+  "zip": "92551",
   "country": "US",
-  "phone1": "9494814601",
-  "phone1Type": "H",
-  "phone2": "9494814602",
-  "phone2Type": "W",
-  "email": "Olivia.Wright@ExtendCredit.com",
-  "portalUsername": "test1234@test.com",
-  "externalClientCd": "1000",
-  "externalMemberCd": "1",
-  "memberName": "Cece",
-  "memberAge": "1Y 2M",
-  "gender": "",
-  "initiatedByProfessional": {
-    "id": ""
-  },
-  "primaryCareProfessional": {
-    "id": ""
-  },
-  "initiatedByProfessionalCd": "",
-  "primaryCareProfessionalCd": "",
-  "payOption": "ACH",
-  "payMethod": "ACH",
-  "paymentName": "Olivia Wright",
-  "accountNbrForDisplay": "5354",
-  "accountNbr": "1376025354",
-  "institutionName": "UNION BANK",
-  "bankAccountHolderType": "P",
-  "bankAccountType": "C",
-  "bankRoutingNbr": "122000496",
-  "paymentaddressSameAsAccount": true,
-  "expirationMonth": null,
-  "expirationYear": null,
-  "securityCode": "",
-  "externalPaymentProfileId": "",
-  "optionalPlanServices": [],
-  "firstBillingDate": "2999-12-01T00:00:00Z"
+  "mobile": "9494814601",
+  "phone": "9494814602",
+  "email": "fake@email.com",
+  "owner_id": "123456",
+  "pet_id": "123456",
+  "pet_name": "Cece",
+  "age": "1Y 2M",
+  "payment_method": "credit",
+  "card_name": "MasterCard",
+  "card_number": "5354",
+  "expiration_month": 1,
+  "expiration_year": 2099
 }

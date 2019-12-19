@@ -306,10 +306,44 @@ RSpec.configure do |config|
               card_number: { type: :string, example: '5354' },
               expiration_month: { type: :integer, example: 1, nullable: true },
               expiration_year: { type: :integer, example: 2025, nullable: true },
-              anyOf: {
-                mobile: { type: :string, example: '9494814601' },
-                phone: { type: :string, example: '9494814602' },
-                alternate_phone: { type: :string, example: '9494814603' }
+              mobile: { type: :string, example: '9494814601', nullable: true },
+              phone: { type: :string, example: '9494814602', nullable: true },
+              alternate_phone: { type: :string, example: '9494814603', nullable: true }
+            }
+          },
+          vip_initiate_application: {
+            type: :object,
+            properties: {
+              clinic_location_id: { type: :integer, example: 5_426_720 },
+              plan_code: { type: :integer, example: 5_428_455 },
+              owner_first_name: { type: :string, example: 'Harry' },
+              owner_last_name: { type: :string, example: 'Potter' },
+              address: { type: :string, example: '4 Privet Drive' },
+              city: { type: :string, example: 'Morino Valley' },
+              state: { type: :string, example: 'CA' },
+              zip: { type: :string, example: '92551' },
+              country: { type: :string, example: 'US' },
+              email: { type: :string, example: 'HarryPotter@Hogwarts.edu' },
+              mobile: { type: :string, example: '9494814601', nullable: true },
+              phone: { type: :string, example: '9494814602', nullable: true },
+              alternate_phone: { type: :string, example: '9494814603', nullable: true },
+              owner_id: { type: :string, example: '1000' },
+              pet_id: { type: :string, example: '1' },
+              pet_name: { type: :string, example: 'Hedwig' },
+              age: {
+                type: :string,
+                example: '1Y 2M',
+                description: 'Also accepts years as integer and DateTime birthdate strings'
+              },
+              gender: { type: :string, example: 'F', nullable: true },
+              card_name: { type: :string, example: 'MasterCard' },
+              payment_name: { type: :string, example: 'Harry Potter' },
+              expiration_month: { type: :integer, example: 1, nullable: true },
+              expiration_year: { type: :integer, example: 2025, nullable: true },
+              account_number: { type: :integer, example: 1234 },
+              optional_plan_services: {
+                type: :array,
+                items: {}
               }
             }
           },

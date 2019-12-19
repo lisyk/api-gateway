@@ -5,28 +5,11 @@
   "contract_application": {
     "type": "object",
     "properties": {
-      "location": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          }
-        }
-      },
-      "plan": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          }
-        }
-      },
       "clinic_location_id": {
-        "type": "string",
-        "maxLength": 20
+        "type": "integer"
       },
       "plan_code": {
-        "type": "string"
+        "type": "integer"
       },
       "owner_first_name": {
         "type": "string",
@@ -92,7 +75,7 @@
         "type": "string"
       },
       "expiration_month": {
-        "type": "string",
+        "type": "integer",
         "minimum": 1,
         "maximum": 12
       },
@@ -115,8 +98,6 @@
       }
     },
     "required": [
-      "location",
-      "plan",
       "clinic_location_id",
       "plan_code",
       "owner_first_name",
@@ -139,6 +120,7 @@
       "expiration_month",
       "expiration_year",
       "account_number",
+      "initial_payment_option",
       "optional_plan_services"
     ]
   }
