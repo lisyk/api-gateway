@@ -8,14 +8,14 @@ module Wellness
 
     def create
       prepared_request = build_partner_request(request)
-      response ||= post_contract(prepared_request)
-      if valid_submission?(response)
+      @response ||= post_contract(prepared_request)
+      if valid_submission?(@response)
         # TODO: Implement UUID storage when VCP can accept UUID longer than 20 characters
         # retain_id_link(response)
-        contract_document = retrieve_agreement(contract_id(response))
-        render_agreement(contract_document, contract_id(response))
+        @contract_document ||= retrieve_agreement(contract_id)
+        render_agreement(@contract_document, contract_id)
       else
-        render_errors(response)
+        render_errors(@response)
       end
     end
 
@@ -41,7 +41,7 @@ module Wellness
     end
 
     def valid_submission?(response)
-      workflow = ApplicationWorkflow.new(controller_name, action_name, params)
+      workflow = ApplicationWorkflow.new
       workflow.validate_submission(response)
     end
 
@@ -49,17 +49,22 @@ module Wellness
       if document.present?
         send_data document.body, filename: "#{id}-agreement.pdf"
       else
-        render json: { errors: ['Agreement unavailable.'] }, status: :not_found
+        render json: { errors: ['Agreement not found.'] }, status: :not_found
       end
     end
 
     def render_errors(response)
-      render json: { errors: [response['errors']] },
-             status: :bad_request
+      if response && response['errors'].present?
+        render json: { errors: [response['errors']] },
+               status: :bad_request
+      else
+        render json: { errors: ['No response returned'] },
+               status: :unprocessable_entity
+      end
     end
 
-    def contract_id(response)
-      response['id']
+    def contract_id
+      @response['id']
     end
   end
 end

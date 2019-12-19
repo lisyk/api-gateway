@@ -22,8 +22,6 @@ module Wellness
     end
 
     def validate_request
-      fragment = "##{controller_name}_#{action_name}"
-      schema = { '$ref' => json_schema_path + json_schema_engine_path + fragment }
       validation_errors = JSON::Validator.fully_validate(schema,
                                                          request.body.read,
                                                          errors_as_objects: true)
@@ -50,6 +48,11 @@ module Wellness
 
     def translate(request)
       RequestTranslation.new(request, controller_name).translate_request.to_json
+    end
+
+    def schema
+      fragment = "##{controller_name}_#{action_name}"
+      { '$ref' => json_schema_path + json_schema_engine_path + fragment }
     end
   end
 end

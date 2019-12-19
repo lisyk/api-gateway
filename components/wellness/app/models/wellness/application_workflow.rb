@@ -2,10 +2,9 @@
 
 module Wellness
   class ApplicationWorkflow < Connect
-    include Concerns::RequestConcern
-
     def validate_submission(response)
-      response.include?('id') &&
+      response.present? &&
+        response.include?('id') &&
         response.include?('externalMemberCd') &&
         response['errors'].blank?
     end

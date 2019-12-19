@@ -10,6 +10,7 @@ PATH
     wellness (0.1.0)
       config
       faraday (~> 0.15.4)
+      json-schema
       rails (~> 6.0.0)
       redis (~> 4.0)
 
