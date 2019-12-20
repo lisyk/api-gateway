@@ -8,4 +8,5 @@ Wellness::Engine.routes.draw do
       resources :agreements, only: %i[show update]
     end
   end
+  resources :contracts, only: %i[show]
 end
