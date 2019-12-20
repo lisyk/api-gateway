@@ -73,5 +73,17 @@ module Wellness
     def application_params
       params.except(:format).permit(:id)
     end
+
+    def contract_app_id
+      JSON.parse(response.body)['id']
+    end
+
+    def pet_id
+      JSON.parse(response.body)['externalMemberCd']
+    end
+
+    def retain_id_link
+      DbEngineInteractor.call(pet_id: pet_id, contract_app_id: contract_app_id)
+    end
   end
 end

@@ -32,20 +32,6 @@ module Wellness
              status: :bad_request
     end
 
-    def parsed_contract_app_id
-      JSON.parse(response.body)['id']
-    end
-
-    def parsed_pet_id
-      JSON.parse(response.body)['externalMemberCd']
-    end
-
-    def retain_id_link(response = nil)
-      pet_id = response.nil? ? parsed_pet_id : response['externalMemberCd']
-      contract_app_id = response.nil? ? parsed_contract_app_id : response['id']
-      DbEngineInteractor.call(pet_id: pet_id, contract_app_id: contract_app_id)
-    end
-
     def translate(request)
       RequestTranslation.new(request, controller_name).translate_request.to_json
     end
