@@ -68,16 +68,12 @@ module Wellness
       @response['id']
     end
 
-    def contract_app_id
-      response['id']
-    end
-
     def pet_id
       response['externalMemberCd']
     end
 
     def retain_id_link
-      DbEngineInteractor.call(pet_id: pet_id, contract_app_id: contract_app_id)
+      DbEngineInteractor.call(pet_id: pet_id, contract_app_id: contract_id)
     end
   end
 end
