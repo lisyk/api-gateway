@@ -18,7 +18,7 @@ module Wellness
     end
 
     def json_schema_engine_path
-      'contract_application.json'
+      "#{controller_name}.json"
     end
 
     def validate_request

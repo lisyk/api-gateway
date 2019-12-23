@@ -8,4 +8,5 @@ Wellness::Engine.routes.draw do
       resources :agreements, only: %i[show update]
     end
   end
+  put '/finalize_application/:id', to: 'application_workflows#update'
 end

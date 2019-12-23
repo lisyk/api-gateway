@@ -194,7 +194,7 @@ RSpec.configure do |config|
               plan_id: { type: :integer, example: 5_428_455 },
               plan_quantity: { type: :integer, example: 3 },
               price: { type: :number, example: 35 },
-              revenue_per_unit: { type: :number, example: 21.1 },
+              revenue_per_unit: { type: :number, example: 21.1, nullable: true },
               is_optional: { type: :boolean, example: false }
             }
           },

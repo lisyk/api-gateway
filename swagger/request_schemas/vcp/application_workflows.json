@@ -1,0 +1,10 @@
+{
+  "application_workflows_update": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "integer"
+      }
+    }
+  }
+}
