@@ -217,9 +217,10 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           run_test!
         end
 
-        response '400', 'Bad request' do
+        response '422', 'Unprocessable Entity' do
           let(:file) { File.read(Rails.root.join('spec/helpers/dummy_docs/contract_applications/put_contract_applications_malformed.json')) }
           let(:contract_application) { JSON.parse(file) }
+          let(:id) { '1000015090' }
           schema '$ref' => '#/components/schemas/malformed_request_error'
           run_test!
         end
