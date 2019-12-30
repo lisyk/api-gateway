@@ -10,8 +10,7 @@ module Wellness
       prepared_request = build_partner_request(request)
       @response ||= post_contract(prepared_request)
       if valid_submission?(@response)
-        # TODO: Implement UUID storage when VCP can accept UUID longer than 20 characters
-        # retain_id_link(response)
+        retain_id_link
         @contract_document ||= retrieve_agreement(contract_id)
         render_agreement(@contract_document, contract_id)
       else
@@ -69,7 +68,7 @@ module Wellness
     end
 
     def pet_id
-      response['externalMemberCd']
+      @response['externalMemberCd']
     end
 
     def retain_id_link

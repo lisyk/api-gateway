@@ -30,7 +30,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           let(:file) { File.read(Rails.root.join('spec/helpers/dummy_docs/application_workflows/post_initiate_application.json')) }
           let(:payload) { JSON.parse(file) }
           let(:contract_application) do
-            payload['pet_id'] = (rand * 10**20).floor.to_s
+            payload['pet_id'] = SecureRandom.uuid
             payload['owner_id'] = (rand * 10**16).floor.to_s
             payload
           end

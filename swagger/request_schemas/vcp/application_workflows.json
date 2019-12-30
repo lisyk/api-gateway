@@ -57,7 +57,7 @@
       },
       "pet_id": {
         "type": "string",
-        "maxLength": 20
+        "maxLength": 40
       },
       "pet_name": {
         "type": "string"
