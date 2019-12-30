@@ -313,6 +313,25 @@ RSpec.configure do |config|
               }
             }
           },
+          vip_finalize_application: {
+            type: :object,
+            allOf: [
+              { '$ref' => '#/components/schemas/finalize_application' },
+              { '$ref' => '#/components/schemas/vip_contract_application' }
+            ]
+          },
+          finalize_application: {
+            type: :object,
+            properties: {
+              initial_payment_option: {
+                type: :integer,
+                enum: [1, 12],
+                example: 12,
+                description: 'Payment term (paid in full vs. 12 month term)'
+              },
+              payment_token: { type: :string, example: 'test_token' }
+            }
+          },
           auth_error: {
             type: :object,
             properties: {
