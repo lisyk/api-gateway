@@ -2,9 +2,12 @@
   "application_workflows_update": {
     "type": "object",
     "properties": {
-      "status": {
-        "type": "integer"
-      }
-    }
+      "initial_payment_option": {"type": "integer"},
+      "payment_token": {"type": "string"}
+    },
+    "required": [
+      "initial_payment_option",
+      "payment_token"
+    ]
   }
 }

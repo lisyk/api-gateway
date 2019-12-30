@@ -13,5 +13,10 @@
   "payMethod": "card_name",
   "accountNbrForDisplay": "card_number",
   "expirationMonth": "expiration_month",
-  "expirationYear": "expiration_year"
+  "expirationYear": "expiration_year",
+  "errors": "errors",
+  "field": "field",
+  "value": "value",
+  "errorCode": "error_code",
+  "errorMessage": "error_message"
 }

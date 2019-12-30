@@ -27,12 +27,12 @@ module Wellness
 
     def create
       translated_request = translate(request)
-      @request ||= post_apps(translated_request)
-      if @request.is_a?(Hash) && @request.keys == ['errors']
-        render json: @request,
+      @response ||= post_apps(translated_request)
+      if @response.is_a?(Hash) && @response.keys == ['errors']
+        render json: @response,
                status: :bad_request
-      elsif @request.present?
-        render json: @request
+      elsif @response.present?
+        render json: @response
       else
         render json: { errors: ['Contract application was not created.'] },
                status: :unprocessable_entity
@@ -41,12 +41,12 @@ module Wellness
 
     def update
       translated_request = translate(request)
-      @request ||= put_apps(translated_request)
-      if @request.is_a?(Hash) && @request.keys == ['errors']
-        render json: @request,
+      @response ||= put_apps(translated_request)
+      if @response.is_a?(Hash) && @response.keys == ['errors']
+        render json: @response,
                status: :bad_request
-      elsif @request.present?
-        render json: @request
+      elsif @response.present?
+        render json: @response
       else
         render json: { errors: ['Contract application was not updated.'] },
                status: :unprocessable_entity
@@ -62,6 +62,8 @@ module Wellness
 
     def retain_id_link
       DbEngineInteractor.call(pet_id: pet_id, contract_app_id: contract_app_id)
+    rescue ActiveRecord::RecordInvalid
+      @response['errors'] = ['Could not store pet UUID, contract app ID link in integrator DB.']
     end
 
     def contract_app_id
@@ -74,12 +76,14 @@ module Wellness
 
     def post_apps(request)
       contract_app = ContractApplication.new(controller_name, action_name, params)
-      contract_app.api_post(request)
+      response = contract_app.api_post(request)
+      contract_app.contract_app_mapping({}, response)
     end
 
     def put_apps(request)
       contract_app = ContractApplication.new(controller_name, action_name, params)
-      contract_app.api_put(request)
+      response = contract_app.api_put(request)
+      contract_app.contract_app_mapping({}, response)
     end
 
     def application_params

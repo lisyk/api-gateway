@@ -351,6 +351,18 @@ RSpec.configure do |config|
                 }
               }
             }
+          },
+          not_completed_error: {
+            type: :object,
+            properties: {
+              errors: {
+                type: :array,
+                items: { type: :string, example: 'Contract application was not completed by provider.' }
+              },
+              response: {
+                type: :object
+              }
+            }
           }
         }
       },

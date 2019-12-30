@@ -7,7 +7,7 @@ module Wellness
     before_action :validate_request, only: :update
 
     def update
-      translated_request = translate(request)
+      translated_request = build_partner_finalization_request(request)
       @contract ||= put_apps(translated_request)
       if @contract.present? && @contract['errors'].blank? && contract_completed
         render json: @contract
@@ -26,7 +26,8 @@ module Wellness
 
     def put_apps(request)
       workflow = ContractApplication.new('contract_applications', 'update', params)
-      workflow.api_put(request)
+      response = workflow.api_put(request)
+      workflow.contract_app_mapping({}, response)
     end
 
     def render_errors(response)
@@ -42,16 +43,16 @@ module Wellness
     def translate(request)
       RequestTranslation.new(request, controller_name).translate_request.to_json
     end
-    
+
     def contract_completed
       @contract['status'].present? && @contract['status'].to_i == 5
     end
 
-    def render_not_completed 
-      render json: { 
-              errors: ['Contract application was not completed by provider.'],
-              response: @contract
-             },
+    def render_not_completed
+      render json: {
+        errors: ['Contract application was not completed by provider.'],
+        response: @contract
+      },
              status: :unprocessable_entity
     end
   end
