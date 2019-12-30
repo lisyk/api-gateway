@@ -87,7 +87,9 @@ module Wellness
     end
 
     def translate(request)
-      RequestTranslation.new(request, controller_name).translate_request.to_json
+      translation = RequestTranslation.new(request, controller_name).translate_request
+      translation['validatedFieldList'] = ['validateAll']
+      translation.to_json
     end
   end
 end
