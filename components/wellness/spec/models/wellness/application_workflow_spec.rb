@@ -8,7 +8,7 @@ module Wellness
       context 'validate_finalization_request' do
         let(:valid_submission) do
           {
-            'initialPaymentOption' => '12',
+            'initialPaymentOption' => 12,
             'accountNbr' => '1'
           }
         end

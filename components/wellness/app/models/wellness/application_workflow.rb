@@ -6,6 +6,7 @@ module Wellness
       request.present? &&
         request.include?('initialPaymentOption') &&
         request.include?('accountNbr') &&
+        [1, 12].include?(request['accountNbr'].to_i) &&
         request['errors'].blank?
     end
   end
