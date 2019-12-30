@@ -13,10 +13,10 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       parameter name: :contract_application,
                 in: :body,
                 schema: {
-                  '$ref' => '#/components/schemas/vip_contract_application'
+                  '$ref' => '#/components/schemas/contract_application_request'
                 }
       request_body_json schema: {
-        '$ref' => '#/components/schemas/vip_contract_application'
+        '$ref' => '#/components/schemas/contract_application_request'
       }
 
       context 'Using valid credentials' do
@@ -29,7 +29,6 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         let(:contract_application) { JSON.parse(file) }
 
         response '200', 'Create a new contract application' do
-          schema '$ref' => '#/components/schemas/vip_contract_application'
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:contract_application) do
             {
@@ -61,7 +60,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
               expiration_year: 2025
             }
           end
-          schema '$ref' => '#/components/schemas/vip_contract_application'
+          schema '$ref' => '#/components/schemas/contract_application_response'
           run_test!
         end
 
@@ -90,7 +89,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         let(:Authorization) { " Authorization: Bearer #{token} " }
 
         response '200', 'Retrieve list of contract applications' do
-          schema '$ref' => '#/components/schemas/vip_contract_application_list'
+          schema '$ref' => '#/components/schemas/contract_application_response_list'
           run_test!
         end
       end
@@ -130,7 +129,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:id) { '1000013427' }
           let(:contract_application) {}
-          schema '$ref' => '#/components/schemas/vip_contract_application'
+          schema '$ref' => '#/components/schemas/contract_application_response'
           run_test!
         end
 
@@ -162,13 +161,13 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       parameter name: :contract_application,
                 in: :body,
                 schema: {
-                  '$ref' => '#/components/schemas/vip_contract_application'
+                  '$ref' => '#/components/schemas/contract_application_request'
                 }
       parameter name: :id,
                 in: :path,
                 type: :string
       request_body_json schema: {
-        '$ref' => '#/components/schemas/vip_contract_application'
+        '$ref' => '#/components/schemas/contract_application_request'
       }
 
       context 'Using valid credentials' do
@@ -182,7 +181,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         let(:contract_application) { JSON.parse(file) }
 
         response '200', 'Update or finalize an existing contract application' do
-          schema '$ref' => '#/components/schemas/vip_contract_application'
+          schema '$ref' => '#/components/schemas/contract_application_response'
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:contract_application) do
             {
@@ -218,9 +217,10 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           run_test!
         end
 
-        response '400', 'Bad request' do
+        response '422', 'Unprocessable Entity' do
           let(:file) { File.read(Rails.root.join('spec/helpers/dummy_docs/contract_applications/put_contract_applications_malformed.json')) }
           let(:contract_application) { JSON.parse(file) }
+          let(:id) { '1000015090' }
           schema '$ref' => '#/components/schemas/malformed_request_error'
           run_test!
         end

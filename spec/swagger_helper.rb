@@ -69,38 +69,40 @@ RSpec.configure do |config|
           }
         },
         schemas: {
-          plan_list: {
+          plan_get_response_list: {
             type: :object,
             properties: {
-              plans: { type: :array, items: { '$ref' => '#components/schemas/plan' } }
+              plans: { type: :array, items: { '$ref' => '#components/schemas/plan_get_response' } }
             }
           },
-          plan: {
+          plan_get_response: {
             type: :object,
             properties: {
               id: { type: :integer, example: 5_477_684 },
-              age_group: { type: :integer, example: 1 },
-              auto_renew: { type: :boolean, example: true },
-              created_at: { type: :string, example: '2019-02-18T18:20:12Z' },
-              sort_order: { type: :integer, example: 10 },
-              code: { type: :string, example: '10001' },
-              updated_at: { type: :string, example: '2019-02-18T18:20:12Z' },
+              age_group: { type: :integer, example: 1, nullable: true },
+              auto_renew: { type: :boolean, example: true, nullable: true },
+              created_at: { type: :string, example: '2019-02-18T18:20:12Z', nullable: true },
+              sort_order: { type: :integer, example: 10, nullable: true },
+              code: { type: :string, example: '10001', nullable: true },
+              updated_at: { type: :string, example: '2019-02-18T18:20:12Z', nullable: true },
               long_description: {
                 type: :string,
-                example: '<b>The Puppy Wellness Plan Includes:</b><div><ul><li>3 Complete Physical Exams</li><li>Core Vaccination Series as Recommended by Your Veterinarian - Includes 5-in-1 (DAP/Parvo), Lepto 4, Bordetella and Rabies</li><li>2 Fecal Tests</li><li>2 Deworming Treatments - Roundworms and Hookworms</li><li>Microchip I.D. and Registration</li></ul><div><br></div></div><div><br></div>'
+                example: '<b>The Puppy Wellness Plan Includes:</b><div><ul><li>3 Complete Physical Exams</li><li>Core Vaccination Series as Recommended by Your Veterinarian - Includes 5-in-1 (DAP/Parvo), Lepto 4, Bordetella and Rabies</li><li>2 Fecal Tests</li><li>2 Deworming Treatments - Roundworms and Hookworms</li><li>Microchip I.D. and Registration</li></ul><div><br></div></div><div><br></div>',
+                nullable: true
               },
-              paid_in_full_discount: { type: :number, example: 0 },
-              payment_term: { type: :integer, example: 12 },
-              full_plan_price: { type: :number, example: 263.4 },
+              paid_in_full_discount: { type: :number, example: 0, nullable: true },
+              payment_term: { type: :integer, example: 12, nullable: true },
+              full_plan_price: { type: :number, example: 263.4, nullable: true },
               plan_services: {
                 type: :array,
                 items: {
-                  '$ref' => '#/components/schemas/offered_service'
-                }
+                  '$ref' => '#/components/schemas/offered_service_get_response'
+                },
+                nullable: true
               },
-              recurring_plan_payment_total: { type: :number, example: 21.95 },
-              short_description: { type: :string, example: 'Puppy Wellness Plan' },
-              species_id: { type: :string, example: 'aa49c6a9-a4e8-4a19-bea0-059739291646' }
+              recurring_plan_payment_total: { type: :number, example: 21.95, nullable: true },
+              short_description: { type: :string, example: 'Puppy Wellness Plan', nullable: true },
+              species_id: { type: :string, example: 'aa49c6a9-a4e8-4a19-bea0-059739291646', nullable: true }
             }
           },
           service_list: {
@@ -166,7 +168,7 @@ RSpec.configure do |config|
               }
             }
           },
-          offered_service: {
+          offered_service_get_response: {
             type: :object,
             properties: {
               id: { type: :integer, example: 5_428_856 },
@@ -174,119 +176,37 @@ RSpec.configure do |config|
                 type: :object,
                 properties: {
                   id: { type: :integer, example: 5_428_799 },
-                  short_description: { type: :string, example: 'Wellness Examination' }
+                  short_description: { type: :string, example: 'Wellness Examination', nullable: true }
                 }
               },
               plan: {
                 type: :object,
                 properties: {
                   id: { type: :integer, example: 5_428_455 },
-                  short_description: { type: :string, example: 'Puppy Wellness Plan' }
+                  short_description: { type: :string, example: 'Puppy Wellness Plan', nullable: true }
                 }
               },
               cost: { type: :number, example: 15.99, nullable: true },
-              created_at: { type: :string, example: '2019-02-01T16:56:55Z' },
+              created_at: { type: :string, example: '2019-02-01T16:56:55Z', nullable: true },
               discount_percent: { type: :number, example: 50, nullable: true },
-              discounted_price: { type: :number, example: 17.5 },
-              sort_order: { type: :integer, example: 10 },
+              discounted_price: { type: :number, example: 17.5, nullable: true },
+              sort_order: { type: :integer, example: 10, nullable: true },
               code: { type: :number, example: nil, nullable: true },
-              updated_at: { type: :string, example: '2019-02-18T18:20:12Z' },
-              plan_id: { type: :integer, example: 5_428_455 },
-              plan_quantity: { type: :integer, example: 3 },
-              price: { type: :number, example: 35 },
+              updated_at: { type: :string, example: '2019-02-18T18:20:12Z', nullable: true },
+              plan_id: { type: :integer, example: 5_428_455, nullable: true },
+              plan_quantity: { type: :integer, example: 3, nullable: true },
+              price: { type: :number, example: 35, nullable: true },
               revenue_per_unit: { type: :number, example: 21.1, nullable: true },
-              is_optional: { type: :boolean, example: false }
+              is_optional: { type: :boolean, example: false, nullable: true }
             }
           },
-          partner_contract_application_list: {
+          contract_application_request_list: {
             type: :array,
             items: {
-              '$ref' => '#/components/schemas/partner_contract_application'
+              '$ref' => '#/components/schemas/contract_application_request'
             }
           },
-          partner_contract_application: {
-            type: :object,
-            properties: {
-              validatedFieldList: {
-                type: :array,
-                items: { type: :string }
-              },
-              location: {
-                type: :object,
-                properties: {
-                  id: { type: :integer }
-                }
-              },
-              plan: {
-                type: :object,
-                properties: {
-                  id: { type: :integer }
-                }
-              },
-              externalLocationCd: { type: :integer, nullable: true },
-              externalPlanCd: { type: :integer, nullable: true },
-              salutation: { type: :string },
-              firstName: { type: :string },
-              middleInitial: { type: :string, nullable: true },
-              lastName: { type: :string },
-              address1: { type: :string },
-              address2: { type: :string, nullable: true },
-              city: { type: :string },
-              state: { type: :string },
-              postalCode: { type: :string },
-              country: { type: :string },
-              phone1: { type: :string },
-              phone1Type: { type: :string },
-              phone2: { type: :string },
-              phone2Type: { type: :string },
-              email: { type: :string },
-              portalUsername: { type: :string },
-              externalClientCd: { type: :string },
-              externalMemberCd: { type: :string },
-              memberName: { type: :string },
-              memberAge: { type: :string },
-              gender: { type: :string, nullable: true },
-              initiatedByProfessional: {
-                type: :object,
-                properties: {
-                  id: { type: :integer }
-                }
-              },
-              primaryCareProfessional: {
-                type: :object,
-                properties: {
-                  id: { type: :integer }
-                }
-              },
-              initiatedByProfessionalCd: { type: :integer, nullable: true },
-              primaryCareProfessionalCd: { type: :integer, nullable: true },
-              payOption: { type: :string },
-              payMethod: { type: :string },
-              paymentName: { type: :string },
-              accountNbrForDisplay: { type: :string },
-              accountNbr: { type: :integer },
-              institutionName: { type: :string },
-              bankAccountHolderType: { type: :string },
-              bankAccountType: { type: :string },
-              bankRoutingNbr: { type: :string },
-              paymentaddressSameAsAccount: { type: :boolean },
-              expirationMonth: { type: :integer, nullable: true },
-              expirationYear: { type: :integer, nullable: true },
-              securityCode: { type: :integer, nullable: true },
-              externalPaymentProfileId: { type: :string, nullable: true },
-              optionalPlanServices: {
-                type: :array,
-                items: { type: :object }
-              }
-            }
-          },
-          vip_contract_application_list: {
-            type: :array,
-            items: {
-              '$ref' => '#/components/schemas/vip_contract_application'
-            }
-          },
-          vip_contract_application: {
+          contract_application_request: {
             type: :object,
             properties: {
               owner_first_name: { type: :string, example: 'Harry' },
@@ -304,13 +224,42 @@ RSpec.configure do |config|
               payment_method: { type: :string, example: 'credit' },
               card_name: { type: :string, example: 'MasterCard' },
               card_number: { type: :string, example: '5354' },
+              expiration_month: { type: :integer, example: 1 },
+              expiration_year: { type: :integer, example: 2025 },
+              mobile: { type: :string, example: '9494814601', nullable: true },
+              phone: { type: :string, example: '9494814602', nullable: true },
+              alternate_phone: { type: :string, example: '9494814603', nullable: true }
+            }
+          },
+          contract_application_response_list: {
+            type: :array,
+            items: {
+              '$ref' => '#/components/schemas/contract_application_response'
+            }
+          },
+          contract_application_response: {
+            type: :object,
+            properties: {
+              owner_first_name: { type: :string, example: 'Harry', nullable: true },
+              owner_last_name: { type: :string, example: 'Potter', nullable: true },
+              address: { type: :string, example: '4 Privet Drive', nullable: true },
+              city: { type: :string, example: 'Morino Valley', nullable: true },
+              state: { type: :string, example: 'CA', nullable: true },
+              zip: { type: :string, example: '92551', nullable: true },
+              country: { type: :string, example: 'US', nullable: true },
+              email: { type: :string, example: 'HarryPotter@Hogwarts.edu', nullable: true },
+              owner_id: { type: :string, example: '1000', nullable: true },
+              pet_id: { type: :string, example: '1', nullable: true },
+              pet_name: { type: :string, example: 'Hedwig', nullable: true },
+              gender: { type: :string, example: 'F', nullable: true },
+              payment_method: { type: :string, example: 'credit', nullable: true },
+              card_name: { type: :string, example: 'MasterCard', nullable: true },
+              card_number: { type: :string, example: '5354', nullable: true },
               expiration_month: { type: :integer, example: 1, nullable: true },
               expiration_year: { type: :integer, example: 2025, nullable: true },
-              anyOf: {
-                mobile: { type: :string, example: '9494814601' },
-                phone: { type: :string, example: '9494814602' },
-                alternate_phone: { type: :string, example: '9494814603' }
-              }
+              mobile: { type: :string, example: '9494814601', nullable: true },
+              phone: { type: :string, example: '9494814602', nullable: true },
+              alternate_phone: { type: :string, example: '9494814603', nullable: true }
             }
           },
           vip_finalize_application: {
