@@ -32,6 +32,7 @@ module Wellness
             allow(controller).to receive(:build_partner_request)
             allow(controller).to receive(:post_contract).and_return returned_contract
             allow(controller).to receive(:valid_submission?).and_return true
+            allow(controller).to receive(:retain_id_link).and_return nil
             allow(controller).to receive(:contract_id).and_return '1000008890'
             post :create
           end
@@ -82,6 +83,7 @@ module Wellness
             allow(controller).to receive(:build_partner_request)
             allow(controller).to receive(:post_contract).and_return returned_contract
             allow(controller).to receive(:valid_submission?).and_return true
+            allow(controller).to receive(:retain_id_link)
             allow(controller).to receive(:contract_id).and_return 'fake_id'
             stub_request(:get, 'https://demo.vcp.vet/cwa/api/contractApplicationAgreement/fake_id')
               .to_return(status: 404, body: {}.to_json, headers: {})
