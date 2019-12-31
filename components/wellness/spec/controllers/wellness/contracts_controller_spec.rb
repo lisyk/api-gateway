@@ -10,6 +10,62 @@ module Wellness
     let(:contracts_sample) { File.read(file_path) }
     let(:contracts) { JSON.parse contracts_sample }
 
+    describe '#index' do
+      context 'authenticated' do
+        before :each do
+          controller.instance_variable_set(:@current_user, 'authorized')
+          allow(controller).to receive(:authenticate!).and_return true
+          stub_const('Settings', route_settings)
+        end
+        describe 'contracts service available' do
+          before :each do
+            allow(controller).to receive(:contracts).and_return contracts
+            get :index
+          end
+          it 'returns 200 response' do
+            expect(response).to have_http_status(200)
+          end
+          it 'returns correct content type' do
+            expect(response.content_type).to include 'application/json'
+          end
+          it 'assigns contract' do
+            expect(assigns(:contracts)).not_to be_nil
+          end
+          it 'returns a list of contracts' do
+            expect(assigns(:contracts)).to be_a Array
+          end
+        end
+        describe 'contracts service unavailable' do
+          before :each do
+            allow(controller).to receive(:contracts).and_return nil
+            get :index
+          end
+          it 'returns 404 response' do
+            expect(response).to have_http_status(404)
+          end
+          it 'does not assign contracts' do
+            expect(assigns(:contracts)).to be_nil
+          end
+        end
+      end
+      context 'unauthenticated' do
+        before do
+          allow(controller).to receive(:authenticate!)
+          controller.instance_variable_set(:@current_user, nil)
+          get :index
+        end
+        it 'returns error message to the client' do
+          expect(JSON.parse(response.body)['errors']).to include 'You are not authorized'
+        end
+        it 'returns 403 error message' do
+          expect(response).to have_http_status(403)
+        end
+        it "doesn't assign contracts" do
+          expect(assigns(:contracts)).to be_nil
+        end
+      end
+    end
+
     describe '#show' do
       context 'authenticated' do
         before :each do
@@ -60,7 +116,7 @@ module Wellness
         it 'returns 403 error message' do
           expect(response).to have_http_status(403)
         end
-        it "doesn't assign wellness_plans" do
+        it "doesn't assign contract" do
           expect(assigns(:contract)).to be_nil
         end
       end

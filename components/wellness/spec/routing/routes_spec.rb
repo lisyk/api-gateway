@@ -50,6 +50,16 @@ module Wellness
           expect(put: '/wellness/contract_applications/agreements/1').to route_to('wellness/agreements#update', id: '1')
         end
       end
+
+      context 'Contracts' do
+        it 'routes to contracts #index' do
+          expect(get: '/wellness/contracts').to route_to('wellness/contracts#index')
+        end
+
+        it 'routes to contracts #show' do
+          expect(get: '/wellness/contracts/1').to route_to('wellness/contracts#show', id: '1')
+        end
+      end
     end
   end
 end

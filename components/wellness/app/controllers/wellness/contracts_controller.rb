@@ -2,6 +2,16 @@
 
 module Wellness
   class ContractsController < ApplicationController
+    def index
+      @contracts ||= contracts(contract_params)
+      if @contracts.present?
+        render json: @contracts
+      else
+        render json: { errors: ['Contracts are not available.'] },
+               status: :not_found
+      end
+    end
+
     def show
       @contract ||= contracts(contract_params)
       if @contract.present?
