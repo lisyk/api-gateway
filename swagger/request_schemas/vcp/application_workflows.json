@@ -6,7 +6,6 @@
       "payment_token": {"type": "string"}
     },
     "required": [
-      "initial_payment_option",
       "payment_token"
     ]
   }

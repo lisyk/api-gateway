@@ -259,14 +259,15 @@ RSpec.configure do |config|
               expiration_year: { type: :integer, example: 2025, nullable: true },
               mobile: { type: :string, example: '9494814601', nullable: true },
               phone: { type: :string, example: '9494814602', nullable: true },
-              alternate_phone: { type: :string, example: '9494814603', nullable: true }
+              alternate_phone: { type: :string, example: '9494814603', nullable: true },
+              status: { type: :string, example: '5', nullable: true }
             }
           },
           vip_finalize_application: {
             type: :object,
             allOf: [
               { '$ref' => '#/components/schemas/finalize_application' },
-              { '$ref' => '#/components/schemas/vip_contract_application' }
+              { '$ref' => '#/components/schemas/contract_application_response' }
             ]
           },
           finalize_application: {

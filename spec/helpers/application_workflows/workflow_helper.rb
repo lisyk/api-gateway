@@ -17,7 +17,7 @@ class WorkflowHelper < ActionDispatch::IntegrationTest
 
   def put_agreement
     put "/api/v1/wellness/contract_applications/agreements/#{@contract_id}",
-        params: agreement,
+        params: { document: agreement },
         headers: {
           Authorization: "Bearer #{token}",
           'Content-Type'.to_sym => 'application/pdf'
@@ -42,8 +42,8 @@ class WorkflowHelper < ActionDispatch::IntegrationTest
   def initial_request_body
     initial_request_file = File.read(Rails.root.join('spec/helpers/dummy_docs/contract_applications/post_contract_applications.json'))
     payload = JSON.parse(initial_request_file)
-    payload['externalMemberCd'] = SecureRandom.uuid
-    payload['externalClientCd'] = SecureRandom.uuid
+    payload['pet_id'] = SecureRandom.uuid
+    payload['owner_id'] = SecureRandom.uuid.to_s[0..15]
     payload['email'] = dummy_email
     payload['portalUsername'] = payload['email']
     payload.to_json

@@ -18,5 +18,6 @@
   "field": "field",
   "value": "value",
   "errorCode": "error_code",
-  "errorMessage": "error_message"
+  "errorMessage": "error_message",
+  "status": "status"
 }

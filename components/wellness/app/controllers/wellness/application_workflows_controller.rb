@@ -19,7 +19,7 @@ module Wellness
     private
 
     def build_partner_finalization_request(request)
-      request = JSON.parse(translate(request))
+      request = JSON.parse(translate(request, skip_defaults: true))
       request['status'] = 5
       request.to_json
     end
@@ -40,8 +40,8 @@ module Wellness
       end
     end
 
-    def translate(request)
-      RequestTranslation.new(request, controller_name).translate_request.to_json
+    def translate(request, skip_defaults: false)
+      RequestTranslation.new(request, controller_name, skip_defaults).translate_request.to_json
     end
 
     def contract_completed

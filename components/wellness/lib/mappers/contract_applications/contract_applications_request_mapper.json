@@ -18,5 +18,8 @@
   "payment_address_same_as_account": "paymentaddressSameAsAccount",
   "payment_name": "paymentName",
   "account_number": "accountNbrForDisplay",
-  "first_billing_date": "firstBillingDate"
+  "initial_payment_option": "initialPaymentOption",
+  "portal_username": "portalUsername",
+  "first_billing_date": "firstBillingDate",
+  "payment_token": "accountNbr"
 }

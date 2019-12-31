@@ -20,5 +20,7 @@
   "account_number": "accountNbrForDisplay",
   "initial_payment_option": "initialPaymentOption",
   "portal_username": "portalUsername",
-  "status": "status"
+  "status": "status",
+  "first_billing_date": "firstBillingDate",
+  "payment_token": "accountNbr"
 }

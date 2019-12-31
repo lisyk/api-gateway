@@ -6,23 +6,22 @@ module Wellness
   RSpec.describe ApplicationWorkflow, :vcr, type: :model do
     describe 'singleton methods' do
       context 'validate_finalization_request' do
-        let(:valid_submission) do
+        let(:valid_response) do
           {
-            'initialPaymentOption' => 12,
-            'accountNbr' => '1'
+            'status' => 5
           }
         end
-        let(:invalid_submission) do
+        let(:invalid_response) do
           {
             'errors' => 'invalid'
           }
         end
         let(:workflow) { ApplicationWorkflow.new }
         it 'returns true for valid response' do
-          expect(workflow.validate_finalization_request(valid_submission)).to be true
+          expect(workflow.validate_finalization_request(valid_response)).to be true
         end
         it 'returns false for invalid response' do
-          expect(workflow.validate_finalization_request(invalid_submission)).to be false
+          expect(workflow.validate_finalization_request(invalid_response)).to be false
         end
       end
     end
