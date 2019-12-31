@@ -30,6 +30,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
 
         response '200', 'Create a new contract application' do
           let(:Authorization) { " Authorization: Bearer #{token} " }
+          let(:pet_id) { SecureRandom.uuid }
           let(:contract_application) do
             {
               location: {
@@ -50,7 +51,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
               phone: '9494814602',
               email: 'Olivia.Wright@ExtendCredit.com',
               owner_id: '1000',
-              pet_id: 'd525ffb4-d6a7-41f9-a327-86a806a8e116',
+              pet_id: pet_id,
               pet_name: 'Cece',
               age: '1Y 2M',
               payment_method: 'credit',
@@ -178,7 +179,11 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         let(:Authorization) { " Authorization: Bearer #{token} " }
         let(:id) { '1000014069' }
         let(:file) { File.read(Rails.root.join('spec/helpers/dummy_docs/contract_applications/put_contract_applications.json')) }
-        let(:contract_application) { JSON.parse(file) }
+        let(:application_payload) { JSON.parse(file) }
+        let(:contract_application) do
+          application_payload['first_billing_date'] = DateTime.current
+          application_payload
+        end
 
         response '200', 'Update or finalize an existing contract application' do
           schema '$ref' => '#/components/schemas/contract_application_response'

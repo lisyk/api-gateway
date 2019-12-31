@@ -8,4 +8,5 @@ Wellness::Engine.routes.draw do
       resources :agreements, only: %i[show update]
     end
   end
+  post '/initiate_application', to: 'application_workflows#create'
 end

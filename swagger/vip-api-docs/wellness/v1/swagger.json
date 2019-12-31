@@ -93,194 +93,6 @@
           }
         }
       },
-      "contract_application_list": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/contract_application"
-        }
-      },
-      "contract_application": {
-        "type": "object",
-        "properties": {
-          "validatedFieldList": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "location": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "integer"
-              }
-            }
-          },
-          "plan": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "integer"
-              }
-            }
-          },
-          "externalLocationCd": {
-            "type": "integer",
-            "nullable": true
-          },
-          "externalPlanCd": {
-            "type": "integer",
-            "nullable": true
-          },
-          "salutation": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "middleInitial": {
-            "type": "string",
-            "nullable": true
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "address1": {
-            "type": "string"
-          },
-          "address2": {
-            "type": "string",
-            "nullable": true
-          },
-          "city": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
-          },
-          "postalCode": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          },
-          "phone1": {
-            "type": "string"
-          },
-          "phone1Type": {
-            "type": "string"
-          },
-          "phone2": {
-            "type": "string"
-          },
-          "phone2Type": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "portalUsername": {
-            "type": "string"
-          },
-          "externalClientCd": {
-            "type": "string"
-          },
-          "externalMemberCd": {
-            "type": "string",
-            "maxLength": 50
-          },
-          "memberName": {
-            "type": "string"
-          },
-          "memberAge": {
-            "type": "string"
-          },
-          "gender": {
-            "type": "string",
-            "nullable": true
-          },
-          "initiatedByProfessional": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "integer"
-              }
-            }
-          },
-          "primaryCareProfessional": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "integer"
-              }
-            }
-          },
-          "initiatedByProfessionalCd": {
-            "type": "integer",
-            "nullable": true
-          },
-          "primaryCareProfessionalCd": {
-            "type": "integer",
-            "nullable": true
-          },
-          "payOption": {
-            "type": "string"
-          },
-          "payMethod": {
-            "type": "string"
-          },
-          "paymentName": {
-            "type": "string"
-          },
-          "accountNbrForDisplay": {
-            "type": "string"
-          },
-          "accountNbr": {
-            "type": "integer"
-          },
-          "institutionName": {
-            "type": "string",
-            "nullable": true
-          },
-          "bankAccountHolderType": {
-            "type": "string",
-            "nullable": true
-          },
-          "bankAccountType": {
-            "type": "string",
-            "nullable": true
-          },
-          "bankRoutingNbr": {
-            "type": "string",
-            "nullable": true
-          },
-          "paymentaddressSameAsAccount": {
-            "type": "boolean"
-          },
-          "expirationMonth": {
-            "type": "integer",
-            "nullable": true
-          },
-          "expirationYear": {
-            "type": "integer",
-            "nullable": true
-          },
-          "securityCode": {
-            "type": "integer",
-            "nullable": true
-          },
-          "externalPaymentProfileId": {
-            "type": "string",
-            "nullable": true
-          },
-          "optionalPlanServices": {
-            "type": "array",
-            "items": {
-              "type": "object"
-            }
-          }
-        }
-      },
       "service_list": {
         "type": "object",
         "properties": {
@@ -754,18 +566,128 @@
             "example": 2025,
             "nullable": true
           },
-          "anyOf": {
-            "mobile": {
-              "type": "string",
-              "example": "9494814601"
-            },
-            "phone": {
-              "type": "string",
-              "example": "9494814602"
-            },
-            "alternate_phone": {
-              "type": "string",
-              "example": "9494814603"
+          "mobile": {
+            "type": "string",
+            "example": "9494814601",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "example": "9494814602",
+            "nullable": true
+          },
+          "alternate_phone": {
+            "type": "string",
+            "example": "9494814603",
+            "nullable": true
+          }
+        }
+      },
+      "vip_initiate_application": {
+        "type": "object",
+        "properties": {
+          "clinic_location_id": {
+            "type": "integer",
+            "example": 5426720
+          },
+          "plan_code": {
+            "type": "integer",
+            "example": 5428455
+          },
+          "owner_first_name": {
+            "type": "string",
+            "example": "Harry"
+          },
+          "owner_last_name": {
+            "type": "string",
+            "example": "Potter"
+          },
+          "address": {
+            "type": "string",
+            "example": "4 Privet Drive"
+          },
+          "city": {
+            "type": "string",
+            "example": "Morino Valley"
+          },
+          "state": {
+            "type": "string",
+            "example": "CA"
+          },
+          "zip": {
+            "type": "string",
+            "example": "92551"
+          },
+          "country": {
+            "type": "string",
+            "example": "US"
+          },
+          "email": {
+            "type": "string",
+            "example": "HarryPotter@Hogwarts.edu"
+          },
+          "mobile": {
+            "type": "string",
+            "example": "9494814601",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "example": "9494814602",
+            "nullable": true
+          },
+          "alternate_phone": {
+            "type": "string",
+            "example": "9494814603",
+            "nullable": true
+          },
+          "owner_id": {
+            "type": "string",
+            "example": "1000"
+          },
+          "pet_id": {
+            "type": "string",
+            "example": "1"
+          },
+          "pet_name": {
+            "type": "string",
+            "example": "Hedwig"
+          },
+          "age": {
+            "type": "string",
+            "example": "1Y 2M",
+            "description": "Also accepts years as integer and DateTime birthdate strings"
+          },
+          "gender": {
+            "type": "string",
+            "example": "F",
+            "nullable": true
+          },
+          "card_name": {
+            "type": "string",
+            "example": "MasterCard"
+          },
+          "payment_name": {
+            "type": "string",
+            "example": "Harry Potter"
+          },
+          "expiration_month": {
+            "type": "integer",
+            "example": 1,
+            "nullable": true
+          },
+          "expiration_year": {
+            "type": "integer",
+            "example": 2025,
+            "nullable": true
+          },
+          "account_number": {
+            "type": "integer",
+            "example": 1234
+          },
+          "optional_plan_services": {
+            "type": "array",
+            "items": {
             }
           }
         }
@@ -927,6 +849,49 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/auth_error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/wellness/initiate_application": {
+      "post": {
+        "summary": "Initiate a new application and retrieve agreement document",
+        "tags": [
+          "Contract Application Workflow"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vip_initiate_application"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Initiate a new application and retrieve agreement document"
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/malformed_request_error"
                 }
               }
             }
