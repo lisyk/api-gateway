@@ -166,6 +166,24 @@ RSpec.configure do |config|
               }
             }
           },
+          contract_service_list: {
+            type: :object,
+            properties: {
+              contract_services: {
+                type: :array,
+                items: {
+                  type: :object,
+                  properties: {
+                    product_id: { type: :integer, example: 5_477_611 },
+                    offered_service_id: { type: :integer, example: 5_477_232 },
+                    service_description: { type: :string, example: 'Fecal Test' },
+                    service_price: { type: :number, example: 21.95 },
+                    available_quantity: { type: :integer, example: 3 }
+                  }
+                }
+              }
+            }
+          },
           offered_service: {
             type: :object,
             properties: {
@@ -194,7 +212,7 @@ RSpec.configure do |config|
               plan_id: { type: :integer, example: 5_428_455 },
               plan_quantity: { type: :integer, example: 3 },
               price: { type: :number, example: 35 },
-              revenue_per_unit: { type: :number, example: 21.1 },
+              revenue_per_unit: { type: :number, example: 21.1, nullable: true },
               is_optional: { type: :boolean, example: false }
             }
           },
@@ -297,13 +315,13 @@ RSpec.configure do |config|
               zip: { type: :string, example: '92551' },
               country: { type: :string, example: 'US' },
               email: { type: :string, example: 'HarryPotter@Hogwarts.edu' },
-              owner_id: { type: :string, example: '1000' },
-              pet_id: { type: :string, example: '1' },
+              owner_id: { type: :string, example: '1000', nullable: true },
+              pet_id: { type: :string, example: '1', nullable: true },
               pet_name: { type: :string, example: 'Hedwig' },
               gender: { type: :string, example: 'F', nullable: true },
               payment_method: { type: :string, example: 'credit' },
               card_name: { type: :string, example: 'MasterCard' },
-              card_number: { type: :string, example: '5354' },
+              card_number: { type: :string, example: '5354', nullable: true },
               expiration_month: { type: :integer, example: 1, nullable: true },
               expiration_year: { type: :integer, example: 2025, nullable: true },
               anyOf: {

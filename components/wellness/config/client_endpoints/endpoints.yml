@@ -41,3 +41,8 @@ plan_services:
   show:
     method: get
     resource: planService
+
+contract_services:
+  index:
+    method: get
+    resource: contractPeriod
