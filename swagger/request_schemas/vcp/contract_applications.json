@@ -128,7 +128,7 @@
       },
       "externalClientCd": {
         "type": "string",
-        "maxLength": 16
+        "maxLength": 40
       },
       "externalLocationCd": {
         "type": "string",
