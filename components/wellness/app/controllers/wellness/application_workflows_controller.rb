@@ -7,7 +7,7 @@ module Wellness
     before_action :validate_request, only: %i[create update]
 
     def update
-      translated_request = build_partner_finalization_request(request)
+      translated_request = application_workflow.partner_finalization_request(request)
       @contract ||= put_apps(translated_request)
       if @contract.present? && @contract['errors'].blank? && contract_completed
         render json: @contract
@@ -17,7 +17,7 @@ module Wellness
     end
 
     def create
-      prepared_request = build_partner_initialization_request(request)
+      prepared_request = application_workflow.partner_initialization_request(request)
       @response ||= post_contract(prepared_request)
       if valid_submission?(@response)
         retain_id_link
@@ -30,25 +30,10 @@ module Wellness
 
     private
 
-    def build_partner_finalization_request(request)
-      request = JSON.parse(translate(request, skip_defaults: true))
-      request['status'] = 5
-      request.to_json
-    end
-
     def put_apps(request)
       workflow = ContractApplication.new('contract_applications', 'update', params)
       response = workflow.api_put(request)
       workflow.contract_app_mapping({}, response)
-    end
-
-    def build_partner_initialization_request(request)
-      request = JSON.parse(translate(request))
-      request['location'] = { id: request['externalLocationCd'] }
-      request['plan'] = { id: request['externalPlanCd'] }
-      request['portalUsername'] = request['email'] if request['portalUsername'].blank?
-      request['status'] = 20
-      request.to_json
     end
 
     def post_contract(request)
@@ -89,8 +74,8 @@ module Wellness
       end
     end
 
-    def translate(request, skip_defaults: false)
-      RequestTranslation.new(request, controller_name, skip_defaults).translate_request.to_json
+    def application_workflow
+      ApplicationWorkflow.new
     end
 
     def contract_completed

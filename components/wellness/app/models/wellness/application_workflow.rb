@@ -15,5 +15,26 @@ module Wellness
         response.include?('externalMemberCd') &&
         response['errors'].blank?
     end
+
+    def partner_initialization_request(request)
+      request = JSON.parse(translate(request))
+      request['location'] = { id: request['externalLocationCd'] }
+      request['plan'] = { id: request['externalPlanCd'] }
+      request['portalUsername'] = request['email'] if request['portalUsername'].blank?
+      request['status'] = 20
+      request.to_json
+    end
+
+    def partner_finalization_request(request)
+      request = JSON.parse(translate(request, skip_defaults: true))
+      request['status'] = 5
+      request.to_json
+    end
+
+    def translate(request, skip_defaults: false)
+      RequestTranslation.new(request,
+                             'application_workflows',
+                             skip_defaults).translate_request.to_json
+    end
   end
 end
