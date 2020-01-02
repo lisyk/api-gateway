@@ -747,6 +747,49 @@
         }
       }
     },
+    "/api/v1/wellness/initiate_application": {
+      "post": {
+        "summary": "Initiate a new application and retrieve agreement document",
+        "tags": [
+          "Contract Application Workflow"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vip_initiate_application"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Initiate a new application and retrieve agreement document"
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/malformed_request_error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/wellness/finalize_application/{id}": {
       "put": {
         "summary": "Finalize a contract application after submitting a signed agreement document",

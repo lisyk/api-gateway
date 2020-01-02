@@ -9,4 +9,5 @@ Wellness::Engine.routes.draw do
     end
   end
   put '/finalize_application/:id', to: 'application_workflows#update'
+  post '/initiate_application', to: 'application_workflows#create'
 end

@@ -60,20 +60,6 @@ module Wellness
       contract_app.contract_app_mapping(params)
     end
 
-    def retain_id_link
-      DbEngineInteractor.call(pet_id: pet_id, contract_app_id: contract_app_id)
-    rescue ActiveRecord::RecordInvalid
-      @response['errors'] = ['Could not store pet UUID, contract app ID link in integrator DB.']
-    end
-
-    def contract_app_id
-      JSON.parse(response.body)['id']
-    end
-
-    def pet_id
-      JSON.parse(response.body)['externalMemberCd']
-    end
-
     def post_apps(request)
       contract_app = ContractApplication.new(controller_name, action_name, params)
       response = contract_app.api_post(request)
@@ -90,10 +76,18 @@ module Wellness
       params.except(:format).permit(:id)
     end
 
-    def translate(request)
-      translation = RequestTranslation.new(request, controller_name).translate_request
-      translation['validatedFieldList'] = ['validateAll']
-      translation.to_json
+    def retain_id_link
+      DbEngineInteractor.call(pet_id: pet_id, contract_app_id: contract_app_id)
+    rescue ActiveRecord::RecordInvalid
+      @response['errors'] = ['Could not store pet UUID, contract app ID link in integrator DB.']
+    end
+
+    def contract_app_id
+      JSON.parse(response.body)['id']
+    end
+
+    def pet_id
+      JSON.parse(response.body)['externalMemberCd']
     end
   end
 end
