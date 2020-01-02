@@ -104,8 +104,10 @@
       },
       "initial_payment_option": {
         "type": "integer",
-        "minimum": 1,
-        "maximum": 2
+        "enum": [
+          1,
+          12
+        ]
       },
       "optional_plan_services": {
         "type": "array"

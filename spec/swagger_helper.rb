@@ -270,6 +270,20 @@ RSpec.configure do |config|
               { '$ref' => '#/components/schemas/contract_application_response' }
             ]
           },
+          initialize_application_response: {
+            type: :object,
+            properties: {
+              contract_application_id: { type: :integer, example: 1_000_015_424 },
+              info: {
+                type: :array,
+                items: {
+                  type: :string,
+                  example: 'Please download agreement and return via PUT /submit_agreement/:id'
+                }
+              },
+              agreement_document_base_64: { type: :string, description: 'Base-64 encoded agreement document.' }
+            }
+          },
           finalize_application: {
             type: :object,
             properties: {

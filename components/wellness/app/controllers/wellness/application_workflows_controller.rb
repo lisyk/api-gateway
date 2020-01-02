@@ -68,7 +68,11 @@ module Wellness
 
     def render_agreement(document, id)
       if document.present?
-        send_data document.body, filename: "#{id}-agreement.pdf"
+        render json: {
+          contract_application_id: id,
+          info_messages: ['Please download agreement and return via PUT /submit_agreement/:id'],
+          agreement_document_base_64: Base64.strict_encode64(document.body)
+        }
       else
         render json: { errors: ['Agreement not found.'] },
                status: :not_found

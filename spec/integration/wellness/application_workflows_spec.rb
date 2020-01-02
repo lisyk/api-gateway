@@ -8,7 +8,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
   path '/api/v1/wellness/initiate_application' do
     post 'Initiate a new application and retrieve agreement document' do
       tags 'Contract Application Workflow'
-      produces 'application/pdf'
+      produces 'application/json'
       consumes 'application/json'
       security [bearer_auth: []]
       parameter name: :contract_application,
@@ -35,6 +35,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
             payload['owner_id'] = (rand * 10**16).floor.to_s
             payload
           end
+          schema '$ref' => '#/components/schemas/initialize_application_response'
           run_test!
         end
 
