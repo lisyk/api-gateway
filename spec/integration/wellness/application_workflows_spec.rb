@@ -14,10 +14,10 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       parameter name: :contract_application,
                 in: :body,
                 schema: {
-                  '$ref' => '#/components/schemas/vip_initiate_application'
+                  '$ref' => '#/components/schemas/contract_application_request'
                 }
       request_body_json schema: {
-        '$ref' => '#/components/schemas/vip_initiate_application'
+        '$ref' => '#/components/schemas/contract_application_request'
       }
 
       context 'Using valid credentials' do

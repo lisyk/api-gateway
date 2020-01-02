@@ -788,7 +788,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/vip_initiate_application"
+                "$ref": "#/components/schemas/contract_application_request"
               }
             }
           }
