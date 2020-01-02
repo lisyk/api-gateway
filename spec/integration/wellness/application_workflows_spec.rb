@@ -38,10 +38,11 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           let(:final_request_file) { File.read(Rails.root.join('spec/helpers/dummy_docs/application_workflows/put_finalize_application.json')) }
           let(:contract_application) { JSON.parse(final_request_file) }
           schema '$ref' => '#/components/schemas/contract_application_response'
-          run_test! do
+          before do
             expect(initial_request_response).to have_http_status(200)
             expect(agreement_response).to have_http_status(200)
           end
+          run_test!
         end
 
         response '400', 'Bad request' do
