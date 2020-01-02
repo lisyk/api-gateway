@@ -12,7 +12,7 @@ class WorkflowHelper < ActionDispatch::IntegrationTest
          }
     response_body = JSON.parse(response.body)
     @contract_id = response_body['id']
-    response_body
+    response
   end
 
   def put_agreement
@@ -22,7 +22,7 @@ class WorkflowHelper < ActionDispatch::IntegrationTest
           Authorization: "Bearer #{token}",
           'Content-Type'.to_sym => 'application/pdf'
         }
-    JSON.parse(response.body)
+    response
   end
 
   private
