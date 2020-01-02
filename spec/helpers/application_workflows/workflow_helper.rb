@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class WorkflowHelper < ActionDispatch::IntegrationTest
-  attr_reader :contract_id
+  attr_reader :contract_id, :initial_response_body, :agreement_response_body
 
   def post_initial_request
     post '/api/v1/wellness/contract_applications',
@@ -10,8 +10,8 @@ class WorkflowHelper < ActionDispatch::IntegrationTest
            Authorization: "Bearer #{token}",
            'Content-Type'.to_sym => 'application/json'
          }
-    response_body = JSON.parse(response.body)
-    @contract_id = response_body['id']
+    @initial_response_body = JSON.parse(response.body)
+    @contract_id = @initial_response_body['id']
     response
   end
 
@@ -22,6 +22,7 @@ class WorkflowHelper < ActionDispatch::IntegrationTest
           Authorization: "Bearer #{token}",
           'Content-Type'.to_sym => 'application/pdf'
         }
+    @agreement_response_body = JSON.parse(response.body)
     response
   end
 

@@ -31,17 +31,18 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         let(:Authorization) { " Authorization: Bearer #{token} " }
 
         response '200', 'Finalize a contract application' do
-          workflow_helper = WorkflowHelper.new(:stub_app)
-          initial_request_response = workflow_helper.post_initial_request
-          agreement_response = workflow_helper.put_agreement
-          let(:id) { workflow_helper.contract_id }
-          let(:final_request_file) { File.read(Rails.root.join('spec/helpers/dummy_docs/application_workflows/put_finalize_application.json')) }
-          let(:contract_application) { JSON.parse(final_request_file) }
           schema '$ref' => '#/components/schemas/contract_application_response'
           before do
+            @workflow_helper = WorkflowHelper.new(:stub_app)
+            initial_request_response = @workflow_helper.post_initial_request
+            agreement_response = @workflow_helper.put_agreement
             expect(initial_request_response).to have_http_status(200)
+            expect(initial_request_response.body['id']).to be_present
             expect(agreement_response).to have_http_status(200)
           end
+          let(:id) { @workflow_helper.contract_id }
+          let(:final_request_file) { File.read(Rails.root.join('spec/helpers/dummy_docs/application_workflows/put_finalize_application.json')) }
+          let(:contract_application) { JSON.parse(final_request_file) }
           run_test!
         end
 
