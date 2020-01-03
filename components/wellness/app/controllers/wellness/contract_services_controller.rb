@@ -16,11 +16,11 @@ module Wellness
     private
 
     def fetch_services
-      services = ContractService.new(controller_name, action_name, params, custom_params)
+      services = ContractService.new(controller_name, action_name, params, query_params)
       services.available_services
     end
 
-    def custom_params
+    def query_params
       params.except(:format).permit(:contractId)
     end
   end

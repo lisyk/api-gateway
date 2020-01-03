@@ -14,6 +14,7 @@ module Wellness
       contract_services = []
       origin_services.first['contractPeriodServices'].each do |service|
         contract_services << {
+          contract_id: contract_id,
           product_id: plan_id(service),
           offered_service_id: service_id(service),
           service_description: service_name(service),
@@ -43,6 +44,10 @@ module Wellness
     def quantity(service)
       q = service['availableQuantity']
       q.positive? ? q : "#{service_name(service)} coverage is no longer available."
+    end
+
+    def contract_id
+      params["contractId"]
     end
 
     def origin_services
