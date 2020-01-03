@@ -41,3 +41,12 @@ plan_services:
   show:
     method: get
     resource: planService
+
+contracts:
+  index:
+    method: get
+    resource: contract
+    
+  show:
+    method: get
+    resource: contract

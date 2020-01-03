@@ -11,7 +11,7 @@ module Wellness
     describe 'post #create' do
       let(:contract) { File.read(File.expand_path('../../helpers/dummy_docs/application_workflows/origin_workflows_sample.json', __dir__)) }
       let(:returned_contract) { File.read(File.expand_path('../../helpers/dummy_docs/contract_applications/post_contract_applications_sample.json', __dir__)) }
-      let(:contract_document) { Base64.strict_encode64(File.read(File.expand_path('../../helpers/dummy_docs/contracts/contract.pdf', __dir__))) }
+      let(:contract_document) { Base64.strict_encode64(File.read(File.expand_path('../../helpers/dummy_docs/agreements/contract.pdf', __dir__))) }
       context 'authenticated' do
         before :each do
           allow(controller).to receive(:authenticate!)
