@@ -1,0 +1,23 @@
+{
+  "clinic_location_id": "externalLocationCd",
+  "plan_code": "externalPlanCd",
+  "owner_first_name": "firstName",
+  "owner_last_name": "lastName",
+  "address": "address1",
+  "zip": "postalCode",
+  "owner_id": "externalClientCd",
+  "pet_id": "externalMemberCd",
+  "pet_name": "memberName",
+  "payment_method": "payOption",
+  "card_name": "payMethod",
+  "card_number": "accountNbrForDisplay",
+  "expiration_month": "expirationMonth",
+  "expiration_year": "expirationYear",
+  "age": "memberAge",
+  "optional_plan_services": "optionalPlanServices",
+  "payment_address_same_as_account": "paymentaddressSameAsAccount",
+  "payment_name": "paymentName",
+  "account_number": "accountNbrForDisplay",
+  "initial_payment_option": "initialPaymentOption",
+  "portal_username": "portalUsername"
+}
