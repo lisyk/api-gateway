@@ -28,8 +28,8 @@ module Wellness
         end
         describe 'partner service available' do
           before :each do
+            allow_any_instance_of(ApplicationWorkflow).to receive(:partner_initialization_request)
             allow(controller).to receive(:validate_request).and_return nil
-            allow(controller).to receive(:build_partner_initialization_request)
             allow(controller).to receive(:post_contract).and_return returned_contract
             allow(controller).to receive(:valid_submission?).and_return true
             allow(controller).to receive(:retain_id_link).and_return nil
@@ -60,8 +60,8 @@ module Wellness
         end
         describe 'unable to create contract app' do
           before do
+            allow_any_instance_of(ApplicationWorkflow).to receive(:partner_initialization_request)
             allow(controller).to receive(:validate_request).and_return nil
-            allow(controller).to receive(:build_partner_initialization_request)
             allow(controller).to receive(:post_contract).and_return nil
             post :create
           end
@@ -79,8 +79,8 @@ module Wellness
         end
         describe 'unable to retrieve agreement' do
           before :each do
+            allow_any_instance_of(ApplicationWorkflow).to receive(:partner_initialization_request)
             allow(controller).to receive(:validate_request).and_return nil
-            allow(controller).to receive(:build_partner_initialization_request)
             allow(controller).to receive(:post_contract).and_return returned_contract
             allow(controller).to receive(:valid_submission?).and_return true
             allow(controller).to receive(:retain_id_link)
@@ -123,8 +123,8 @@ module Wellness
         end
         describe 'partner service available' do
           before :each do
+            allow_any_instance_of(ApplicationWorkflow).to receive(:partner_finalization_request)
             allow(controller).to receive(:validate_request).and_return nil
-            allow(controller).to receive(:build_partner_finalization_request)
             allow(controller).to receive(:put_apps).and_return JSON.parse(contract)
             put :update, params: { id: '1000015105' }
           end
@@ -140,8 +140,8 @@ module Wellness
         end
         describe 'not finalized' do
           before :each do
+            allow_any_instance_of(ApplicationWorkflow).to receive(:partner_finalization_request)
             allow(controller).to receive(:validate_request).and_return nil
-            allow(controller).to receive(:build_partner_finalization_request)
             allow(controller).to receive(:put_apps).and_return nil
             put :update, params: { id: '1000015105' }
           end
