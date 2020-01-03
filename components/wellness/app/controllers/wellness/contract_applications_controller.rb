@@ -10,7 +10,7 @@ module Wellness
       if @applications.present?
         render json: @applications
       else
-        render json: { errors: ['Contract applications agreements are not available.'] },
+        render json: { errors: ['Contract applications are not available.'] },
                status: :not_found
       end
     end
@@ -20,7 +20,7 @@ module Wellness
       if @application.present?
         render json: @application
       else
-        render json: { errors: ['Contract application agreement is not found.'] },
+        render json: { errors: ['Contract application is not found.'] },
                status: :not_found
       end
     end

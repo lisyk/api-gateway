@@ -17,7 +17,7 @@ module Wellness
           allow(controller).to receive(:authenticate!).and_return true
           stub_const('Settings', route_settings)
         end
-        describe 'agreement service available' do
+        describe 'application service available' do
           before :each do
             allow(controller).to receive(:contract_apps).and_return contract_apps
             get :index
@@ -32,7 +32,7 @@ module Wellness
             expect(assigns(:applications)).not_to be_nil
           end
         end
-        describe 'agreement service unavailable' do
+        describe 'application service unavailable' do
           before :each do
             allow(controller).to receive(:contract_apps).and_return nil
             get :index
@@ -41,7 +41,7 @@ module Wellness
             expect(response).to have_http_status(404)
           end
           it 'returns correct error message' do
-            expect(JSON.parse(response.body)['errors']).to include 'Contract applications agreements are not available.'
+            expect(JSON.parse(response.body)['errors']).to include 'Contract applications are not available.'
           end
           it 'does not assign applications' do
             expect(assigns(:applications)).to be_nil
@@ -73,7 +73,7 @@ module Wellness
           allow(controller).to receive(:authenticate!).and_return true
           stub_const('Settings', route_settings)
         end
-        describe 'agreement service available' do
+        describe 'application service available' do
           before :each do
             allow(controller).to receive(:contract_apps).and_return contract_apps.first
             get :show, params: { id: '1000008890' }
@@ -91,7 +91,7 @@ module Wellness
             expect(assigns(:application)).not_to be_a Array
           end
         end
-        describe 'agreement service unavailable' do
+        describe 'application service unavailable' do
           before :each do
             allow(controller).to receive(:contract_apps).and_return nil
             get :show, params: { id: '1000008890' }

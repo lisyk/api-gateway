@@ -51,6 +51,16 @@ module Wellness
         end
       end
 
+      context 'Contracts' do
+        it 'routes to contracts #index' do
+          expect(get: '/wellness/contracts').to route_to('wellness/contracts#index')
+        end
+
+        it 'routes to contracts #show' do
+          expect(get: '/wellness/contracts/1').to route_to('wellness/contracts#show', id: '1')
+        end
+      end
+
       context 'Application Workflows' do
         it 'routes to application_workflows application workflows #create' do
           expect(post: '/wellness/initiate_application').to route_to('wellness/application_workflows#create')

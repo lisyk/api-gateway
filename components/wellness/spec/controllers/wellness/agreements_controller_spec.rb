@@ -60,7 +60,7 @@ module Wellness
     end
 
     describe 'PUT #update' do
-      let(:put_agreement_sample_file) { File.read(File.expand_path('../../helpers/dummy_docs/contracts/contract.pdf', __dir__)) }
+      let(:put_agreement_sample_file) { File.read(File.expand_path('../../helpers/dummy_docs/agreements/contract.pdf', __dir__)) }
       let(:put_agreement) { put_agreement_sample_file }
 
       context 'authenticated' do
