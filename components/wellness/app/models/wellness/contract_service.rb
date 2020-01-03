@@ -47,7 +47,7 @@ module Wellness
     end
 
     def contract_id
-      params["contractId"]
+      params['contractId']
     end
 
     def origin_services
