@@ -280,6 +280,30 @@ RSpec.configure do |config|
               alternate_phone: { type: :string, example: '9494814603', nullable: true }
             }
           },
+          contract_get_response_list: {
+            type: :array,
+            items: {
+              '$ref' => '#/components/schemas/contract_get_response'
+            }
+          },
+          contract_get_response: {
+            type: :object,
+            properties: {
+              id: { type: :integer, example: 1_000_015_201, nullable: true },
+              address: { type: :string, example: '4 Privet Drive', nullable: true },
+              contract_period: { type: :string, nullable: true },
+              date_created: { type: :string, example: '2019-12-30T21:23:05Z', nullable: true },
+              owner_id: { type: :string, example: '12312351324510', nullable: true },
+              clinic_location_id: { type: :string, example: '010265', nullable: true },
+              pet_id: { type: :string, example: '112314123412351', nullable: true },
+              last_updated: { type: :string, example: '2019-12-30T21:23:05Z', nullable: true },
+              age: { type: :string, example: '1Y 2M', nullable: true },
+              pet_name: { type: :string, example: 'Hedwig', nullable: true },
+              phone: { type: :string, example: '9494814601', nullable: true },
+              alternate_phone: { type: :string, example: '9494814602', nullable: true },
+              zip: { type: :string, example: '92551', nullable: true }
+            }
+          },
           auth_error: {
             type: :object,
             properties: {

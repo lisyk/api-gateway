@@ -46,3 +46,12 @@ contract_services:
   index:
     method: get
     resource: contractPeriod
+
+contracts:
+  index:
+    method: get
+    resource: contract
+
+  show:
+    method: get
+    resource: contract
