@@ -1,4 +1,18 @@
 {
+  "application_workflows_update": {
+    "type": "object",
+    "properties": {
+      "initial_payment_option": {
+        "type": "integer"
+      },
+      "payment_token": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "payment_token"
+    ]
+  },
   "application_workflows_create": {
     "$ref": "#contract_application"
   },
@@ -90,8 +104,10 @@
       },
       "initial_payment_option": {
         "type": "integer",
-        "minimum": 1,
-        "maximum": 2
+        "enum": [
+          1,
+          12
+        ]
       },
       "optional_plan_services": {
         "type": "array"

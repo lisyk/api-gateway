@@ -29,5 +29,7 @@
   "expiration_year": "2099",
   "account_number": "1234",
   "first_billing_date": "2999-12-01T00:00:00Z",
-  "optional_plan_services": []
+  "optional_plan_services": [],
+  "initial_payment_option": 12,
+  "payment_token": "1234567890"
 }

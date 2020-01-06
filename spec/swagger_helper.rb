@@ -277,7 +277,41 @@ RSpec.configure do |config|
               expiration_year: { type: :integer, example: 2025, nullable: true },
               mobile: { type: :string, example: '9494814601', nullable: true },
               phone: { type: :string, example: '9494814602', nullable: true },
-              alternate_phone: { type: :string, example: '9494814603', nullable: true }
+              alternate_phone: { type: :string, example: '9494814603', nullable: true },
+              status: { type: :string, example: '5', nullable: true }
+            }
+          },
+          vip_finalize_application: {
+            type: :object,
+            allOf: [
+              { '$ref' => '#/components/schemas/finalize_application' },
+              { '$ref' => '#/components/schemas/contract_application_response' }
+            ]
+          },
+          initialize_application_response: {
+            type: :object,
+            properties: {
+              contract_application_id: { type: :integer, example: 1_000_015_424 },
+              info: {
+                type: :array,
+                items: {
+                  type: :string,
+                  example: 'Please download agreement and return via PUT /submit_agreement/:id'
+                }
+              },
+              agreement_document_base_64: { type: :string, description: 'Base-64 encoded agreement document.' }
+            }
+          },
+          finalize_application: {
+            type: :object,
+            properties: {
+              initial_payment_option: {
+                type: :integer,
+                enum: [1, 12],
+                example: 12,
+                description: 'Payment term (paid in full vs. 12 month term)'
+              },
+              payment_token: { type: :string, example: 'test_token' }
             }
           },
           contract_get_response_list: {
@@ -340,6 +374,18 @@ RSpec.configure do |config|
                   'rejected-value'.to_sym => { type: :string, example: 'Harry.Potter@Hogwarts.edu' },
                   message: { type: :string, example: 'email with value [Harry.Potter@Hogwarts.edu] does not pass custom validation' }
                 }
+              }
+            }
+          },
+          not_completed_error: {
+            type: :object,
+            properties: {
+              errors: {
+                type: :array,
+                items: { type: :string, example: 'Contract application was not completed by provider.' }
+              },
+              response: {
+                type: :object
               }
             }
           }
