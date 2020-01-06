@@ -27,5 +27,6 @@
   "expiration_month": "1",
   "expiration_year": 2099,
   "account_number": 1234,
-  "optional_plan_services": []
+  "optional_plan_services": [],
+  "status": "5"
 }

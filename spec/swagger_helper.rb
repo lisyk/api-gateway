@@ -168,6 +168,24 @@ RSpec.configure do |config|
               }
             }
           },
+          contract_service_list: {
+            type: :object,
+            properties: {
+              contract_services: {
+                type: :array,
+                items: {
+                  type: :object,
+                  properties: {
+                    product_id: { type: :integer, example: 5_477_611 },
+                    offered_service_id: { type: :integer, example: 5_477_232 },
+                    service_description: { type: :string, example: 'Fecal Test' },
+                    service_price: { type: :number, example: 21.95 },
+                    available_quantity: { type: :integer, example: 3 }
+                  }
+                }
+              }
+            }
+          },
           offered_service_get_response: {
             type: :object,
             properties: {
@@ -217,8 +235,8 @@ RSpec.configure do |config|
               zip: { type: :string, example: '92551' },
               country: { type: :string, example: 'US' },
               email: { type: :string, example: 'HarryPotter@Hogwarts.edu' },
-              owner_id: { type: :string, example: '1000' },
-              pet_id: { type: :string, example: '1' },
+              owner_id: { type: :string, example: '1000', nullable: true },
+              pet_id: { type: :string, example: '1', nullable: true },
               pet_name: { type: :string, example: 'Hedwig' },
               gender: { type: :string, example: 'F', nullable: true },
               payment_method: { type: :string, example: 'credit' },
@@ -259,7 +277,41 @@ RSpec.configure do |config|
               expiration_year: { type: :integer, example: 2025, nullable: true },
               mobile: { type: :string, example: '9494814601', nullable: true },
               phone: { type: :string, example: '9494814602', nullable: true },
-              alternate_phone: { type: :string, example: '9494814603', nullable: true }
+              alternate_phone: { type: :string, example: '9494814603', nullable: true },
+              status: { type: :string, example: '5', nullable: true }
+            }
+          },
+          vip_finalize_application: {
+            type: :object,
+            allOf: [
+              { '$ref' => '#/components/schemas/finalize_application' },
+              { '$ref' => '#/components/schemas/contract_application_response' }
+            ]
+          },
+          initialize_application_response: {
+            type: :object,
+            properties: {
+              contract_application_id: { type: :integer, example: 1_000_015_424 },
+              info: {
+                type: :array,
+                items: {
+                  type: :string,
+                  example: 'Please download agreement and return via PUT /submit_agreement/:id'
+                }
+              },
+              agreement_document_base_64: { type: :string, description: 'Base-64 encoded agreement document.' }
+            }
+          },
+          finalize_application: {
+            type: :object,
+            properties: {
+              initial_payment_option: {
+                type: :integer,
+                enum: [1, 12],
+                example: 12,
+                description: 'Payment term (paid in full vs. 12 month term)'
+              },
+              payment_token: { type: :string, example: 'test_token' }
             }
           },
           contract_get_response_list: {
@@ -322,6 +374,18 @@ RSpec.configure do |config|
                   'rejected-value'.to_sym => { type: :string, example: 'Harry.Potter@Hogwarts.edu' },
                   message: { type: :string, example: 'email with value [Harry.Potter@Hogwarts.edu] does not pass custom validation' }
                 }
+              }
+            }
+          },
+          not_completed_error: {
+            type: :object,
+            properties: {
+              errors: {
+                type: :array,
+                items: { type: :string, example: 'Contract application was not completed by provider.' }
+              },
+              response: {
+                type: :object
               }
             }
           }

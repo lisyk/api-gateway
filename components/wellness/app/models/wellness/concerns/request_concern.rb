@@ -3,17 +3,18 @@
 module Wellness
   module Concerns
     module RequestConcern
-      attr_reader :controller, :action, :params
+      attr_reader :controller, :action, :params, :query_params
 
-      def initialize(controller, action, params = {})
+      def initialize(controller, action, params = {}, query_params = nil)
         @controller = controller
         @action = action
         @params = params
+        @query_params = query_params
         super()
       end
 
       def api_request
-        response = client.send(request_method, request_resource)
+        response = client.send(request_method, request_resource, query_params.to_h)
         parse_response(response) if response
       end
 

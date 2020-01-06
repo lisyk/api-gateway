@@ -4,10 +4,10 @@ module Wellness
   class ContractApplication < Connect
     include Concerns::RequestConcern
 
-    def contract_app_mapping(params)
-      return origin_contracts if origin_contracts.blank?
+    def contract_app_mapping(params, contracts = origin_contracts)
+      return contracts if contracts.blank?
 
-      constructor = Constructors::ContractAppConstructor.new(origin_contracts,
+      constructor = Constructors::ContractAppConstructor.new(contracts,
                                                              constructor_mapper,
                                                              params)
       constructor.modify

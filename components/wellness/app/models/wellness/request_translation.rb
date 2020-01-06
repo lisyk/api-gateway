@@ -7,9 +7,10 @@ module Wellness
 
     attr_accessor :request, :translation_type
 
-    def initialize(request, translation_type)
+    def initialize(request, translation_type, skip_defaults = false)
       @request = parse_request(request)
       @translation_type = translation_type
+      @skip_defaults = skip_defaults
     end
 
     def translate_request
@@ -26,6 +27,8 @@ module Wellness
         new_key = field_to_replace || key
         @request[new_key] = value
       end
+      return @request if @skip_defaults
+
       update_default_fields
       translate_fields
       @request

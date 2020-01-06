@@ -19,5 +19,8 @@
   "payment_name": "paymentName",
   "account_number": "accountNbrForDisplay",
   "initial_payment_option": "initialPaymentOption",
-  "portal_username": "portalUsername"
+  "portal_username": "portalUsername",
+  "status": "status",
+  "first_billing_date": "firstBillingDate",
+  "payment_token": "accountNbr"
 }

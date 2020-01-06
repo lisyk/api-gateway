@@ -232,6 +232,40 @@
         }
       },
       "offered_service_get_response": {
+      "contract_service_list": {
+        "type": "object",
+        "properties": {
+          "contract_services": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "product_id": {
+                  "type": "integer",
+                  "example": 5477611
+                },
+                "offered_service_id": {
+                  "type": "integer",
+                  "example": 5477232
+                },
+                "service_description": {
+                  "type": "string",
+                  "example": "Fecal Test"
+                },
+                "service_price": {
+                  "type": "number",
+                  "example": 21.95
+                },
+                "available_quantity": {
+                  "type": "integer",
+                  "example": 3
+                }
+              }
+            }
+          }
+        }
+      },
+      "offered_service": {
         "type": "object",
         "properties": {
           "id": {
@@ -531,6 +565,60 @@
             "type": "string",
             "example": "9494814603",
             "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "example": "5",
+            "nullable": true
+          }
+        }
+      },
+      "vip_finalize_application": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/finalize_application"
+          },
+          {
+            "$ref": "#/components/schemas/contract_application_response"
+          }
+        ]
+      },
+      "initialize_application_response": {
+        "type": "object",
+        "properties": {
+          "contract_application_id": {
+            "type": "integer",
+            "example": 1000015424
+          },
+          "info": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "Please download agreement and return via PUT /submit_agreement/:id"
+            }
+          },
+          "agreement_document_base_64": {
+            "type": "string",
+            "description": "Base-64 encoded agreement document."
+          }
+        }
+      },
+      "finalize_application": {
+        "type": "object",
+        "properties": {
+          "initial_payment_option": {
+            "type": "integer",
+            "enum": [
+              1,
+              12
+            ],
+            "example": 12,
+            "description": "Payment term (paid in full vs. 12 month term)"
+          },
+          "payment_token": {
+            "type": "string",
+            "example": "test_token"
           }
         }
       },
@@ -660,6 +748,21 @@
                 "example": "email with value [Harry.Potter@Hogwarts.edu] does not pass custom validation"
               }
             }
+          }
+        }
+      },
+      "not_completed_error": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "Contract application was not completed by provider."
+            }
+          },
+          "response": {
+            "type": "object"
           }
         }
       }
@@ -794,14 +897,21 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/vip_initiate_application"
+                "$ref": "#/components/schemas/contract_application_request"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Initiate a new application and retrieve agreement document"
+            "description": "Initiate a new application and retrieve agreement document",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/initialize_application_response"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad request",
@@ -809,6 +919,73 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/malformed_request_error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/wellness/finalize_application/{id}": {
+      "put": {
+        "summary": "Finalize a contract application after submitting a signed agreement document",
+        "tags": [
+          "Contract Application Workflow"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vip_finalize_application"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Finalize a contract application",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/contract_application_response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/malformed_request_error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/not_completed_error"
                 }
               }
             }
@@ -1053,6 +1230,41 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/auth_error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/wellness/contract_services": {
+      "get": {
+        "summary": "List of available contract services.",
+        "tags": [
+          "Available Contract Services"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "contractId",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of contract services",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/contract_service_list"
                 }
               }
             }
