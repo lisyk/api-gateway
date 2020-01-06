@@ -10,4 +10,5 @@ Wellness::Engine.routes.draw do
   end
   resources :contracts, only: %i[index show]
   post '/initiate_application', to: 'application_workflows#create'
+  put '/submit_agreement/:id', to: 'application_workflows#submit_agreement'
 end

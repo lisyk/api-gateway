@@ -18,7 +18,43 @@ module Wellness
       end
     end
 
+    def submit_agreement
+      @response ||= put_agreement(agreement_params) || {}
+      response_hash = store_agreement(build_client_response)
+      render_messages(response_hash)
+    end
+
     private
+
+    def render_messages(messages:, status:)
+      render json: messages,
+             status: status
+    end
+
+    def store_agreement(message_hash)
+      errors = true
+      if errors && message_hash[:messages][:errors].present?
+        message_hash[:messages][:errors] << 'Agreement not stored in S3 bucket.'
+      else
+        message_hash[:messages][:errors] = ['Agreement not stored in S3 bucket.']
+      end
+      message_hash
+    end
+
+    def build_client_response
+      if @response.present? && @response['errors'].nil?
+        message = { success: ['Signed agreement posted successfully.'] }
+        status = :ok
+      elsif @response.empty?
+        message = { errors: ['Agreement not found.'] }
+        status = :not_found
+      else
+        @response['errors'] ||= ['Agreement failed to update.']
+        message = { errors: @response['errors'] }
+        status = :unprocessable_entity
+      end
+      { messages: message, status: status }
+    end
 
     def build_partner_request(request)
       request = JSON.parse(translate(request))
@@ -73,6 +109,21 @@ module Wellness
 
     def retain_id_link
       DbEngineInteractor.call(pet_id: pet_id, contract_app_id: contract_id)
+    end
+
+    def put_agreement(params = {})
+      return { 'errors' => ['No file attached'] } unless params[:document].respond_to?(:tempfile)
+
+      body = {
+        id: params[:id],
+        documentFileBase64: Base64.strict_encode64(File.read(params[:document].tempfile))
+      }
+      agreement = Agreement.new('agreements', 'update', params)
+      agreement.api_put(body, headers)
+    end
+
+    def agreement_params
+      params.except(:format).permit(:id, :document)
     end
   end
 end
