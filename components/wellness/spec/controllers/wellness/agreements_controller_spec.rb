@@ -71,12 +71,42 @@ module Wellness
         describe 'agreement available' do
           before do
             allow(controller).to receive(:put_agreement).and_return('Success')
+            allow(controller).to receive(:store_agreement).and_return(messages: { success: ['Success'] }, status: :ok)
             stub_const('Settings', route_settings)
           end
           it 'returns correct upload message' do
             put :update, params: { id: '1000008890' }
             expect(response).to have_http_status(200)
-            expect(JSON.parse(response.body)['errors']).to be_nil
+            expect(JSON.parse(response.body)['errors']).not_to be_present
+            expect(JSON.parse(response.body)['success']).to be_present
+            expect(JSON.parse(response.body)).not_to be_nil
+          end
+        end
+        describe 's3 upload fails' do
+          before do
+            allow(controller).to receive(:put_agreement).and_return('Success')
+            allow(controller).to receive(:store_agreement).and_return(messages: { success: ['Success'], errors: ['Error'] }, status: :multi_status)
+            stub_const('Settings', route_settings)
+          end
+          it 'returns 207 multi-status' do
+            put :update, params: { id: '1000008890' }
+            expect(response).to have_http_status(207)
+            expect(JSON.parse(response.body)['errors']).to be_present
+            expect(JSON.parse(response.body)['success']).to be_present
+            expect(JSON.parse(response.body)).not_to be_nil
+          end
+        end
+        describe 'agreement upload fails' do
+          before do
+            allow(controller).to receive(:put_agreement).and_return('Error')
+            allow(controller).to receive(:store_agreement).and_return(messages: { errors: ['Error', 'Error'] }, status: :bad_request)
+            stub_const('Settings', route_settings)
+          end
+          it 'returns 400 bad request' do
+            put :update, params: { id: '1000008890' }
+            expect(response).to have_http_status(400)
+            expect(JSON.parse(response.body)['errors']).to be_present
+            expect(JSON.parse(response.body)['success']).not_to be_present
             expect(JSON.parse(response.body)).not_to be_nil
           end
         end

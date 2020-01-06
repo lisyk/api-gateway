@@ -72,11 +72,14 @@ module Wellness
       end
 
       context 'Application Workflows' do
-        it 'routes to application_workflows application workflows #update' do
-          expect(put: '/wellness/finalize_application/1').to route_to('wellness/application_workflows#update', id: '1')
-        end
-        it 'routes to application_workflows application workflows #create' do
+        it 'routes to application_workflows #create' do
           expect(post: '/wellness/initiate_application').to route_to('wellness/application_workflows#create')
+        end
+        it 'routes to agreements #update' do
+          expect(put: '/wellness/submit_agreement/1').to route_to('wellness/agreements#update', id: '1')
+        end
+        it 'routes to application_workflows #update' do
+          expect(put: '/wellness/finalize_application/1').to route_to('wellness/application_workflows#update', id: '1')
         end
       end
     end

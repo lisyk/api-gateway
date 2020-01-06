@@ -231,7 +231,23 @@
           }
         }
       },
-      "offered_service_get_response": {
+      "agreement_upload_response": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "example": "1000015477"
+          },
+          "success": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "Signed agreement posted successfully."
+            }
+          }
+        }
+      },
       "contract_service_list": {
         "type": "object",
         "properties": {
@@ -265,7 +281,7 @@
           }
         }
       },
-      "offered_service": {
+      "offered_service_get_response": {
         "type": "object",
         "properties": {
           "id": {
@@ -405,11 +421,13 @@
           },
           "owner_id": {
             "type": "string",
-            "example": "1000"
+            "example": "1000",
+            "nullable": true
           },
           "pet_id": {
             "type": "string",
-            "example": "1"
+            "example": "1",
+            "nullable": true
           },
           "pet_name": {
             "type": "string",
@@ -765,6 +783,30 @@
             "type": "object"
           }
         }
+      },
+      "s3_upload_error": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "example": "1000015477"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "Agreement not stored in S3 bucket."
+            }
+          },
+          "success": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "Signed agreement posted successfully."
+            }
+          }
+        }
       }
     }
   },
@@ -851,7 +893,24 @@
         },
         "responses": {
           "200": {
-            "description": "Upload signed PDF document"
+            "description": "Upload signed PDF document",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/agreement_upload_response"
+                }
+              }
+            }
+          },
+          "207": {
+            "description": "Agreement uploads to partner, but cannot be stored in S3 bucket",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/s3_upload_error"
+                }
+              }
+            }
           },
           "404": {
             "description": "Document not found",
@@ -919,6 +978,82 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/malformed_request_error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/wellness/submit_agreement/{id}": {
+      "put": {
+        "summary": "Upload a signed agreement document",
+        "tags": [
+          "Contract Application Workflow"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/agreement"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Upload signed PDF document",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/agreement_upload_response"
+                }
+              }
+            }
+          },
+          "207": {
+            "description": "Agreement uploads to partner, but cannot be stored in S3 bucket",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/s3_upload_error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Document not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/not_found_error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/auth_error"
                 }
               }
             }
@@ -1200,6 +1335,41 @@
         }
       }
     },
+    "/api/v1/wellness/contract_services": {
+      "get": {
+        "summary": "List of available contract services.",
+        "tags": [
+          "Available Contract Services"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "contractId",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of contract services",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/contract_service_list"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/wellness/contract_applications/": {
       "get": {
         "summary": "Retrieve list of contracts",
@@ -1230,41 +1400,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/auth_error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/wellness/contract_services": {
-      "get": {
-        "summary": "List of available contract services.",
-        "tags": [
-          "Available Contract Services"
-        ],
-        "security": [
-          {
-            "bearer_auth": [
-
-            ]
-          }
-        ],
-        "parameters": [
-          {
-            "name": "contractId",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of contract services",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/contract_service_list"
                 }
               }
             }

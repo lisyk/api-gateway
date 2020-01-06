@@ -8,7 +8,7 @@ module Wellness
       attr_reader :id, :document
 
       def store_agreement(messages)
-        response = s3_object.put(body: document)
+        response = upload_document
         if response.etag.present?
           merge_messages(messages, success_msg, :ok)
         else
@@ -16,6 +16,10 @@ module Wellness
         end
       rescue StandardError => e
         merge_messages(messages, { errors: [e.message] }, :error)
+      end
+
+      def upload_document
+        s3_object.put(body: document)
       end
 
       private
