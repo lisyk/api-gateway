@@ -232,6 +232,40 @@
         }
       },
       "offered_service_get_response": {
+      "contract_service_list": {
+        "type": "object",
+        "properties": {
+          "contract_services": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "product_id": {
+                  "type": "integer",
+                  "example": 5477611
+                },
+                "offered_service_id": {
+                  "type": "integer",
+                  "example": 5477232
+                },
+                "service_description": {
+                  "type": "string",
+                  "example": "Fecal Test"
+                },
+                "service_price": {
+                  "type": "number",
+                  "example": 21.95
+                },
+                "available_quantity": {
+                  "type": "integer",
+                  "example": 3
+                }
+              }
+            }
+          }
+        }
+      },
+      "offered_service": {
         "type": "object",
         "properties": {
           "id": {
@@ -1196,6 +1230,41 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/auth_error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/wellness/contract_services": {
+      "get": {
+        "summary": "List of available contract services.",
+        "tags": [
+          "Available Contract Services"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "contractId",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of contract services",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/contract_service_list"
                 }
               }
             }

@@ -168,6 +168,24 @@ RSpec.configure do |config|
               }
             }
           },
+          contract_service_list: {
+            type: :object,
+            properties: {
+              contract_services: {
+                type: :array,
+                items: {
+                  type: :object,
+                  properties: {
+                    product_id: { type: :integer, example: 5_477_611 },
+                    offered_service_id: { type: :integer, example: 5_477_232 },
+                    service_description: { type: :string, example: 'Fecal Test' },
+                    service_price: { type: :number, example: 21.95 },
+                    available_quantity: { type: :integer, example: 3 }
+                  }
+                }
+              }
+            }
+          },
           offered_service_get_response: {
             type: :object,
             properties: {
@@ -217,8 +235,8 @@ RSpec.configure do |config|
               zip: { type: :string, example: '92551' },
               country: { type: :string, example: 'US' },
               email: { type: :string, example: 'HarryPotter@Hogwarts.edu' },
-              owner_id: { type: :string, example: '1000' },
-              pet_id: { type: :string, example: '1' },
+              owner_id: { type: :string, example: '1000', nullable: true },
+              pet_id: { type: :string, example: '1', nullable: true },
               pet_name: { type: :string, example: 'Hedwig' },
               gender: { type: :string, example: 'F', nullable: true },
               payment_method: { type: :string, example: 'credit' },
