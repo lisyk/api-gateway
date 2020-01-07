@@ -495,13 +495,13 @@
         "type": "object",
         "properties": {
           "clinic_location_id": {
-            "type": "integer",
-            "example": 5426720,
+            "type": "string",
+            "example": "5426720",
             "nullable": true
           },
           "plan_code": {
-            "type": "integer",
-            "example": 5428455,
+            "type": "string",
+            "example": "5428455",
             "nullable": true
           },
           "owner_first_name": {
