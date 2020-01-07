@@ -79,15 +79,15 @@ module Wellness
     def retain_id_link
       DbEngineInteractor.call(pet_id: pet_id, contract_app_id: contract_app_id)
     rescue ActiveRecord::RecordInvalid
-      @response['errors'] = ['Could not store pet UUID, contract app ID link in integrator DB.']
+      @response = { errors: ['Could not store pet UUID, contract app ID link in integrator DB.'] }
     end
 
     def contract_app_id
-      JSON.parse(response.body)['id']
+      JSON.parse(response.body)['id'] if response.present?
     end
 
     def pet_id
-      JSON.parse(response.body)['externalMemberCd']
+      JSON.parse(response.body)['externalMemberCd'] if response.present?
     end
   end
 end
