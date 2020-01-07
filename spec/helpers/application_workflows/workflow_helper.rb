@@ -26,6 +26,10 @@ class WorkflowHelper < ActionDispatch::IntegrationTest
     response
   end
 
+  def rswag_initial_request_body
+    JSON.parse(initial_request_body)
+  end
+
   private
 
   def dummy_email
@@ -41,7 +45,7 @@ class WorkflowHelper < ActionDispatch::IntegrationTest
   end
 
   def initial_request_body
-    initial_request_file = File.read(Rails.root.join('spec/helpers/dummy_docs/contract_applications/post_contract_applications.json'))
+    initial_request_file = File.read(Rails.root.join('spec/helpers/dummy_docs/application_workflows/post_initiate_application.json'))
     payload = JSON.parse(initial_request_file)
     payload['pet_id'] = SecureRandom.uuid
     payload['owner_id'] = SecureRandom.uuid.to_s[0..15]
