@@ -264,8 +264,8 @@ RSpec.configure do |config|
           contract_application_response: {
             type: :object,
             properties: {
-              clinic_location_id: { type: :integer, example: 5_426_720, nullable: true },
-              plan_code: { type: :integer, example: 5_428_455, nullable: true },
+              clinic_location_id: { type: :string, example: '5426720', nullable: true },
+              plan_code: { type: :string, example: '5428455', nullable: true },
               owner_first_name: { type: :string, example: 'Harry', nullable: true },
               owner_last_name: { type: :string, example: 'Potter', nullable: true },
               address: { type: :string, example: '4 Privet Drive', nullable: true },

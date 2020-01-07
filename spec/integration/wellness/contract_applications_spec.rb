@@ -33,32 +33,30 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           let(:pet_id) { SecureRandom.uuid }
           let(:contract_application) do
             {
-              location: {
-                id: 5_426_720
-              },
-              plan: {
-                id: 5_428_455
-              },
-              first_name: 'Olivia',
-              middleInitial: '',
-              last_name: 'Wright',
-              address: '100 Argonaut',
+              clinic_location_id: 5_426_720,
+              plan_code: 5_428_455,
+              owner_first_name: 'Harry',
+              owner_last_name: 'Potter',
+              address: '4 Privet Drive',
               city: 'Morino Valley',
               state: 'CA',
               zip: '92551',
               country: 'US',
-              mobile: '9494814601',
-              phone: '9494814602',
-              email: 'Olivia.Wright@ExtendCredit.com',
-              owner_id: '1000',
-              pet_id: pet_id,
+              mobile: '1234567890',
+              phone: '0987654321',
+              email: 'randomemail694201@random.com',
+              owner_id: '1123121321',
+              pet_id: 'd525ffb5-d6a7-41f9-a317-86a205a9e130',
               pet_name: 'Cece',
               age: '1Y 2M',
-              payment_method: 'credit',
-              card_name: 'MasterCard',
-              card_number: '5354',
+              gender: '',
+              card_name: 'Visa',
+              payment_name: 'Olivia Wright',
               expiration_month: 1,
-              expiration_year: 2025
+              expiration_year: 2099,
+              account_number: 1111,
+              initial_payment_option: 12,
+              optional_plan_services: []
             }
           end
           schema '$ref' => '#/components/schemas/contract_application_response'
@@ -190,32 +188,30 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:contract_application) do
             {
-              location: {
-                id: 5_426_720
-              },
-              plan: {
-                id: 5_428_455
-              },
-              first_name: 'Olivia',
-              middleInitial: '',
-              last_name: 'Wright',
-              address: '100 Argonaut',
+              clinic_location_id: 5_426_720,
+              plan_code: 5_428_455,
+              owner_first_name: 'Harry',
+              owner_last_name: 'Potter',
+              address: '4 Privet Drive',
               city: 'Morino Valley',
               state: 'CA',
               zip: '92551',
               country: 'US',
-              mobile: '9494814601',
-              phone: '9494814602',
-              email: 'fake@email.com',
-              owner_id: '123456',
-              pet_id: '123456',
+              mobile: '1234567890',
+              phone: '0987654321',
+              email: 'randomemail694201@random.com',
+              owner_id: '1123121321',
+              pet_id: 'd525ffb5-d6a7-41f9-a317-86a205a9e130',
               pet_name: 'Cece',
               age: '1Y 2M',
-              payment_method: 'credit',
-              card_name: 'MasterCard',
-              card_number: '5354',
+              gender: '',
+              card_name: 'Visa',
+              payment_name: 'Olivia Wright',
               expiration_month: 1,
               expiration_year: 2099,
+              account_number: 1111,
+              initial_payment_option: 12,
+              optional_plan_services: [],
               first_billing_date: DateTime.current
             }
           end
