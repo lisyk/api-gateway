@@ -8,6 +8,7 @@ echo 'START: review app postdeploy'
 cp db/base_schema.rb db/schema.rb
 
 bundle exec rails db:schema:load
+bundle exec rails db:migrate
 bundle exec rails db:seed
 
 echo 'END: review app postdeploy'

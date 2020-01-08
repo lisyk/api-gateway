@@ -18,5 +18,11 @@ echo 'NOTE: this will fail 1st time on Preview Apps'
 bundle exec rails db:migrate
 echo '-----------------------------'
 
+echo '-----------------------------'
+echo 'RELEASE STEP: db:seed'
+echo 'NOTE: this will fail 1st time on Preview Apps'
+bundle exec rails db:seed
+echo '-----------------------------'
+
 echo 'END: custom release steps'
 echo '============================='
