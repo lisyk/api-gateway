@@ -44,11 +44,13 @@ module Wellness
     def update_default_fields
       @request['paymentaddressSameAsAccount'] = true
       @request['payOption'] = 'CC'
+      @request['portalUsername'] = @request['email']
     end
 
     def translate_fields
       translate_phone_fields
       translate_cc_fields
+      translate_code_fields
     end
 
     def translate_phone_fields
@@ -66,6 +68,13 @@ module Wellness
     def translate_cc_fields
       value = @request['payMethod']
       @request['payMethod'] = translate_general('card_name', value, :partner)
+    end
+
+    def translate_code_fields
+      plan_code = @request['externalPlanCd']
+      clinic_location_id = @request['externalLocationCd']
+      @request['plan'] = { 'id' => plan_code }
+      @request['location'] = { 'id' => clinic_location_id }
     end
 
     def parse_request(request)

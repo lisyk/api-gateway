@@ -227,6 +227,8 @@ RSpec.configure do |config|
           contract_application_request: {
             type: :object,
             properties: {
+              clinic_location_id: { type: :integer, example: 5_426_720 },
+              plan_code: { type: :integer, example: 5_428_455 },
               owner_first_name: { type: :string, example: 'Harry' },
               owner_last_name: { type: :string, example: 'Potter' },
               address: { type: :string, example: '4 Privet Drive' },
@@ -235,18 +237,22 @@ RSpec.configure do |config|
               zip: { type: :string, example: '92551' },
               country: { type: :string, example: 'US' },
               email: { type: :string, example: 'HarryPotter@Hogwarts.edu' },
-              owner_id: { type: :string, example: '1000', nullable: true },
-              pet_id: { type: :string, example: '1', nullable: true },
+              owner_id: { type: :string, example: 'd525ffb5', nullable: true },
+              pet_id: { type: :string, example: 'd525ffb5-d6a7-41f9-a317-86a205a9e130', nullable: true },
               pet_name: { type: :string, example: 'Hedwig' },
+              age: { type: :string, example: '1Y 2M', description: 'Also can accept integer year and datetime objects' },
               gender: { type: :string, example: 'F', nullable: true },
               payment_method: { type: :string, example: 'credit' },
-              card_name: { type: :string, example: 'MasterCard' },
-              card_number: { type: :string, example: '5354' },
+              payment_name: { type: :string, example: 'Harry Potter' },
+              card_name: { type: :string, example: 'Visa' },
+              account_number: { type: :integer, example: 1111 },
               expiration_month: { type: :integer, example: 1 },
-              expiration_year: { type: :integer, example: 2025 },
+              expiration_year: { type: :integer, example: 2099 },
+              initial_payment_option: { type: :integer, example: 12 },
               mobile: { type: :string, example: '9494814601', nullable: true },
               phone: { type: :string, example: '9494814602', nullable: true },
-              alternate_phone: { type: :string, example: '9494814603', nullable: true }
+              alternate_phone: { type: :string, example: '9494814603', nullable: true },
+              optional_plan_services: { type: :array, example: [] }
             }
           },
           contract_application_response_list: {
@@ -258,6 +264,8 @@ RSpec.configure do |config|
           contract_application_response: {
             type: :object,
             properties: {
+              clinic_location_id: { type: :string, example: '5426720', nullable: true },
+              plan_code: { type: :string, example: '5428455', nullable: true },
               owner_first_name: { type: :string, example: 'Harry', nullable: true },
               owner_last_name: { type: :string, example: 'Potter', nullable: true },
               address: { type: :string, example: '4 Privet Drive', nullable: true },
@@ -266,19 +274,22 @@ RSpec.configure do |config|
               zip: { type: :string, example: '92551', nullable: true },
               country: { type: :string, example: 'US', nullable: true },
               email: { type: :string, example: 'HarryPotter@Hogwarts.edu', nullable: true },
-              owner_id: { type: :string, example: '1000', nullable: true },
-              pet_id: { type: :string, example: '1', nullable: true },
+              owner_id: { type: :string, example: 'd525ffb5', nullable: true },
+              pet_id: { type: :string, example: 'd525ffb5-d6a7-41f9-a317-86a205a9e130', nullable: true },
               pet_name: { type: :string, example: 'Hedwig', nullable: true },
+              age: { type: :string, example: '1Y 2M', description: 'Also can accept integer year and datetime objects', nullable: true },
               gender: { type: :string, example: 'F', nullable: true },
               payment_method: { type: :string, example: 'credit', nullable: true },
-              card_name: { type: :string, example: 'MasterCard', nullable: true },
-              card_number: { type: :string, example: '5354', nullable: true },
+              payment_name: { type: :string, example: 'Harry Potter', nullable: true },
+              card_name: { type: :string, example: 'Visa', nullable: true },
+              account_number: { type: :integer, example: 1111, nullable: true },
               expiration_month: { type: :integer, example: 1, nullable: true },
-              expiration_year: { type: :integer, example: 2025, nullable: true },
+              expiration_year: { type: :integer, example: 2099, nullable: true },
+              initial_payment_option: { type: :integer, example: 12, nullable: true },
               mobile: { type: :string, example: '9494814601', nullable: true },
               phone: { type: :string, example: '9494814602', nullable: true },
               alternate_phone: { type: :string, example: '9494814603', nullable: true },
-              status: { type: :string, example: '5', nullable: true }
+              optional_plan_services: { type: :array, example: [], nullable: true }
             }
           },
           vip_finalize_application: {
