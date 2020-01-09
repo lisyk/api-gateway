@@ -21,6 +21,7 @@ require 'redis'
 RSpec.configure do |config|
   # Seed test DB
   config.before(:suite) do
+    DbService::PetContract.delete_all
     system('bundle exec rails db:seed')
   end
 

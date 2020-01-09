@@ -17,10 +17,7 @@ def translations
 end
 
 def create_test_records_for_pet_contract_records
-  # do NOT run this in staging or production
-  puts '  Purge all pet_contract records'
-  DbService::PetContract.delete_all
-
+  # development and QA only
   puts '  create test pet_contract records'
   20.times do
     DbService::PetContract.create!(
