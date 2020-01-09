@@ -231,7 +231,6 @@
           }
         }
       },
-      "offered_service_get_response": {
       "contract_service_list": {
         "type": "object",
         "properties": {
@@ -265,7 +264,93 @@
           }
         }
       },
-      "offered_service": {
+      "consume_contract_services": {
+        "type": "object",
+        "properties": {
+          "type": "array",
+          "serviceConsumptionList": {
+            "type": "object",
+            "properties": {
+              "owner_id": {
+                "type": "string",
+                "example": "1000",
+                "nullable": true
+              },
+              "external_consumption_id": {
+                "type": "string",
+                "example": "16600",
+                "nullable": true
+              },
+              "external_invoice_date": {
+                "type": "string",
+                "example": "2019-02-18T18:20:12Z",
+                "nullable": true
+              },
+              "external_invoice_number": {
+                "type": "string",
+                "example": "8877",
+                "nullable": true
+              },
+              "clinic_location_id": {
+                "type": "string",
+                "example": "010265",
+                "nullable": true
+              },
+              "pet_id": {
+                "type": "string",
+                "example": "1333",
+                "nullable": true
+              },
+              "external_service_cd": {
+                "type": "string",
+                "example": "36600",
+                "nullable": true
+              },
+              "external_service_name": {
+                "type": "string",
+                "example": "Joo",
+                "nullable": true
+              },
+              "external_service_type": {
+                "type": "string",
+                "example": "vaccine",
+                "nullable": true
+              },
+              "posting_date": {
+                "type": "string",
+                "example": "2019-02-18T18:20:12Z",
+                "nullable": true
+              },
+              "service_date": {
+                "type": "string",
+                "example": "2019-02-18T18:20:12Z",
+                "nullable": true
+              },
+              "service_delivered_by_cd": {
+                "type": "string",
+                "example": "4433",
+                "nullable": true
+              },
+              "service_delivered_by_name": {
+                "type": "string",
+                "example": "JJJ",
+                "nullable": true
+              },
+              "invoiced_price": {
+                "type": "number",
+                "example": 17.5,
+                "nullable": true
+              },
+              "discount_amt": {
+                "type": "number",
+                "example": 0,
+                "nullable": true
+              }
+            }
+          }
+        }
+      },
+      "offered_service_get_response": {
         "type": "object",
         "properties": {
           "id": {
@@ -405,11 +490,13 @@
           },
           "owner_id": {
             "type": "string",
-            "example": "1000"
+            "example": "1000",
+            "nullable": true
           },
           "pet_id": {
             "type": "string",
-            "example": "1"
+            "example": "1",
+            "nullable": true
           },
           "pet_name": {
             "type": "string",
@@ -1200,6 +1287,82 @@
         }
       }
     },
+    "/api/v1/wellness/contract_services": {
+      "get": {
+        "summary": "List of available contract services.",
+        "tags": [
+          "Contract Services"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "contractId",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of contract services",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/contract_service_list"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Consume contract services.",
+        "tags": [
+          "Contract Services"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/consume_contract_services"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Consume contract services"
+          },
+          "403": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/auth_error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/wellness/contract_applications/": {
       "get": {
         "summary": "Retrieve list of contracts",
@@ -1230,41 +1393,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/auth_error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/wellness/contract_services": {
-      "get": {
-        "summary": "List of available contract services.",
-        "tags": [
-          "Available Contract Services"
-        ],
-        "security": [
-          {
-            "bearer_auth": [
-
-            ]
-          }
-        ],
-        "parameters": [
-          {
-            "name": "contractId",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of contract services",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/contract_service_list"
                 }
               }
             }

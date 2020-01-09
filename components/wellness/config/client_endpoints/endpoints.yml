@@ -46,6 +46,9 @@ contract_services:
   index:
     method: get
     resource: contractPeriod
+  create:
+    method: post
+    resource: serviceConsumption
 
 contracts:
   index:
