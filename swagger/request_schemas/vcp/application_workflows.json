@@ -67,7 +67,7 @@
       },
       "owner_id": {
         "type": "string",
-        "maxLength": 16
+        "maxLength": 40
       },
       "pet_id": {
         "type": "string",

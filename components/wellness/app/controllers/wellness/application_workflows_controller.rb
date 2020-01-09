@@ -82,10 +82,8 @@ module Wellness
     end
 
     def render_not_completed
-      render json: {
-        errors: ['Contract application was not completed by provider.'],
-        response: @contract
-      },
+      render json: { errors: ['Contract application was not completed by provider.'],
+                     response: @contract },
              status: :unprocessable_entity
     end
 

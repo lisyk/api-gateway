@@ -28,20 +28,13 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         let(:Authorization) { " Authorization: Bearer #{token} " }
 
         response '200', 'Initiate a new application and retrieve agreement document' do
-          let(:file) { File.read(Rails.root.join('spec/helpers/dummy_docs/application_workflows/post_initiate_application.json')) }
-          let(:payload) { JSON.parse(file) }
-          let(:contract_application) do
-            payload['pet_id'] = SecureRandom.uuid
-            payload['owner_id'] = (rand * 10**16).floor.to_s
-            payload
-          end
+          let(:contract_application) { WorkflowHelper.new(:stub_app).rswag_initial_request_body }
           schema '$ref' => '#/components/schemas/initialize_application_response'
           run_test!
         end
 
         response '400', 'Bad request' do
-          let(:file) { File.read(Rails.root.join('spec/helpers/dummy_docs/application_workflows/post_initiate_application.json')) }
-          let(:payload) { JSON.parse(file) }
+          let(:payload) { WorkflowHelper.new(:stub_app).rswag_initial_request_body }
           let(:contract_application) do
             payload['pet_id'] = nil
             payload
