@@ -22,6 +22,11 @@ module Wellness
       render_messages(messages)
     end
 
+    def create
+      @response = store_agreement
+      render_messages(@response)
+    end
+
     private
 
     def fetch_agreement(params = {})

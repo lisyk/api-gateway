@@ -7,7 +7,7 @@ module Wellness
     module AwsS3Service
       attr_reader :id, :document
 
-      def store_agreement(messages)
+      def store_agreement(messages = {})
         response = upload_document
         if response.etag.present?
           merge_messages(messages, success_msg, :ok)
@@ -29,6 +29,8 @@ module Wellness
       end
 
       def merge_messages(messages, storage_msg, status)
+        return { messages: [storage_msg], status: :unprocessable_entity } if messages.blank?
+
         storage_msg.each do |key, val|
           if messages[:messages][key].present?
             messages[:messages][key] << val.first
