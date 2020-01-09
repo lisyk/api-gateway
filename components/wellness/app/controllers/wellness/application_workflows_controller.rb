@@ -9,7 +9,7 @@ module Wellness
     def update
       translated_request = application_workflow.partner_finalization_request(request)
       @contract ||= put_apps(translated_request)
-      if @contract.present? && @contract['errors'].blank? && contract_completed
+      if @contract.present? && @contract['errors'].blank? && contract_completed?
         render json: @contract
       else
         render_not_completed
@@ -47,8 +47,7 @@ module Wellness
     end
 
     def valid_submission?(response)
-      workflow = ApplicationWorkflow.new
-      workflow.validate_initialization_response(response)
+      application_workflow.validate_initialization_response(response)
     end
 
     def render_agreement(document, id)
@@ -78,7 +77,7 @@ module Wellness
       ApplicationWorkflow.new
     end
 
-    def contract_completed
+    def contract_completed?
       @contract['status'].present? && @contract['status'].to_i == 5
     end
 
@@ -98,6 +97,10 @@ module Wellness
 
     def retain_id_link
       DbEngineInteractor.call(pet_id: pet_id, contract_app_id: contract_app_id)
+    end
+
+    def agreement_params
+      params.except(:format).permit(:id, :document)
     end
   end
 end

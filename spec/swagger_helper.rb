@@ -168,6 +168,19 @@ RSpec.configure do |config|
               }
             }
           },
+          agreement_upload_response: {
+            type: :object,
+            properties: {
+              id: { type: :string, nullable: true, example: '1000015477' },
+              success: {
+                type: :array,
+                items: {
+                  type: :string,
+                  example: 'Signed agreement posted successfully.'
+                }
+              }
+            }
+          },
           contract_service_list: {
             type: :object,
             properties: {
@@ -397,6 +410,26 @@ RSpec.configure do |config|
               },
               response: {
                 type: :object
+              }
+            }
+          },
+          s3_upload_error: {
+            type: :object,
+            properties: {
+              id: {
+                type: :string, nullable: true, example: '1000015477'
+              },
+              errors: {
+                type: :array,
+                items: {
+                  type: :string, example: 'Agreement not stored in S3 bucket.'
+                }
+              },
+              success: {
+                type: :array,
+                items: {
+                  type: :string, example: 'Signed agreement posted successfully.'
+                }
               }
             }
           }

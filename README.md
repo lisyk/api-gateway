@@ -138,3 +138,15 @@ While pairing you may want to use `git pair` for your commits, it requires insta
     - `echo "WELLNESS_VCP_USERNAME=XXXX" >> .env.development.local`
     - `echo "WELLNESS_VCP_USERNAME=XXXX" >> .env.test.local`
     - where `XXXX` is demo username
+- AWS_ACCESS_KEY_ID
+  - All environments
+  - set in local env files
+- AWS_SECRET_ACCESS_KEY
+  - All environments
+  - set in local env files
+- AWS_BUCKET_NAME
+  - All environments
+  - set in local env files
+- AWS_REGION
+  - All environments
+  - set in local env files

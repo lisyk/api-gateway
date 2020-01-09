@@ -2,6 +2,8 @@
 
 module Wellness
   class AgreementsController < Wellness::ApplicationController
+    include Services::AwsS3Service
+
     def show
       @agreement ||= fetch_agreement(agreement_params)
       if @agreement.present?
@@ -13,16 +15,11 @@ module Wellness
 
     def update
       @response ||= put_agreement(agreement_params) || {}
-      if @response.present? && @response['errors'].nil?
-        render json: { success: ['Signed agreement posted successfully.'] }
-      elsif @response.empty?
-        render json: { errors: ['Agreement not found.'] },
-               status: :not_found
-      else
-        @response['errors'] ||= ['Agreement failed to update.']
-        render json: { errors: @response['errors'] },
-               status: :unprocessable_entity
-      end
+      parsed_response = Agreement.build_client_response(@response)
+      parsed_response[:messages][:id] = agreement_id if agreement_id.present?
+      render_messages(parsed_response) && return if parsed_response[:messages][:errors].present?
+      messages = store_agreement(parsed_response)
+      render_messages(messages)
     end
 
     private
@@ -41,6 +38,23 @@ module Wellness
       }
       agreement = Agreement.new(controller_name, action_name, params)
       agreement.api_put(body, headers)
+    end
+
+    def render_messages(messages:, status:)
+      render json: messages,
+             status: status
+    end
+
+    def document
+      return nil unless params[:document].respond_to?(:tempfile)
+
+      Base64.strict_encode64(File.read(params[:document].tempfile))
+    end
+
+    def agreement_id
+      return nil if params[:id].blank?
+
+      params[:id]
     end
 
     def agreement_params
