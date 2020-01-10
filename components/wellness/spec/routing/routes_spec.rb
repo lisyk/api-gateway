@@ -49,6 +49,10 @@ module Wellness
         it 'routes to contract_applications agreements #update' do
           expect(put: '/wellness/contract_applications/agreements/1').to route_to('wellness/agreements#update', id: '1')
         end
+
+        it 'routes to contract_applications agreements #create' do
+          expect(post: '/wellness/contract_applications/agreements').to route_to('wellness/agreements#create')
+        end
       end
 
       context 'Contract Services' do
