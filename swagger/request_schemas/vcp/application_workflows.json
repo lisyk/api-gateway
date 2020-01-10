@@ -82,9 +82,6 @@
       "gender": {
         "type": "string"
       },
-      "card_name": {
-        "type": "string"
-      },
       "payment_name": {
         "type": "string"
       },
@@ -98,9 +95,8 @@
         "minimum": 2000,
         "maximum": 2999
       },
-      "account_number": {
-        "type": "integer",
-        "maxLength": 20
+      "card_number": {
+        "type": "integer"
       },
       "initial_payment_option": {
         "type": "integer",
@@ -135,7 +131,7 @@
       "payment_name",
       "expiration_month",
       "expiration_year",
-      "account_number",
+      "card_number",
       "initial_payment_option",
       "optional_plan_services"
     ]

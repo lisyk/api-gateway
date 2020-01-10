@@ -33,7 +33,7 @@ module Wellness
     end
 
     def translate(request)
-      RequestTranslation.new(request, controller_name).translate_request.to_json
+      RequestTranslation.new(request).translate_request.to_json
     end
 
     def schema

@@ -463,7 +463,7 @@
             "type": "string",
             "example": "Visa"
           },
-          "account_number": {
+          "card_number": {
             "type": "integer",
             "example": 1111
           },
@@ -602,7 +602,7 @@
             "example": "Visa",
             "nullable": true
           },
-          "account_number": {
+          "card_number": {
             "type": "integer",
             "example": 1111,
             "nullable": true

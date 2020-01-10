@@ -23,7 +23,7 @@ module Wellness
         primaryCareProfessionalCd
       ]
     end
-    subject { Constructors::ContractAppConstructor.new(contracts_sample, field_mapper, params) }
+    subject { Constructors::ContractAppConstructor.new(contracts_sample, params) }
     describe '#modify' do
       before do
         allow(subject).to receive(:translate) { nil }
@@ -39,7 +39,7 @@ module Wellness
         expect(subject.modify.first).not_to include 'salutation'
       end
       it 'returns blank object if plan is missing' do
-        blank_plan_constructor = Constructors::PlanConstructor.new({}, field_mapper, params)
+        blank_plan_constructor = Constructors::PlanConstructor.new({}, params)
         expect(blank_plan_constructor.modify).to eq(message: ['No plans matched query'])
       end
       it 'refines exposed values' do
@@ -63,14 +63,14 @@ module Wellness
         it 'returns mobile field if phoneType is M' do
           phone_sample = @sample_contract.dup
           phone_sample.first['phone1Type'] = 'M'
-          subject = Constructors::ContractAppConstructor.new(phone_sample, field_mapper, params)
+          subject = Constructors::ContractAppConstructor.new(phone_sample, params)
           allow(subject).to receive(:translate) { nil }
           expect(subject.modify.first['mobile']).to eq('1234567890')
         end
         it 'returns phone field if phoneType not M' do
           phone_sample = @sample_contract.dup
           phone_sample.first['phone1Type'] = ['H', 'W'].sample
-          subject = Constructors::ContractAppConstructor.new(phone_sample, field_mapper, params)
+          subject = Constructors::ContractAppConstructor.new(phone_sample, params)
           allow(subject).to receive(:translate) { nil }
           expect(subject.modify.first['phone']).to eq('1234567890')
         end
@@ -79,7 +79,7 @@ module Wellness
           phone_sample.first['phone1Type'] = 'M'
           phone_sample.first['phone2'] = '0987654321'
           phone_sample.first['phone2Type'] = 'M'
-          subject = Constructors::ContractAppConstructor.new(phone_sample, field_mapper, params)
+          subject = Constructors::ContractAppConstructor.new(phone_sample, params)
           allow(subject).to receive(:translate) { nil }
           modified_contract = subject.modify.first
           expect(modified_contract['mobile']).to eq('1234567890')
@@ -90,7 +90,7 @@ module Wellness
           phone_sample.first['phone1Type'] = ['H', 'W'].sample
           phone_sample.first['phone2'] = '0987654321'
           phone_sample.first['phone2Type'] = ['H', 'W'].sample
-          subject = Constructors::ContractAppConstructor.new(phone_sample, field_mapper, params)
+          subject = Constructors::ContractAppConstructor.new(phone_sample, params)
           allow(subject).to receive(:translate) { nil }
           modified_contract = subject.modify.first
           expect(modified_contract['phone']).to eq('1234567890')
@@ -106,7 +106,7 @@ module Wellness
         end
         it 'returns single address field formatted' do
           address_sample = @sample_contract.dup
-          subject = Constructors::ContractAppConstructor.new(address_sample, field_mapper, params)
+          subject = Constructors::ContractAppConstructor.new(address_sample, params)
           allow(subject).to receive(:translate) { nil }
           modified_contract = subject.modify.first
           expect(modified_contract['address']).to be_present

@@ -5,11 +5,10 @@ module Wellness
     include Services::ContractAppTranslatorService
     include Services::ResponseLogger
 
-    attr_accessor :request, :translation_type
+    attr_accessor :request
 
-    def initialize(request, translation_type, skip_defaults = false)
+    def initialize(request, skip_defaults = false)
       @request = parse_request(request)
-      @translation_type = translation_type
       @skip_defaults = skip_defaults
     end
 
@@ -27,16 +26,16 @@ module Wellness
         new_key = field_to_replace || key
         @request[new_key] = value
       end
+      translate_fields
       return @request if @skip_defaults
 
       update_default_fields
-      translate_fields
       @request
     end
 
     def constructor_mapper
-      file_name = "#{@translation_type}_request_mapper.json"
-      file_path = "../../../lib/mappers/#{@translation_type}/#{file_name}"
+      file_name = 'mapper.json'
+      file_path = "../../../lib/mappers/vip/#{file_name}"
       mapper_file = File.expand_path(file_path, __dir__)
       JSON.parse(File.read(mapper_file))
     end
@@ -54,6 +53,8 @@ module Wellness
     end
 
     def translate_phone_fields
+      return unless translate_field?(%w[phone mobile alternate_phone])
+
       if @request['mobile'].present?
         @request['phone1'] = @request.delete('mobile')
         @request['phone1Type'] = 'M'
@@ -66,11 +67,15 @@ module Wellness
     end
 
     def translate_cc_fields
+      return unless translate_field?(%w[payMethod])
+
       value = @request['payMethod']
       @request['payMethod'] = translate_general('card_name', value, :partner)
     end
 
     def translate_code_fields
+      return unless translate_field?(%w[externalPlanCd externalLocationCd])
+
       plan_code = @request['externalPlanCd']
       clinic_location_id = @request['externalLocationCd']
       @request['plan'] = { 'id' => plan_code }
@@ -79,6 +84,13 @@ module Wellness
 
     def parse_request(request)
       JSON.parse(request.body.read)
+    end
+
+    def translate_field?(translation_values)
+      translation_values.each do |value|
+        return true if @request[value].present?
+      end
+      false
     end
   end
 end

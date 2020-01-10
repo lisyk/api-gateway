@@ -10,13 +10,9 @@ module Wellness
     def plans_mapping(params)
       return origin_plans if origin_plans.blank?
 
-      constructor = Constructors::PlanConstructor.new(origin_plans, constructor_mapper, params)
+      constructor = Constructors::PlanConstructor.new(origin_plans,
+                                                      params)
       constructor.modify
-    end
-
-    def constructor_mapper
-      mapper_file = File.expand_path('../../../lib/mappers/plans/plan_mapper.json', __dir__)
-      JSON.parse(File.read(mapper_file))
     end
 
     def origin_plans

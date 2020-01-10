@@ -33,7 +33,6 @@ module Wellness
 
     def translate(request, skip_defaults: false)
       RequestTranslation.new(request,
-                             'application_workflows',
                              skip_defaults).translate_request.to_json
     end
   end
