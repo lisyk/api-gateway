@@ -34,7 +34,6 @@
   "discountedPrice": "discounted_price",
   "displayOrder": "display_order",
   "doNotRenew": "do_not_renew",
-  "externalPlanCd": "external_plan_cd",
   "lastUpdated": "last_updated",
   "offeredServiceId": "offered_service_id",
   "performancePayPrice": "performance_pay_price",
