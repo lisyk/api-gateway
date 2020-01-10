@@ -49,7 +49,10 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       produces 'application/json'
       consumes 'multipart/form-data'
       security [bearer_auth: []]
-      parameter name: :id, in: :path, type: :string
+      parameter name: :id,
+                in: :path,
+                type: :string,
+                required: true
       parameter name: :document,
                 in: :formData,
                 type: :file,
@@ -107,6 +110,85 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         )
         let(:Authorization) { '' }
         let(:id) { '1000008890' }
+        let(:document) { file }
+        response '403', 'Invalid credentials' do
+          schema '$ref' => '#/components/schemas/auth_error'
+          run_test!
+        end
+      end
+    end
+  end
+
+  path '/api/v1/wellness/contract_applications/agreements' do
+    post 'Upload a signed agreement document to S3 bucket' do
+      tags 'Agreements'
+      produces 'application/json'
+      consumes 'multipart/form-data'
+      security [bearer_auth: []]
+      parameter name: :id,
+                in: :query,
+                type: :string,
+                required: true
+      parameter name: :document,
+                in: :formData,
+                type: :file,
+                required: true
+      request_body_multipart schema: {
+        '$ref' => '#/components/schemas/agreement'
+      }
+
+      context 'Using valid credentials' do
+        let(:token) do
+          post '/api/v1/authentication', params: { user_name: 'test', password: 'test' }
+          JSON.parse(response.body)['token']
+        end
+
+        response '200', 'Agreement uploads to S3 bucket' do
+          let(:Authorization) { " Authorization: Bearer #{token} " }
+          file = Rack::Test::UploadedFile.new(
+            Rails.root.join('spec/fixtures/files/contract.pdf')
+          )
+          let(:document) { file }
+          let(:id) { 'test_agreement' }
+          schema '$ref' => '#/components/schemas/agreement_upload_response'
+          run_test!
+        end
+
+        response '422', 'Unprocessable' do
+          let(:Authorization) { " Authorization: Bearer #{token} " }
+          file = Rack::Test::UploadedFile.new(
+            Rails.root.join('spec/fixtures/files/contract.pdf')
+          )
+          let(:document) { file }
+          before do
+            allow_any_instance_of(Wellness::Services::AwsS3Service).to receive(:upload_document).and_raise(StandardError, 'error')
+          end
+          let(:id) { 'test_agreement' }
+          schema '$ref' => '#/components/schemas/s3_upload_error'
+          run_test!
+        end
+
+        response '400', 'Bad request, agreement ID not present' do
+          let(:Authorization) { " Authorization: Bearer #{token} " }
+          file = Rack::Test::UploadedFile.new(
+            Rails.root.join('spec/fixtures/files/contract.pdf')
+          )
+          let(:document) { file }
+          before do
+            allow_any_instance_of(Wellness::Services::AwsS3Service).to receive(:upload_document).and_raise(StandardError, 'error')
+          end
+          let(:id) { nil }
+          schema '$ref' => '#/components/schemas/s3_upload_error'
+          run_test!
+        end
+      end
+
+      context 'Using invalid credentials/credentials missing' do
+        let(:id) { 'test_agreement' }
+        file = Rack::Test::UploadedFile.new(
+          Rails.root.join('spec/fixtures/files/contract.pdf')
+        )
+        let(:Authorization) { '' }
         let(:document) { file }
         response '403', 'Invalid credentials' do
           schema '$ref' => '#/components/schemas/auth_error'

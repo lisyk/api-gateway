@@ -990,6 +990,82 @@
         }
       }
     },
+    "/api/v1/wellness/contract_applications/agreements": {
+      "post": {
+        "summary": "Upload a signed agreement document to S3 bucket",
+        "tags": [
+          "Agreements"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/agreement"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Agreement uploads to S3 bucket",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/agreement_upload_response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/s3_upload_error"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, agreement ID not present",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/s3_upload_error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/auth_error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/wellness/initiate_application": {
       "post": {
         "summary": "Initiate a new application and retrieve agreement document",

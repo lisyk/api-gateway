@@ -29,7 +29,7 @@ module Wellness
       end
 
       def merge_messages(messages, storage_msg, status)
-        return { messages: [storage_msg], status: :unprocessable_entity } if messages.blank?
+        messages = default_message(status) if messages.blank?
 
         storage_msg.each do |key, val|
           if messages[:messages][key].present?
@@ -43,11 +43,15 @@ module Wellness
         messages
       end
 
+      def default_message(status)
+        { messages: {}, status: status }
+      end
+
       def overall_status(first_status, second_status)
         return :multi_status if first_status != second_status
         return :ok if first_status == :ok
 
-        :bad_request
+        :unprocessable_entity
       end
 
       def success_msg
