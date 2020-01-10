@@ -11,6 +11,7 @@ AllCops:
     - 'vendor/**/*'
     - 'components/wellness/spec/dummy/config/**/*'
     - 'db/schema.rb'
+    - 'db/base_schema.rb'
     - 'components/db_service/spec/spec_helper.rb'
     - 'components/db_service/spec/dummy/db/*'
     - 'components/db_service/spec/dummy/**/**/*'

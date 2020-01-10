@@ -20,6 +20,16 @@ workflows:
       - test-wellness-component:
           requires:
             - build_wellness
+      - commit_db_schema:
+          requires:
+            - code_lint
+            - code_security_scan
+            - dependency_security_scan
+            - test-main-app
+            - test-wellness-component
+          filters:
+            branches:
+              only: master
 
 dockers:
   # https://circleci.com/docs/2.0/circleci-images/
@@ -58,6 +68,7 @@ setup_steps:
     run:
       name: Setup Test Database
       command: |
+        cp db/base_schema.rb db/schema.rb
         bundle exec rails db:create --trace
         bundle exec rails db:schema:load --trace
   - &db_migrate
@@ -182,3 +193,18 @@ jobs:
           command: |
             cd components/wellness
             bundle exec rspec spec -f d
+
+  commit_db_schema:
+    docker:
+      - *ruby_docker
+      - *postgres_docker
+    steps:
+      - *attach
+      - *ensure_bundler_version
+      - *db_setup
+      - *db_migrate
+      - run:
+          name: Commit DB changes changes
+          command: |
+            bash .circleci/create_known_hosts.sh
+            bash .circleci/commit_db_schema.sh
