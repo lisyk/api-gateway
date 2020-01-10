@@ -974,7 +974,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/agreement_s3_error"
+                  "$ref": "#/components/schemas/agreement_s3_upload_error"
                 }
               }
             }

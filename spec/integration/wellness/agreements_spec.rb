@@ -88,7 +88,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           before do
             allow_any_instance_of(Wellness::Services::AwsS3Service).to receive(:upload_document).and_raise(StandardError, 'error')
           end
-          schema '$ref' => '#/components/schemas/agreement_s3_error'
+          schema '$ref' => '#/components/schemas/agreement_s3_upload_error'
           run_test!
         end
 
