@@ -32,14 +32,19 @@ module Wellness
         messages = default_message(status) if messages.blank?
 
         storage_msg.each do |key, val|
-          if messages[:messages][key].present?
-            messages[:messages][key] << val.first
-          else
-            messages[:messages][key] = val
-          end
+          messages = update_messages(messages, key, val)
         end
         messages[:status] = overall_status(messages[:status], status)
         messages[:messages].delete :status
+        messages
+      end
+
+      def update_messages(messages, key, val)
+        if messages[:messages][key].present?
+          messages[:messages][key] << val.first
+        else
+          messages[:messages][key] = val
+        end
         messages
       end
 
