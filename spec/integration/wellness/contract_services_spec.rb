@@ -26,13 +26,15 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
         end
       end
     end
+  end
 
-    post 'Consume contract services.' do
+  path '/api/v1/wellness/contract_services' do
+    post 'Consume Contract Services' do
       tags 'Contract Services'
       produces 'application/json'
       consumes 'application/json'
       security [bearer_auth: []]
-      parameter name: :serviceConsumptionList,
+      parameter name: :consume_services,
                 in: :body,
                 schema: {
                     '$ref' => '#/components/schemas/consume_contract_services'
@@ -46,41 +48,23 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           post '/api/v1/authentication', params: { user_name: 'test', password: 'test' }
           JSON.parse(response.body)['token']
         end
-        let(:service_payload) do
-          {
-              "owner_id": "1000",
-              "external_consumption_id": "16600",
-              "external_invoice_date": "2019-02-18T18:20:12Z",
-              "external_invoice_number": "8877",
-              "clinic_location_id": "010265",
-              "pet_id": "1333",
-              "external_service_cd": "36600",
-              "external_service_name": "Joo",
-              "external_service_type": "vaccine",
-              "posting_date": "2019-02-18T18:20:12Z",
-              "service_date": "2019-02-18T18:20:12Z",
-              "service_delivered_by_cd": "4433",
-              "service_delivered_by_name": "JJJ",
-              "invoiced_price": 17.5,
-              "discount_amt": 0
-          }
+        let(:Authorization) { " Authorization: Bearer #{token} " }
+
+        response '200', 'Contract services have been consumed' do
+          let(:file) { File.read(Rails.root.join('spec/helpers/dummy_docs/contract_services/post_consume_service.json')) }
+          let(:consume_services) { JSON.parse(file) }
+          schema '$ref' => '#/components/schemas/consume_contract_services_response'
+          run_test!
         end
 
-        response '200', 'Consume contract services' do
-          let(:Authorization) { " Authorization: Bearer #{token} " }
-          let(:serviceConsumptionList) { service_payload }
-          run_test!
+        response '400', 'Bad request' do
+          let(:file) { File.read(Rails.root.join('spec/helpers/dummy_docs/contract_services/post_consume_service.json')) }
+          let(:consume_services) { JSON.parse(file) }
+          # schema '$ref' => '#/components/schemas/'
+          # run_test!
         end
       end
 
-      context 'Using invalid credentials/credentials missing' do
-        let(:Authorization) { '' }
-
-        response '403', 'Invalid credentials' do
-          schema '$ref' => '#/components/schemas/auth_error'
-          run_test!
-        end
-      end
     end
   end
 end

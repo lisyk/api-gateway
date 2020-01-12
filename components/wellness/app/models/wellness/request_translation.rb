@@ -21,17 +21,26 @@ module Wellness
     private
 
     def update_request
-      @request.keys.each do |key|
-        field_to_replace = constructor_mapper[key]
-        value = @request.delete key
-        new_key = field_to_replace || key
-        @request[new_key] = value
+      request.keys.each do |key|
+        translate_object(request, key)
+        if request[key].is_a? Array
+          request[key].each do |request_item|
+            request_item.keys.map{|key| translate_object(request_item, key) } if request_item.is_a? Hash
+          end
+        end
       end
-      return @request if @skip_defaults
+      return request if @skip_defaults
 
       update_default_fields
       translate_fields
-      @request
+      request
+    end
+
+    def translate_object(object, key)
+      field_to_replace = constructor_mapper[key]
+      value = object.delete key
+      new_key = field_to_replace || key
+      object[new_key] = value
     end
 
     def constructor_mapper

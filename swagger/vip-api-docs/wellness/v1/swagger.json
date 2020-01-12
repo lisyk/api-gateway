@@ -267,84 +267,314 @@
       "consume_contract_services": {
         "type": "object",
         "properties": {
-          "type": "array",
+          "type": "object",
           "serviceConsumptionList": {
-            "type": "object",
-            "properties": {
-              "owner_id": {
-                "type": "string",
-                "example": "1000",
-                "nullable": true
-              },
-              "external_consumption_id": {
-                "type": "string",
-                "example": "16600",
-                "nullable": true
-              },
-              "external_invoice_date": {
-                "type": "string",
-                "example": "2019-02-18T18:20:12Z",
-                "nullable": true
-              },
-              "external_invoice_number": {
-                "type": "string",
-                "example": "8877",
-                "nullable": true
-              },
-              "clinic_location_id": {
-                "type": "string",
-                "example": "010265",
-                "nullable": true
-              },
-              "pet_id": {
-                "type": "string",
-                "example": "1333",
-                "nullable": true
-              },
-              "external_service_cd": {
-                "type": "string",
-                "example": "36600",
-                "nullable": true
-              },
-              "external_service_name": {
-                "type": "string",
-                "example": "Joo",
-                "nullable": true
-              },
-              "external_service_type": {
-                "type": "string",
-                "example": "vaccine",
-                "nullable": true
-              },
-              "posting_date": {
-                "type": "string",
-                "example": "2019-02-18T18:20:12Z",
-                "nullable": true
-              },
-              "service_date": {
-                "type": "string",
-                "example": "2019-02-18T18:20:12Z",
-                "nullable": true
-              },
-              "service_delivered_by_cd": {
-                "type": "string",
-                "example": "4433",
-                "nullable": true
-              },
-              "service_delivered_by_name": {
-                "type": "string",
-                "example": "JJJ",
-                "nullable": true
-              },
-              "invoiced_price": {
-                "type": "number",
-                "example": 17.5,
-                "nullable": true
-              },
-              "discount_amt": {
-                "type": "number",
-                "example": 0,
-                "nullable": true
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "owner_id": {
+                  "type": "string",
+                  "example": "1000"
+                },
+                "external_consumption_id": {
+                  "type": "string",
+                  "example": "16600"
+                },
+                "external_invoice_date": {
+                  "type": "string",
+                  "example": "2019-02-18T18:20:12Z"
+                },
+                "external_invoice_number": {
+                  "type": "string",
+                  "example": "8877"
+                },
+                "clinic_location_id": {
+                  "type": "string",
+                  "example": "010265"
+                },
+                "pet_id": {
+                  "type": "string",
+                  "example": "1333"
+                },
+                "external_service_cd": {
+                  "type": "string",
+                  "example": "36600"
+                },
+                "external_service_name": {
+                  "type": "string",
+                  "example": "Joo"
+                },
+                "external_service_type": {
+                  "type": "string",
+                  "example": "vaccine"
+                },
+                "posting_date": {
+                  "type": "string",
+                  "example": "2019-02-18T18:20:12Z"
+                },
+                "quantity": {
+                  "type": "number",
+                  "example": 1
+                },
+                "service_date": {
+                  "type": "string",
+                  "example": "2019-02-18T18:20:12Z"
+                },
+                "service_delivered_by_cd": {
+                  "type": "string",
+                  "example": "4433"
+                },
+                "service_delivered_by_name": {
+                  "type": "string",
+                  "example": "JJJ"
+                },
+                "invoiced_price": {
+                  "type": "number",
+                  "example": 17.5,
+                  "nullable": true
+                },
+                "discount_amt": {
+                  "type": "number",
+                  "example": 0,
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "consume_contract_services_response": {
+        "type": "object",
+        "properties": {
+          "serviceConsumptionList": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": 848
+                },
+                "contract": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 11,
+                      "nullable": true
+                    }
+                  }
+                },
+                "contractId": {
+                  "type": "integer",
+                  "example": "34343"
+                },
+                "contractPeriodId": {
+                  "type": "string",
+                  "example": "34444"
+                },
+                "coverageType": {
+                  "type": "number",
+                  "example": 3
+                },
+                "dateCreated": {
+                  "type": "string",
+                  "example": "2019-02-18T18:20:12Z"
+                },
+                "discountAmt": {
+                  "type": "number",
+                  "example": 0
+                },
+                "discountedPrice": {
+                  "type": "number",
+                  "example": 17.5
+                },
+                "entryMethod": {
+                  "type": "string",
+                  "example": "auto",
+                  "nullable": true
+                },
+                "externalClientCd": {
+                  "type": "string",
+                  "example": "36600"
+                },
+                "externalConsumptionId": {
+                  "type": "string",
+                  "example": "344600"
+                },
+                "externalGender": {
+                  "type": "string",
+                  "example": "m"
+                },
+                "externalInvoiceDate": {
+                  "type": "string",
+                  "example": "2019-02-18T18:20:12Z"
+                },
+                "externalInvoiceNumber": {
+                  "type": "string",
+                  "example": "00020"
+                },
+                "externalLocationCd": {
+                  "type": "string",
+                  "example": "333"
+                },
+                "externalMemberCd": {
+                  "type": "string",
+                  "example": "333300"
+                },
+                "externalServiceCd": {
+                  "type": "string",
+                  "example": "777887"
+                },
+                "externalServiceName": {
+                  "type": "string",
+                  "example": "Lui"
+                },
+                "externalServiceType": {
+                  "type": "string",
+                  "example": "vaccine"
+                },
+                "externalSpeciesCd": {
+                  "type": "string",
+                  "example": "99999"
+                },
+                "externalStatus": {
+                  "type": "string",
+                  "example": "man",
+                  "nullable": true
+                },
+                "externalUserCd": {
+                  "type": "string",
+                  "example": "666666",
+                  "nullable": true
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "O",
+                  "nullable": true
+                },
+                "invoicedPrice": {
+                  "type": "number",
+                  "example": 14.5
+                },
+                "lastUpdated": {
+                  "type": "string",
+                  "example": "2019-02-18T18:20:12Z"
+                },
+                "locationId": {
+                  "type": "string",
+                  "example": "45555"
+                },
+                "notes": {
+                  "type": "string",
+                  "example": "note1",
+                  "nullable": true
+                },
+                "offeredService": {
+                  "type": "string",
+                  "example": "vac"
+                },
+                "performancePayPrice": {
+                  "type": "number",
+                  "example": 14.5,
+                  "nullable": true
+                },
+                "postingDate": {
+                  "type": "string",
+                  "example": "2019-02-18T18:20:12Z"
+                },
+                "postingPeriod": {
+                  "type": "string",
+                  "example": "2019-02-18T18:20:12Z",
+                  "nullable": true
+                },
+                "quantity": {
+                  "type": "number",
+                  "example": 2
+                },
+                "retailPrice": {
+                  "type": "number",
+                  "example": 24.5,
+                  "nullable": true
+                },
+                "revenuePerUnit": {
+                  "type": "number",
+                  "example": 4.5,
+                  "nullable": true
+                },
+                "serviceCommissionAmt": {
+                  "type": "number",
+                  "example": 4.5,
+                  "nullable": true
+                },
+                "serviceCommissionType": {
+                  "type": "string",
+                  "example": "comission",
+                  "nullable": true
+                },
+                "serviceDate": {
+                  "type": "string",
+                  "example": "2019-02-18T18:20:12Z",
+                  "nullable": true
+                },
+                "serviceDeliveredByCd": {
+                  "type": "string",
+                  "example": "Kio",
+                  "nullable": true
+                },
+                "serviceDeliveredByName": {
+                  "type": "string",
+                  "example": "Jeeko",
+                  "nullable": true
+                },
+                "serviceType": {
+                  "type": "string",
+                  "example": "type",
+                  "nullable": true
+                },
+                "speciesId": {
+                  "type": "number",
+                  "example": 2
+                },
+                "status": {
+                  "type": "string",
+                  "example": "status",
+                  "nullable": true
+                },
+                "warnings": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string",
+                        "examole": "serviceConsumption.externalClientCd.notFound.error",
+                        "nullable": true
+                      },
+                      "errorCode": {
+                        "type": "string",
+                        "example": "SCE-1000",
+                        "nullable": true
+                      },
+                      "field": {
+                        "type": "string",
+                        "example": "externalClientCd",
+                        "nullable": true
+                      },
+                      "message": {
+                        "type": "string",
+                        "exampole": "Client not found",
+                        "nullable": true
+                      },
+                      "value": {
+                        "type": "string",
+                        "exampole": "ex",
+                        "nullable": true
+                      }
+                    }
+                  }
+                }
               }
             }
           }
@@ -1322,7 +1552,7 @@
         }
       },
       "post": {
-        "summary": "Consume contract services.",
+        "summary": "Consume Contract Services",
         "tags": [
           "Contract Services"
         ],
@@ -1348,14 +1578,11 @@
         },
         "responses": {
           "200": {
-            "description": "Consume contract services"
-          },
-          "403": {
-            "description": "Invalid credentials",
+            "description": "Contract services have been consumed",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/auth_error"
+                  "$ref": "#/components/schemas/consume_contract_services_response"
                 }
               }
             }
