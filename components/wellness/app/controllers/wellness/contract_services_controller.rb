@@ -25,7 +25,6 @@ module Wellness
         render json: { errors: ['Service consumption error.'] },
                status: :unprocessable_entity
       end
-
     end
 
     private

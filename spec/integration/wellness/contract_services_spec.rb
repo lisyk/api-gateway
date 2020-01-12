@@ -37,10 +37,10 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       parameter name: :consume_services,
                 in: :body,
                 schema: {
-                    '$ref' => '#/components/schemas/consume_contract_services'
+                  '$ref' => '#/components/schemas/consume_contract_services'
                 }
       request_body_json schema: {
-          '$ref' => '#/components/schemas/consume_contract_services'
+        '$ref' => '#/components/schemas/consume_contract_services'
       }
 
       context 'Using valid credentials' do
@@ -56,15 +56,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           schema '$ref' => '#/components/schemas/consume_contract_services_response'
           run_test!
         end
-
-        response '400', 'Bad request' do
-          let(:file) { File.read(Rails.root.join('spec/helpers/dummy_docs/contract_services/post_consume_service.json')) }
-          let(:consume_services) { JSON.parse(file) }
-          # schema '$ref' => '#/components/schemas/'
-          # run_test!
-        end
       end
-
     end
   end
 end

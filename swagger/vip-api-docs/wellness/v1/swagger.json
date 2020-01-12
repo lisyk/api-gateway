@@ -368,11 +368,13 @@
                 },
                 "contractId": {
                   "type": "integer",
-                  "example": "34343"
+                  "example": "34343",
+                  "nullable": true
                 },
                 "contractPeriodId": {
                   "type": "string",
-                  "example": "34444"
+                  "example": "34444",
+                  "nullable": true
                 },
                 "coverageType": {
                   "type": "number",
@@ -380,7 +382,8 @@
                 },
                 "dateCreated": {
                   "type": "string",
-                  "example": "2019-02-18T18:20:12Z"
+                  "example": "2019-02-18T18:20:12Z",
+                  "nullable": true
                 },
                 "discountAmt": {
                   "type": "number",
@@ -388,7 +391,8 @@
                 },
                 "discountedPrice": {
                   "type": "number",
-                  "example": 17.5
+                  "example": 17.5,
+                  "nullable": true
                 },
                 "entryMethod": {
                   "type": "string",
@@ -397,47 +401,58 @@
                 },
                 "externalClientCd": {
                   "type": "string",
-                  "example": "36600"
+                  "example": "36600",
+                  "nullable": true
                 },
                 "externalConsumptionId": {
                   "type": "string",
-                  "example": "344600"
+                  "example": "344600",
+                  "nullable": true
                 },
                 "externalGender": {
                   "type": "string",
-                  "example": "m"
+                  "example": "m",
+                  "nullable": true
                 },
                 "externalInvoiceDate": {
                   "type": "string",
-                  "example": "2019-02-18T18:20:12Z"
+                  "example": "2019-02-18T18:20:12Z",
+                  "nullable": true
                 },
                 "externalInvoiceNumber": {
                   "type": "string",
-                  "example": "00020"
+                  "example": "00020",
+                  "nullable": true
                 },
                 "externalLocationCd": {
                   "type": "string",
-                  "example": "333"
+                  "example": "333",
+                  "nullable": true
                 },
                 "externalMemberCd": {
                   "type": "string",
-                  "example": "333300"
+                  "example": "333300",
+                  "nullable": true
                 },
                 "externalServiceCd": {
                   "type": "string",
-                  "example": "777887"
+                  "example": "777887",
+                  "nullable": true
                 },
                 "externalServiceName": {
                   "type": "string",
-                  "example": "Lui"
+                  "example": "Lui",
+                  "nullable": true
                 },
                 "externalServiceType": {
                   "type": "string",
-                  "example": "vaccine"
+                  "example": "vaccine",
+                  "nullable": true
                 },
                 "externalSpeciesCd": {
                   "type": "string",
-                  "example": "99999"
+                  "example": "99999",
+                  "nullable": true
                 },
                 "externalStatus": {
                   "type": "string",
@@ -456,15 +471,18 @@
                 },
                 "invoicedPrice": {
                   "type": "number",
-                  "example": 14.5
+                  "example": 14.5,
+                  "nullable": true
                 },
                 "lastUpdated": {
                   "type": "string",
-                  "example": "2019-02-18T18:20:12Z"
+                  "example": "2019-02-18T18:20:12Z",
+                  "nullable": true
                 },
                 "locationId": {
-                  "type": "string",
-                  "example": "45555"
+                  "type": "integer",
+                  "example": 22,
+                  "nullable": true
                 },
                 "notes": {
                   "type": "string",
@@ -473,7 +491,8 @@
                 },
                 "offeredService": {
                   "type": "string",
-                  "example": "vac"
+                  "example": "vac",
+                  "nullable": true
                 },
                 "performancePayPrice": {
                   "type": "number",
@@ -482,7 +501,8 @@
                 },
                 "postingDate": {
                   "type": "string",
-                  "example": "2019-02-18T18:20:12Z"
+                  "example": "2019-02-18T18:20:12Z",
+                  "nullable": true
                 },
                 "postingPeriod": {
                   "type": "string",
@@ -491,7 +511,8 @@
                 },
                 "quantity": {
                   "type": "number",
-                  "example": 2
+                  "example": 2,
+                  "nullable": true
                 },
                 "retailPrice": {
                   "type": "number",
@@ -549,7 +570,7 @@
                     "properties": {
                       "code": {
                         "type": "string",
-                        "examole": "serviceConsumption.externalClientCd.notFound.error",
+                        "example": "serviceConsumption.externalClientCd.notFound.error",
                         "nullable": true
                       },
                       "errorCode": {

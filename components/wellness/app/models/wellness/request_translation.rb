@@ -14,7 +14,7 @@ module Wellness
     end
 
     def translate_request
-      log_original_response(@request)
+      log_original_response(request)
       update_request
     end
 
@@ -23,17 +23,27 @@ module Wellness
     def update_request
       request.keys.each do |key|
         translate_object(request, key)
-        if request[key].is_a? Array
-          request[key].each do |request_item|
-            request_item.keys.map{|key| translate_object(request_item, key) } if request_item.is_a? Hash
-          end
-        end
+        next unless request[key].is_a? Array
+
+        translate_nested(request[key])
       end
       return request if @skip_defaults
 
+      run_defaults
+    end
+
+    def run_defaults
       update_default_fields
       translate_fields
       request
+    end
+
+    def translate_nested(nested_items)
+      nested_items.each do |request_item|
+        if request_item.is_a? Hash
+          request_item.keys.map { |int_key| translate_object(request_item, int_key) }
+        end
+      end
     end
 
     def translate_object(object, key)
@@ -51,8 +61,8 @@ module Wellness
     end
 
     def update_default_fields
-      @request['paymentaddressSameAsAccount'] = true
-      @request['payOption'] = 'CC'
+      request['paymentaddressSameAsAccount'] = true
+      request['payOption'] = 'CC'
     end
 
     def translate_fields
@@ -61,20 +71,24 @@ module Wellness
     end
 
     def translate_phone_fields
-      if @request['mobile'].present?
-        @request['phone1'] = @request.delete('mobile')
-        @request['phone1Type'] = 'M'
-        @request['phone2'] = @request.delete('phone')
-        @request['phone2Type'] = 'H' unless @request['phone2'].nil?
+      if request['mobile'].present?
+        translate_mobile
       else
-        @request['phone1'] = @request.delete('phone')
-        @request['phone1Type'] = 'H'
+        request['phone1'] = request.delete('phone')
+        request['phone1Type'] = 'H'
       end
     end
 
+    def translate_mobile
+      request['phone1'] = request.delete('mobile')
+      request['phone1Type'] = 'M'
+      request['phone2'] = request.delete('phone')
+      request['phone2Type'] = 'H' unless request['phone2'].nil?
+    end
+
     def translate_cc_fields
-      value = @request['payMethod']
-      @request['payMethod'] = translate_general('card_name', value, :partner)
+      value = request['payMethod']
+      request['payMethod'] = translate_general('card_name', value, :partner)
     end
 
     def parse_request(request)
