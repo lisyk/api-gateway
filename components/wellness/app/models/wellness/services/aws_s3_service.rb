@@ -25,7 +25,11 @@ module Wellness
       private
 
       def s3_object
-        Aws::S3::Resource.new.bucket(ENV['AWS_BUCKET_NAME']).object("#{agreement_id}.pdf")
+        s3_bucket.object("#{agreement_id}.pdf")
+      end
+
+      def s3_bucket
+        Aws::S3::Resource.new.bucket(ENV['AWS_BUCKET_NAME'])
       end
 
       def merge_messages(messages, storage_msg, status)
