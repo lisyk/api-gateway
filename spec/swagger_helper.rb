@@ -349,7 +349,7 @@ RSpec.configure do |config|
             properties: {
               id: { type: :integer, example: 1_000_015_201, nullable: true },
               address: { type: :string, example: '4 Privet Drive', nullable: true },
-              contract_period: { type: :string, nullable: true },
+              contract_period: { type: :object, nullable: true },
               date_created: { type: :string, example: '2019-12-30T21:23:05Z', nullable: true },
               owner_id: { type: :string, example: '12312351324510', nullable: true },
               clinic_location_id: { type: :string, example: '010265', nullable: true },
