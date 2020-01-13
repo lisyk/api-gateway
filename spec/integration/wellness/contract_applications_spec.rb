@@ -54,7 +54,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
               payment_name: 'Olivia Wright',
               expiration_month: 1,
               expiration_year: 2099,
-              card_number: 1111,
+              card_number: '1111',
               initial_payment_option: 12,
               optional_plan_services: []
             }
@@ -209,7 +209,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
               payment_name: 'Olivia Wright',
               expiration_month: 1,
               expiration_year: 2099,
-              card_number: 1111,
+              card_number: '1111',
               initial_payment_option: 12,
               optional_plan_services: [],
               first_billing_date: DateTime.current

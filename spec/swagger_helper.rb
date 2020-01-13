@@ -231,40 +231,72 @@ RSpec.configure do |config|
               is_optional: { type: :boolean, example: false, nullable: true }
             }
           },
-          contract_application_request_list: {
-            type: :array,
-            items: {
-              '$ref' => '#/components/schemas/contract_application_request'
-            }
+          application_workflows_create: {
+            '$ref' => '#/components/schemas/contract_applications_create'
+          },
+          application_workflows_update: {
+            '$ref' => '#/components/schemas/contract_application_request',
+            required: %w[payment_token]
+          },
+          contract_applications_update: {
+            '$ref' => '#/components/schemas/contract_application_request',
+            required: %w[pet_id owner_id clinic_location_id plan_code]
+          },
+          contract_applications_create: {
+            '$ref' => '#/components/schemas/contract_application_request',
+            required: %w[
+              clinic_location_id
+              plan_code
+              owner_first_name
+              owner_last_name
+              address
+              city
+              state
+              zip
+              country
+              email
+              owner_id
+              pet_id
+              pet_name
+              age
+              gender
+              payment_name
+              card_name
+              card_number
+              expiration_month
+              expiration_year
+              initial_payment_option
+              optional_plan_services
+            ]
           },
           contract_application_request: {
             type: :object,
             properties: {
               clinic_location_id: { type: :integer, example: 5_426_720 },
               plan_code: { type: :integer, example: 5_428_455 },
-              owner_first_name: { type: :string, example: 'Harry' },
-              owner_last_name: { type: :string, example: 'Potter' },
-              address: { type: :string, example: '4 Privet Drive' },
-              city: { type: :string, example: 'Morino Valley' },
-              state: { type: :string, example: 'CA' },
-              zip: { type: :string, example: '92551' },
-              country: { type: :string, example: 'US' },
-              email: { type: :string, example: 'HarryPotter@Hogwarts.edu' },
-              owner_id: { type: :string, example: 'd525ffb5', nullable: true },
-              pet_id: { type: :string, example: 'd525ffb5-d6a7-41f9-a317-86a205a9e130', nullable: true },
+              owner_first_name: { type: :string, example: 'Harry', maxLength: 20 },
+              owner_last_name: { type: :string, example: 'Potter', maxLength: 30 },
+              address: { type: :string, example: '4 Privet Drive', maxLength: 30 },
+              city: { type: :string, example: 'Morino Valley', maxLength: 19 },
+              state: { type: :string, example: 'CA', maxLength: 2 },
+              zip: { type: :string, example: '92551', maxLength: 10 },
+              country: { type: :string, example: 'US', maxLength: 20 },
+              email: { type: :string, example: 'HarryPotter@Hogwarts.edu', maxLength: 60 },
+              owner_id: { type: :string, example: 'd525ffb5', maxLength: 40 },
+              pet_id: { type: :string, example: 'd525ffb5-d6a7-41f9-a317-86a205a9e130', maxLength: 40 },
               pet_name: { type: :string, example: 'Hedwig' },
               age: { type: :string, example: '1Y 2M', description: 'Also can accept integer year and datetime objects' },
               gender: { type: :string, example: 'F', nullable: true },
               payment_method: { type: :string, example: 'credit' },
               payment_name: { type: :string, example: 'Harry Potter' },
               card_name: { type: :string, example: 'Visa' },
-              card_number: { type: :string, example: '1111' },
-              expiration_month: { type: :integer, example: 1 },
-              expiration_year: { type: :integer, example: 2099 },
-              initial_payment_option: { type: :integer, example: 12 },
-              mobile: { type: :string, example: '9494814601', nullable: true },
-              phone: { type: :string, example: '9494814602', nullable: true },
-              alternate_phone: { type: :string, example: '9494814603', nullable: true },
+              card_number: { type: :string, example: '1111', minLength: 4, maxLength: 4 },
+              expiration_month: { type: :integer, example: 1, minimum: 1, maximum: 12 },
+              expiration_year: { type: :integer, example: 2099, minimum: 2000, maximum: 2999 },
+              initial_payment_option: { type: :integer, example: 12, enum: [1, 12] },
+              mobile: { type: :string, example: '9494814601', maxLength: 20, nullable: true },
+              phone: { type: :string, example: '9494814602', maxLength: 20, nullable: true },
+              alternate_phone: { type: :string, example: '9494814603', maxLength: 20, nullable: true },
               optional_plan_services: { type: :array, example: [] }
             }
           },

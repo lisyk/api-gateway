@@ -48,9 +48,7 @@ module Wellness
         end
         describe 'invalid request' do
           before do
-            request_schema_path = '../../../../swagger/request_schemas/vcp/application_workflows.json#application_workflows_create'
-            allow(controller).to receive(:schema)
-              .and_return('$ref' => Rails.root.join(request_schema_path).to_s)
+            allow(controller).to receive(:json_schema_path).and_return Rails.root.join('../../../../swagger/vip-api-docs/wellness/v1/swagger.json/').to_s
             post :create, {}
           end
           it 'returns 400 error message' do
@@ -154,7 +152,7 @@ module Wellness
         end
         describe 'bad request' do
           before :each do
-            allow(controller).to receive(:json_schema_path).and_return Rails.root.join('../../../../swagger/request_schemas/vcp/').to_s
+            allow(controller).to receive(:json_schema_path).and_return Rails.root.join('../../../../swagger/vip-api-docs/wellness/v1/swagger.json/').to_s
             put :update, params: { id: '1000015105' }
           end
           it 'returns 400 for bad request' do

@@ -378,11 +378,50 @@
           }
         }
       },
-      "contract_application_request_list": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/contract_application_request"
-        }
+      "application_workflows_create": {
+        "$ref": "#/components/schemas/contract_applications_create"
+      },
+      "application_workflows_update": {
+        "$ref": "#/components/schemas/contract_application_request",
+        "required": [
+          "payment_token"
+        ]
+      },
+      "contract_applications_update": {
+        "$ref": "#/components/schemas/contract_application_request",
+        "required": [
+          "pet_id",
+          "owner_id",
+          "clinic_location_id",
+          "plan_code"
+        ]
+      },
+      "contract_applications_create": {
+        "$ref": "#/components/schemas/contract_application_request",
+        "required": [
+          "clinic_location_id",
+          "plan_code",
+          "owner_first_name",
+          "owner_last_name",
+          "address",
+          "city",
+          "state",
+          "zip",
+          "country",
+          "email",
+          "owner_id",
+          "pet_id",
+          "pet_name",
+          "age",
+          "gender",
+          "payment_name",
+          "card_name",
+          "card_number",
+          "expiration_month",
+          "expiration_year",
+          "initial_payment_option",
+          "optional_plan_services"
+        ]
       },
       "contract_application_request": {
         "type": "object",
@@ -397,45 +436,53 @@
           },
           "owner_first_name": {
             "type": "string",
-            "example": "Harry"
+            "example": "Harry",
+            "maxLength": 20
           },
           "owner_last_name": {
             "type": "string",
-            "example": "Potter"
+            "example": "Potter",
+            "maxLength": 30
           },
           "address": {
             "type": "string",
-            "example": "4 Privet Drive"
+            "example": "4 Privet Drive",
+            "maxLength": 30
           },
           "city": {
             "type": "string",
-            "example": "Morino Valley"
+            "example": "Morino Valley",
+            "maxLength": 19
           },
           "state": {
             "type": "string",
-            "example": "CA"
+            "example": "CA",
+            "maxLength": 2
           },
           "zip": {
             "type": "string",
-            "example": "92551"
+            "example": "92551",
+            "maxLength": 10
           },
           "country": {
             "type": "string",
-            "example": "US"
+            "example": "US",
+            "maxLength": 20
           },
           "email": {
             "type": "string",
-            "example": "HarryPotter@Hogwarts.edu"
+            "example": "HarryPotter@Hogwarts.edu",
+            "maxLength": 60
           },
           "owner_id": {
             "type": "string",
             "example": "d525ffb5",
-            "nullable": true
+            "maxLength": 40
           },
           "pet_id": {
             "type": "string",
             "example": "d525ffb5-d6a7-41f9-a317-86a205a9e130",
-            "nullable": true
+            "maxLength": 40
           },
           "pet_name": {
             "type": "string",
@@ -464,34 +511,47 @@
             "example": "Visa"
           },
           "card_number": {
-            "type": "integer",
-            "example": 1111
+            "type": "string",
+            "example": "1111",
+            "minLength": 4,
+            "maxLength": 4
           },
           "expiration_month": {
             "type": "integer",
-            "example": 1
+            "example": 1,
+            "minimum": 1,
+            "maximum": 12
           },
           "expiration_year": {
             "type": "integer",
-            "example": 2099
+            "example": 2099,
+            "minimum": 2000,
+            "maximum": 2999
           },
           "initial_payment_option": {
             "type": "integer",
-            "example": 12
+            "example": 12,
+            "enum": [
+              1,
+              12
+            ]
           },
           "mobile": {
             "type": "string",
             "example": "9494814601",
+            "maxLength": 20,
             "nullable": true
           },
           "phone": {
             "type": "string",
             "example": "9494814602",
+            "maxLength": 20,
             "nullable": true
           },
           "alternate_phone": {
             "type": "string",
             "example": "9494814603",
+            "maxLength": 20,
             "nullable": true
           },
           "optional_plan_services": {
@@ -603,8 +663,8 @@
             "nullable": true
           },
           "card_number": {
-            "type": "integer",
-            "example": 1111,
+            "type": "string",
+            "example": "1111",
             "nullable": true
           },
           "expiration_month": {
@@ -715,7 +775,7 @@
             "nullable": true
           },
           "contract_period": {
-            "type": "string",
+            "type": "object",
             "nullable": true
           },
           "date_created": {
@@ -1270,9 +1330,9 @@
     },
     "/api/v1/wellness/contract_applications/{id}": {
       "get": {
-        "summary": "Show a single contract given an ID",
+        "summary": "Show a single contract application given an ID",
         "tags": [
-          "Contracts"
+          "Contract Applications"
         ],
         "security": [
           {
@@ -1293,11 +1353,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Retrieve a single contract",
+            "description": "Retrieve list of contract applications",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/contract_get_response"
+                  "$ref": "#/components/schemas/contract_application_response"
                 }
               }
             }
@@ -1425,7 +1485,7 @@
         }
       }
     },
-    "/api/v1/wellness/contract_applications/": {
+    "/api/v1/wellness/contracts/": {
       "get": {
         "summary": "Retrieve list of contracts",
         "tags": [
@@ -1445,6 +1505,63 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/contract_get_response_list"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/auth_error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/wellness/contracts/{id}": {
+      "get": {
+        "summary": "Show a single contract given an ID",
+        "tags": [
+          "Contracts"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieve a single contract",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/contract_get_response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/not_found_error"
                 }
               }
             }

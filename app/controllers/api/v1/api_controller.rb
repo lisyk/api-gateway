@@ -35,7 +35,7 @@ module Api
       end
 
       def json_schema_path
-        Rails.root.join('swagger/request_schemas/vcp/').to_s
+        Rails.root.join('swagger/vip-api-docs/wellness/v1/swagger.json').to_s
       end
     end
   end

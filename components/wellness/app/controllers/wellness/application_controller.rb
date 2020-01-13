@@ -17,10 +17,6 @@ module Wellness
       Settings.api.vcp_wellness.demo_client_ready
     end
 
-    def json_schema_engine_path
-      "#{controller_name}.json"
-    end
-
     def validate_request
       validation_errors = JSON::Validator.fully_validate(schema,
                                                          request.body.read,
@@ -37,8 +33,11 @@ module Wellness
     end
 
     def schema
-      fragment = "##{controller_name}_#{action_name}"
-      { '$ref' => json_schema_path + json_schema_engine_path + fragment }
+      { '$ref' => json_schema_path + fragment }
+    end
+
+    def fragment
+      "#/components/schemas/#{controller_name}_#{action_name}"
     end
   end
 end
