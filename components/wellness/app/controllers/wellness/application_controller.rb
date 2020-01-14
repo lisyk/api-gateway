@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'json-schema'
+
 module Wellness
   class ApplicationController < ::Api::V1::ApiController
     # protect_from_forgery with: :exception
