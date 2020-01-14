@@ -518,7 +518,7 @@ RSpec.configure do |config|
               }
             }
           },
-          s3_upload_error: {
+          agreement_s3_upload_error: {
             type: :object,
             properties: {
               id: {
@@ -534,6 +534,17 @@ RSpec.configure do |config|
                 type: :array,
                 items: {
                   type: :string, example: 'Signed agreement posted successfully.'
+                }
+              }
+            }
+          },
+          s3_upload_error: {
+            type: :object,
+            properties: {
+              errors: {
+                type: :array,
+                items: {
+                  type: :string, example: 'Agreement not stored in S3 bucket.'
                 }
               }
             }

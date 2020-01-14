@@ -4,6 +4,8 @@ module Wellness
   class AgreementsController < Wellness::ApplicationController
     include Services::AwsS3Service
 
+    before_action :validate_id, only: :create
+
     def show
       @agreement ||= fetch_agreement(agreement_params)
       if @agreement.present?
@@ -20,6 +22,11 @@ module Wellness
       render_messages(parsed_response) && return if parsed_response[:messages][:errors].present?
       messages = store_agreement(parsed_response)
       render_messages(messages)
+    end
+
+    def create
+      @response = store_agreement
+      render_messages(@response)
     end
 
     private
@@ -52,9 +59,14 @@ module Wellness
     end
 
     def agreement_id
-      return nil if params[:id].blank?
-
       params[:id]
+    end
+
+    def validate_id
+      return if params[:id].present?
+
+      render json: { errors: ['Agreement ID not present.'] },
+             status: :bad_request
     end
 
     def agreement_params
