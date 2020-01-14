@@ -53,6 +53,8 @@ dump.rdb
 /yarn-error.log
 .yarn-integrity
 
+vendor/bundle
+
 .vscode
 
 *.*~
