@@ -26,13 +26,7 @@ module Wellness
 
         translate_nested(request[key])
       end
-      return request if @skip_defaults
-
-      run_defaults
-    end
-
-    def run_defaults
-      update_default_fields
+      update_default_fields unless @skip_defaults
       translate_fields
       request
     end
