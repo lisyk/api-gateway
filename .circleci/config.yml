@@ -4,7 +4,7 @@ workflows:
   application:
     jobs:
       - build
-      - build_wellness
+      - build-and-test-wellness-component
       - code_lint:
           requires:
             - build
@@ -17,16 +17,13 @@ workflows:
       - test-main-app:
           requires:
             - build
-      - test-wellness-component:
-          requires:
-            - build_wellness
       - commit_db_schema:
           requires:
             - code_lint
             - code_security_scan
             - dependency_security_scan
             - test-main-app
-            - test-wellness-component
+            - build-and-test-wellness-component
           filters:
             branches:
               only: master
@@ -75,6 +72,9 @@ setup_steps:
     run:
       name: Migrate DB Setup
       command: bundle exec rails db:migrate --trace
+  - &store_db_schema
+    store_artifacts:
+      path: db/schema.rb
   - &ensure_bundler_version
     run:
       name: Upgrade Bundler
@@ -104,30 +104,6 @@ jobs:
           key: bundle-v4-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
-      - persist_to_workspace:
-          root: /home/circleci
-          paths:
-            - project
-
-  build_wellness:
-    docker:
-      - *ruby_wellness_docker
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - bundle-wellness-v6-{{ checksum "Gemfile.lock" }}
-            - bundle-wellness-v6
-      - *ensure_bundler_version
-      - run:
-          name: Bundle Install
-          command: |
-            cd components/wellness
-            bundle check || bundle install
-      - save_cache:
-          key: bundle-wellness-v6-{{ checksum "Gemfile.lock" }}
-          paths:
-            - /home/circleci/project/components/wellness/vendor/bundle
       - persist_to_workspace:
           root: /home/circleci
           paths:
@@ -180,14 +156,28 @@ jobs:
       - run:
           name: Rspec
           command: bundle exec rspec spec -f d
+      - *store_db_schema
 
-  test-wellness-component:
+  build-and-test-wellness-component:
     docker:
       - *ruby_wellness_docker
       - *redis_docker
     steps:
-      - *attach
+      - checkout
+      - restore_cache:
+          keys:
+            - bundle-wellness-v6-{{ checksum "Gemfile.lock" }}
+            - bundle-wellness-v6
       - *ensure_bundler_version
+      - run:
+          name: Bundle Install
+          command: |
+            cd components/wellness
+            bundle check || bundle install
+      - save_cache:
+          key: bundle-wellness-v6-{{ checksum "Gemfile.lock" }}
+          paths:
+            - /home/circleci/project/components/wellness/vendor/bundle
       - run:
           name: Rspec
           command: |
@@ -204,7 +194,7 @@ jobs:
       - *db_setup
       - *db_migrate
       - run:
-          name: Commit DB changes changes
+          name: Commit DB schema changes
           command: |
             bash .circleci/create_known_hosts.sh
             bash .circleci/commit_db_schema.sh

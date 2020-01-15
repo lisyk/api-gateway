@@ -125,6 +125,62 @@ module Wellness
           expect(assigns(:response)).to be_nil
         end
       end
+
+      describe 'POST #create' do
+        let(:post_agreement_sample_file) { File.read(File.expand_path('../../helpers/dummy_docs/agreements/contract.pdf', __dir__)) }
+        let(:post_agreement) { put_agreement_sample_file }
+        let(:id) { 'test_agreement' }
+
+        context 'authenticated' do
+          before :each do
+            allow(controller).to receive(:authenticate!)
+            controller.instance_variable_set(:@current_user, 'authorized')
+          end
+          describe 's3 upload successful' do
+            before do
+              allow(controller).to receive(:store_agreement).and_return(messages: ['Success'], status: :ok)
+              stub_const('Settings', route_settings)
+            end
+            it 'returns 200 success' do
+              post :create, params: { id: id }
+              expect(response).to have_http_status(200)
+              expect(JSON.parse(response.body)).not_to be_nil
+            end
+          end
+          describe 's3 upload fails' do
+            before do
+              allow(controller).to receive(:store_agreement).and_return(messages: ['Error'], status: :unprocessable_entity)
+              stub_const('Settings', route_settings)
+            end
+            it 'returns 422 unprocessable entity' do
+              post :create, params: { id: id }
+              expect(response).to have_http_status(422)
+              expect(JSON.parse(response.body)).not_to be_nil
+            end
+          end
+          describe 'agreement id not present' do
+            it 'returns 400 bad request' do
+              post :create
+              expect(response).to have_http_status(400)
+              expect(JSON.parse(response.body)).not_to be_nil
+            end
+          end
+        end
+        context 'not authenticated' do
+          before do
+            allow(controller).to receive(:authenticate!)
+            controller.instance_variable_set(:@current_user, nil)
+          end
+          it 'sends error message to the client' do
+            post :create, params: { id: id }
+            expect(response).to have_http_status(403)
+            expect(JSON.parse(response.body)['errors']).to include 'You are not authorized'
+          end
+          it "doesn't assign response" do
+            expect(assigns(:response)).to be_nil
+          end
+        end
+      end
     end
   end
 end

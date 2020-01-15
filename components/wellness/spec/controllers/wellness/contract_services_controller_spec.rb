@@ -64,5 +64,31 @@ module Wellness
         end
       end
     end
+
+    describe 'POST #create' do
+      context 'authenticated' do
+        before :each do
+          allow(controller).to receive(:authenticate!)
+          controller.instance_variable_set(:@current_user, 'authorized')
+          stub_const('Settings', route_settings)
+        end
+
+        describe 'service consumed' do
+          before :each do
+            allow(controller).to receive(:consume_service).and_return 'response_payload'
+            post :create, body: { 'owner_id': '1000' }.to_json
+          end
+          it 'returns 200 response' do
+            expect(response).to have_http_status(200)
+          end
+          it 'returns correct content type' do
+            expect(response.content_type).to include 'application/json'
+          end
+          it 'assigns contract services' do
+            expect(assigns(:response)).not_to be_nil
+          end
+        end
+      end
+    end
   end
 end
