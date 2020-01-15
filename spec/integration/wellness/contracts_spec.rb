@@ -4,7 +4,7 @@ require 'swagger_helper'
 require './app/controllers/api/v1/authentication_controller.rb'
 
 describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
-  path '/api/v1/wellness/contract_applications/' do
+  path '/api/v1/wellness/contracts/' do
     get 'Retrieve list of contracts' do
       tags 'Contracts'
       produces 'application/json'
@@ -35,7 +35,7 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
     end
   end
 
-  path '/api/v1/wellness/contract_applications/{id}' do
+  path '/api/v1/wellness/contracts/{id}' do
     get 'Show a single contract given an ID' do
       tags 'Contracts'
       produces 'application/json'

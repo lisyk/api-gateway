@@ -44,7 +44,7 @@ module Wellness
     end
 
     def translate(request, skip_default)
-      RequestTranslation.new(request, controller_name, skip_default).translate_request.to_json
+      RequestTranslation.new(request, skip_default).translate_request.to_json
     end
   end
 end

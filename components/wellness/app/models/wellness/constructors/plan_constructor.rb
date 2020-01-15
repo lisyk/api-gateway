@@ -6,11 +6,10 @@ module Wellness
       include Wellness::Services::PlanTranslatorService
       include Wellness::Services::PlanFilterService
 
-      attr_reader :plans, :constructor_mapper
+      attr_reader :plans
 
-      def initialize(plans, constructor_mapper, params)
+      def initialize(plans, params)
         @plans = plans
-        @constructor_mapper = constructor_mapper
         @clinic_location_id = params[:clinic_location_id]
         @is_sellable = params[:is_sellable]
         @species = params[:species]

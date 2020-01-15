@@ -5,6 +5,13 @@ module Wellness
     class BaseConstructor
       include Services::ResponseLogger
 
+      def constructor_mapper
+        file_name = 'mapper.json'
+        file_path = '../../../../lib/mappers/vcp/' + file_name
+        mapper_file = File.expand_path(file_path, __dir__)
+        JSON.parse(File.read(mapper_file))
+      end
+
       private
 
       def output_results(object, message)

@@ -7,11 +7,7 @@ module Wellness
     let(:plans_sample_file) do
       File.read(File.expand_path('../../../helpers/dummy_docs/plans/origin_plans_sample.json', __dir__))
     end
-    let(:field_mapper_file) do
-      File.read(File.expand_path('../../../../lib/mappers/plans/plan_mapper.json', __dir__))
-    end
     let(:plans_sample) { JSON.parse plans_sample_file }
-    let(:field_mapper) { JSON.parse field_mapper_file }
     let(:params) { {} }
     let(:ignored_fields) do
       %w[
@@ -24,7 +20,7 @@ module Wellness
         planStatus
       ]
     end
-    subject { Constructors::PlanConstructor.new(plans_sample, field_mapper, params) }
+    subject { Constructors::PlanConstructor.new(plans_sample, params) }
     describe '#modify' do
       before do
         allow(subject).to receive(:translate) { nil }
@@ -37,7 +33,7 @@ module Wellness
         expect(subject.modify.first).to include 'age_group'
       end
       it 'returns blank object if plan is missing' do
-        blank_plan_constructor = Constructors::PlanConstructor.new({}, field_mapper, params)
+        blank_plan_constructor = Constructors::PlanConstructor.new({}, params)
         expect(blank_plan_constructor.modify).to eq(message: ['No plans matched query'])
       end
       it 'refines exposed values' do
@@ -67,8 +63,7 @@ module Wellness
         end
         context 'by clinic location id' do
           it 'returns plans filtered by clinic' do
-            field_mapper['location'] = 'location'
-            filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, clinic_params)
+            filter = Constructors::PlanConstructor.new(plans_sample, clinic_params)
             filter.modify.each do |item|
               expect(item['location']['externalLocationCd']).to eq clinic_params[:clinic_location_id]
             end
@@ -76,13 +71,13 @@ module Wellness
         end
         context 'by sellable' do
           it 'returns plans filtered by sellable' do
-            filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, sellable_params)
+            filter = Constructors::PlanConstructor.new(plans_sample, sellable_params)
             filter.modify.each do |item|
               expect(item['planStatus']).not_to be 'I'
             end
           end
           it 'returns plans filtered by not sellable' do
-            filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, not_sellable_params)
+            filter = Constructors::PlanConstructor.new(plans_sample, not_sellable_params)
             filter.modify.each do |item|
               expect(item['plansStatus']).not_to be 'A'
             end
@@ -90,13 +85,13 @@ module Wellness
         end
         context 'by species' do
           it 'returns plans filtered by single species' do
-            filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, single_species_params)
+            filter = Constructors::PlanConstructor.new(plans_sample, single_species_params)
             filter.modify.each do |item|
               expect(item['species']).to_not be 2
             end
           end
           it 'returns plans filtered by multiple species' do
-            filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, multiple_species_params)
+            filter = Constructors::PlanConstructor.new(plans_sample, multiple_species_params)
             filter.modify.each do |item|
               expect(item['species']).to eq(1) | eq(2)
             end
@@ -109,7 +104,7 @@ module Wellness
           it 'returns plans filtered by age as datetime' do
             age_params = { age: (DateTime.current - @age.years).to_s }
             age_group = age_groups.select { |_k, v| v <= @age }.max.first.to_i
-            filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, age_params)
+            filter = Constructors::PlanConstructor.new(plans_sample, age_params)
             filter.modify.each do |item|
               expect(item['ageGroup'] % 10).to eq age_group
             end
@@ -118,7 +113,7 @@ module Wellness
             age_months = rand(13)
             age_params = { age: "#{@age}Y #{age_months}M" }
             age_group = age_groups.select { |_k, v| v <= ((age_months / 12).floor + @age) }.max.first.to_i
-            filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, age_params)
+            filter = Constructors::PlanConstructor.new(plans_sample, age_params)
             filter.modify.each do |item|
               expect(item['ageGroup'] % 10).to eq age_group
             end
@@ -126,7 +121,7 @@ module Wellness
           it 'returns plans filtered by age as int' do
             age_params = { age: @age }
             age_group = age_groups.select { |_k, v| v <= @age }.max.first.to_i
-            filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, age_params)
+            filter = Constructors::PlanConstructor.new(plans_sample, age_params)
             filter.modify.each do |item|
               expect(item['ageGroup'] % 10).to eq age_group
             end
@@ -140,7 +135,7 @@ module Wellness
               is_sellable: ['true', 'false'].sample,
               species: ['1', '2', '1,2'].sample
             }
-            filter = Constructors::PlanConstructor.new(plans_sample, field_mapper, all_params)
+            filter = Constructors::PlanConstructor.new(plans_sample, all_params)
             expect { filter.modify }.not_to raise_error
           end
         end

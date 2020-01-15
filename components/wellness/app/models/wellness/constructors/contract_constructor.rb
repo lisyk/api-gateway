@@ -6,11 +6,10 @@ module Wellness
       include Wellness::Services::ContractTranslatorService
       include Wellness::Services::ContractMapperService
 
-      attr_reader :contracts, :constructor_mapper
+      attr_reader :contracts
 
-      def initialize(origin_contracts, constructor_mapper, _params)
+      def initialize(origin_contracts, _params)
         @contracts = origin_contracts
-        @constructor_mapper = constructor_mapper
       end
 
       def modify

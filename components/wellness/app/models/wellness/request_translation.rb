@@ -5,11 +5,10 @@ module Wellness
     include Services::ContractAppTranslatorService
     include Services::ResponseLogger
 
-    attr_accessor :request, :translation_type
+    attr_accessor :request
 
-    def initialize(request, translation_type, skip_defaults = false)
+    def initialize(request, skip_defaults = false)
       @request = parse_request(request)
-      @translation_type = translation_type
       @skip_defaults = skip_defaults
     end
 
@@ -27,13 +26,7 @@ module Wellness
 
         translate_nested(request[key])
       end
-      return request if @skip_defaults
-
-      run_defaults
-    end
-
-    def run_defaults
-      update_default_fields
+      update_default_fields unless @skip_defaults
       translate_fields
       request
     end
@@ -54,8 +47,8 @@ module Wellness
     end
 
     def constructor_mapper
-      file_name = "#{@translation_type}_request_mapper.json"
-      file_path = "../../../lib/mappers/#{@translation_type}/#{file_name}"
+      file_name = 'mapper.json'
+      file_path = "../../../lib/mappers/vcp/#{file_name}"
       mapper_file = File.expand_path(file_path, __dir__)
       JSON.parse(File.read(mapper_file))
     end
@@ -73,6 +66,8 @@ module Wellness
     end
 
     def translate_phone_fields
+      return unless translate_field?(%w[phone mobile alternate_phone])
+
       if request['mobile'].present?
         translate_mobile
       else
@@ -89,11 +84,15 @@ module Wellness
     end
 
     def translate_cc_fields
+      return unless translate_field?(%w[payMethod])
+
       value = request['payMethod']
       request['payMethod'] = translate_general('card_name', value, :partner)
     end
 
     def translate_code_fields
+      return unless translate_field?(%w[externalPlanCd externalLocationCd])
+
       plan_code = request['externalPlanCd']
       clinic_location_id = request['externalLocationCd']
       request['plan'] = { 'id' => plan_code }
@@ -102,6 +101,13 @@ module Wellness
 
     def parse_request(request)
       JSON.parse(request.body.read)
+    end
+
+    def translate_field?(translation_values)
+      translation_values.each do |value|
+        return true if @request[value].present?
+      end
+      false
     end
   end
 end
