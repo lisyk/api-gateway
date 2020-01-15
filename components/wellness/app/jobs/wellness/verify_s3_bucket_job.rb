@@ -5,13 +5,15 @@ module Wellness
     include Services::AwsS3Service
     include Services::S3BucketJobMessageService
 
+    attr_reader :status
+
     queue_as :default
 
     def perform(*_args)
       start_job
-      response = connection.client.send(:get, 'contract')
+      response = fetch_new_contracts
       new_contracts = JSON.parse(response.body)
-      @status = status_template
+      @status = status_template(new_contracts)
       errors = verify_s3_contents(new_contracts)
       reconcile_agreements(errors) if errors.any?
       finish_job
@@ -24,8 +26,20 @@ module Wellness
       Wellness::Connect.new
     end
 
-    def status_template
-      { count: new_contracts.size, nil_id: 0, dl_failed: [], ul_failed: [], found: [] }
+    def fetch_new_contracts
+      connection.client.send(:get, 'contract')
+    end
+
+    def fetch_agreement(id)
+      connection.client.send(:get, "contractApplicationAgreement/#{id}")
+    end
+
+    def s3_upload(id, document)
+      s3_bucket.object("#{id}.pdf").put(body: document)
+    end
+
+    def status_template(contracts)
+      { count: contracts.size, nil_id: 0, dl_failed: [], ul_failed: [], found: [] }
     end
 
     def verify_s3_contents(contracts)
@@ -56,25 +70,25 @@ module Wellness
 
     def download_document(id)
       print "#{DateTime.current}: Downloading agreement from partner for ID##{id}... "
-      response = connection.client.send(:get, "contractApplicationAgreement/#{id}")
+      response = fetch_agreement(id)
       if response.status == 200
         puts 'Success'
         return Base64.strict_encode64(response.body)
       else
         puts 'Failed'
-        message[:dl_failed] << id
+        @status[:dl_failed] << id
       end
       nil
     end
 
-    def upload_document(agreement_id, document)
+    def upload_document(id, document)
       print "#{DateTime.current}: Uploading agreement to S3 for ID##{id}... "
-      upload = s3_bucket.object("#{agreement_id}.pdf").put(body: document)
+      upload = s3_upload(id, document)
       if upload.etag.present?
         puts 'Success'
       else
         puts 'Failed'
-        message[:ul_failed] << id
+        @status[:ul_failed] << id
       end
     end
   end

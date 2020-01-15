@@ -43,9 +43,9 @@ module Wellness
       end
 
       def display_stats
-        puts "#{count} contract(s) retrieved from partner" \
-            "#{found.size} contract(s) found in S3 bucket, " \
-            "requiring #{count - found.size} correction(s)"
+        puts "#{count} contract(s) retrieved from partner\n" \
+             "#{found.size} contract(s) found in S3 bucket, " \
+             "requiring #{count - found.size} correction(s)"
         puts '' if errors_total.zero?
         display_no_upload_required
         display_successful_upload
