@@ -9,6 +9,8 @@ module Wellness
     subject(:job) { VerifyS3BucketJob.new }
 
     before :each do
+      allow($stdout).to receive(:puts)
+      allow($stdout).to receive(:write)
       body = (0..9).map do
         { id: 'test_id' }
       end.to_json
