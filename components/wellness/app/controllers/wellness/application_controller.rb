@@ -8,25 +8,26 @@ module Wellness
     before_action :user_authorized?
     before_action :convert_url_pet_id
 
-    private
-
-    def user_authorized?
-      return unless @current_user != 'authorized'
-
-      render json: { errors: ['You are not authorized'] }, status: :forbidden
-    end
-
     def convert_url_pet_id
+      return if params[:id].blank?
+
       pet_regex = /[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/
-      pet_id_matches = request.path_info.match(pet_regex)
+      pet_id_matches = params[:id].match(pet_regex)
       return unless pet_id_matches
 
       pet_id = pet_id_matches[0]
       response = contract_app_id_client(pet_id).get
       return unless response
 
-      contract_app_id = JSON.parse(response.body).first.fetch('id')
-      params[:id] = contract_app_id if contract_app_id.present?
+      params[:id] = contract_app_id(response) if contract_app_id(response).present?
+    end
+
+    private
+
+    def user_authorized?
+      return unless @current_user != 'authorized'
+
+      render json: { errors: ['You are not authorized'] }, status: :forbidden
     end
 
     def contract_app_id_client(pet_id)
@@ -37,6 +38,10 @@ module Wellness
         faraday.adapter Faraday.default_adapter
         faraday.headers['Authorization'] = "Bearer #{client.token}" if client.token.present?
       end
+    end
+
+    def contract_app_id(response)
+      JSON.parse(response.body).first.fetch('externalMemberCd')
     end
 
     def demo_client_ready
