@@ -76,6 +76,7 @@ module Wellness
         describe 'service consumed' do
           before :each do
             allow(controller).to receive(:consume_service).and_return 'response_payload'
+            allow(controller).to receive(:bad_response?).and_return false
             post :create, body: { 'owner_id': '1000' }.to_json
           end
           it 'returns 200 response' do
