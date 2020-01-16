@@ -1877,6 +1877,61 @@
             }
           }
         }
+      },
+      "delete": {
+        "summary": "Cancel an open contract application. Completed contracts cannot be canceled.",
+        "tags": [
+          "Contract Applications"
+        ],
+        "security": [
+          {
+            "bearer_auth": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cancel an existing application",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/contract_application_response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/malformed_request_error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/auth_error"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/v1/wellness/contract_services": {
