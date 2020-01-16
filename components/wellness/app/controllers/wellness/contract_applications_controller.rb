@@ -53,6 +53,22 @@ module Wellness
       end
     end
 
+    def destroy
+      @response ||= put_apps({ status: 7 }.to_json)
+      if @response.present? && @response['status'] == '7'
+        render json: @response,
+               status: :ok
+      else
+        render json: {
+          errors: [
+            'Contract application was not canceled. ' \
+            'Completed contracts may not be canceled.'
+          ]
+        },
+               status: :unprocessable_entity
+      end
+    end
+
     private
 
     def contract_apps(params = {})

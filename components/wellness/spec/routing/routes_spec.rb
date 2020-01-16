@@ -39,6 +39,10 @@ module Wellness
         it 'routes to contract_applications #update' do
           expect(put: '/wellness/contract_applications/1').to route_to('wellness/contract_applications#update', id: '1')
         end
+
+        it 'routes to contract_applications #destroy' do
+          expect(delete: '/wellness/contract_applications/1').to route_to('wellness/contract_applications#destroy', id: '1')
+        end
       end
 
       context 'Agreements' do
