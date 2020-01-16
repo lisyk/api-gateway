@@ -16,18 +16,32 @@ module Wellness
     def create
       translated_request = translate(request, true)
       @response ||= consume_service(translated_request)
-      if @response.is_a?(Hash) && @response.keys == ['errors']
-        render json: @response,
-               status: :bad_request
-      elsif @response.present?
-        render json: @response
+      if bad_response?
+        render json: {
+          errors: response_errors,
+          warnings: response_warnings
+        }
       else
-        render json: { errors: ['Service consumption error.'] },
-               status: :unprocessable_entity
+        @response.present?
+        render json: @response
       end
     end
 
     private
+
+    def bad_response?
+      response_errors.present? || response_warnings.present?
+    end
+
+    def response_errors
+      any_errors = @response['serviceConsumptionList'].detect { |i| i.key? 'errors' }
+      any_errors ? any_errors['errors'] : []
+    end
+
+    def response_warnings
+      any_warnings = @response['serviceConsumptionList'].detect { |i| i.key? 'warnings' }
+      any_warnings ? any_warnings['warnings'] : []
+    end
 
     def fetch_services
       services = ContractService.new(controller_name, action_name, params, query_params)
