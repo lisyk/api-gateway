@@ -23,6 +23,10 @@ contract_applications:
   update:
     method: put
     resource: contractApplication
+  
+  destroy:
+    method: put
+    resource: contractApplication
 
 plans:
   index:

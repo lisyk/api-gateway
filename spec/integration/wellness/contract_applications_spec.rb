@@ -238,4 +238,47 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
       end
     end
   end
+
+  path '/api/v1/wellness/contract_applications/{id}' do
+    delete 'Cancel an open contract application. Completed contracts cannot be canceled.' do
+      tags 'Contract Applications'
+      produces 'application/json'
+      consumes 'application/json'
+      security [bearer_auth: []]
+      parameter name: :id,
+                in: :path,
+                type: :string
+
+      context 'Using valid credentials' do
+        let(:token) do
+          post '/api/v1/authentication', params: { user_name: 'test', password: 'test' }
+          JSON.parse(response.body)['token']
+        end
+        let(:Authorization) { " Authorization: Bearer #{token} " }
+        let(:id) { '1000014069' }
+
+        response '200', 'Cancel an existing application' do
+          schema '$ref' => '#/components/schemas/contract_application_response'
+          let(:Authorization) { " Authorization: Bearer #{token} " }
+          run_test!
+        end
+
+        response '422', 'Unprocessable Entity' do
+          let(:id) { '1000015090' }
+          schema '$ref' => '#/components/schemas/malformed_request_error'
+          run_test!
+        end
+      end
+
+      context 'Using invalid credentials/credentials missing' do
+        let(:Authorization) { '' }
+        let(:id) { '1000013302' }
+
+        response '403', 'Invalid credentials' do
+          schema '$ref' => '#/components/schemas/auth_error'
+          run_test!
+        end
+      end
+    end
+  end
 end
