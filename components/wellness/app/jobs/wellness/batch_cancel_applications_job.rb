@@ -2,16 +2,13 @@
 
 module Wellness
   class BatchCancelApplicationsJob < ApplicationJob
-    attr_reader :status
+    attr_reader :last_updated_before_date, :status, :results
 
     queue_as :default
 
-    def perform(status = nil, last_updated_before_date = nil)
+    def perform(status: nil, last_updated_before_date: nil)
       start_job_message
-      last_updated_before_date ||= DateTime.current #- 8.days
-      @last_updated_before_date = last_updated_before_date.strftime('%Y-%m-%d')
-      @status = status.nil? ? [] : status.map(&:to_s)
-      @status = { success: 0, errors: [] }
+      set_status(status, last_updated_before_date)
       response = fetch_open_applications
       applications = JSON.parse(response.body)
       puts "Retrieved #{applications.count} records from partner. Attempting to cancel..."
@@ -21,6 +18,13 @@ module Wellness
     end
 
     private
+
+    def set_status(status, last_updated_before_date)
+      last_updated_before_date ||= DateTime.current - 8.days
+      @last_updated_before_date = last_updated_before_date.strftime('%Y-%m-%d')
+      @status = status.nil? ? [] : status.map(&:to_s)
+      @results = { success: 0, errors: [] }
+    end
 
     def connection
       Wellness::Connect.new
@@ -55,19 +59,22 @@ module Wellness
       return if %w[0 5 7].include?(status) || (@status.any? && !@status.include?(status))
 
       print "#{DateTime.current}: Canceling application ID##{id}... "
-      response = connection.client.send(:put,
-                                        contract_application_update_url(id),
-                                        cancellation_params)
-
+      response = send_cancellation_request(id)
       check_cancellation(response, id)
+    end
+
+    def send_cancellation_request(id)
+      connection.client.send(:put,
+                             contract_application_update_url(id),
+                             cancellation_params)
     end
 
     def check_cancellation(response, id)
       if response.status == 200
-        @status[:success] += 1
+        @results[:success] += 1
         puts 'Success'
       else
-        @status[:errors] << id
+        @results[:errors] << id
         puts 'Failed: response status ' + response.status.to_s
       end
     end
@@ -83,21 +90,21 @@ module Wellness
     def display_results
       puts ''
       success_message
-      errors_message if @status[:errors].size.positive?
+      errors_message if @results[:errors].size.positive?
       puts ''
     end
 
     def success_message
-      if @status[:success].zero? && @status[:errors].empty?
+      if @results[:success].zero? && @results[:errors].empty?
         puts 'No corrections required.'
       else
-        puts "#{@status[:success]} applications successfully canceled."
+        puts "#{@results[:success]} applications successfully canceled."
       end
     end
 
     def errors_message
-      puts "#{@status[:errors].size} applications were unable to be automatically canceled:"
-      @status[:errors].each { |id| puts id }
+      puts "#{@results[:errors].size} applications were unable to be automatically canceled:"
+      @results[:errors].each { |id| puts id }
     end
   end
 end
