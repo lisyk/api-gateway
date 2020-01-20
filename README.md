@@ -153,7 +153,13 @@ While pairing you may want to use `git pair` for your commits, it requires insta
 
 ### Rake Tasks
 
+- `bundle exec rake applications:cancel`
+  - Starts a background job to retreive a list of contract applications present
+  - If application is older than 7 days and it has not already been completed, an attempt to cancel it is made
+  - Job can be run manually and accepts a list of status codes to cancel as well as a date cutoff
+  - Errors that cannot be automatically corrected are listed to assist with manual troubleshooting
+
 - `bundle exec rake s3:validate`
-  - Starts a background job to retreive a list of new contracts from partner and checks that they have a corresponding agreement document in Amazon S3 bucket
+  - Starts a background job to retrieve a list of new contracts from partner and checks that they have a corresponding agreement document in Amazon S3 bucket
   - If a mismatch is present, the job attempts to download missing documents from partner and reupload
   - Errors that cannot be automatically corrected are listed to assist with manual troubleshooting
