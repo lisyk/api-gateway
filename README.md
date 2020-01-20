@@ -150,3 +150,10 @@ While pairing you may want to use `git pair` for your commits, it requires insta
 - AWS_REGION
   - All environments
   - set in local env files
+
+### Rake Tasks
+
+- `bundle exec rake s3:validate`
+  - Starts a background job to retreive a list of new contracts from partner and checks that they have a corresponding agreement document in Amazon S3 bucket
+  - If a mismatch is present, the job attempts to download missing documents from partner and reupload
+  - Errors that cannot be automatically corrected are listed to assist with manual troubleshooting
