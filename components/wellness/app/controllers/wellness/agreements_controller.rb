@@ -17,11 +17,16 @@ module Wellness
 
     def update
       @response ||= put_agreement(agreement_params) || {}
-      parsed_response = Agreement.build_client_response(@response)
-      parsed_response[:messages][:id] = agreement_id if agreement_id.present?
-      render_messages(parsed_response) && return if parsed_response[:messages][:errors].present?
-      messages = store_agreement(parsed_response)
-      render_messages(messages)
+      if @response.present? && @response['errors'].nil?
+        render json: { success: ['Signed agreement posted successfully.'] }
+      elsif @response.empty?
+        render json: { errors: ['Agreement not found.'] },
+               status: :not_found
+      else
+        @response['errors'] ||= ['Agreement failed to update.']
+        render json: { errors: @response['errors'] },
+               status: :unprocessable_entity
+      end
     end
 
     def create

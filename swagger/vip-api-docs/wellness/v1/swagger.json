@@ -1370,16 +1370,6 @@
               }
             }
           },
-          "207": {
-            "description": "Agreement uploads to partner, but cannot be stored in S3 bucket",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/agreement_s3_upload_error"
-                }
-              }
-            }
-          },
           "404": {
             "description": "Document not found",
             "content": {
@@ -1568,16 +1558,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/agreement_upload_response"
-                }
-              }
-            }
-          },
-          "207": {
-            "description": "Agreement uploads to partner, but cannot be stored in S3 bucket",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/s3_upload_error"
                 }
               }
             }

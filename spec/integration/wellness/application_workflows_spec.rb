@@ -78,20 +78,6 @@ describe 'Wellness Plans API', swagger_doc: 'wellness/v1/swagger.json' do
           run_test!
         end
 
-        response '207', 'Agreement uploads to partner, but cannot be stored in S3 bucket' do
-          let(:Authorization) { " Authorization: Bearer #{token} " }
-          let(:id) { '1000013888' }
-          file = Rack::Test::UploadedFile.new(
-            Rails.root.join('spec/fixtures/files/contract.pdf')
-          )
-          let(:document) { file }
-          before do
-            allow_any_instance_of(Wellness::Services::AwsS3Service).to receive(:upload_document).and_raise(StandardError, 'error')
-          end
-          schema '$ref' => '#/components/schemas/s3_upload_error'
-          run_test!
-        end
-
         response '404', 'Document not found' do
           let(:Authorization) { " Authorization: Bearer #{token} " }
           let(:id) { '123456789' }
