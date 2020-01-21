@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'aws-sdk-s3'
-
 module Wellness
   module Services
     module PetUuidService
