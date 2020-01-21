@@ -3,6 +3,7 @@
 require 'rails_helper'
 require 'json-schema'
 require(File.expand_path('../../app/controllers/api/v1/api_controller'))
+require(File.expand_path('../../components/wellness/spec/helpers/faraday_mock.rb'))
 
 module Wellness
   RSpec.describe ApplicationWorkflowsController, type: :controller do
@@ -134,6 +135,29 @@ module Wellness
           end
           it 'assigns contract' do
             expect(assigns(:contract)).not_to be_nil
+          end
+        end
+        describe 'pet UUID conversion' do
+          before :each do
+            allow_any_instance_of(ApplicationWorkflow).to receive(:partner_finalization_request)
+            allow(controller).to receive(:validate_request).and_return nil
+            allow(controller).to receive(:put_apps).and_return JSON.parse(contract)
+            allow(controller).to receive(:contract_app_id_client).and_return FaradayMock.new('123456789')
+          end
+          it 'converts pet UUID' do
+            put :update, params: { id: 'd525ffb5-d627-41f9-a317-86a205a9e130' }
+            expect(controller.params).to include :id
+            expect(controller.params[:id]). to eq '123456789'
+          end
+          it 'ignores contract ID' do
+            put :update, params: { id: '123456789' }
+            expect(controller.params).to include :id
+            expect(controller.params[:id]). to eq '123456789'
+          end
+          it 'ignores non UUID' do
+            put :update, params: { id: 'bad_UUID' }
+            expect(controller.params).to include :id
+            expect(controller.params[:id]). to eq 'bad_UUID'
           end
         end
         describe 'not finalized' do
