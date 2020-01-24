@@ -20,13 +20,8 @@ module Wellness
       end
 
       def contract_app_id_client(pet_uuid)
-        client = Connect.new
-        url = client.url + '/contractApplication'
-        Faraday.new(url: url, params: { 'externalMemberCd' => pet_uuid }) do |faraday|
-          faraday.request :url_encoded
-          faraday.adapter Faraday.default_adapter
-          faraday.headers['Authorization'] = "Bearer #{client.token}" if client.token.present?
-        end
+        query_params = { 'externalMemberCd' => pet_uuid }
+        Connect.new('/contractApplication', query_params).client
       end
 
       def id(response)
