@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 require(File.expand_path('../../app/controllers/api/v1/api_controller'))
+require(File.expand_path('../../components/wellness/spec/helpers/faraday_mock.rb'))
 require 'redis'
 
 module Wellness
@@ -40,6 +41,28 @@ module Wellness
           end
           it 'assigns agreement' do
             expect(assigns(:agreement)).to be_nil
+          end
+        end
+        describe 'pet UUID conversion' do
+          before :each do
+            allow(controller).to receive(:fetch_agreement).and_return agreement
+            allow(agreement).to receive(:body) { 'file' }
+            allow(controller).to receive(:contract_app_id_client).and_return FaradayMock.new('123456789')
+          end
+          it 'converts pet UUID' do
+            get :show, params: { id: 'd525ffb5-d627-41f9-a317-86a205a9e130' }
+            expect(controller.params).to include :id
+            expect(controller.params[:id]). to eq '123456789'
+          end
+          it 'ignores contract ID' do
+            get :show, params: { id: '123456789' }
+            expect(controller.params).to include :id
+            expect(controller.params[:id]). to eq '123456789'
+          end
+          it 'ignores non UUID' do
+            get :show, params: { id: 'bad_UUID' }
+            expect(controller.params).to include :id
+            expect(controller.params[:id]). to eq 'bad_UUID'
           end
         end
       end

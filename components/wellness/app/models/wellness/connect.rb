@@ -4,15 +4,16 @@ require_dependency 'redis'
 
 module Wellness
   class Connect
-    attr_reader :url, :token
+    attr_reader :url, :token, :query_params
 
-    def initialize
-      @url = base_uri
+    def initialize(endpoint = '', query_params = {})
+      @url = base_uri + endpoint
       @token = auth_token
+      @query_params = query_params
     end
 
     def client
-      Faraday.new(url: url) do |faraday|
+      Faraday.new(url: url, params: query_params) do |faraday|
         faraday.request :url_encoded
         faraday.adapter Faraday.default_adapter
         faraday.headers['Authorization'] = "Bearer #{token}" if token.present?

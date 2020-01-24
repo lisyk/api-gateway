@@ -4,7 +4,10 @@ require_dependency 'wellness/application_controller'
 
 module Wellness
   class ApplicationWorkflowsController < Wellness::ApplicationController
+    include Services::PetUuidService
+
     before_action :validate_request, only: %i[create update]
+    before_action :convert_pet_uuid, only: %i[update]
 
     def update
       translated_request = application_workflow.partner_finalization_request(request)

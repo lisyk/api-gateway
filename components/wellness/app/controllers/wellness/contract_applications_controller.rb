@@ -2,8 +2,11 @@
 
 module Wellness
   class ContractApplicationsController < Wellness::ApplicationController
+    include Services::PetUuidService
+
     after_action :retain_id_link, only: :create
     before_action :validate_request, only: %i[create update]
+    before_action :convert_pet_uuid, only: %i[show update]
 
     def index
       @applications ||= contract_apps

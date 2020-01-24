@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 require(File.expand_path('../../app/controllers/api/v1/api_controller'))
+require(File.expand_path('../../components/wellness/spec/helpers/faraday_mock.rb'))
 
 module Wellness
   RSpec.describe ContractApplicationsController, type: :controller do
@@ -89,6 +90,27 @@ module Wellness
           end
           it 'returns one application' do
             expect(assigns(:application)).not_to be_a Array
+          end
+        end
+        describe 'pet UUID conversion' do
+          before :each do
+            allow(controller).to receive(:contract_apps).and_return contract_apps.first
+            allow(controller).to receive(:contract_app_id_client).and_return FaradayMock.new('123456789')
+          end
+          it 'converts pet UUID' do
+            get :show, params: { id: 'd525ffb5-d627-41f9-a317-86a205a9e130' }
+            expect(controller.params).to include :id
+            expect(controller.params[:id]). to eq '123456789'
+          end
+          it 'ignores contract ID' do
+            get :show, params: { id: '123456789' }
+            expect(controller.params).to include :id
+            expect(controller.params[:id]). to eq '123456789'
+          end
+          it 'ignores non UUID' do
+            get :show, params: { id: 'bad_UUID' }
+            expect(controller.params).to include :id
+            expect(controller.params[:id]). to eq 'bad_UUID'
           end
         end
         describe 'application service unavailable' do
@@ -186,6 +208,28 @@ module Wellness
             expect(response).to have_http_status(200)
             expect(JSON.parse(response.body)['errors']).to be_nil
             expect(JSON.parse(response.body)).not_to be_nil
+          end
+        end
+        describe 'pet UUID conversion' do
+          before :each do
+            allow(controller).to receive(:put_apps).and_return(put_apps)
+            stub_const('Settings', route_settings)
+            allow(controller).to receive(:contract_app_id_client).and_return FaradayMock.new('123456789')
+          end
+          it 'converts pet UUID' do
+            put :update, params: { id: 'd525ffb5-d627-41f9-a317-86a205a9e130' }
+            expect(controller.params).to include :id
+            expect(controller.params[:id]). to eq '123456789'
+          end
+          it 'ignores contract ID' do
+            put :update, params: { id: '123456789' }
+            expect(controller.params).to include :id
+            expect(controller.params[:id]). to eq '123456789'
+          end
+          it 'ignores non UUID' do
+            put :update, params: { id: 'bad_UUID' }
+            expect(controller.params).to include :id
+            expect(controller.params[:id]). to eq 'bad_UUID'
           end
         end
       end

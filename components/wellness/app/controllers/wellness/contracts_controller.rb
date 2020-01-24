@@ -2,6 +2,10 @@
 
 module Wellness
   class ContractsController < ApplicationController
+    include Services::PetUuidService
+
+    before_action :convert_pet_uuid, only: %i[show]
+
     def index
       @contracts ||= contracts(contract_params)
       if @contracts.present?

@@ -3,8 +3,10 @@
 module Wellness
   class AgreementsController < Wellness::ApplicationController
     include Services::AwsS3Service
+    include Services::PetUuidService
 
     before_action :validate_id, only: :create
+    before_action :convert_pet_uuid, only: %i[show update]
 
     def show
       @agreement ||= fetch_agreement(agreement_params)
