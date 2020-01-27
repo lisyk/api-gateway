@@ -1,0 +1,147 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://demo.vcp.vet/cwa/api/login
+    body:
+      encoding: UTF-8
+      string: password=<WELLNESS_VCP_PASSWORD>&username=<WELLNESS_VCP_USERNAME>
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '2490'
+      Date:
+      - Thu, 31 Oct 2019 01:40:59 GMT
+    body:
+      encoding: UTF-8
+      string: '{"username":"<WELLNESS_VCP_USERNAME>","roles":["ROLE_API","ROLE_MERCHANT_SERVICE_CONSUMPTION"],"token_type":"Bearer","access_token":"eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTVDJzVFFSejliVXhwb1JCYlFjVkRCYkhlWkFOVmFFc3VqY3Vxa2UwbTVJK0hDb2JKN25TZGRuWm1uSmxOazR2a3BJY2VLbXBCOEN2MG02Z0hQNERvd1d2UFhwM1pcL3Rub3BUaW41YzJiOTk3djlcL2JvR0dhVWhIdUpSSVFxVjlBc0ljeFZRaEtXS0J4bGt1aXhteWtzWTZ4enhxT2MyRE1JbkJ5bkJFNEFKUkpydUJMc29DR3FVc1NTYW5Pd2d5TmRHMGxZNFRJNVZkeVdLTVY3WE82NjU5b1JsXC9ndmcwTGEyU2pCN0JZc29pamlHZE1oWlwvNUlFSW5qTFZnb3NJQkh1eGE2R3BrYnpEUkJWRTFUWnpGREE0cmpBT1pScGw5dzQwcXcwbkQ1Skd5bUNhMTJzSzRGTUNlUVVpYmRQNU4wdEkxdTcyMU1aaVo0Q2ErZ1BCS09PV1ozZHl6VnRUcXV4eWsxVXhQTzFIS1BwVHdtMjhTYUdcLzNKMHJ0dkI1OG12UktBMmNuZGk5OFUrSTBITVBuOFwvUGZOZk5GT3BPSGFWUFNDVmhzSmsyYXhVTzVLYkoyXC9mMnk5UHp4KzgreVNjYmFNaFwvXC9meDNMOWRITmpqNmNDU2FUNVZFZEdkcTlzdmt0R2ZPTmk4Yk1XeHZaZllockg1K0tOVk5CQzFneGJscHllYlZ2RFhMc1orUDE2cTZFc1ZORndLd2MyXC9iYjN1QjUyK3gyXC9cL2JUaCtYMnZHWFo2bTYxdW94bmFaNVVoRVVpUXRkVzE5ZFg3NnlzbVpDWGZrUzNYRGJpcGR2XC9YMnk4SHQzOFl5eWN3TTBRMHc2YWloWUlVWnVrQXk5ZEhoMHZ6SDM3dTV3UG5LZHRmclwvOEJaMXc1WUVBREFBQT0iLCJzdWIiOiJ2aXBhcGk4Nzg5NzQ5MiIsImV4cCI6MTU3MjQ4OTY2MCwiaWF0IjoxNTcyNDg2MDYwLCJyb2xlcyI6WyJST0xFX0FQSSIsIlJPTEVfTUVSQ0hBTlRfU0VSVklDRV9DT05TVU1QVElPTiJdfQ.jYph7_Y-xJ5N8mmsfBDwJpg2wqrGJM_KqY5EJjAGqn8","expires_in":3600,"refresh_token":"eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTVDJzVFFSejliVXhwb1JCYlFjVkRCYkhlWkFOVmFFc3VqY3Vxa2UwbTVJK0hDb2JKN25TZGRuWm1uSmxOazR2a3BJY2VLbXBCOEN2MG02Z0hQNERvd1d2UFhwM1pcL3Rub3BUaW41YzJiOTk3djlcL2JvR0dhVWhIdUpSSVFxVjlBc0ljeFZRaEtXS0J4bGt1aXhteWtzWTZ4enhxT2MyRE1JbkJ5bkJFNEFKUkpydUJMc29DR3FVc1NTYW5Pd2d5TmRHMGxZNFRJNVZkeVdLTVY3WE82NjU5b1JsXC9ndmcwTGEyU2pCN0JZc29pamlHZE1oWlwvNUlFSW5qTFZnb3NJQkh1eGE2R3BrYnpEUkJWRTFUWnpGREE0cmpBT1pScGw5dzQwcXcwbkQ1Skd5bUNhMTJzSzRGTUNlUVVpYmRQNU4wdEkxdTcyMU1aaVo0Q2ErZ1BCS09PV1ozZHl6VnRUcXV4eWsxVXhQTzFIS1BwVHdtMjhTYUdcLzNKMHJ0dkI1OG12UktBMmNuZGk5OFUrSTBITVBuOFwvUGZOZk5GT3BPSGFWUFNDVmhzSmsyYXhVTzVLYkoyXC9mMnk5UHp4KzgreVNjYmFNaFwvXC9meDNMOWRITmpqNmNDU2FUNVZFZEdkcTlzdmt0R2ZPTmk4Yk1XeHZaZllockg1K0tOVk5CQzFneGJscHllYlZ2RFhMc1orUDE2cTZFc1ZORndLd2MyXC9iYjN1QjUyK3gyXC9cL2JUaCtYMnZHWFo2bTYxdW94bmFaNVVoRVVpUXRkVzE5ZFg3NnlzbVpDWGZrUzNYRGJpcGR2XC9YMnk4SHQzOFl5eWN3TTBRMHc2YWloWUlVWnVrQXk5ZEhoMHZ6SDM3dTV3UG5LZHRmclwvOEJaMXc1WUVBREFBQT0iLCJzdWIiOiJ2aXBhcGk4Nzg5NzQ5MiIsImlhdCI6MTU3MjQ4NjA2MCwicm9sZXMiOlsiUk9MRV9BUEkiLCJST0xFX01FUkNIQU5UX1NFUlZJQ0VfQ09OU1VNUFRJT04iXX0.t0c5Wt4DfaXnWwdyiF6zf1T4lnOiJ2bHQBI6Oew1v3c"}'
+    http_version: 
+  recorded_at: Thu, 31 Oct 2019 01:41:00 GMT
+- request:
+    method: get
+    uri: https://demo.vcp.vet/cwa/api/contractApplication
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - "<Authorization-REDACTED>"
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Set-Cookie:
+      - JSESSIONID=DC2A647F8885ED60EA863C75AAB83C1B; Path=/cwa/; Secure; HttpOnly
+      - cwa.cssName.null=loginmain.390; Expires=Tue, 18-Nov-2087 04:55:07 GMT
+      X-Total-Count:
+      - '60'
+      X-Count:
+      - '10'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Thu, 31 Oct 2019 01:40:59 GMT
+    body:
+      encoding: UTF-8
+      string: '[{"id":1000012565,"plan":{"id":5428455,"shortDescription":"Puppy Wellness
+        Plan"},"accountNbrForDisplay":"5354","address1":"1010 Monarch St","address2":null,"ageGroupId":11,"bankAccountHolderType":"P","bankAccountType":"C","bankRoutingNbr":"122000496","chargeCreditCheckFeeToConsumer":false,"chargePaymentFeeToConsumer":false,"checkNbr":null,"city":"Lexington","contractDocCreated":null,"contractType":3,"country":"US","createdByExternalUserCd":null,"creditCheckFeeAmt":10,"dateCreated":"2019-10-30T17:10:21Z","downPaymentAmount":25,"email":"jblau@bitwerx.com","expirationMonth":null,"expirationYear":null,"externalClientCd":"10001","externalLocationCd":null,"externalMemberCd":"1","externalPaymentProfileId":"100851194","externalPlanCd":null,"firstBillingDate":"2019-11-01T17:10:21Z","firstName":"Jennifer","gatewayVaultId":null,"gender":"F","initialPaymentOption":2,"initiatedByProfessionalCd":null,"initiatedByProfessionalId":null,"institutionName":"UNION
+        BANK","lastName":"Blau","lastUpdated":"2019-10-30T17:10:21Z","location":{"id":5426720,"accountCd":"010265","address1":"250
+        Commerce","address2":"Suite 200 XXX","city":"Irvine","country":"USA","externalLocationCd":"010265","name":"SampleLocation","postalCode":"92602","resellerCustomerId":1995,"state":"CA"},"locationId":5426720,"memberAge":"7Y
+        2M","memberName":"Daphne","middleInitial":null,"optionalPlanServices":[],"payMethod":"ACH","payOption":"ACH","paymentAddress1":"1010
+        Monarch St","paymentAddress2":null,"paymentAmount":21.95,"paymentCity":"Lexington","paymentCountry":"US","paymentName":"Jennifer
+        Blau","paymentPostalCode":"40503","paymentServiceFeeAmt":3,"paymentState":"KY","paymentTermCycle":"M","paymentTermDuration":12,"paymentaddressSameAsAccount":true,"phone1":"8888242485","phone1Type":"W","phone2":null,"phone2Type":null,"planAmount":263.4,"planId":5428455,"portalUsername":"test1234@test.com","postalCode":"40503","primaryCareProfessionalCd":null,"primaryCareProfessionalId":null,"salutation":"Ms.","securityCode":null,"sendNotifications":true,"setupFeeAmt":10,"speciesId":1,"state":"KY","status":"1","totalCostAmount":288.4,"userId":5426455},{"id":1000012564,"plan":{"id":5428455,"shortDescription":"Puppy
+        Wellness Plan"},"accountNbrForDisplay":"5354","address1":"100 Argonaut","address2":null,"ageGroupId":11,"bankAccountHolderType":"P","bankAccountType":"C","bankRoutingNbr":"122000496","chargeCreditCheckFeeToConsumer":false,"chargePaymentFeeToConsumer":false,"checkNbr":null,"city":"Morino
+        Valley","contractDocCreated":null,"contractType":3,"country":"US","createdByExternalUserCd":null,"creditCheckFeeAmt":10,"dateCreated":"2019-10-30T16:53:30Z","downPaymentAmount":25,"email":"Olivia.Wright@ExtendCredit.com","expirationMonth":null,"expirationYear":null,"externalClientCd":"1000","externalLocationCd":null,"externalMemberCd":"1","externalPaymentProfileId":"100851186","externalPlanCd":null,"firstBillingDate":"2019-11-01T16:53:30Z","firstName":"Olivia","gatewayVaultId":null,"gender":null,"initialPaymentOption":2,"initiatedByProfessionalCd":null,"initiatedByProfessionalId":null,"institutionName":"UNION
+        BANK","lastName":"Wright","lastUpdated":"2019-10-30T16:53:30Z","location":{"id":5426720,"accountCd":"010265","address1":"250
+        Commerce","address2":"Suite 200 XXX","city":"Irvine","country":"USA","externalLocationCd":"010265","name":"SampleLocation","postalCode":"92602","resellerCustomerId":1995,"state":"CA"},"locationId":5426720,"memberAge":"1Y
+        2M","memberName":"Cece","middleInitial":null,"optionalPlanServices":[],"payMethod":"ACH","payOption":"ACH","paymentAddress1":"100
+        Argonaut","paymentAddress2":null,"paymentAmount":21.95,"paymentCity":"Morino
+        Valley","paymentCountry":"US","paymentName":"Olivia Wright","paymentPostalCode":"92551","paymentServiceFeeAmt":3,"paymentState":"CA","paymentTermCycle":"M","paymentTermDuration":12,"paymentaddressSameAsAccount":true,"phone1":"9494814601","phone1Type":"H","phone2":"9494814602","phone2Type":"W","planAmount":263.4,"planId":5428455,"portalUsername":"test1234@test.com","postalCode":"92551","primaryCareProfessionalCd":null,"primaryCareProfessionalId":null,"salutation":"Mr.","securityCode":null,"sendNotifications":true,"setupFeeAmt":10,"speciesId":1,"state":"CA","status":"1","totalCostAmount":288.4,"userId":5426455},{"id":1000012563,"plan":{"id":5428455,"shortDescription":"Puppy
+        Wellness Plan"},"accountNbrForDisplay":"5354","address1":"100 Argonaut","address2":null,"ageGroupId":11,"bankAccountHolderType":"P","bankAccountType":"C","bankRoutingNbr":"122000496","chargeCreditCheckFeeToConsumer":false,"chargePaymentFeeToConsumer":false,"checkNbr":null,"city":"Morino
+        Valley","contractDocCreated":null,"contractType":3,"country":"US","createdByExternalUserCd":null,"creditCheckFeeAmt":10,"dateCreated":"2019-10-30T16:51:24Z","downPaymentAmount":25,"email":"Olivia.Wright@ExtendCredit.com","expirationMonth":null,"expirationYear":null,"externalClientCd":"1000","externalLocationCd":null,"externalMemberCd":"1","externalPaymentProfileId":"100851185","externalPlanCd":null,"firstBillingDate":"2019-11-01T16:51:24Z","firstName":"Olivia","gatewayVaultId":null,"gender":null,"initialPaymentOption":2,"initiatedByProfessionalCd":null,"initiatedByProfessionalId":null,"institutionName":"UNION
+        BANK","lastName":"Wright","lastUpdated":"2019-10-30T16:51:24Z","location":{"id":5426720,"accountCd":"010265","address1":"250
+        Commerce","address2":"Suite 200 XXX","city":"Irvine","country":"USA","externalLocationCd":"010265","name":"SampleLocation","postalCode":"92602","resellerCustomerId":1995,"state":"CA"},"locationId":5426720,"memberAge":"1Y
+        2M","memberName":"Cece","middleInitial":null,"optionalPlanServices":[],"payMethod":"ACH","payOption":"ACH","paymentAddress1":"100
+        Argonaut","paymentAddress2":null,"paymentAmount":21.95,"paymentCity":"Morino
+        Valley","paymentCountry":"US","paymentName":"Olivia Wright","paymentPostalCode":"92551","paymentServiceFeeAmt":3,"paymentState":"CA","paymentTermCycle":"M","paymentTermDuration":12,"paymentaddressSameAsAccount":true,"phone1":"9494814601","phone1Type":"H","phone2":"9494814602","phone2Type":"W","planAmount":263.4,"planId":5428455,"portalUsername":"test1234@test.com","postalCode":"92551","primaryCareProfessionalCd":null,"primaryCareProfessionalId":null,"salutation":"Mr.","securityCode":null,"sendNotifications":true,"setupFeeAmt":10,"speciesId":1,"state":"CA","status":"1","totalCostAmount":288.4,"userId":5426455},{"id":1000012562,"plan":{"id":5428455,"shortDescription":"Puppy
+        Wellness Plan"},"accountNbrForDisplay":"5354","address1":"100 Argonaut","address2":null,"ageGroupId":11,"bankAccountHolderType":"P","bankAccountType":"C","bankRoutingNbr":"122000496","chargeCreditCheckFeeToConsumer":false,"chargePaymentFeeToConsumer":false,"checkNbr":null,"city":"Morino
+        Valley","contractDocCreated":null,"contractType":3,"country":"US","createdByExternalUserCd":null,"creditCheckFeeAmt":10,"dateCreated":"2019-10-30T16:50:35Z","downPaymentAmount":25,"email":"Olivia.Wright@ExtendCredit.com","expirationMonth":null,"expirationYear":null,"externalClientCd":"1000","externalLocationCd":null,"externalMemberCd":"1","externalPaymentProfileId":"100851182","externalPlanCd":null,"firstBillingDate":"2019-11-01T16:50:35Z","firstName":"Olivia","gatewayVaultId":null,"gender":null,"initialPaymentOption":2,"initiatedByProfessionalCd":null,"initiatedByProfessionalId":null,"institutionName":"UNION
+        BANK","lastName":"Wright","lastUpdated":"2019-10-30T16:50:35Z","location":{"id":5426720,"accountCd":"010265","address1":"250
+        Commerce","address2":"Suite 200 XXX","city":"Irvine","country":"USA","externalLocationCd":"010265","name":"SampleLocation","postalCode":"92602","resellerCustomerId":1995,"state":"CA"},"locationId":5426720,"memberAge":"1Y
+        2M","memberName":"Cece","middleInitial":null,"optionalPlanServices":[],"payMethod":"ACH","payOption":"ACH","paymentAddress1":"100
+        Argonaut","paymentAddress2":null,"paymentAmount":21.95,"paymentCity":"Morino
+        Valley","paymentCountry":"US","paymentName":"Olivia Wright","paymentPostalCode":"92551","paymentServiceFeeAmt":3,"paymentState":"CA","paymentTermCycle":"M","paymentTermDuration":12,"paymentaddressSameAsAccount":true,"phone1":"9494814601","phone1Type":"H","phone2":"9494814602","phone2Type":"W","planAmount":263.4,"planId":5428455,"portalUsername":"test1234@test.com","postalCode":"92551","primaryCareProfessionalCd":null,"primaryCareProfessionalId":null,"salutation":"Mr.","securityCode":null,"sendNotifications":true,"setupFeeAmt":10,"speciesId":1,"state":"CA","status":"1","totalCostAmount":288.4,"userId":5426455},{"id":1000012561,"plan":{"id":5428455,"shortDescription":"Puppy
+        Wellness Plan"},"accountNbrForDisplay":"5354","address1":"100 Argonaut","address2":null,"ageGroupId":11,"bankAccountHolderType":"P","bankAccountType":"C","bankRoutingNbr":"122000496","chargeCreditCheckFeeToConsumer":false,"chargePaymentFeeToConsumer":false,"checkNbr":null,"city":"Morino
+        Valley","contractDocCreated":null,"contractType":3,"country":"US","createdByExternalUserCd":null,"creditCheckFeeAmt":10,"dateCreated":"2019-10-30T16:50:14Z","downPaymentAmount":25,"email":"Olivia.Wright@ExtendCredit.com","expirationMonth":null,"expirationYear":null,"externalClientCd":"1000","externalLocationCd":null,"externalMemberCd":"1","externalPaymentProfileId":"100851181","externalPlanCd":null,"firstBillingDate":"2019-11-01T16:50:14Z","firstName":"Olivia","gatewayVaultId":null,"gender":null,"initialPaymentOption":2,"initiatedByProfessionalCd":null,"initiatedByProfessionalId":null,"institutionName":"UNION
+        BANK","lastName":"Wright","lastUpdated":"2019-10-30T16:50:14Z","location":{"id":5426720,"accountCd":"010265","address1":"250
+        Commerce","address2":"Suite 200 XXX","city":"Irvine","country":"USA","externalLocationCd":"010265","name":"SampleLocation","postalCode":"92602","resellerCustomerId":1995,"state":"CA"},"locationId":5426720,"memberAge":"1Y
+        2M","memberName":"Cece","middleInitial":null,"optionalPlanServices":[],"payMethod":"ACH","payOption":"ACH","paymentAddress1":"100
+        Argonaut","paymentAddress2":null,"paymentAmount":21.95,"paymentCity":"Morino
+        Valley","paymentCountry":"US","paymentName":"Olivia Wright","paymentPostalCode":"92551","paymentServiceFeeAmt":3,"paymentState":"CA","paymentTermCycle":"M","paymentTermDuration":12,"paymentaddressSameAsAccount":true,"phone1":"9494814601","phone1Type":"H","phone2":"9494814602","phone2Type":"W","planAmount":263.4,"planId":5428455,"portalUsername":"test1234@test.com","postalCode":"92551","primaryCareProfessionalCd":null,"primaryCareProfessionalId":null,"salutation":"Mr.","securityCode":null,"sendNotifications":true,"setupFeeAmt":10,"speciesId":1,"state":"CA","status":"1","totalCostAmount":288.4,"userId":5426455},{"id":1000012560,"plan":{"id":5428455,"shortDescription":"Puppy
+        Wellness Plan"},"accountNbrForDisplay":"5354","address1":"100 Argonaut","address2":null,"ageGroupId":11,"bankAccountHolderType":"P","bankAccountType":"C","bankRoutingNbr":"122000496","chargeCreditCheckFeeToConsumer":false,"chargePaymentFeeToConsumer":false,"checkNbr":null,"city":"Morino
+        Valley","contractDocCreated":null,"contractType":3,"country":"US","createdByExternalUserCd":null,"creditCheckFeeAmt":10,"dateCreated":"2019-10-30T16:48:57Z","downPaymentAmount":25,"email":"Olivia.Wright@ExtendCredit.com","expirationMonth":null,"expirationYear":null,"externalClientCd":"1000","externalLocationCd":null,"externalMemberCd":"1","externalPaymentProfileId":"100851178","externalPlanCd":null,"firstBillingDate":"2019-11-01T16:48:57Z","firstName":"Olivia","gatewayVaultId":null,"gender":null,"initialPaymentOption":2,"initiatedByProfessionalCd":null,"initiatedByProfessionalId":null,"institutionName":"UNION
+        BANK","lastName":"Wright","lastUpdated":"2019-10-30T16:48:57Z","location":{"id":5426720,"accountCd":"010265","address1":"250
+        Commerce","address2":"Suite 200 XXX","city":"Irvine","country":"USA","externalLocationCd":"010265","name":"SampleLocation","postalCode":"92602","resellerCustomerId":1995,"state":"CA"},"locationId":5426720,"memberAge":"1Y
+        2M","memberName":"Cece","middleInitial":null,"optionalPlanServices":[],"payMethod":"ACH","payOption":"ACH","paymentAddress1":"100
+        Argonaut","paymentAddress2":null,"paymentAmount":21.95,"paymentCity":"Morino
+        Valley","paymentCountry":"US","paymentName":"Olivia Wright","paymentPostalCode":"92551","paymentServiceFeeAmt":3,"paymentState":"CA","paymentTermCycle":"M","paymentTermDuration":12,"paymentaddressSameAsAccount":true,"phone1":"9494814601","phone1Type":"H","phone2":"9494814602","phone2Type":"W","planAmount":263.4,"planId":5428455,"portalUsername":"test1234@test.com","postalCode":"92551","primaryCareProfessionalCd":null,"primaryCareProfessionalId":null,"salutation":"Mr.","securityCode":null,"sendNotifications":true,"setupFeeAmt":10,"speciesId":1,"state":"CA","status":"1","totalCostAmount":288.4,"userId":5426455},{"id":1000012547,"plan":{"id":5428455,"shortDescription":"Puppy
+        Wellness Plan"},"accountNbrForDisplay":"5354","address1":"1010 Monarch St","address2":null,"ageGroupId":11,"bankAccountHolderType":"P","bankAccountType":"C","bankRoutingNbr":"122000496","chargeCreditCheckFeeToConsumer":false,"chargePaymentFeeToConsumer":false,"checkNbr":null,"city":"Lexington","contractDocCreated":null,"contractType":3,"country":"US","createdByExternalUserCd":null,"creditCheckFeeAmt":10,"dateCreated":"2019-10-30T15:44:30Z","downPaymentAmount":25,"email":"jblau@bitwerx.com","expirationMonth":null,"expirationYear":null,"externalClientCd":"10001","externalLocationCd":null,"externalMemberCd":"1","externalPaymentProfileId":"100851143","externalPlanCd":null,"firstBillingDate":"2019-11-01T15:44:30Z","firstName":"Jennifer","gatewayVaultId":null,"gender":"F","initialPaymentOption":2,"initiatedByProfessionalCd":null,"initiatedByProfessionalId":null,"institutionName":"UNION
+        BANK","lastName":"Blau","lastUpdated":"2019-10-30T15:44:30Z","location":{"id":5426720,"accountCd":"010265","address1":"250
+        Commerce","address2":"Suite 200 XXX","city":"Irvine","country":"USA","externalLocationCd":"010265","name":"SampleLocation","postalCode":"92602","resellerCustomerId":1995,"state":"CA"},"locationId":5426720,"memberAge":"7Y
+        2M","memberName":"Daphne","middleInitial":null,"optionalPlanServices":[],"payMethod":"ACH","payOption":"ACH","paymentAddress1":"1010
+        Monarch St","paymentAddress2":null,"paymentAmount":21.95,"paymentCity":"Lexington","paymentCountry":"US","paymentName":"Jennifer
+        Blau","paymentPostalCode":"40503","paymentServiceFeeAmt":3,"paymentState":"KY","paymentTermCycle":"M","paymentTermDuration":12,"paymentaddressSameAsAccount":true,"phone1":"8888242485","phone1Type":"W","phone2":null,"phone2Type":null,"planAmount":263.4,"planId":5428455,"portalUsername":"test1234@test.com","postalCode":"40503","primaryCareProfessionalCd":null,"primaryCareProfessionalId":null,"salutation":"Ms.","securityCode":null,"sendNotifications":true,"setupFeeAmt":10,"speciesId":1,"state":"KY","status":"1","totalCostAmount":288.4,"userId":5426455},{"id":1000012545,"plan":{"id":5428455,"shortDescription":"Puppy
+        Wellness Plan"},"accountNbrForDisplay":"5354","address1":"1010 Monarch St","address2":null,"ageGroupId":11,"bankAccountHolderType":"P","bankAccountType":"C","bankRoutingNbr":"122000496","chargeCreditCheckFeeToConsumer":false,"chargePaymentFeeToConsumer":false,"checkNbr":null,"city":"Lexington","contractDocCreated":null,"contractType":3,"country":"US","createdByExternalUserCd":null,"creditCheckFeeAmt":10,"dateCreated":"2019-10-30T15:35:31Z","downPaymentAmount":25,"email":"jblau@bitwerx.com","expirationMonth":null,"expirationYear":null,"externalClientCd":"10001","externalLocationCd":null,"externalMemberCd":"1","externalPaymentProfileId":"100851139","externalPlanCd":null,"firstBillingDate":"2019-11-01T15:35:31Z","firstName":"Jennifer","gatewayVaultId":null,"gender":"F","initialPaymentOption":2,"initiatedByProfessionalCd":null,"initiatedByProfessionalId":null,"institutionName":"UNION
+        BANK","lastName":"Blau","lastUpdated":"2019-10-30T15:35:31Z","location":{"id":5426720,"accountCd":"010265","address1":"250
+        Commerce","address2":"Suite 200 XXX","city":"Irvine","country":"USA","externalLocationCd":"010265","name":"SampleLocation","postalCode":"92602","resellerCustomerId":1995,"state":"CA"},"locationId":5426720,"memberAge":"7Y
+        2M","memberName":"Daphne","middleInitial":null,"optionalPlanServices":[],"payMethod":"ACH","payOption":"ACH","paymentAddress1":"1010
+        Monarch St","paymentAddress2":null,"paymentAmount":21.95,"paymentCity":"Lexington","paymentCountry":"US","paymentName":"Jennifer
+        Blau","paymentPostalCode":"40503","paymentServiceFeeAmt":3,"paymentState":"KY","paymentTermCycle":"M","paymentTermDuration":12,"paymentaddressSameAsAccount":true,"phone1":"8888242485","phone1Type":"W","phone2":null,"phone2Type":null,"planAmount":263.4,"planId":5428455,"portalUsername":"test1234@test.com","postalCode":"40503","primaryCareProfessionalCd":null,"primaryCareProfessionalId":null,"salutation":"Ms.","securityCode":null,"sendNotifications":true,"setupFeeAmt":10,"speciesId":1,"state":"KY","status":"1","totalCostAmount":288.4,"userId":5426455},{"id":1000012544,"plan":{"id":5428455,"shortDescription":"Puppy
+        Wellness Plan"},"accountNbrForDisplay":"5354","address1":"100 Argonaut","address2":null,"ageGroupId":11,"bankAccountHolderType":"P","bankAccountType":"C","bankRoutingNbr":"122000496","chargeCreditCheckFeeToConsumer":false,"chargePaymentFeeToConsumer":false,"checkNbr":null,"city":"Morino
+        Valley","contractDocCreated":null,"contractType":3,"country":"US","createdByExternalUserCd":null,"creditCheckFeeAmt":10,"dateCreated":"2019-10-30T15:16:16Z","downPaymentAmount":25,"email":"Olivia.Wright@ExtendCredit.com","expirationMonth":null,"expirationYear":null,"externalClientCd":"1000","externalLocationCd":null,"externalMemberCd":"1","externalPaymentProfileId":"100851127","externalPlanCd":null,"firstBillingDate":"2019-11-01T15:16:16Z","firstName":"Olivia","gatewayVaultId":null,"gender":null,"initialPaymentOption":2,"initiatedByProfessionalCd":null,"initiatedByProfessionalId":null,"institutionName":"UNION
+        BANK","lastName":"Wright","lastUpdated":"2019-10-30T15:16:16Z","location":{"id":5426720,"accountCd":"010265","address1":"250
+        Commerce","address2":"Suite 200 XXX","city":"Irvine","country":"USA","externalLocationCd":"010265","name":"SampleLocation","postalCode":"92602","resellerCustomerId":1995,"state":"CA"},"locationId":5426720,"memberAge":"1Y
+        2M","memberName":"Cece","middleInitial":null,"optionalPlanServices":[],"payMethod":"ACH","payOption":"ACH","paymentAddress1":"100
+        Argonaut","paymentAddress2":null,"paymentAmount":21.95,"paymentCity":"Morino
+        Valley","paymentCountry":"US","paymentName":"Olivia Wright","paymentPostalCode":"92551","paymentServiceFeeAmt":3,"paymentState":"CA","paymentTermCycle":"M","paymentTermDuration":12,"paymentaddressSameAsAccount":true,"phone1":"9494814601","phone1Type":"H","phone2":"9494814602","phone2Type":"W","planAmount":263.4,"planId":5428455,"portalUsername":"test1234@test.com","postalCode":"92551","primaryCareProfessionalCd":null,"primaryCareProfessionalId":null,"salutation":"Mr.","securityCode":null,"sendNotifications":true,"setupFeeAmt":10,"speciesId":1,"state":"CA","status":"1","totalCostAmount":288.4,"userId":5426455},{"id":1000012543,"plan":{"id":5428455,"shortDescription":"Puppy
+        Wellness Plan"},"accountNbrForDisplay":"5354","address1":"100 Argonaut","address2":null,"ageGroupId":11,"bankAccountHolderType":"P","bankAccountType":"C","bankRoutingNbr":"122000496","chargeCreditCheckFeeToConsumer":false,"chargePaymentFeeToConsumer":false,"checkNbr":null,"city":"Morino
+        Valley","contractDocCreated":null,"contractType":3,"country":"US","createdByExternalUserCd":null,"creditCheckFeeAmt":10,"dateCreated":"2019-10-30T15:15:44Z","downPaymentAmount":25,"email":"Olivia.Wright@ExtendCredit.com","expirationMonth":null,"expirationYear":null,"externalClientCd":"1000","externalLocationCd":null,"externalMemberCd":"1","externalPaymentProfileId":"100851126","externalPlanCd":null,"firstBillingDate":"2019-11-01T15:15:44Z","firstName":"Olivia","gatewayVaultId":null,"gender":null,"initialPaymentOption":2,"initiatedByProfessionalCd":null,"initiatedByProfessionalId":null,"institutionName":"UNION
+        BANK","lastName":"Wright","lastUpdated":"2019-10-30T15:15:44Z","location":{"id":5426720,"accountCd":"010265","address1":"250
+        Commerce","address2":"Suite 200 XXX","city":"Irvine","country":"USA","externalLocationCd":"010265","name":"SampleLocation","postalCode":"92602","resellerCustomerId":1995,"state":"CA"},"locationId":5426720,"memberAge":"1Y
+        2M","memberName":"Cece","middleInitial":null,"optionalPlanServices":[],"payMethod":"ACH","payOption":"ACH","paymentAddress1":"100
+        Argonaut","paymentAddress2":null,"paymentAmount":21.95,"paymentCity":"Morino
+        Valley","paymentCountry":"US","paymentName":"Olivia Wright","paymentPostalCode":"92551","paymentServiceFeeAmt":3,"paymentState":"CA","paymentTermCycle":"M","paymentTermDuration":12,"paymentaddressSameAsAccount":true,"phone1":"9494814601","phone1Type":"H","phone2":"9494814602","phone2Type":"W","planAmount":263.4,"planId":5428455,"portalUsername":"test1234@test.com","postalCode":"92551","primaryCareProfessionalCd":null,"primaryCareProfessionalId":null,"salutation":"Mr.","securityCode":null,"sendNotifications":true,"setupFeeAmt":10,"speciesId":1,"state":"CA","status":"1","totalCostAmount":288.4,"userId":5426455}]'
+    http_version: 
+  recorded_at: Thu, 31 Oct 2019 01:41:00 GMT
+recorded_with: VCR 3.0.3

@@ -1,0 +1,72 @@
+[
+  {
+    "concept_name": "species_id",
+    "translation_value": {
+      "partner_value": 1,
+      "gateway_value": "aa49c6a9-a4e8-4a19-bea0-059739291646"
+    }
+  },
+  {
+    "concept_name": "species_id",
+    "translation_value": {
+      "partner_value": 2,
+      "gateway_value": "c784e91c-56b6-4391-aa63-831b1c656d9e"
+    }
+  },
+  {
+    "concept_name": "species_id",
+    "translation_value": {
+      "partner_value": 4,
+      "gateway_value": "0"
+    }
+  },
+  {
+    "concept_name": "is_optional",
+    "translation_value": {
+      "partner_value": "O",
+      "gateway_value": true
+    }
+  },
+  {
+    "concept_name": "is_optional",
+    "translation_value": {
+      "partner_value": "R",
+      "gateway_value": false
+    }
+  },
+  {
+    "concept_name": "card_name",
+    "translation_value": {
+      "partner_value": "VI",
+      "gateway_value": "Visa"
+    }
+  },
+  {
+    "concept_name": "card_name",
+    "translation_value": {
+      "partner_value": "MC",
+      "gateway_value": "MasterCard"
+    }
+  },
+  {
+    "concept_name": "card_name",
+    "translation_value": {
+      "partner_value": "AM",
+      "gateway_value": "AmericanExpress"
+    }
+  },
+  {
+    "concept_name": "card_name",
+    "translation_value": {
+      "partner_value": "DC",
+      "gateway_value": "Discover"
+    }
+  },
+  {
+    "concept_name": "payment_method",
+    "translation_value": {
+      "partner_value": "CC",
+      "gateway_value": "credit"
+    }
+  }
+]

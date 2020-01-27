@@ -1,0 +1,64 @@
+agreements:
+  show:
+    method: get
+    resource: contractApplicationAgreement
+
+  update:
+    method: put
+    resource: contractApplicationAgreement
+
+contract_applications:
+  index:
+    method: get
+    resource: contractApplication
+
+  show:
+    method: get
+    resource: contractApplication
+
+  create:
+    method: post
+    resource: contractApplication
+
+  update:
+    method: put
+    resource: contractApplication
+  
+  destroy:
+    method: put
+    resource: contractApplication
+
+plans:
+  index:
+    method: get
+    resource: plan
+
+  show:
+    method: get
+    resource: plan
+
+plan_services:
+  index:
+    method: get
+    resource: planService
+
+  show:
+    method: get
+    resource: planService
+
+contract_services:
+  index:
+    method: get
+    resource: contractPeriod
+  create:
+    method: post
+    resource: serviceConsumption
+
+contracts:
+  index:
+    method: get
+    resource: contract
+
+  show:
+    method: get
+    resource: contract

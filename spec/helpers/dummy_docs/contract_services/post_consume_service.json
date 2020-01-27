@@ -1,0 +1,22 @@
+{
+  "serviceConsumptionList": [
+    {
+      "owner_id": "1000",
+      "external_consumption_id": "16600",
+      "external_invoice_date": "2019-02-18T18:20:12Z",
+      "external_invoice_number": "8877",
+      "clinic_location_id": "010265",
+      "pet_id": "1333",
+      "external_service_cd": "36600",
+      "external_service_name": "Joo",
+      "external_service_type": "vaccine",
+      "posting_date": "2019-02-18T18:20:12Z",
+      "quantity": 1,
+      "service_date": "2019-02-18T18:20:12Z",
+      "service_delivered_by_cd": "4433",
+      "service_delivered_by_name": "JJJ",
+      "invoiced_price": 17.5,
+      "discount_amt": 0
+    }
+  ]
+}

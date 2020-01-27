@@ -10,15 +10,15 @@ module Api
         if @user == 'api_client'
           render json: { token: JwtAuthToken.encode(user_role: 'vip_admin') }
         else
-          render json: { errors: ['Invalid credentials.'] }, status: 403
+          render json: { errors: ['Invalid credentials.'] }, status: :forbidden
         end
       end
 
       private
 
       def retrieve_credentials
-        @username = Rails.application.credentials.auth[Rails.env.to_sym][:user_name]
-        @password = Rails.application.credentials.auth[Rails.env.to_sym][:password]
+        @username = ENV['GATEWAY_USERNAME']
+        @password = ENV['GATEWAY_PASSWORD']
       end
 
       def find_user

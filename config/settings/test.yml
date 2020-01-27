@@ -4,4 +4,3 @@ api:
     subdomain: "demo."
     domain: "vcp.vet"
     api_route: "/cwa/api"
-    demo_client_ready: false

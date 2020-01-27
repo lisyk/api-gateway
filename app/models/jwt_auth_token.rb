@@ -2,12 +2,17 @@
 
 class JwtAuthToken
   def self.encode(payload)
-    # TODO: move expiration to secret credentials, ENV variable
-    exp = (DateTime.now + 1.month).to_i
-    JWT.encode(payload.merge(exp: exp), Rails.application.credentials.secret_key_base)
+    exp = set_token_expiration.to_i
+    JWT.encode(payload.merge(exp: exp), Rails.application.secret_key_base)
   end
 
   def self.decode(token)
-    JWT.decode(token, Rails.application.credentials.secret_key_base).first
+    JWT.decode(token, Rails.application.secret_key_base).first
   end
+
+  def self.set_token_expiration
+    ENV['JWT_TOKEN_EXPIRATION_IN_HOURS'].to_i.hours.from_now
+  end
+
+  private_class_method :set_token_expiration
 end

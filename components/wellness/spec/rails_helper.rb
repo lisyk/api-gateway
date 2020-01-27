@@ -1,16 +1,18 @@
-# This file is copied to spec/ when you run 'rails generate rspec:install'
-require 'spec_helper'
+# frozen_string_literal: true
+
 ENV['RAILS_ENV'] ||= 'test'
 
-require File.expand_path('../dummy/config/environment', __FILE__)
+require File.expand_path('dummy/config/environment', __dir__)
+# This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'spec_helper'
 
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 require 'rails-controller-testing'
 Rails::Controller::Testing.install
 
-Dir[Wellness::Engine.root.join("spec/support/**/*.rb")].each{ |f| require f }
+Dir[Wellness::Engine.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Add additional requires below this line. Rails is not loaded until this point!
 

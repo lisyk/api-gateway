@@ -1,0 +1,22 @@
+{
+  "age_group": "datetime",
+  "auto_renew": "boolean",
+  "created_at": "datetime",
+  "sort_order": "integer",
+  "code": "integer",
+  "updated_at": "datetime",
+  "location": "n/a",
+  "long_description": "string",
+  "paid_in_full_discount": "string",
+  "payment_term": "string",
+  "full_plan_price": "decimal",
+  "plan_effective_date": "datetime",
+  "plan_expiration_date": "datetime",
+  "plan_services": "array",
+  "is_active": "boolean",
+  "recurring_plan_payment_total": "decimal",
+  "renewal_plan":  "integer",
+  "short_description": "string",
+  "species_id": "integer",
+  "id": "integer"
+}

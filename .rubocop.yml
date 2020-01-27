@@ -1,0 +1,88 @@
+require:
+    - rubocop
+    - rubocop-rails
+
+AllCops:
+  Exclude:
+    - 'bin/*'
+    - 'config.ru'
+    - 'config/spring.rb'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'components/wellness/spec/dummy/config/**/*'
+    - 'db/schema.rb'
+    - 'db/base_schema.rb'
+    - 'components/db_service/spec/spec_helper.rb'
+    - 'components/db_service/spec/dummy/db/*'
+    - 'components/db_service/spec/dummy/**/**/*'
+    - 'components/db_service/db/migrate/*'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'db/migrate/*.rb'
+
+Metrics/ModuleLength:
+  Exclude:
+    - "**/**/spec/**/*_spec.rb"
+    - '**/**/spec/**/**/*'
+
+Metrics/LineLength:
+  Max: 99
+  Exclude:
+    - 'Gemfile'
+    - 'config/environments/*'
+    - 'config/initializers/*'
+    - 'spec/**/**/**/*'
+    - '**/**/config/environments/*'
+    - '**/**/config/initializers/*'
+    - '**/**/spec/**/**/**/*'
+
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'db/migrate/*.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/**/**/*'
+    - '**/**/spec/**/**/**/*'
+    - 'components/**/*.gemspec'
+    - 'components/**/spec/**/**/**/*'
+
+Rails/Output:
+  Exclude:
+    - 'db/*.rb'
+
+Rails/FilePath:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Style/BlockComments:
+  Exclude:
+    - 'spec/spec_helper.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Style/ExpandPathArguments:
+  Exclude:
+    - 'spec/rails_helper.rb'
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'db/migrate/*.rb'
+
+Style/NegatedIf:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Naming/FileName:
+  Exclude:
+    - 'config/initializers/rswag-ui.rb'

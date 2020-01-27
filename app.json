@@ -1,0 +1,23 @@
+{
+  "addons": [
+    "airbrake",
+    "heroku-postgresql:hobby-dev",
+    "heroku-redis",
+    "papertrail"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    }
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "api-gateway",
+  "scripts": {
+    "postdeploy": "bash config/heroku/heroku_review_app_postdeploy.sh"
+  },
+  "stack": "heroku-18"
+}
