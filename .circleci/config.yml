@@ -198,3 +198,4 @@ jobs:
           command: |
             bash .circleci/create_known_hosts.sh
             bash .circleci/commit_db_schema.sh
+
